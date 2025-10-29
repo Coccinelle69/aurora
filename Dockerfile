@@ -5,11 +5,11 @@ FROM node:22-alpine
 WORKDIR /app
 
 # Copy package files and install dependencies
-COPY package*.json ./
+COPY aurora-front/package*.json ./
 RUN npm install
 
 # Copy the rest of the source code
-COPY . .
+COPY /aurora-front .
 
 # Expose the Next.js dev port
 EXPOSE 3000

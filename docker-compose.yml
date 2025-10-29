@@ -1,0 +1,13 @@
+services:
+  aurora_front:
+    build:
+      context: .
+    container_name: aurora_front
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./aurora-front:/app # <-- mount the app folder, not "."
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    command: npm run dev

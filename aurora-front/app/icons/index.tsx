@@ -1,47 +1,29 @@
-import FacebookIcon from "@mui/icons-material/Facebook";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import MenuIcon from "@mui/icons-material/Menu";
-import Image from "next/image";
-import { AppImage } from "../components/Image";
+import { Icon } from "../components/Icon";
+
+const MenuIcon = (props: { size?: number; color?: string }) => (
+  <Icon src="/header/burger-bar.png" alt="Menu" {...props} />
+);
 
 const CloseIcon = (props: { size?: number; color?: string }) => (
-  <AppImage src="/close.png" alt="Close" {...props} />
+  <Icon src="/header/close.png" alt="Close" {...props} />
 );
 
-// const FreeParkingIcon = ({ size = 48 }: { size?: number }) => (
-//   <Image
-//     src="/free-parking.png"
-//     alt="Free Parking"
-//     width={size}
-//     height={size}
-//     style={{
-//       filter:
-//         color === "white"
-//           ? "invert(1) brightness(100%)"
-//           : "invert(0) brightness(1)",
-//     }}
-//   />
-// );
-
-const FreeWifiIcon = ({ size = 48 }: { size?: number }) => (
-  <Image src="/wifi.png" alt="Wifi icon" width={size} height={size} />
+const FacebookIcon = (props: { size?: number; color?: string }) => (
+  <Icon
+    src="/header/facebook.png"
+    alt="Facebook"
+    {...props}
+    className="hover:scale-125 transition-transform duration-300 ease-out"
+  />
 );
 
-// const FreeParkingIcon = ({ size = 48 }: { size?: number }) => (
-//   <Image
-//     src="/free-parking.png"
-//     alt="Free Parking"
-//     width={size}
-//     height={size}
-//   />
-// );
+const InstagramIcon = (props: { size?: number; color?: string }) => (
+  <Icon
+    src="/header/instagram.png"
+    alt="Instagram"
+    {...props}
+    className="hover:scale-125 transition-transform duration-300 ease-out"
+  />
+);
 
-// const FreeParkingIcon = ({ size = 48 }: { size?: number }) => (
-//   <Image
-//     src="/free-parking.png"
-//     alt="Free Parking"
-//     width={size}
-//     height={size}
-//   />
-// );
-export { FacebookIcon, InstagramIcon, MenuIcon, CloseIcon, FreeWifiIcon };
+export { FacebookIcon, InstagramIcon, MenuIcon, CloseIcon };

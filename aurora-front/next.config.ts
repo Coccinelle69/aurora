@@ -7,7 +7,14 @@ const nextConfig: NextConfig = {
   // },
   // turbopack: {},
   images: {
-    domains: ["cdn-icons-png.flaticon.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn-icons-png.flaticon.com",
+        port: "",
+        pathname: "/**", // allow any path from this host
+      },
+    ],
   },
 };
 

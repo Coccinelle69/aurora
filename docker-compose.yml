@@ -1,8 +1,7 @@
 services:
   aurora_front:
     build:
-      context: .
-    container_name: aurora_front
+      context: ./aurora-front
     working_dir: /app # <-- run commands in /app
     ports:
       - "3000:3000"

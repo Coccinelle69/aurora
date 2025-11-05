@@ -102,12 +102,12 @@ export default function FullScreenMenu({ open, onClose }: Props) {
             <div className="mx-auto h-full w-full max-w-7xl px-[8%] py-10 grid grid-cols-1 lg:grid-cols-[1.25fr_1fr_1fr] gap-10">
               {/* Left: Logo / CTA / Contacts */}
               <div className="flex flex-col justify-between">
-                <div className="pt-8">
+                <div className="w-full h-full">
                   {/* Ensure LogoAurora itself is not width-capped; pass a larger size if needed */}
-                  <LogoAurora size={600} className="" fullscreen={open} />
+                  <LogoAurora className="" fullscreen={open} />
                 </div>
 
-                <div className="pb-8 space-y-6">
+                <div className="pb-10 space-y-6">
                   <Link
                     href="#booking"
                     onClick={onClose}

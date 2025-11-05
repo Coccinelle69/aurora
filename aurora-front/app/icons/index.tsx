@@ -9,21 +9,11 @@ const CloseIcon = (props: { size?: number; color?: string }) => (
 );
 
 const FacebookIcon = (props: { size?: number; color?: string }) => (
-  <Icon
-    src="/header/facebook.png"
-    alt="Facebook"
-    {...props}
-    className="hover:scale-125 transition-transform duration-300 ease-out"
-  />
+  <Icon src="/header/facebook.png" alt="Facebook" {...props} />
 );
 
 const InstagramIcon = (props: { size?: number; color?: string }) => (
-  <Icon
-    src="/header/instagram.png"
-    alt="Instagram"
-    {...props}
-    className="hover:scale-125 transition-transform duration-300 ease-out"
-  />
+  <Icon src="/header/instagram.png" alt="Instagram" {...props} />
 );
 
 export { FacebookIcon, InstagramIcon, MenuIcon, CloseIcon };

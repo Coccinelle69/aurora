@@ -21,12 +21,10 @@ const Header = () => {
       <header
         className={`${
           !scrolled && "lg:h-[125px]"
-        }  fixed top-0 left-0 w-full  transition-colors duration-500 ${
-          scrolled ? "bg-[#1A3C5B]" : "bg-[#1A3C5B] lg:bg-transparent"
+        }  fixed top-0 left-0 w-full z-11 transition-colors duration-500 ${
+          scrolled ? "bg-[#4a6ca3]" : "bg-[#4a6ca3] lg:bg-transparent"
         }
      `}
-        // className={`h-50 fixed top-0 left-0 w-full  transition-colors duration-500 backdrop-blur-sm
-        // ${scrolled ? "bg-[#1A3C5B]" : "bg-[#1A3C5B] lg:bg-transparent"}`}
       >
         <nav className={`${!scrolled && "lg:h-[125px]"}`}>
           <ul className="h-full flex flex-row px-[8%] justify-between">
@@ -40,7 +38,7 @@ const Header = () => {
               </div>
             </li>
             <li className="block lg:hidden">
-              <Logo size={150} className="" fullscreen={fullScreenMenuOpen} />
+              <Logo className="" fullscreen={fullScreenMenuOpen} />
             </li>
 
             {scrolled && (

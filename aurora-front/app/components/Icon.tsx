@@ -15,17 +15,19 @@ export const Icon = ({
   color = "white",
   className = "",
 }: IconProps) => (
-  <Image
-    src={src}
-    alt={alt}
-    width={size}
-    height={size}
-    className={className}
-    style={{
-      filter:
-        color === "white"
-          ? "invert(1) brightness(100%)"
-          : "invert(0) brightness(1)",
-    }}
-  />
+  <div className="">
+    <Image
+      src={src}
+      alt={alt}
+      width={size}
+      height={size}
+      className="hover:scale-125 transition-transform duration-300 ease-out"
+      style={{
+        filter:
+          color === "white"
+            ? "invert(1) brightness(100%)"
+            : "invert(0) brightness(1)",
+      }}
+    />
+  </div>
 );

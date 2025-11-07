@@ -1,11 +1,14 @@
 // app/components/ExploreApartments.tsx
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { Quintessential, Roboto } from "next/font/google";
+import { Quintessential } from "next/font/google";
+import { useTranslation } from "react-i18next";
 const quintessential = Quintessential({ subsets: ["latin"], weight: "400" });
-const roboto = Roboto({ subsets: ["latin"], weight: "400" });
 
 export default function ExploreApartment() {
+  const { t } = useTranslation();
   return (
     <section className="relative w-full">
       {/* full-bleed background image */}
@@ -32,27 +35,23 @@ export default function ExploreApartment() {
                 <h2
                   className={`${quintessential.className} text-3xl md:text-4xl`}
                 >
-                  Explore our apartment
+                  {t("explore-h2")}
                 </h2>
               </div>
               {/* body box */}
               <div className="bg-white/60 px-8 py-8 shadow-md backdrop-blur">
                 <p className="text-slate-700 leading-relaxed">
-                  Calm, clean and elegant, Aurora entice you to take time to
-                  relax and enjoy your vacations in a wonderful place, providing
-                  premium comfort and convenience.
+                  {t("explore-p-1")}
                 </p>
                 <p className="mt-4 text-slate-700 leading-relaxed">
-                  Fully equipped apartments that match your personal
-                  requirements, designed with high-end details to make your stay
-                  an unforgettable experience.
+                  {t("explore-p-2")}
                 </p>
 
                 <Link
                   href="/apartment"
                   className="mt-6 inline-block font-semibold tracking-wide text-[#11344b] underline-offset-4 hover:underline"
                 >
-                  EXPLORE &gt;&gt;&gt;
+                  {t("explore-btn")} &gt;&gt;&gt;
                 </Link>
               </div>
             </div>

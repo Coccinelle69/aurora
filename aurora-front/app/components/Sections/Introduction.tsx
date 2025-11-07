@@ -1,10 +1,21 @@
 // app/components/ComfortSection.tsx
+"use client";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
+import i18next from "../../locales/i18next";
 import { Quintessential, Roboto } from "next/font/google";
+import { useEffect } from "react";
+import { useAppSelector } from "@/app/hooks";
 const quintessential = Quintessential({ subsets: ["latin"], weight: "400" });
 const roboto = Roboto({ subsets: ["latin"], weight: "400" });
 
 export default function ComfortSection() {
+  const { t } = useTranslation();
+  const language = useAppSelector((state) => state.language.value);
+
+  useEffect(() => {
+    i18next.changeLanguage(language);
+  }, [language]);
   return (
     <section className="relative overflow-hidden bg-white py-24">
       {/* FULL-BLEED RIGHT PANEL (goes to the screen edge, taller than the photo) */}
@@ -28,34 +39,21 @@ export default function ComfortSection() {
           </div>
 
           {/* RIGHT COPY AREA (centered inside the gray panel) */}
-          <div className="ml-auto flex w-full justify-center lg:w-[46%]">
+          <div className="ml-auto flex w-full justify-center lg:w-[47%]">
             <div className="py-16 text-center">
               <h2
                 className={`${quintessential.className} text-2xl md:text-3xl text-slate-800`}
               >
-                Experience coastal comfort
+                <span>{t("introduction-h2-1")}</span>
                 <br />
-                with a warm family spirit
+                <span>{t("introduction-h2-2")}</span>
               </h2>
               <div className="mx-auto mt-6 max-w-2xl space-y-4 text-xs md:text-sm leading-relaxed text-slate-600">
                 <p className={`${roboto.className} `}>
-                  Just a few steps from the beach, Aurora Suites sits in the
-                  heart of Zukve — a peaceful seaside village where the rhythm
-                  of the waves and the scent of the sea define each day.
+                  {t("introduction-p-1")}
                 </p>
-                <p>
-                  Our newly furnished appartment combines cozy Mediterranean
-                  style with every modern comfort. Enjoy air conditioning, TV
-                  channels, Wi-Fi, a fully equipped kitchen, and all the little
-                  details that make your stay easy and relaxing.
-                </p>
-                <p>
-                  Our cozy, family-run accommodation invites you to slow down
-                  and feel at home. Whether you’re sharing breakfast on the
-                  terrace, strolling to the nearby cafés, or spending lazy
-                  afternoons by the water, everything here feels calm and
-                  genuine.
-                </p>
+                <p>{t("introduction-p-2")}</p>
+                <p>{t("introduction-p-3")}</p>
               </div>
             </div>
           </div>

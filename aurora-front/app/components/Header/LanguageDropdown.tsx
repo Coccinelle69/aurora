@@ -1,7 +1,11 @@
 "use client";
 
+import { useAppSelector } from "@/app/hooks";
+import { changeLanguage } from "@/reducers/language";
+import i18next from "i18next";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { useDispatch } from "react-redux";
 
 type Lang = { code: string; native: string; flag: string };
 
@@ -17,16 +21,16 @@ const LANGS: Lang[] = [
   { code: "zh", native: "中文", flag: "/languages/ZH.png" },
 ];
 
-type Props = { onChange?: (lang: Lang) => void; buttonClassName?: string };
+type Props = { onChange?: (lang: Lang) => void };
 
-export default function LanguageDropdown({
-  onChange,
-  buttonClassName = "",
-}: Props) {
+export default function LanguageDropdown({ onChange }: Props) {
   // ✅ initialize from localStorage during the initial render (no effect + setState)
+  const dispatch = useDispatch();
+
   const [selected, setSelected] = useState<Lang>(() => {
     if (typeof window === "undefined") return LANGS[0]; // default EN during SSR
     const code = localStorage.getItem("lang");
+    console.log(code);
     return LANGS.find((l) => l.code === code) ?? LANGS[0];
   });
 
@@ -54,6 +58,10 @@ export default function LanguageDropdown({
     setOpen(false);
     if (typeof window !== "undefined") localStorage.setItem("lang", lang.code);
     onChange?.(lang);
+    console.log(lang.code);
+    i18next.changeLanguage(lang.code);
+
+    dispatch(changeLanguage(lang.code));
   };
 
   return (
@@ -61,7 +69,7 @@ export default function LanguageDropdown({
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className={`flex items-center gap-2 rounded-md  bg-transparent px-3 py-2 text-sm text-white hover:bg-white/10 ${buttonClassName}`}
+        className={`flex items-center gap-2 rounded-md  bg-transparent px-3 py-2 text-sm text-white hover:bg-white/10 `}
         aria-haspopup="listbox"
         aria-expanded={open}
       >

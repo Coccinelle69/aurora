@@ -1,17 +1,19 @@
 services:
   aurora_front:
     build:
-      context: ./aurora-front
+      context: .
     working_dir: /app # <-- run commands in /app
     ports:
       - "3000:3000"
     volumes:
       - ./aurora-front:/app # <-- mount the app folder, not "."
-      - /app/node_modules
+      - node_deps:/app/node_modules
     environment:
       - NODE_ENV=development
       - CHOKIDAR_USEPOLLING=true # required for Windows FS
       - WATCHPACK_POLLING=true
       - WATCHPACK_POLLING_INTERVAL=500
       - NEXT_DISABLE_TURBOPACK=1
-    command: sh -c "npm run dev -- --webpack"
+    command: sh -c "npm run dev --webpack"
+volumes:
+  node_deps:

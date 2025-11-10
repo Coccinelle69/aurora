@@ -6,7 +6,12 @@ WORKDIR /app
 
 # Copy package files and install dependencies
 COPY aurora-front/package*.json ./
+
+ENV NPM_CONFIG_LEGACY_PEER_DEPS=true
+
+
 RUN npm ci
+
 
 # Copy the rest of the source code
 COPY aurora-front/ .

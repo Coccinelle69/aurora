@@ -1,25 +1,18 @@
 "use client";
-import {
-  EmblaCarousel,
-  Introduction,
-  ExploreApartment,
-  Features,
-} from "@/components";
 
+import { EmblaCarousel, ApartmentFeatures } from "@/components";
 import house1 from "@/public/carousel/house1.jpg";
 import house2 from "@/public/carousel/house2.jpg";
 import house3 from "@/public/carousel/house3.jpg";
 
-export default function Home() {
+const Apartment = () => {
   const slides = [house1, house2, house3];
   return (
-    <>
+    <div>
       <EmblaCarousel slides={slides} />
-      <div className="w-full ">
-        <Introduction />
-        <ExploreApartment />
-        <Features />
-      </div>
-    </>
+      <ApartmentFeatures />
+    </div>
   );
-}
+};
+
+export default Apartment;

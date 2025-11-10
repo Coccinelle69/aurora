@@ -30,5 +30,19 @@
   "surface": "80 m²",
   "guests": "5 Guests",
   "beds": "Comfy Beds",
-  "terrace": "Terrace"
+  "terrace": "Terrace",
+  "distances": {
+    "title": "Distances",
+    "sea": "Sea",
+    "beach": "Beach",
+    "downtown": "Downtown",
+    "groceries": "Groceries",
+    "restaurant": "Restaurant",
+    "doctor": "Doctor",
+    "pharmacy": "Pharmacy",
+    "bank": "Bank",
+    "gasStation": "Gas station",
+    "busStation": "Bus station",
+    "airport": "Airport"
+  }
 }

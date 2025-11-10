@@ -30,5 +30,19 @@
   "surface": "80 m²",
   "guests": "5 Huéspedes",
   "beds": "Camas cómodas",
-  "terrace": "Terraza"
+  "terrace": "Terraza",
+  "distances": {
+    "title": "Distancias",
+    "sea": "Mar",
+    "beach": "Playa",
+    "downtown": "Centro",
+    "groceries": "Supermercado",
+    "restaurant": "Restaurante",
+    "doctor": "Médico",
+    "pharmacy": "Farmacia",
+    "bank": "Banco",
+    "gasStation": "Gasolinera",
+    "busStation": "Estación de autobuses",
+    "airport": "Aeropuerto"
+  }
 }

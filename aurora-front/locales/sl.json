@@ -30,5 +30,19 @@
   "surface": "80 m²",
   "guests": "5 Goste",
   "beds": "Udobne postelje",
-  "terrace": "Terasa"
+  "terrace": "Terasa",
+  "distances": {
+    "title": "Razdalje",
+    "sea": "Morje",
+    "beach": "Plaža",
+    "downtown": "Središče mesta",
+    "groceries": "Trgovina z živili",
+    "restaurant": "Restavracija",
+    "doctor": "Zdravnik",
+    "pharmacy": "Lekomarna",
+    "bank": "Banka",
+    "gasStation": "Bencinska črpalka",
+    "busStation": "Avtobusna postaja",
+    "airport": "Letališče"
+  }
 }

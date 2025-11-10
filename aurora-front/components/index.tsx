@@ -14,6 +14,8 @@ import Footer from "./Footer/Footer";
 import Copyrights from "./Footer/Copyrights";
 import AnimCursor from "./UI/AnimatedCursor";
 import MapWithMarker from "./Location/Map";
+import Distances from "./Location/Distances";
+import DistancesSection from "./Location/DistanceSection";
 
 export {
   ApartmentFeatures,
@@ -32,4 +34,6 @@ export {
   Features,
   AnimCursor,
   MapWithMarker,
+  Distances,
+  DistancesSection,
 };

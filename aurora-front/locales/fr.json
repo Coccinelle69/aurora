@@ -30,5 +30,19 @@
   "surface": "80 m²",
   "guests": "5 Invités",
   "beds": "Lits confortables",
-  "terrace": "Terrasse"
+  "terrace": "Terrasse",
+  "distances": {
+    "title": "Distances",
+    "sea": "Mer",
+    "beach": "Plage",
+    "downtown": "Centre-ville",
+    "groceries": "Épicerie",
+    "restaurant": "Restaurant",
+    "doctor": "Médecin",
+    "pharmacy": "Pharmacie",
+    "bank": "Banque",
+    "gasStation": "Station-service",
+    "busStation": "Gare routière",
+    "airport": "Aéroport"
+  }
 }

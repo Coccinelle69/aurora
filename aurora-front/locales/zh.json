@@ -30,5 +30,19 @@
   "surface": "80平方米",
   "guests": "5位客人",
   "beds": "舒适的床",
-  "terrace": "露台"
+  "terrace": "露台",
+  "distances": {
+    "title": "距离",
+    "sea": "海",
+    "beach": "海滩",
+    "downtown": "市中心",
+    "groceries": "杂货店",
+    "restaurant": "餐厅",
+    "doctor": "医生",
+    "pharmacy": "药店",
+    "bank": "银行",
+    "gasStation": "加油站",
+    "busStation": "汽车站",
+    "airport": "机场"
+  }
 }

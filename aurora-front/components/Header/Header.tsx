@@ -24,7 +24,7 @@ const Header = () => {
       <header
         className={`${
           !scrolled && "lg:h-[125px]"
-        }  fixed top-0 left-0 w-full z-11 transition-colors duration-500 ${
+        }  fixed top-0 left-0 w-full z-1000 transition-colors duration-500 ${
           scrolled ? "bg-[#4a6ca3]" : "bg-[#4a6ca3] lg:bg-transparent"
         }
      `}

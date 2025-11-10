@@ -30,5 +30,19 @@
   "surface": "80 м²",
   "guests": "5 гостей",
   "beds": "Удобные кровати",
-  "terrace": "Терраса"
+  "terrace": "Терраса",
+  "distances": {
+    "title": "Расстояния",
+    "sea": "Море",
+    "beach": "Пляж",
+    "downtown": "Центр города",
+    "groceries": "Магазин",
+    "restaurant": "Ресторан",
+    "doctor": "Врач",
+    "pharmacy": "Аптека",
+    "bank": "Банк",
+    "gasStation": "Заправка",
+    "busStation": "Автовокзал",
+    "airport": "Аэропорт"
+  }
 }

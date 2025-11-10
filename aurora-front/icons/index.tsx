@@ -64,6 +64,40 @@ const PhoneIcon = (props: { size?: number; color?: string }) => (
   <Icon src="/header/phone.png" alt="Phone" {...props} />
 );
 
+const AirportIcon = (props: { size?: number; color?: string }) => (
+  <Icon src="/distance/airport.png" alt="Airport" {...props} />
+);
+const BankIcon = (props: { size?: number; color?: string }) => (
+  <Icon src="/distance/bank.png" alt="Bank" {...props} />
+);
+const BeachIcon = (props: { size?: number; color?: string }) => (
+  <Icon src="/distance/beach.png" alt="Beach" {...props} />
+);
+const BusIcon = (props: { size?: number; color?: string }) => (
+  <Icon src="/distance/bus.png" alt="Bus" {...props} />
+);
+const DoctorIcon = (props: { size?: number; color?: string }) => (
+  <Icon src="/distance/doctor.png" alt="Doctor" {...props} />
+);
+const FocusIcon = (props: { size?: number; color?: string }) => (
+  <Icon src="/distance/focus.png" alt="Focus" {...props} />
+);
+const GasStationIcon = (props: { size?: number; color?: string }) => (
+  <Icon src="/distance/gas-station.png" alt="Gas Station" {...props} />
+);
+const GroceriesIcon = (props: { size?: number; color?: string }) => (
+  <Icon src="/distance/grocery.png" alt="Groceries" {...props} />
+);
+const PharmacyIcon = (props: { size?: number; color?: string }) => (
+  <Icon src="/distance/pharmacy.png" alt="pPharmacy" {...props} />
+);
+const RestaurantIcon = (props: { size?: number; color?: string }) => (
+  <Icon src="/distance/restaurant.png" alt="Restaurant" {...props} />
+);
+const SeaIcon = (props: { size?: number; color?: string }) => (
+  <Icon src="/distance/sea.png" alt="Sea" {...props} />
+);
+
 export {
   FacebookIcon,
   InstagramIcon,
@@ -81,4 +115,15 @@ export {
   SurfaceIcon,
   EmailIcon,
   PhoneIcon,
+  RestaurantIcon,
+  SeaIcon,
+  BeachIcon,
+  BusIcon,
+  AirportIcon,
+  GroceriesIcon,
+  PharmacyIcon,
+  DoctorIcon,
+  FocusIcon,
+  GasStationIcon,
+  BankIcon,
 };

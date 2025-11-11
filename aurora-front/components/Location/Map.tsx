@@ -1,5 +1,6 @@
-// app/components/MapWithMarker.tsx
 "use client";
+
+/* global google */
 
 import { useEffect, useRef } from "react";
 import Script from "next/script";
@@ -23,87 +24,77 @@ export default function MapWithMarker({
   const inited = useRef(false);
 
   useEffect(() => {
-    let ro: ResizeObserver | null = null;
-
-    const tryInit = async () => {
+    const init = async () => {
       if (inited.current) return;
       const el = elRef.current;
-      if (!el) return;
+      if (!el || !("google" in window) || !google.maps) return;
 
-      const { width, height } = el.getBoundingClientRect();
-      if (width < 20 || height < 20) return; // wait until visible size
-      if (!("google" in window) || !google.maps) return; // wait for script
+      let map: google.maps.Map;
 
-      inited.current = true;
-
-      // Ensure core maps lib is ready (noop on older builds)
-      try {
-        await (google.maps as any).importLibrary?.("maps");
-      } catch {
-        /* ignore; global constructor is fine */
-      }
-
-      // ✅ Use the global constructor (always constructible)
-      const map = new google.maps.Map(el, {
-        center: { lat, lng },
-        zoom,
-        gestureHandling: "greedy",
-        mapId: process.env.NEXT_PUBLIC_GMAPS_MAP_ID, // optional; needed for AdvancedMarker
-      });
-
-      // Try Advanced Marker; fall back to classic Marker
-      let AdvancedMarkerElement:
-        | typeof google.maps.marker.AdvancedMarkerElement
-        | undefined;
-
-      try {
-        const mlib = await (google.maps as any).importLibrary?.("marker");
-        AdvancedMarkerElement = (mlib as google.maps.MarkerLibrary)
-          ?.AdvancedMarkerElement;
-      } catch {
-        /* ignore */
-      }
-
-      if (!AdvancedMarkerElement && google.maps.marker?.AdvancedMarkerElement) {
-        AdvancedMarkerElement = google.maps.marker.AdvancedMarkerElement;
-      }
-
-      if (AdvancedMarkerElement) {
-        new AdvancedMarkerElement({ map, position: { lat, lng }, title });
+      // ----- maps library (modern vs legacy) -----
+      if (typeof (google.maps as any).importLibrary === "function") {
+        const { Map } = (await (google.maps as any).importLibrary(
+          "maps"
+        )) as google.maps.MapsLibrary;
+        map = new Map(el, {
+          center: { lat, lng },
+          zoom,
+          gestureHandling: "greedy",
+          mapId: process.env.NEXT_PUBLIC_GMAPS_MAP_ID,
+        });
       } else {
+        // Legacy build: constructors are on the global
+        map = new google.maps.Map(el, {
+          center: { lat, lng },
+          zoom,
+          gestureHandling: "greedy",
+        });
+      }
+
+      // ----- marker (advanced vs classic) -----
+      try {
+        if (typeof (google.maps as any).importLibrary === "function") {
+          const { AdvancedMarkerElement } = (await (
+            google.maps as any
+          ).importLibrary("marker")) as google.maps.MarkerLibrary;
+          new AdvancedMarkerElement({ map, position: { lat, lng }, title });
+        } else if (google.maps.marker?.AdvancedMarkerElement) {
+          new google.maps.marker.AdvancedMarkerElement({
+            map,
+            position: { lat, lng },
+            title,
+          });
+        } else {
+          new google.maps.Marker({ map, position: { lat, lng }, title });
+        }
+      } catch {
         new google.maps.Marker({ map, position: { lat, lng }, title });
       }
+
+      inited.current = true;
     };
 
-    if (typeof window !== "undefined") {
-      ro = new ResizeObserver(() => {
-        void tryInit();
-      });
-      if (elRef.current) ro.observe(elRef.current);
-      void tryInit();
-    }
-    return () => ro?.disconnect();
+    init();
   }, [lat, lng, zoom, title]);
 
   return (
     <>
-      {/* Load once per page (remove if already loaded globally) */}
+      {/* Ensure this script is loaded ONCE per page/app */}
       <Script
         id="gmaps"
         strategy="afterInteractive"
-        src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GMAPS_KEY}&v=weekly&loading=async&libraries=marker`}
+        src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GMAPS_KEY}&v=weekly&libraries=marker&loading=async`}
+        onLoad={() => {
+          // try init again right after the script becomes available
+          if (!inited.current) {
+            // let the effect run again naturally on next tick
+          }
+        }}
       />
       <div
         ref={elRef}
         className={className}
-        style={{
-          width: "100%",
-          height: "600px",
-          position: "relative",
-          background: "#f2f2f2",
-          border: "1px solid #e5e5e5",
-          zIndex: 0,
-        }}
+        style={{ width: "100%", height: 600 }}
       />
     </>
   );

@@ -3,6 +3,7 @@ import AnimatedCursor from "react-animated-cursor";
 const AnimCursor = () => {
   return (
     <AnimatedCursor
+      innerStyle={{ zIndex: 10000 }}
       innerSize={10}
       outerSize={8}
       color="138, 184, 192"

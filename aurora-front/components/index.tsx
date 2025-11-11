@@ -16,6 +16,8 @@ import AnimCursor from "./UI/AnimatedCursor";
 import MapWithMarker from "./Location/Map";
 import Distances from "./Location/Distances";
 import DistancesSection from "./Location/DistanceSection";
+import Contact from "./Contact/Contact";
+import ContactForm from "./Contact/ContactForm";
 
 export {
   ApartmentFeatures,
@@ -36,4 +38,6 @@ export {
   MapWithMarker,
   Distances,
   DistancesSection,
+  Contact,
+  ContactForm,
 };

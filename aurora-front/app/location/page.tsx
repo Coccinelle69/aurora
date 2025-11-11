@@ -17,8 +17,8 @@ export default function Location() {
   return (
     <main>
       <MapWithMarker
-        lat={44.2524}
-        lng={15.211}
+        lat={44.254022}
+        lng={15.211451}
         zoom={14}
         // markerTitle="Zukve, Croatia"
       />

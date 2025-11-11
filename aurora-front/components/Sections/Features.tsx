@@ -1,6 +1,5 @@
 "use client";
 
-import { Quintessential } from "next/font/google";
 import {
   BarbecueIcon,
   BlanketIcon,
@@ -10,7 +9,7 @@ import {
   WifiIcon,
 } from "../../icons";
 import { useTranslation } from "react-i18next";
-const titleFont = Quintessential({ subsets: ["latin"], weight: "400" });
+import { colors } from "../../utils/colors";
 
 type Feature = {
   title: string;
@@ -25,32 +24,32 @@ export default function Features() {
     {
       title: `${t("parking")}`,
       text: `${t("parking-p")}`,
-      icon: <FreeParkingIcon color="#4a6ca3" />,
+      icon: <FreeParkingIcon color={colors.babyBlue} />,
     },
     {
       title: `${t("wifi")}`,
       text: `${t("wifi-p")}`,
-      icon: <WifiIcon color="#4a6ca3" />,
+      icon: <WifiIcon color={colors.babyBlue} />,
     },
     {
       title: `${t("view")}`,
       text: `${t("view-p")}`,
-      icon: <OceanIcon color="#4a6ca3" />,
+      icon: <OceanIcon color={colors.babyBlue} />,
     },
     {
       title: `${t("family")}`,
       text: `${t("family-p")}`,
-      icon: <FamilyIcon color="#4a6ca3" />,
+      icon: <FamilyIcon color={colors.babyBlue} />,
     },
     {
       title: `${t("linens")}`,
       text: `${t("linens-p")}`,
-      icon: <BlanketIcon color="#4a6ca3" />,
+      icon: <BlanketIcon color={colors.babyBlue} />,
     },
     {
       title: `${t("barbecue")}`,
       text: `${t("barbecue-p")}`,
-      icon: <BarbecueIcon color="#4a6ca3" />,
+      icon: <BarbecueIcon color={colors.babyBlue} />,
     },
   ];
 
@@ -64,12 +63,10 @@ export default function Features() {
               <div key={i} className="flex items-start gap-6">
                 <div className="shrink-0">{f.icon}</div>
                 <div>
-                  <h3
-                    className={`${titleFont.className} text-xl text-[#11344b]`}
-                  >
+                  <h3 className={"font-heading text-xl  text-marineBlue"}>
                     {f.title}
                   </h3>
-                  <p className="mt-2 text-slate-600 leading-relaxed text-sm">
+                  <p className="mt-2 text-slate-600 leading-relaxed text-sm font-body">
                     {f.text}
                   </p>
                 </div>
@@ -80,11 +77,11 @@ export default function Features() {
 
         {/* Right: navy panel */}
         <div className="lg:col-span-5">
-          <div className="bg-[#11344b] px-10 py-12 text-center text-white shadow-md">
-            <h2 className={`${titleFont.className} text-2xl md:text-3xl`}>
+          <div className="bg-marineBlue px-10 py-12 text-center text-white shadow-md">
+            <h2 className={`font-heading text-2xl md:text-3xl`}>
               {t("facilities-h2")}
             </h2>
-            <p className="mx-auto mt-6 max-w-md text-sm leading-relaxed opacity-90">
+            <p className="mx-auto mt-6 max-w-md text-sm leading-relaxed opacity-90 font-body">
               {t("facilities-p")}
             </p>
           </div>

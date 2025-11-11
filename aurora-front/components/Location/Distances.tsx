@@ -12,8 +12,8 @@ function DistancesColumn({ data }: ColumnProps) {
       {data.map(({ icon, label, value }, i) => (
         <li key={i} className="flex items-center gap-3 py-3">
           <span className="shrink-0 text-gray-700">{icon}</span>
-          <span className="flex-1 text-gray-800">{label}</span>
-          <span className="shrink-0 text-gray-900">{value}</span>
+          <span className="flex-1 text-gray-800 font-body">{label}</span>
+          <span className="shrink-0 text-gray-900 font-body">{value}</span>
         </li>
       ))}
     </ul>
@@ -36,7 +36,7 @@ export default function Distances({ items }: DistancesProps) {
   return (
     <section className="border-t border-gray-200 bg-white">
       <div className="mx-auto w-full max-w-5xl px-4 py-6">
-        <h2 className="mb-4 text-lg font-semibold text-gray-900">
+        <h2 className="mb-4 text-lg font-semibold text-gray-900 font-body">
           {t("distances.title")}
         </h2>
 

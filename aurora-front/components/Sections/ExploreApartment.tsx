@@ -3,9 +3,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Quintessential } from "next/font/google";
 import { useTranslation } from "react-i18next";
-const quintessential = Quintessential({ subsets: ["latin"], weight: "400" });
 
 export default function ExploreApartment() {
   const { t } = useTranslation();
@@ -31,25 +29,23 @@ export default function ExploreApartment() {
             {/* left-aligned panel */}
             <div className="absolute w-[100%] max-w-2xl lg:max-w-xl lg:-left-[10rem] ">
               {/* title bar */}
-              <div className="bg-[#11344b] px-8 py-8 text-white shadow-md">
-                <h2
-                  className={`${quintessential.className} text-3xl md:text-4xl`}
-                >
+              <div className="bg-marineBlue px-8 py-8 text-white shadow-md">
+                <h2 className={`font-heading text-3xl md:text-4xl`}>
                   {t("explore-h2")}
                 </h2>
               </div>
               {/* body box */}
               <div className="bg-white/60 px-8 py-8 shadow-md backdrop-blur">
-                <p className="text-slate-700 leading-relaxed">
+                <p className="text-slate-700 leading-relaxed font-body">
                   {t("explore-p-1")}
                 </p>
-                <p className="mt-4 text-slate-700 leading-relaxed">
+                <p className="mt-4 text-slate-700 leading-relaxed font-body">
                   {t("explore-p-2")}
                 </p>
 
                 <Link
                   href="/apartment"
-                  className="mt-6 inline-block font-semibold tracking-wide text-[#11344b] underline-offset-4 hover:underline"
+                  className="mt-6 inline-block font-semibold tracking-wide text-marineBlue underline-offset-4 hover:underline font-bod"
                 >
                   {t("explore-btn")} &gt;&gt;&gt;
                 </Link>

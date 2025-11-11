@@ -90,7 +90,7 @@ export default function FullScreenMenu({ open, onClose }: Props) {
           <div className="absolute inset-0 bg-black/40" />
 
           {/* Panel */}
-          <div className="relative z-10 h-full w-full bg-[#1A3C5B]/95 backdrop-blur-sm text-white">
+          <div className="relative z-10 h-full w-full bg-default/95 backdrop-blur-sm text-white">
             {/* Close */}
             <button
               onClick={onClose}

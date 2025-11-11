@@ -1,8 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { Princess_Sofia } from "next/font/google";
-const sofia = Princess_Sofia({ subsets: ["latin"], weight: "400" });
 
 export default function LogoAurora({
   size = 180,
@@ -30,7 +28,7 @@ export default function LogoAurora({
         />
         <p
           className={`
-          ${sofia.className}
+          font-logo
           absolute flex items-center justify-center text-white tracking-[0.25rem]
           z-10 pointer-events-none transition-all duration-500 ease-out
           ${

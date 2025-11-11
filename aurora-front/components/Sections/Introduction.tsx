@@ -2,23 +2,20 @@
 "use client";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
-import { Quintessential, Roboto } from "next/font/google";
-const quintessential = Quintessential({ subsets: ["latin"], weight: "400" });
-const roboto = Roboto({ subsets: ["latin"], weight: "400" });
 
 export default function ComfortSection() {
   const { t } = useTranslation();
   return (
     <section className="relative overflow-hidden bg-white py-24">
       {/* FULL-BLEED RIGHT PANEL (goes to the screen edge, taller than the photo) */}
-      <div className="absolute right-0 top-28 h-[420px] w-[62vw] bg-[#D3DAE0]" />
+      <div className="absolute right-0 top-28 h-[480px] w-[62vw] bg-[#D3DAE0]" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
         {/* CONTENT LAYER (sits above the panel) */}
         <div className="relative z-10 flex items-center justify-between">
           {/* LEFT PHOTO (shorter than panel) */}
           <div className="hidden lg:block">
-            <div className="h-[460px] w-[410px] overflow-hidden shadow-[0_35px_35px_rgba(0,0,0,0.20)]">
+            <div className="h-[500px] w-[410px] overflow-hidden shadow-[0_35px_35px_rgba(0,0,0,0.20)]">
               <Image
                 src="/beach.jpg" // <-- your image
                 alt="Aurora Suites pool"
@@ -34,18 +31,16 @@ export default function ComfortSection() {
           <div className="ml-auto flex w-full justify-center lg:w-[47%]">
             <div className="py-16 text-center">
               <h2
-                className={`${quintessential.className} text-2xl md:text-3xl text-slate-800`}
+                className={`font-heading text-2xl md:text-3xl text-slate-800`}
               >
                 <span>{t("introduction-h2-1")}</span>
                 <br />
                 <span>{t("introduction-h2-2")}</span>
               </h2>
               <div className="mx-auto mt-6 max-w-2xl space-y-4 text-xs md:text-sm leading-relaxed text-slate-600">
-                <p className={`${roboto.className} `}>
-                  {t("introduction-p-1")}
-                </p>
-                <p>{t("introduction-p-2")}</p>
-                <p>{t("introduction-p-3")}</p>
+                <p className="font-body text-[1rem]">{t("introduction-p-1")}</p>
+                <p className="font-body text-[1rem]">{t("introduction-p-2")}</p>
+                <p className="font-body text-[1rem]">{t("introduction-p-3")}</p>
               </div>
             </div>
           </div>

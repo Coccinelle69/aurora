@@ -1,19 +1,36 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-import { Cinzel_Decorative, Roboto } from "next/font/google";
+import {
+  Cinzel_Decorative,
+  Roboto,
+  Princess_Sofia,
+  Quintessential,
+} from "next/font/google";
 import ClientProviders from "../ClientProviders";
 
-const cinzel = Cinzel_Decorative({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  variable: "--font-heading",
-});
+// const cinzel = Cinzel_Decorative({
+//   subsets: ["latin"],
+//   weight: ["400", "700"],
+//   variable: "--font-heading",
+// });
 
 const roboto = Roboto({
   subsets: ["latin"],
   weight: ["400", "500"],
   variable: "--font-body",
+});
+
+const sofia = Princess_Sofia({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-logo",
+});
+
+const quintessential = Quintessential({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-heading",
 });
 
 export const metadata: Metadata = {
@@ -28,7 +45,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${roboto.variable} ${cinzel.variable}  antialiased`}>
+      <body
+        className={`${roboto.variable} ${quintessential.variable} ${sofia.variable} antialiased`}
+      >
         <ClientProviders>{children}</ClientProviders>
       </body>
     </html>

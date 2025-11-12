@@ -1,14 +1,15 @@
-// app/components/ComfortSection.tsx
 "use client";
-import Image from "next/image";
 import { useTranslation } from "react-i18next";
-import { Quintessential, Roboto } from "next/font/google";
 import ContactForm from "./ContactForm";
-const quintessential = Quintessential({ subsets: ["latin"], weight: "400" });
-const roboto = Roboto({ subsets: ["latin"], weight: "400" });
+import { useDirections } from "@/utils/hooks/useDirections";
 
-export default function ComfortSection() {
+export default function Contact() {
   const { t } = useTranslation();
+  const { getDirections } = useDirections({
+    lat: Number(process.env.NEXT_PUBLIC_LAT),
+    lon: Number(process.env.NEXT_PUBLIC_LON),
+  });
+
   return (
     <section className="relative overflow-hidden bg-white py-24">
       {/* FULL-BLEED RIGHT PANEL (goes to the screen edge, taller than the photo) */}
@@ -28,6 +29,15 @@ export default function ComfortSection() {
               <div>
                 <p>Email: </p>
                 <p>dorotea0105@gmail.com</p>
+              </div>
+              <div>
+                <p>Google Maps: </p>
+                <button
+                  onClick={getDirections}
+                  className="rounded-xl px-4 py-3 bg-white text-[#17364e] hover:opacity-90"
+                >
+                  Get directions
+                </button>
               </div>
             </div>
           </div>

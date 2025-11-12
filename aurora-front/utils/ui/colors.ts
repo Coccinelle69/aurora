@@ -1,4 +1,3 @@
-// lib/colors.ts
 export const colors = {
   default: "#1A3C5B",
   text: "#CCCCCC",

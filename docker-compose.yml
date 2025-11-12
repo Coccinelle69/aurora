@@ -5,6 +5,8 @@ services:
     working_dir: /app # <-- run commands in /app
     ports:
       - "3000:3000"
+    env_file:
+      - aurora-front/.env.local
     volumes:
       - ./aurora-front:/app # <-- mount the app folder, not "."
       - node_deps:/app/node_modules

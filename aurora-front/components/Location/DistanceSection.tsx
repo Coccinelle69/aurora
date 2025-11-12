@@ -1,4 +1,3 @@
-// app/location/page.tsx
 "use client";
 
 import { useTranslation } from "react-i18next";

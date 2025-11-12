@@ -1,6 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-
-/* global google */
 
 import { useEffect, useRef } from "react";
 import Script from "next/script";

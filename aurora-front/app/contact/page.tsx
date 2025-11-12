@@ -4,7 +4,11 @@ const page = () => {
   return (
     <div>
       <Contact />
-      <MapWithMarker lat={44.254022} lng={15.211451} zoom={14} />
+      <MapWithMarker
+        lat={Number(process.env.NEXT_PUBLIC_LAT)}
+        lng={Number(process.env.NEXT_PUBLIC_LNG)}
+        zoom={14}
+      />
     </div>
   );
 };

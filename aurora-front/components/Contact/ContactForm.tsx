@@ -22,7 +22,7 @@ const ContactForm = () => {
   }
   return (
     <section className="p-8 sm:p-12 lg:p-16">
-      <h2 className="font-[\'Playfair Display\',serif] text-4xl sm:text-5xl leading-tight mb-7">
+      <h2 className="font-heading text-marineBlue text-4xl sm:text-5xl leading-tight mb-15">
         Get in touch by
         <br />
         filling the form below
@@ -62,7 +62,7 @@ const ContactForm = () => {
 
         {sent && (
           <p role="status" className="mt-4 text-sm text-emerald-700">
-            Thanks! Your message was sent (demo).
+            Thanks! Your message was sent.
           </p>
         )}
       </form>

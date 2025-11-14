@@ -7,6 +7,9 @@ services:
       - "3000:3000"
     env_file:
       - aurora-front/.env.local
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
     volumes:
       - ./aurora-front:/app # <-- mount the app folder, not "."
       - node_deps:/app/node_modules

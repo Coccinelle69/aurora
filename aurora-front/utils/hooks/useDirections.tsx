@@ -1,12 +1,10 @@
 import { useCallback } from "react";
 
-export function useDirections(
-  destination: string | { lat: number; lon: number }
-) {
-  const encodedDestination =
-    typeof destination === "string"
-      ? encodeURIComponent(destination)
-      : `${destination.lat},${destination.lon}`;
+export default function useDirections() {
+  const lat = Number(process.env.NEXT_PUBLIC_LAT);
+  const lon = Number(process.env.NEXT_PUBLIC_LON);
+
+  const encodedDestination = `${lat},${lon}`;
   const fallbackUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodedDestination}`;
 
   const getDirections = useCallback(() => {

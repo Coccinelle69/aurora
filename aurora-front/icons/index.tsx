@@ -1,129 +1,161 @@
 import { Icon } from "../components/UI/Icon";
 
-const MenuIcon = (props: { size?: number; color?: string }) => (
+export const MenuIcon = (props: { size?: number; color?: string }) => (
   <Icon src="/header/burger-bar.png" alt="Menu" {...props} />
 );
 
-const CloseIcon = (props: { size?: number; color?: string }) => (
+export const CloseIcon = (props: { size?: number; color?: string }) => (
   <Icon src="/header/close.png" alt="Close" {...props} />
 );
 
-const FacebookIcon = (props: { size?: number; color?: string }) => (
+export const FacebookIcon = (props: { size?: number; color?: string }) => (
   <Icon src="/header/facebook.png" alt="Facebook" {...props} />
 );
 
-const InstagramIcon = (props: { size?: number; color?: string }) => (
+export const InstagramIcon = (props: { size?: number; color?: string }) => (
   <Icon src="/header/instagram.png" alt="Instagram" {...props} />
 );
 
-const BarbecueIcon = (props: { size?: number; color?: string }) => (
+export const BarbecueIcon = (props: { size?: number; color?: string }) => (
   <Icon src="/facilities/barbecue.png" alt="Barbecue" {...props} />
 );
 
-const BlanketIcon = (props: { size?: number; color?: string }) => (
+export const BlanketIcon = (props: { size?: number; color?: string }) => (
   <Icon src="/facilities/blanket.png" alt="Linens" {...props} />
 );
 
-const FamilyIcon = (props: { size?: number; color?: string }) => (
+export const FamilyIcon = (props: { size?: number; color?: string }) => (
   <Icon src="/facilities/family.png" alt="Family" {...props} />
 );
 
-const FreeParkingIcon = (props: { size?: number; color?: string }) => (
+export const FreeParkingIcon = (props: { size?: number; color?: string }) => (
   <Icon src="/facilities/free-parking.png" alt="Free Parking" {...props} />
 );
 
-const OceanIcon = (props: { size?: number; color?: string }) => (
+export const OceanIcon = (props: { size?: number; color?: string }) => (
   <Icon src="/facilities/ocean.png" alt="Sea View" {...props} />
 );
 
-const WifiIcon = (props: { size?: number; color?: string }) => (
+export const WifiIcon = (props: { size?: number; color?: string }) => (
   <Icon src="/facilities/wifi.png" alt="WiFi" {...props} />
 );
 
-const SurfaceIcon = (props: { size?: number; color?: string }) => (
+export const SurfaceIcon = (props: { size?: number; color?: string }) => (
   <Icon src="/apartment/surface.png" alt="Apartment Surface" {...props} />
 );
 
-const TerraceIcon = (props: { size?: number; color?: string }) => (
+export const TerraceIcon = (props: { size?: number; color?: string }) => (
   <Icon src="/apartment/terrace.png" alt="Terrace" {...props} />
 );
 
-const BedIcon = (props: { size?: number; color?: string }) => (
+export const BedIcon = (props: { size?: number; color?: string }) => (
   <Icon src="/apartment/bed.png" alt="Double Bed" {...props} />
 );
 
-const PeopleIcon = (props: { size?: number; color?: string }) => (
+export const PeopleIcon = (props: { size?: number; color?: string }) => (
   <Icon src="/apartment/people.png" alt="5 People" {...props} />
 );
 
-const EmailIcon = (props: { size?: number; color?: string }) => (
+export const EmailIcon = (props: { size?: number; color?: string }) => (
   <Icon src="/header/email.png" alt="Email" {...props} />
 );
 
-const PhoneIcon = (props: { size?: number; color?: string }) => (
+export const PhoneIcon = (props: { size?: number; color?: string }) => (
   <Icon src="/header/phone.png" alt="Phone" {...props} />
 );
 
-const AirportIcon = (props: { size?: number; color?: string }) => (
+export const AirportIcon = (props: { size?: number; color?: string }) => (
   <Icon src="/distance/airport.png" alt="Airport" {...props} />
 );
-const BankIcon = (props: { size?: number; color?: string }) => (
+export const BankIcon = (props: { size?: number; color?: string }) => (
   <Icon src="/distance/bank.png" alt="Bank" {...props} />
 );
-const BeachIcon = (props: { size?: number; color?: string }) => (
+export const BeachIcon = (props: { size?: number; color?: string }) => (
   <Icon src="/distance/beach.png" alt="Beach" {...props} />
 );
-const BusIcon = (props: { size?: number; color?: string }) => (
+export const BusIcon = (props: { size?: number; color?: string }) => (
   <Icon src="/distance/bus.png" alt="Bus" {...props} />
 );
-const DoctorIcon = (props: { size?: number; color?: string }) => (
+export const DoctorIcon = (props: { size?: number; color?: string }) => (
   <Icon src="/distance/doctor.png" alt="Doctor" {...props} />
 );
-const FocusIcon = (props: { size?: number; color?: string }) => (
+export const FocusIcon = (props: { size?: number; color?: string }) => (
   <Icon src="/distance/focus.png" alt="Focus" {...props} />
 );
-const GasStationIcon = (props: { size?: number; color?: string }) => (
+export const GasStationIcon = (props: { size?: number; color?: string }) => (
   <Icon src="/distance/gas-station.png" alt="Gas Station" {...props} />
 );
-const GroceriesIcon = (props: { size?: number; color?: string }) => (
+export const GroceriesIcon = (props: { size?: number; color?: string }) => (
   <Icon src="/distance/grocery.png" alt="Groceries" {...props} />
 );
-const PharmacyIcon = (props: { size?: number; color?: string }) => (
+export const PharmacyIcon = (props: { size?: number; color?: string }) => (
   <Icon src="/distance/pharmacy.png" alt="pPharmacy" {...props} />
 );
-const RestaurantIcon = (props: { size?: number; color?: string }) => (
+export const RestaurantIcon = (props: { size?: number; color?: string }) => (
   <Icon src="/distance/restaurant.png" alt="Restaurant" {...props} />
 );
-const SeaIcon = (props: { size?: number; color?: string }) => (
+export const SeaIcon = (props: { size?: number; color?: string }) => (
   <Icon src="/distance/sea.png" alt="Sea" {...props} />
 );
 
-export {
-  FacebookIcon,
-  InstagramIcon,
-  MenuIcon,
-  CloseIcon,
-  BarbecueIcon,
-  BlanketIcon,
-  FamilyIcon,
-  FreeParkingIcon,
-  OceanIcon,
-  WifiIcon,
-  PeopleIcon,
-  BedIcon,
-  TerraceIcon,
-  SurfaceIcon,
-  EmailIcon,
-  PhoneIcon,
-  RestaurantIcon,
-  SeaIcon,
-  BeachIcon,
-  BusIcon,
-  AirportIcon,
-  GroceriesIcon,
-  PharmacyIcon,
-  DoctorIcon,
-  FocusIcon,
-  GasStationIcon,
-  BankIcon,
-};
+export const SunIcon = (props: { size?: number; color?: string }) => (
+  <Icon src="/weather/sun.png" alt="Sun" {...props} />
+);
+
+export const MoonIcon = (props: { size?: number; color?: string }) => (
+  <Icon src="/weather/moon.png" alt="Moon" {...props} />
+);
+
+export const PartlyCloudyDayIcon = (props: {
+  size?: number;
+  color?: string;
+}) => (
+  <Icon
+    src="/weather/partly-cloudy-day.png"
+    alt="Partly Cloudy Day"
+    {...props}
+  />
+);
+
+export const PartlyCloudyNightIcon = (props: {
+  size?: number;
+  color?: string;
+}) => (
+  <Icon
+    src="/weather/partly-cloudy-night.png"
+    alt="Partly Cloudy Night"
+    {...props}
+  />
+);
+
+export const CloudyIcon = (props: { size?: number; color?: string }) => (
+  <Icon src="/weather/cloudy.png" alt="Cloudy" {...props} />
+);
+
+export const FogIcon = (props: { size?: number; color?: string }) => (
+  <Icon src="/weather/fog.png" alt="Fog" {...props} />
+);
+
+export const FreezingRainIcon = (props: { size?: number; color?: string }) => (
+  <Icon src="/weather/freezing-rain.png" alt="Freezing Rain" {...props} />
+);
+
+export const HailIcon = (props: { size?: number; color?: string }) => (
+  <Icon src="/weather/hail.png" alt="Hail" {...props} />
+);
+
+export const RainIcon = (props: { size?: number; color?: string }) => (
+  <Icon src="/weather/rain.png" alt="Rain" {...props} />
+);
+
+export const SnowflakeIcon = (props: { size?: number; color?: string }) => (
+  <Icon src="/weather/snowflake.png" alt="Snow" {...props} />
+);
+
+export const ThunderstormIcon = (props: { size?: number; color?: string }) => (
+  <Icon src="/weather/thunderstorm.png" alt="Thunderstorm" {...props} />
+);
+
+export const AddressIcon = (props: { size?: number; color?: string }) => (
+  <Icon src="/footer/address.png" alt="Address" {...props} />
+);

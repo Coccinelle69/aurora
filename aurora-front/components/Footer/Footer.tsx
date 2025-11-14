@@ -1,43 +1,26 @@
 "use client";
 
 import Link from "next/link";
-import { FacebookIcon, InstagramIcon } from "@/icons";
+import {
+  AddressIcon,
+  FacebookIcon,
+  InstagramIcon,
+  MoonIcon,
+  SunIcon,
+} from "@/icons";
 import Copyrights from "./Copyrights";
-import BookButton from "../UI/BookButton";
 import { useTranslation } from "react-i18next";
-import { useEffect, useState } from "react";
+import { useTime, useOpenMeteo, useDirections } from "@/utils/hooks";
 
 export default function Footer() {
   const { t } = useTranslation();
-  const [weather, setWeather] = useState(null);
-  const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    let cancelled = false;
+  const { time } = useTime();
+  const { temperature, isDayCode, windspeed, weather } = useOpenMeteo();
+  const { getDirections } = useDirections();
 
-    async function loadWeather() {
-      try {
-        const res = await fetch("/api/weather", { cache: "no-store" });
-        if (!res.ok) {
-          const msg = await res.text(); // don't call res.json() on failures
-          if (!cancelled)
-            setError(`Weather error ${res.status}: ${msg || "no body"}`);
-          return;
-        }
-        const data = await res.json();
-        if (!cancelled) setWeather(data);
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } catch (e: any) {
-        if (!cancelled) setError(e?.message ?? "Network error");
-      }
-    }
+  console.log(weather);
 
-    loadWeather();
-    console.log(weather);
-    return () => {
-      cancelled = true;
-    };
-  }, []);
   return (
     <footer className="bg-babyBlue text-white">
       {/* Top content */}
@@ -51,25 +34,40 @@ export default function Footer() {
       >
         {/* Weather & Time */}
         <div className="w-full flex flex-col items-center md:items-start">
-          <h3 className="font-heading text-2xl font-semibold tracking-wide mb-6">
-            Weather & Time
+          <h3 className="font-heading text-2xl font-body font-semibold tracking-wide mb-6">
+            {t("footer-timeWeather")}
           </h3>
-          <div className="space-y-2">
-            <p className="text-sm font-semibold">Time:</p>
-            <div className="h-10 w-10 rounded bg-white/10 flex items-center justify-center mx-auto md:mx-0">
-              <span className="text-xs opacity-70">img</span>
-            </div>
+          <div className="space-y-2 ">
+            <p className="text-md font-semibold   flex justify-center items-center gap-1 md:justify-start">
+              <span>
+                {t("footer-time")}: {time}
+              </span>
+              {isDayCode ? <SunIcon size={22} /> : <MoonIcon size={22} />}
+            </p>
+            <p className="text-md font-semibold ">
+              {t("footer-weather")}: <span>{t(`${weather?.description}`)}</span>
+            </p>
+            <p className="flex justify-center">
+              <span>{weather?.icon}</span>
+            </p>
+            <p className="text-md font-semibold">
+              {t("footer-temperature")}: <span>{temperature}</span>°C
+            </p>
+
+            <p className="text-md font-semibold">
+              {t("footer-windspeed")}: <span>{windspeed}</span>km/h
+            </p>
           </div>
         </div>
 
         {/* Find us */}
         <div className="w-full flex flex-col items-center md:items-start">
           <h3 className="font-heading text-2xl font-semibold tracking-wide mb-6">
-            Find us
+            {t("footer-findUs")}
           </h3>
           <div className="space-y-6">
             <div>
-              <p className="text-sm font-semibold">Phone:</p>
+              <p className="text-md font-semibold">{t("footer-phone")}:</p>
               <Link
                 href="tel:+385921385595"
                 className="mt-1 inline-flex items-center gap-2 hover:underline"
@@ -79,7 +77,7 @@ export default function Footer() {
             </div>
 
             <div>
-              <p className="text-sm font-semibold">Email:</p>
+              <p className="text-md font-semibold">{t("footer-email")}:</p>
               <Link
                 href="mailto:dorotea0105@gmail.com"
                 className="mt-1 inline-flex items-center gap-2 hover:underline"
@@ -93,10 +91,10 @@ export default function Footer() {
         {/* Contact / Social */}
         <div className="w-full flex flex-col items-center md:items-start">
           <h3 className="font-heading text-2xl font-semibold tracking-wide mb-6">
-            Contact
+            {t("footer-contact")}
           </h3>
-          <p className="text-sm font-semibold">Follow us</p>
-          <p className="text-sm opacity-90 mb-4">on Social media</p>
+          <p className="text-md font-semibold">{t("footer-followUs")}</p>
+          <p className="text-md opacity-90 mb-4">{t("footer-onSocial")}</p>
           <div className="flex items-center justify-center md:justify-start gap-4">
             <Link
               aria-label="Facebook"
@@ -118,12 +116,22 @@ export default function Footer() {
         {/* Location / CTA */}
         {/* If you want this visible from md and up, use hidden md:flex. 
            Your previous sm:hidden lg:flex hides it on md (768–1023px) which can create odd gaps. */}
-        <div className="hidden md:flex w-full flex-col items-center md:items-start">
+        <div className="flex w-full flex-col items-center md:items-start">
           <h3 className="font-heading text-2xl font-semibold tracking-wide mb-6">
-            Location
+            {t("footer-location")}
           </h3>
-          <p className="text-sm font-semibold mb-3">Book now</p>
-          <BookButton />
+          <div>
+            <p className="text-md font-semibold">{t("footer-googleMaps")}: </p>
+            <div className="my-2 px-1 flex items-center hover:scale-110 transition-transform duration-300 ease-out  hover:border rounded-xl focus:border rounded-xl active:border rounded-xl">
+              <AddressIcon size={32} />
+              <button
+                onClick={getDirections}
+                className="rounded-xl px-2 py-3  hover:opacity-90"
+              >
+                {t("footer-getDirections")}
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 

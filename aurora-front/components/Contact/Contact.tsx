@@ -1,14 +1,11 @@
 "use client";
 import { useTranslation } from "react-i18next";
 import ContactForm from "./ContactForm";
-import { useDirections } from "@/utils/hooks/useDirections";
+import { useDirections } from "@/utils/hooks/";
 
 export default function Contact() {
   const { t } = useTranslation();
-  const { getDirections } = useDirections({
-    lat: Number(process.env.NEXT_PUBLIC_LAT),
-    lon: Number(process.env.NEXT_PUBLIC_LON),
-  });
+  const { getDirections } = useDirections();
 
   return (
     <section className="relative overflow-hidden bg-white py-24">

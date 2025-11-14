@@ -8,8 +8,8 @@ interface IconProps {
   className?: string;
 }
 
-export const Icon = ({ src, alt, size = 48, color = "white" }: IconProps) => (
-  <div className="">
+export const Icon = ({ src, alt, size = 50, color = "white" }: IconProps) => (
+  <div>
     <Image
       src={src}
       alt={alt}

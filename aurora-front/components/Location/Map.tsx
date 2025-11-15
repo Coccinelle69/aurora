@@ -93,7 +93,7 @@ export default function MapWithMarker({
       <div
         ref={elRef}
         className={className}
-        style={{ width: "100%", height: 600 }}
+        style={{ width: "100%", height: 700 }}
       />
     </>
   );

@@ -1,23 +1,16 @@
 "use client";
 
-import Link from "next/link";
-import {
-  AddressIcon,
-  FacebookIcon,
-  InstagramIcon,
-  MoonIcon,
-  SunIcon,
-} from "@/icons";
-import Copyrights from "./Copyrights";
+import { MoonIcon, SunIcon } from "@/icons";
 import { useTranslation } from "react-i18next";
-import { useTime, useOpenMeteo, useDirections } from "@/utils/hooks";
+import { useTime, useOpenMeteo } from "@/utils/hooks";
+import DirectionsButton from "../UI/DirectionsBtn";
+import { Copyrights, Socials, Email, Phone } from "../index";
 
 export default function Footer() {
   const { t } = useTranslation();
 
   const { time } = useTime();
   const { temperature, isDayCode, windspeed, weather } = useOpenMeteo();
-  const { getDirections } = useDirections();
 
   console.log(weather);
 
@@ -67,23 +60,11 @@ export default function Footer() {
           </h3>
           <div className="space-y-6">
             <div>
-              <p className="text-md font-semibold">{t("footer-phone")}:</p>
-              <Link
-                href="tel:+385921385595"
-                className="mt-1 inline-flex items-center gap-2 hover:underline"
-              >
-                +385 92138 5595
-              </Link>
+              <Phone className="text-md font-semibold" />
             </div>
 
             <div>
-              <p className="text-md font-semibold">{t("footer-email")}:</p>
-              <Link
-                href="mailto:dorotea0105@gmail.com"
-                className="mt-1 inline-flex items-center gap-2 hover:underline"
-              >
-                dorotea0105@gmail.com
-              </Link>
+              <Email className="text-md font-semibold" />
             </div>
           </div>
         </div>
@@ -91,26 +72,9 @@ export default function Footer() {
         {/* Contact / Social */}
         <div className="w-full flex flex-col items-center md:items-start">
           <h3 className="font-heading text-2xl font-semibold tracking-wide mb-6">
-            {t("footer-contact")}
+            {t("contact")}
           </h3>
-          <p className="text-md font-semibold">{t("footer-followUs")}</p>
-          <p className="text-md opacity-90 mb-4">{t("footer-onSocial")}</p>
-          <div className="flex items-center justify-center md:justify-start gap-4">
-            <Link
-              aria-label="Facebook"
-              href="#"
-              className="h-10 w-10 grid place-items-center rounded-full text-[#17364e] hover:opacity-90"
-            >
-              <FacebookIcon size={25} />
-            </Link>
-            <Link
-              aria-label="Instagram"
-              href="#"
-              className="h-10 w-10 grid place-items-center rounded-full text-[#17364e] hover:opacity-90"
-            >
-              <InstagramIcon size={25} />
-            </Link>
-          </div>
+          <Socials className="text-md font-semibold" />
         </div>
 
         {/* Location / CTA */}
@@ -121,16 +85,7 @@ export default function Footer() {
             {t("footer-location")}
           </h3>
           <div>
-            <p className="text-md font-semibold">{t("footer-googleMaps")}: </p>
-            <div className="my-2 px-1 flex items-center hover:scale-110 transition-transform duration-300 ease-out  hover:border rounded-xl focus:border rounded-xl active:border rounded-xl">
-              <AddressIcon size={32} />
-              <button
-                onClick={getDirections}
-                className="rounded-xl px-2 py-3  hover:opacity-90"
-              >
-                {t("footer-getDirections")}
-              </button>
-            </div>
+            <DirectionsButton className="text-md font-semibold" />
           </div>
         </div>
       </div>

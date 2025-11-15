@@ -14,10 +14,13 @@ const LANGS: Lang[] = [
   { code: "es", native: "Español", flag: "/languages/ES.png" },
   { code: "fr", native: "Français", flag: "/languages/FR.png" },
   { code: "hr", native: "Hrvatski", flag: "/languages/HR.png" },
+  { code: "pl", native: "Polski", flag: "/languages/PL.png" },
+  { code: "hu", native: "Magyar", flag: "/languages/HU.png" },
+  { code: "cz", native: "Čeština", flag: "/languages/CZ.png" },
   { code: "it", native: "Italiano", flag: "/languages/IT.png" },
-  { code: "ru", native: "Русский", flag: "/languages/RU.png" },
+  // { code: "ru", native: "Русский", flag: "/languages/RU.png" },
   { code: "sl", native: "Slovenščina", flag: "/languages/SL.png" },
-  { code: "zh", native: "中文", flag: "/languages/ZH.png" },
+  // { code: "zh", native: "中文", flag: "/languages/ZH.png" },
 ];
 
 type Props = { onChange?: (lang: Lang) => void };

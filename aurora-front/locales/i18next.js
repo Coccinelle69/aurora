@@ -4,6 +4,9 @@ import en from "./en.json";
 import de from "./de.json";
 import fr from "./fr.json";
 import hr from "./hr.json";
+import hu from "./hu.json";
+import pl from "./pl.json";
+import cz from "./cz.json";
 import es from "./es.json";
 import zh from "./zh.json";
 import ru from "./ru.json";
@@ -15,6 +18,9 @@ export const languageResources = {
   de: { translation: de },
   fr: { translation: fr },
   hr: { translation: hr },
+  hu: { translation: hu },
+  pl: { translation: pl },
+  cz: { translation: cz },
   es: { translation: es },
   zh: { translation: zh },
   ru: { translation: ru },

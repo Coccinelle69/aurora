@@ -18,6 +18,11 @@ import Distances from "./Location/Distances";
 import DistancesSection from "./Location/DistanceSection";
 import Contact from "./Contact/Contact";
 import ContactForm from "./Contact/ContactForm";
+import DirectionsButton from "./UI/DirectionsBtn";
+import LoadingSpinner from "./UI/LoadingSpinner";
+import Socials from "./UI/Socials";
+import Phone from "./UI/Phone";
+import Email from "./UI/Email";
 
 export {
   ApartmentFeatures,
@@ -40,4 +45,9 @@ export {
   DistancesSection,
   Contact,
   ContactForm,
+  DirectionsButton,
+  LoadingSpinner,
+  Socials,
+  Phone,
+  Email,
 };

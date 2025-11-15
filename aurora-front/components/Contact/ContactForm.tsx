@@ -2,10 +2,12 @@
 
 import { FormEvent, useState } from "react";
 import FormInput from "./FormInput";
+import { useTranslation } from "react-i18next";
 
 const ContactForm = () => {
   const [submitting, setSubmitting] = useState(false);
   const [sent, setSent] = useState(false);
+  const { t } = useTranslation();
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -23,29 +25,48 @@ const ContactForm = () => {
   return (
     <section className="p-8 sm:p-12 lg:p-16">
       <h2 className="font-heading text-marineBlue text-4xl sm:text-5xl leading-tight mb-15">
-        Get in touch by
+        {t("getInTouch")}
         <br />
-        filling the form below
+        {t("fillTheForm")}
       </h2>
 
       <form onSubmit={onSubmit} className="max-w-4xl">
         <div className="">
-          <FormInput id="firstName" name="firstName" placeholder="Jane">
-            First Name
+          <FormInput
+            id="firstName"
+            name="firstName"
+            placeholder={t("firstNamePlaceholder")}
+          >
+            {t("firstName")}
           </FormInput>
-          <FormInput id="lastName" name="lastName" placeholder="Doe">
-            Last Name
+          <FormInput
+            id="lastName"
+            name="lastName"
+            placeholder={t("lastNamePlaceholder")}
+          >
+            {t("lastName")}
           </FormInput>
-          <FormInput id="email" name="email" placeholder="you@example.com">
-            Email
+          <FormInput
+            id="phone"
+            name="phone"
+            placeholder={t("phonePlaceholder")}
+          >
+            {t("phone")}
+          </FormInput>
+          <FormInput
+            id="email"
+            name="email"
+            placeholder={t("emailPlaceholder")}
+          >
+            {t("email")}
           </FormInput>
           <FormInput
             id="message"
             name="message"
-            placeholder="Tell us about your dates, guests, questions…"
+            placeholder={t("messagePlaceholder")}
             input={false}
           >
-            Message
+            {t("message")}
           </FormInput>
         </div>
 
@@ -53,16 +74,15 @@ const ContactForm = () => {
           <button
             type="submit"
             disabled={submitting}
-            className="inline-flex items-center gap-2 uppercase tracking-[.2em] font-semibold px-5 py-3 rounded-xl bg-transparent hover:bg-slate-200 transition"
+            className="inline-flex items-center font-body gap-2 uppercase tracking-[.2em] text-marineBlue font-semibold px-5 mt-4 py-3 rounded-xl bg-transparent hover:bg-slate-200 transition hover:text-babyBlue"
           >
-            {submitting ? "Sending…" : "Send Message"}
-            {/* <ArrowRight className="w-5 h-5" /> */}
+            {submitting ? t("sending") : t("send")}
           </button>
         </div>
 
         {sent && (
           <p role="status" className="mt-4 text-sm text-emerald-700">
-            Thanks! Your message was sent.
+            {t("success")}
           </p>
         )}
       </form>

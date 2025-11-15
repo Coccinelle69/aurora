@@ -13,8 +13,9 @@ const FormInput = ({
   input = true,
   children,
 }: FormInputProps) => {
-  const inputStyle = `peer w-full bg-transparent px-3 py-3 rounded-md outline-none
+  const inputStyle = `peer w-full bg-transparent px-3 py-3 rounded-md outline-none 
                        border-2 border-transparent placeholder:text-gray-400`;
+
   return (
     <div className="relative mt-5">
       {input ? (
@@ -24,6 +25,7 @@ const FormInput = ({
             name={name}
             placeholder={placeholder}
             className={inputStyle}
+            required
           />
         </>
       ) : (
@@ -33,6 +35,7 @@ const FormInput = ({
             name={name}
             placeholder={placeholder}
             className={`${inputStyle} min-h-[160px] resize-none`}
+            required
           />
         </>
       )}
@@ -40,7 +43,7 @@ const FormInput = ({
       {/* floating label */}
       <label
         htmlFor={id}
-        className="absolute -top-2 left-3 z-20 text-xs font-bold uppercase tracking-widest text-slate-700"
+        className="absolute -top-2 left-3 z-20 text-xs font-bold uppercase tracking-widest text-slate-700 font-body"
       >
         <span className="px-1 bg-white lg:bg-[#D3DAE0]">{children}</span>
       </label>

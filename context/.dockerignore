@@ -22,9 +22,12 @@ coverage
 # VCS & misc
 .git
 .gitignore
+.gitlab
+.github
 .DS_Store
 *.log
 
 # Docker & compose files themselves (not needed inside image)
 docker-compose*.yml
-Dockerfile
+[Dd]ockerfile*
+

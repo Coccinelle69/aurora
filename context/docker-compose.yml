@@ -1,17 +1,18 @@
 services:
   aurora_front:
     build:
-      context: .
+      context: ../aurora-front
+      dockerfile: Dockerfile.front
     working_dir: /app # <-- run commands in /app
     ports:
       - "3000:3000"
     env_file:
-      - aurora-front/.env.local
+      - ../aurora-front/.env.local
     dns:
       - 8.8.8.8
       - 1.1.1.1
     volumes:
-      - ./aurora-front:/app # <-- mount the app folder, not "."
+      - ../aurora-front:/app # <-- mount the app folder, not "."
       - node_deps:/app/node_modules
     environment:
       - NODE_ENV=development
@@ -20,5 +21,16 @@ services:
       - WATCHPACK_POLLING_INTERVAL=500
       - NEXT_DISABLE_TURBOPACK=1
     command: sh -c "npm run dev --webpack"
+  aurora_back:
+    build:
+      context: ../aurora-back
+      dockerfile: Dockerfile.back
+    working_dir: /app
+    ports:
+      - "8080:8080"
+    env_file:
+      - ../aurora-back/.env
+    volumes: []
+    command: ./mvnw spring-boot:run
 volumes:
   node_deps:

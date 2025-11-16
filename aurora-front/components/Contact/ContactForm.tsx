@@ -13,6 +13,8 @@ const ContactForm = () => {
     e.preventDefault();
     setSubmitting(true);
 
+    await fetch("api/contact");
+
     // TODO: Hook to your endpoint or 3rd‑party form service.
     // Example POST:
     // await fetch("/api/contact", { method: "POST", body: new FormData(e.currentTarget) });

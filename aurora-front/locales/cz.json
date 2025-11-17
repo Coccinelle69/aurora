@@ -100,5 +100,6 @@
   "messagePlaceholder": "Uveďte své termíny, počet hostů nebo dotazy...",
   "sending": "Odesílání…",
   "send": "Odeslat zprávu",
-  "success": "Děkujeme! Vaše zpráva byla odeslána."
+  "success": "Děkujeme! Vaše zpráva byla odeslána.",
+  "something-went-wrong": "Něco se pokazilo. Zkuste to prosím později."
 }

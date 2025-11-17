@@ -9,7 +9,7 @@ interface IconProps {
 }
 
 export const Icon = ({ src, alt, size = 50, color = "white" }: IconProps) => (
-  <div>
+  <>
     <Image
       src={src}
       alt={alt}
@@ -25,5 +25,5 @@ export const Icon = ({ src, alt, size = 50, color = "white" }: IconProps) => (
             : "none",
       }}
     />
-  </div>
+  </>
 );

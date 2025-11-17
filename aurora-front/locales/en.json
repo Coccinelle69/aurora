@@ -99,5 +99,6 @@
   "messagePlaceholder": "Tell us about your dates, guests, questions...",
   "sending": "Sending…",
   "send": "Send Message",
-  "success": "Thanks! Your message was sent."
+  "success": "Thanks! Your message was sent.",
+  "something-went-wrong": "Something went wrong. Please try again later."
 }

@@ -1,19 +1,9 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import "./globals.css";
 
-import {
-  Cinzel_Decorative,
-  Roboto,
-  Princess_Sofia,
-  Quintessential,
-} from "next/font/google";
+import { Roboto, Princess_Sofia, Quintessential } from "next/font/google";
 import ClientProviders from "../ClientProviders";
-
-// const cinzel = Cinzel_Decorative({
-//   subsets: ["latin"],
-//   weight: ["400", "700"],
-//   variable: "--font-heading",
-// });
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -38,6 +28,9 @@ export const metadata: Metadata = {
   description: "Cozy family apartment 70m from the sea",
 };
 
+// const ClientProviders = dynamic(() => import("../ClientProviders"), {
+//   ssr: false,
+// });
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -46,6 +39,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
+        suppressHydrationWarning
         className={`${roboto.variable} ${quintessential.variable} ${sofia.variable} antialiased`}
       >
         <ClientProviders>{children}</ClientProviders>

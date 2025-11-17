@@ -43,7 +43,6 @@ const useOpenMeteo = () => {
         if (data.weathercode !== null && data.is_day !== null) {
           weatherDescription = getWeatherInfo(data.weathercode, data.is_day);
         }
-        console.log(weatherDescription);
 
         setWeather({
           temperature: data.temperature,
@@ -59,7 +58,6 @@ const useOpenMeteo = () => {
     }
 
     loadWeather();
-    console.log(weather);
     return () => {
       cancelled = true;
     };

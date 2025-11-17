@@ -99,5 +99,6 @@
   "messagePlaceholder": "Navedite datume, broj gostiju ili pitanja...",
   "sending": "Slanje…",
   "send": "Pošalji poruku",
-  "success": "Hvala! Vaša poruka je poslana."
+  "success": "Hvala! Vaša poruka je poslana.",
+  "something-went-wrong": "Nešto je pošlo po zlu. Molimo pokušajte kasnije."
 }

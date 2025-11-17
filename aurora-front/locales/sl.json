@@ -99,5 +99,6 @@
   "messagePlaceholder": "Vnesite datume, število gostov ali vprašanja...",
   "sending": "Pošiljanje…",
   "send": "Pošlji sporočilo",
-  "success": "Hvala! Vaše sporočilo je bilo poslano."
+  "success": "Hvala! Vaše sporočilo je bilo poslano.",
+  "something-went-wrong": "Prišlo je do napake. Poskusite znova pozneje."
 }

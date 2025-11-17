@@ -6,6 +6,8 @@ const nextConfig: NextConfig = {
   //   return config;
   // },
   // turbopack: {},
+  reactStrictMode: false,
+
   images: {
     remotePatterns: [
       {

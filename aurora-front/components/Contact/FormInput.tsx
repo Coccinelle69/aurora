@@ -14,7 +14,7 @@ const FormInput = ({
   children,
 }: FormInputProps) => {
   const inputStyle = `peer w-full bg-transparent px-3 py-3 rounded-md outline-none 
-                       border-2 border-transparent placeholder:text-gray-400`;
+                       border-2 border-transparent placeholder:text-gray-400 text-marineBlue`;
 
   return (
     <div className="relative mt-5">

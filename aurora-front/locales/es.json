@@ -57,7 +57,7 @@
   "onSocial": "en redes sociales",
   "footer-location": "Ubicación",
   "googleMaps": "Google Maps",
-  "footer-getDirections": "Obtener direcciones",
+  "getDirections": "Obtener direcciones",
 
   "weather-clear": "Cielo despejado",
   "weather-mainlyClear": "Mayormente despejado",
@@ -99,5 +99,6 @@
   "messagePlaceholder": "Cuéntanos tus fechas, número de huéspedes o dudas...",
   "sending": "Enviando…",
   "send": "Enviar mensaje",
-  "success": "¡Gracias! Tu mensaje ha sido enviado."
+  "success": "¡Gracias! Tu mensaje ha sido enviado.",
+  "something-went-wrong": "Algo salió mal. Por favor inténtalo de nuevo más tarde."
 }

@@ -98,5 +98,6 @@
   "messagePlaceholder": "Indicaci le tue date, il numero di ospiti o eventuali domande...",
   "sending": "Invio…",
   "send": "Invia messaggio",
-  "success": "Grazie! Il tuo messaggio è stato inviato."
+  "success": "Grazie! Il tuo messaggio è stato inviato.",
+  "something-went-wrong": "Qualcosa è andato storto. Per favore riprova più tardi."
 }

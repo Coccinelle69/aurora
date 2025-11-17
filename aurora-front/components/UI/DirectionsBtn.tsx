@@ -15,7 +15,7 @@ const DirectionsButton = ({ className }: DirectionsButtonProps) => {
     <>
       <p className={`${className}`}>{t("googleMaps")}: </p>
 
-      <div className="my-2 px-1 flex items-center w-[10rem] hover:scale-110 transition-transform duration-300 ease-out  hover:border rounded-xl focus:border rounded-xl active:border rounded-xl">
+      <div className="my-2 px-2 flex items-center w-[12rem] hover:scale-110 transition-transform duration-300 ease-out  hover:border rounded-xl focus:border rounded-xl active:border rounded-xl">
         <AddressIcon size={32} />
         <button
           onClick={getDirections}

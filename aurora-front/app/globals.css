@@ -28,6 +28,12 @@
   }
 }
 
+.fade-slide-out {
+  opacity: 0;
+  transform: translateX(40px); /* slide to the right */
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
 body {
   /* background: var(--background); */
   color: var(--foreground);

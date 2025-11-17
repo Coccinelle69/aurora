@@ -12,8 +12,6 @@ export default function Footer() {
   const { time } = useTime();
   const { temperature, isDayCode, windspeed, weather } = useOpenMeteo();
 
-  console.log(weather);
-
   return (
     <footer className="bg-babyBlue text-white">
       {/* Top content */}

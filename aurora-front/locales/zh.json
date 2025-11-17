@@ -99,5 +99,6 @@
   "messagePlaceholder": "请告诉我们您的日期、人数或其他问题…",
   "sending": "发送中…",
   "send": "发送留言",
-  "success": "谢谢！您的留言已发送。"
+  "success": "谢谢！您的留言已发送。",
+  "something-went-wrong": "出现了一些错误。请稍后再试。"
 }

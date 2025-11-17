@@ -32,7 +32,6 @@ export default function LanguageDropdown({ onChange }: Props) {
   const [selected, setSelected] = useState<Lang>(() => {
     if (typeof window === "undefined") return LANGS[0]; // default EN during SSR
     const code = localStorage.getItem("lang");
-    console.log(code);
     return LANGS.find((l) => l.code === code) ?? LANGS[0];
   });
 
@@ -75,12 +74,10 @@ export default function LanguageDropdown({ onChange }: Props) {
         aria-haspopup="listbox"
         aria-expanded={open}
       >
-        <Image
+        <img
           src={selected.flag}
           alt={selected.native}
-          width={20}
-          height={14}
-          className="rounded-sm"
+          className="rounded-sm h-[14px] w-[20px]"
         />
         <span className="hidden sm:inline">{selected.native}</span>
         <svg width="14" height="14" viewBox="0 0 20 20" className="opacity-80">
@@ -101,12 +98,10 @@ export default function LanguageDropdown({ onChange }: Props) {
                 role="option"
                 aria-selected={selected.code === lang.code}
               >
-                <Image
+                <img
                   src={lang.flag}
                   alt={lang.native}
-                  width={20}
-                  height={14}
-                  className="rounded-sm"
+                  className="rounded-sm h-[14px] w-[20px]"
                 />
                 <span className="truncate">{lang.native}</span>
               </button>

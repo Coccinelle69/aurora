@@ -57,8 +57,7 @@
   "onSocial": "sur les réseaux sociaux",
   "footer-location": "Localisation",
   "googleMaps": "Google Maps",
-  "footer-getDirections": "Obtenir l’itinéraire",
-
+  "getDirections": "Obtenir l’itinéraire",
   "weather-clear": "Ciel dégagé",
   "weather-mainlyClear": "Principalement dégagé",
   "weather-partlyCloudy": "Partiellement nuageux",
@@ -99,5 +98,6 @@
   "messagePlaceholder": "Parlez-nous de vos dates, invités, questions...",
   "sending": "Envoi…",
   "send": "Envoyer le message",
-  "success": "Merci ! Votre message a été envoyé."
+  "success": "Merci ! Votre message a été envoyé.",
+  "something-went-wrong": "Une erreur s’est produite. Veuillez réessayer plus tard."
 }

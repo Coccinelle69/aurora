@@ -1,5 +1,5 @@
 services:
-  aurora_front:
+  aurora-front:
     build:
       context: ../aurora-front
       dockerfile: Dockerfile.front
@@ -21,7 +21,7 @@ services:
       - WATCHPACK_POLLING_INTERVAL=500
       - NEXT_DISABLE_TURBOPACK=1
     command: sh -c "npm run dev --webpack"
-  aurora_back:
+  aurora-back:
     build:
       context: ../aurora-back
       dockerfile: Dockerfile.back
@@ -30,7 +30,8 @@ services:
       - "8080:8080"
     env_file:
       - ../aurora-back/.env
-    volumes: []
+    volumes:
+      - ./src:/app/src
     command: ./mvnw spring-boot:run
 volumes:
   node_deps:

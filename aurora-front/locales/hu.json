@@ -100,5 +100,6 @@
   "messagePlaceholder": "Adja meg az időpontot, vendégek számát vagy kérdéseit...",
   "sending": "Küldés…",
   "send": "Üzenet küldése",
-  "success": "Köszönjük! Az üzenetét elküldtük."
+  "success": "Köszönjük! Az üzenetét elküldtük.",
+  "something-went-wrong": "Hiba történt. Kérjük, próbálja meg később újra."
 }

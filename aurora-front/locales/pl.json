@@ -100,5 +100,6 @@
   "messagePlaceholder": "Podaj daty, liczbę gości lub pytania...",
   "sending": "Wysyłanie…",
   "send": "Wyślij wiadomość",
-  "success": "Dziękujemy! Wiadomość została wysłana."
+  "success": "Dziękujemy! Wiadomość została wysłana.",
+  "something-went-wrong": "Coś poszło nie tak. Spróbuj ponownie później."
 }

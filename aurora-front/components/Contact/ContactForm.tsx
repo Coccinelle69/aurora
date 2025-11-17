@@ -1,29 +1,70 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useState, useEffect } from "react";
 import FormInput from "./FormInput";
 import { useTranslation } from "react-i18next";
+import LoadingSpinner from "../UI/LoadingSpinner";
+
+interface Response {
+  success: boolean;
+}
 
 const ContactForm = () => {
   const [submitting, setSubmitting] = useState(false);
   const [sent, setSent] = useState(false);
-  const { t } = useTranslation();
+  const [success, setSuccess] = useState<boolean | null>(null);
+  const [fade, setFade] = useState(false);
+
+  const { t, i18n } = useTranslation();
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setSubmitting(true);
 
-    await fetch("api/contact");
+    const formData = new FormData(e.currentTarget);
 
-    // TODO: Hook to your endpoint or 3rd‑party form service.
-    // Example POST:
-    // await fetch("/api/contact", { method: "POST", body: new FormData(e.currentTarget) });
+    const jsonBody = JSON.stringify({
+      firstName: formData.get("firstName"),
+      lastName: formData.get("lastName"),
+      phone: formData.get("phone"),
+      email: formData.get("email"),
+      message: formData.get("message"),
+      language: i18n.language,
+    });
 
-    await new Promise((r) => setTimeout(r, 800));
+    const response = await fetch("api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: jsonBody,
+    });
+
+    const data: Response = await response.json();
+
+    if (data.success) setSuccess(true);
+
     setSubmitting(false);
     setSent(true);
     (e.target as HTMLFormElement).reset();
   }
+
+  useEffect(() => {
+    if (sent) {
+      // Trigger fade+slide at 4.5s
+      const fadeTimer = setTimeout(() => setFade(true), 4500);
+
+      // Fully hide after animation completes (5s total)
+      const removeTimer = setTimeout(() => {
+        setSent(false);
+        setSuccess(null);
+        setFade(false);
+      }, 5000);
+
+      return () => {
+        clearTimeout(fadeTimer);
+        clearTimeout(removeTimer);
+      };
+    }
+  }, [sent, success]);
   return (
     <section className="p-8 sm:p-12 lg:p-16">
       <h2 className="font-heading text-marineBlue text-4xl sm:text-5xl leading-tight mb-15">
@@ -72,7 +113,7 @@ const ContactForm = () => {
           </FormInput>
         </div>
 
-        <div className=" flex justify-end">
+        <div className=" flex justify-end items-center">
           <button
             type="submit"
             disabled={submitting}
@@ -80,11 +121,17 @@ const ContactForm = () => {
           >
             {submitting ? t("sending") : t("send")}
           </button>
+          <LoadingSpinner visible={submitting} />
         </div>
 
         {sent && (
-          <p role="status" className="mt-4 text-sm text-emerald-700">
-            {t("success")}
+          <p
+            role="status"
+            className={`mt-4 text-md font-bold ${
+              success ? "text-emerald-700" : "text-[#E53935]"
+            } ${fade ? "fade-slide-out" : ""}`}
+          >
+            {t(success ? "success" : "something-went-wrong")}
           </p>
         )}
       </form>

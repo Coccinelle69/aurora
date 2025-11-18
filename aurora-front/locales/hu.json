@@ -101,5 +101,11 @@
   "sending": "Küldés…",
   "send": "Üzenet küldése",
   "success": "Köszönjük! Az üzenetét elküldtük.",
-  "something-went-wrong": "Hiba történt. Kérjük, próbálja meg később újra."
+  "something-went-wrong": "Hiba történt. Kérjük, próbálja meg később újra.",
+  "uniqueExperience": "Egyedülálló élmény",
+  "zukveDesc1": "Zukve tökéletes hely egy pihentető családi nyaraláshoz — békés, biztonságos, és csak pár lépésre van a tengertől. Ha pedig többre vágysz, két csodálatos úti cél között találod magad.",
+  "zukveDesc2": "A bájos Nin városa csupán néhány percre található, híres homokos strandjairól és családbarát hangulatáról, míg a pezsgő Zadar rövid autóútra van Zukvétól, izgalmas kirándulásokkal, gyönyörű látnivalókkal és felejthetetlen naplementékkel.",
+  "exploreLocation": "Fedezze fel a helyszínt",
+  "amenities": "Szolgáltatások",
+  "view-more": "Több megtekintése"
 }

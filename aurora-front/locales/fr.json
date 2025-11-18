@@ -99,5 +99,11 @@
   "sending": "Envoi…",
   "send": "Envoyer le message",
   "success": "Merci ! Votre message a été envoyé.",
-  "something-went-wrong": "Une erreur s’est produite. Veuillez réessayer plus tard."
+  "something-went-wrong": "Une erreur s’est produite. Veuillez réessayer plus tard.",
+  "uniqueExperience": "Une expérience unique",
+  "zukveDesc1": "Zukve est l’endroit idéal pour des vacances familiales reposantes — calme, sûr et à seulement quelques pas de la mer. Et lorsque vous souhaitez explorer davantage, vous êtes parfaitement situé entre deux destinations incroyables.",
+  "zukveDesc2": "La charmante ville de Nin se trouve à seulement quelques minutes, connue pour ses plages de sable et son atmosphère familiale, tandis que la ville dynamique de Zadar n’est qu’à une courte distance en voiture depuis Zukve, offrant des excursions amusantes, de magnifiques paysages et des couchers de soleil inoubliables.",
+  "exploreLocation": "Découvrir l’emplacement",
+  "amenities": "Équipements",
+  "view-more": "Voir plus"
 }

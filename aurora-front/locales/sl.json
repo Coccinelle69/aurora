@@ -100,5 +100,11 @@
   "sending": "Pošiljanje…",
   "send": "Pošlji sporočilo",
   "success": "Hvala! Vaše sporočilo je bilo poslano.",
-  "something-went-wrong": "Prišlo je do napake. Poskusite znova pozneje."
+  "something-went-wrong": "Prišlo je do napake. Poskusite znova pozneje.",
+  "uniqueExperience": "Edinstvena izkušnja",
+  "zukveDesc1": "Zukve je popolno mesto za sproščene družinske počitnice — mirno, varno in le nekaj korakov od morja. Ko pa želite raziskovati več, ste idealno umeščeni med dvema čudovitima destinacijama.",
+  "zukveDesc2": "Šarmantno mesto Nin je oddaljeno le nekaj minut, znano po svojih peščenih plažah in družinam prijaznem vzdušju, medtem ko je živahni Zadar le kratko vožnjo stran, ponuja zabavne izlete, čudovite znamenitosti in nepozabne sončne zahode.",
+  "exploreLocation": "Raziščite lokacijo",
+  "amenities": "Oprema",
+  "view-more": "Prikaži več"
 }

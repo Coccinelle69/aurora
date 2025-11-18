@@ -23,6 +23,11 @@ import LoadingSpinner from "./UI/LoadingSpinner";
 import Socials from "./UI/Socials";
 import Phone from "./UI/Phone";
 import Email from "./UI/Email";
+import LazyImage from "./Apartment/LazyImage";
+import GalleryBackdrop from "./Apartment/GalleryBackdrop";
+import UniqueExperience from "./Apartment/UniqueExperience";
+import SlidesGallery from "./Apartment/SlidesGallery";
+import Amenities from "./Apartment/Amenities";
 
 export {
   ApartmentFeatures,
@@ -50,4 +55,9 @@ export {
   Socials,
   Phone,
   Email,
+  LazyImage,
+  GalleryBackdrop,
+  UniqueExperience,
+  SlidesGallery,
+  Amenities,
 };

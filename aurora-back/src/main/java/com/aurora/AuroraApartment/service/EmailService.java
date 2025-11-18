@@ -85,7 +85,7 @@ public class EmailService {
             @NotNull
            final String html = """
                 <div style="font-family: Arial, sans-serif; padding: 20px;">
-                    <h2 style="color: #234361;">Hello Aurora,</h2>
+                    <h2 style="color: #234361;">Hello Dorotea,</h2>
                     <p style="font-size: 16px;">
                        {{firstname}} {{lastname}} has just sent you a message and is waiting for your response.
                     </p>

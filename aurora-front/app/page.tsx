@@ -6,12 +6,11 @@ import {
   Features,
 } from "@/components";
 
-import house1 from "@/public/carousel/house1.jpg";
-import house2 from "@/public/carousel/house2.jpg";
-import house3 from "@/public/carousel/house3.jpg";
+import * as houseImages from "../assets/carousel";
 
 export default function Home() {
-  const slides = [house1, house2, house3];
+  const slides = Object.values(houseImages);
+
   return (
     <>
       <EmblaCarousel slides={slides} />

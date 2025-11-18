@@ -100,5 +100,11 @@
   "sending": "Slanje…",
   "send": "Pošalji poruku",
   "success": "Hvala! Vaša poruka je poslana.",
-  "something-went-wrong": "Nešto je pošlo po zlu. Molimo pokušajte kasnije."
+  "something-went-wrong": "Nešto je pošlo po zlu. Molimo pokušajte kasnije.",
+  "uniqueExperience": "Jedinstveno iskustvo",
+  "zukveDesc1": "Zukve je savršeno mjesto za opuštajući obiteljski odmor — mirno, sigurno i samo nekoliko koraka od mora. A kada poželite malo više istraživati, nalazite se na idealnoj lokaciji između dvije prekrasne destinacije.",
+  "zukveDesc2": "Šarmantni grad Nin udaljen je samo nekoliko minuta, poznat po svojim pješčanim plažama i obiteljskoj atmosferi, dok je živopisni Zadar kratkom vožnjom od Zukvi, nudi zabavne izlete, prekrasne znamenitosti i nezaboravne zalaske sunca.",
+  "exploreLocation": "Istražite lokaciju",
+  "amenities": "Sadržaji",
+  "view-more": "Prikaži više"
 }

@@ -100,5 +100,11 @@
   "sending": "发送中…",
   "send": "发送留言",
   "success": "谢谢！您的留言已发送。",
-  "something-went-wrong": "出现了一些错误。请稍后再试。"
+  "something-went-wrong": "出现了一些错误。请稍后再试。",
+  "uniqueExperience": "独特体验",
+  "zukveDesc1": "Zukve 是一个非常适合家庭度假的地方——宁静、安全，距离海边只有几步之遥。如果你想探索更多，这里正好位于两个迷人目的地之间。",
+  "zukveDesc2": "迷人的尼恩镇距离这里只有几分钟，以其沙滩和适合家庭的氛围而闻名；充满活力的扎达尔也只需短途车程，提供有趣的一日游、美丽的景色和令人难忘的日落。",
+  "exploreLocation": "探索此位置",
+  "amenities": "设施",
+  "view-more": "查看更多"
 }

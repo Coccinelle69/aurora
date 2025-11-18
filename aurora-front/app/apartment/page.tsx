@@ -1,16 +1,40 @@
 "use client";
 
-import { EmblaCarousel, ApartmentFeatures } from "@/components";
-import house1 from "@/public/carousel/house1.jpg";
-import house2 from "@/public/carousel/house2.jpg";
-import house3 from "@/public/carousel/house3.jpg";
+import {
+  EmblaCarousel,
+  ApartmentFeatures,
+  Gallery,
+  GalleryBackdrop,
+  UniqueExperience,
+  Amenities,
+} from "@/components";
+
+import * as houseImages from "../../assets/carousel";
+import * as apartmentImages from "../../assets/aurora";
+import { useState } from "react";
 
 const Apartment = () => {
-  const slides = [house1, house2, house3];
+  const slides = Object.values(houseImages);
+  const apartment = Object.values(apartmentImages);
+  const [backdropIndex, setBackdropIndex] = useState<number | null>(null);
+
+  console.log("BACKDROP INDEX:", backdropIndex);
+
   return (
     <div>
       <EmblaCarousel slides={slides} />
       <ApartmentFeatures />
+      <Gallery images={apartment} openBackdrop={setBackdropIndex} />
+      {backdropIndex !== null && (
+        <GalleryBackdrop
+          images={apartment}
+          openBackdrop={() => setBackdropIndex(null)}
+          startIndex={backdropIndex}
+        />
+      )}
+
+      <Amenities />
+      <UniqueExperience />
     </div>
   );
 };

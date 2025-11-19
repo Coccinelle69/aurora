@@ -9,11 +9,11 @@ import {
   Amenities,
 } from "@/components";
 
-import * as houseImages from "../../assets/carousel";
-import * as apartmentImages from "../../assets/aurora";
+import * as houseImages from "../../../assets/carousel";
+import * as apartmentImages from "../../../assets/aurora";
 import { useState } from "react";
 
-const Apartment = () => {
+const ApartmentPage = () => {
   const slides = Object.values(houseImages);
   const apartment = Object.values(apartmentImages);
   const [backdropIndex, setBackdropIndex] = useState<number | null>(null);
@@ -39,4 +39,4 @@ const Apartment = () => {
   );
 };
 
-export default Apartment;
+export default ApartmentPage;

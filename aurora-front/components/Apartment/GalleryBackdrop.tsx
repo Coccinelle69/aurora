@@ -64,7 +64,6 @@ export default function GalleryBackdrop({
       onClick={() => openBackdrop(null)}
     >
       <div className="embla relative ">
-        <div className="absolute inset-0 top-[15rem] left-[2rem] z-10 flex items-center justify-center pointer-events-none lg:top-0 left-0"></div>
         <div className="embla__viewport overflow-hidden" ref={emblaRef}>
           <div className="embla__container flex">
             {items.map((src, index) => (

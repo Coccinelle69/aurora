@@ -35,16 +35,16 @@ export default function GalleryBackdrop({ images }: Props) {
 
   return (
     <div className="embla relative">
-      <div className="absolute inset-0 top-[15rem] left-[2rem] z-10 flex items-center justify-center pointer-events-none lg:top-0 left-0"></div>
       <div className="embla__viewport overflow-hidden" ref={emblaRef}>
         <div className="embla__container flex">
           {items.map((src, index) => (
             <div
-              className="embla__slide flex-[0_0_100%] relative h-[80%] lg:h-[600px]"
+              className="embla__slide flex-[0_0_100%] relative h-[400px] md:h-[450px] lg:h-[600px]
+"
               key={typeof src === "string" ? src : src.src}
             >
               <div className="embla__image transition-transform duration-300 ease-out will-change-transform">
-                <div className="embla__image relative h-[800px] w-full">
+                <div className="embla__image relative h-[450px] md:h-[500px] lg:h-[650px] w-full">
                   <Image
                     src={src}
                     alt={`Slide ${index + 1}`}

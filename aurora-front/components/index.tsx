@@ -28,6 +28,8 @@ import GalleryBackdrop from "./Apartment/GalleryBackdrop";
 import UniqueExperience from "./Apartment/UniqueExperience";
 import SlidesGallery from "./Apartment/SlidesGallery";
 import Amenities from "./Apartment/Amenities";
+import BookHeader from "./Booking/Header";
+import CurrencyDropdown from "./Booking/CurrencyDropdown";
 
 export {
   ApartmentFeatures,
@@ -60,4 +62,6 @@ export {
   UniqueExperience,
   SlidesGallery,
   Amenities,
+  BookHeader,
+  CurrencyDropdown,
 };

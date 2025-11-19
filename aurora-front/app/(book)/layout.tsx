@@ -1,9 +1,9 @@
-import type { Metadata } from "next";
-import dynamic from "next/dynamic";
-import "./globals.css";
+"use client";
+import "../globals.css";
 
 import { Roboto, Princess_Sofia, Quintessential } from "next/font/google";
-import ClientProviders from "../ClientProviders";
+import ClientProviders from "@/ClientProviders";
+import { AnimCursor, BookHeader } from "@/components";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -23,26 +23,26 @@ const quintessential = Quintessential({
   variable: "--font-heading",
 });
 
-export const metadata: Metadata = {
-  title: "Aurora Apartment - 70m from the sea",
-  description: "Cozy family apartment 70m from the sea",
-};
-
-// const ClientProviders = dynamic(() => import("../ClientProviders"), {
-//   ssr: false,
-// });
-export default function RootLayout({
+export default function BookLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const isCoarse =
+    typeof window !== "undefined" &&
+    (window.matchMedia("(pointer: coarse)").matches ||
+      window.matchMedia("(hover: none)").matches);
   return (
     <html lang="en">
       <body
         suppressHydrationWarning
         className={`${roboto.variable} ${quintessential.variable} ${sofia.variable} antialiased`}
       >
-        <ClientProviders>{children}</ClientProviders>
+        <ClientProviders>
+          {!isCoarse && <AnimCursor />}
+          <BookHeader />
+          {children}
+        </ClientProviders>
       </body>
     </html>
   );

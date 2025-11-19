@@ -1,6 +1,6 @@
 import { Contact, MapWithMarker } from "@/components";
 
-const page = () => {
+const ContactPage = () => {
   return (
     <div>
       <Contact />
@@ -13,4 +13,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default ContactPage;

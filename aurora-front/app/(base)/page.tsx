@@ -6,7 +6,7 @@ import {
   Features,
 } from "@/components";
 
-import * as houseImages from "../assets/carousel";
+import * as houseImages from "../../assets/carousel";
 
 export default function Home() {
   const slides = Object.values(houseImages);

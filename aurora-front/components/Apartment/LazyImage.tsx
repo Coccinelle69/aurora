@@ -35,7 +35,7 @@ export default function LazyImage({ src, alt }: LazyImageProps) {
     <div
       ref={ref}
       className={`
-        transition-all duration-1000 ease-out
+      mx-[1rem] lg:mx-0 transition-all duration-1000 ease-out
     ${
       visible
         ? "opacity-100 scale-100 pointer-events-auto"
@@ -50,7 +50,7 @@ export default function LazyImage({ src, alt }: LazyImageProps) {
           alt={alt}
           width={src.width}
           height={src.height}
-          className="w-full h-auto rounded-xl object-cover"
+          className="w-full h-auto rounded-xl object-cover "
           loading="lazy"
         />
       )}

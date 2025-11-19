@@ -7,7 +7,7 @@ const MapWithMarker = dynamic(
   { ssr: false, loading: () => <div style={{ height: "100%" }} /> }
 );
 
-export default function Location() {
+export default function LocationPage() {
   console.log(
     "[GMAPS] key?",
     process.env.NEXT_PUBLIC_GMAPS_KEY?.slice(0, 6) + "…"

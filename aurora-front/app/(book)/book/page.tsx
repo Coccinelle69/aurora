@@ -1,34 +1,24 @@
 "use client";
 
+import SearchBooking from "@/components/Booking/SearchBooking";
+import { SeaIcon } from "@/icons";
+import { useAppSelector } from "@/store/hooks";
 import { useCurrency } from "@/utils/hooks";
-import { useEffect, useState } from "react";
 
 const BookingPage = () => {
-  //   const [price, setPrice] = useState(null);
-  const { price } = useCurrency();
+  const currency = useAppSelector((state) => state.currency.value);
+  console.log(currency);
 
-  //   useEffect(() => {
-  //     // get query params from URL
-  //     const params = new URLSearchParams(window.location.search);
-  //     const from = "2025-05-20";
-  //     const to = "2025-05-25";
+  const from = "2025-06-30";
+  const to = "2025-07-07";
 
-  //     async function runTest() {
-  //       console.log("Testing with: ", { from, to });
+  const { price } = useCurrency({ currency, from, to });
 
-  //       try {
-  //         const res = await fetch(`/api/currency?from=${from}&to=${to}`);
-  //         const data = await res.json();
-  //         // setPrice(data.amount);
-  //         console.log("API Response:", data);
-  //       } catch (e) {
-  //         console.error("Request failed:", e);
-  //       }
-  //     }
-
-  //     runTest();
-  //   }, []);
-  return <div className="bg-red">{price}</div>;
+  return (
+    <div className="flex items-center justify-center bg-red mx-auto h-screen w-full text-red-500">
+      <SearchBooking />
+    </div>
+  );
 };
 
 export default BookingPage;

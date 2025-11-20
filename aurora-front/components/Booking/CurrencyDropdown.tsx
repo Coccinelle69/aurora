@@ -17,7 +17,7 @@ export const CURRENCIES: Currency[] = [
     sign: "£",
   },
   { code: "PLN", sign: "zł" },
-  { code: "RUB", sign: "₽" },
+  // { code: "RUB", sign: "₽" },
   { code: "HUF", sign: "Ft" },
   { code: "CZK", sign: "Kč" },
   { code: "CNY", sign: "¥" },

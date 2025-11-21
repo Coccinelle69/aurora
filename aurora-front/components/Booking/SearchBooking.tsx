@@ -1,11 +1,11 @@
-import BookingSearchBar from "./BookingSearchBar";
+import { BookingSearchBar } from "@/components";
 
 const SearchBooking = () => {
   return (
     <div
       className="
         w-full 
-        h-[610px] 
+        h-full
         bg-[url('/beach2.jpg')] 
         bg-cover 
         bg-center 

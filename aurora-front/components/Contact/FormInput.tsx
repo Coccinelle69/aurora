@@ -1,6 +1,11 @@
+import { persistField } from "@/reducers/contact";
+import { useAppSelector } from "@/store/hooks";
+import { useDispatch } from "react-redux";
+import { ContactState } from "@/reducers/contact";
+
 interface FormInputProps {
   id: string;
-  name: string;
+  name: keyof ContactState;
   placeholder: string;
   children: React.ReactNode;
   input?: boolean;
@@ -16,6 +21,19 @@ const FormInput = ({
   const inputStyle = `peer w-full bg-transparent px-3 py-3 rounded-md outline-none 
                        border-2 border-transparent placeholder:text-gray-400 text-marineBlue`;
 
+  const dispatch = useDispatch();
+  const { firstName, lastName, phone, email, message } = useAppSelector(
+    (state) => state.contact
+  );
+
+  const contactState: ContactState = {
+    firstName,
+    lastName,
+    phone,
+    email,
+    message,
+  };
+
   return (
     <div className="relative mt-5">
       {input ? (
@@ -26,6 +44,10 @@ const FormInput = ({
             placeholder={placeholder}
             className={inputStyle}
             required
+            value={contactState[name]}
+            onChange={(e) =>
+              dispatch(persistField({ key: name, value: e.target.value }))
+            }
           />
         </>
       ) : (
@@ -36,6 +58,10 @@ const FormInput = ({
             placeholder={placeholder}
             className={`${inputStyle} min-h-[160px] resize-none`}
             required
+            value={contactState[name]}
+            onChange={(e) =>
+              dispatch(persistField({ key: name, value: e.target.value }))
+            }
           />
         </>
       )}

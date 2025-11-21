@@ -40,7 +40,8 @@ export default function CurrencyDropdown({ onChange }: Props) {
   // outside click / Esc
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
-      if (!ref.current?.contains(e.target as Node)) setOpen(false);
+      if (ref.current && !ref.current?.contains(e.target as Node))
+        setOpen(false);
     };
     const onEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(false);
@@ -56,10 +57,7 @@ export default function CurrencyDropdown({ onChange }: Props) {
   const choose = (currency: Currency) => {
     setSelected(currency);
     setOpen(false);
-    if (typeof window !== "undefined")
-      localStorage.setItem("currency", currency.code);
-    onChange?.(currency);
-    console.log(currency.code);
+    if (typeof window !== "undefined") onChange?.(currency);
 
     dispatch(changeCurrency(currency.code));
   };

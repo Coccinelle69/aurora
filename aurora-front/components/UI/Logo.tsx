@@ -9,7 +9,7 @@ export default function LogoAurora({
 }: {
   size?: number;
   className?: string;
-  fullscreen: boolean;
+  fullscreen?: boolean;
 }) {
   return (
     <>

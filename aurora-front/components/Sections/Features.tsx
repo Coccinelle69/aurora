@@ -7,9 +7,9 @@ import {
   FreeParkingIcon,
   OceanIcon,
   WifiIcon,
-} from "../../icons";
+} from "@/icons";
 import { useTranslation } from "react-i18next";
-import { colors } from "../../utils/ui/colors";
+import { colors } from "@/utils/ui/colors";
 
 type Feature = {
   title: string;

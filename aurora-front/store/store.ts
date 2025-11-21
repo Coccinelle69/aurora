@@ -1,7 +1,7 @@
 "use client";
 
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import { language, currency } from "@/reducers";
+import { language, currency, contact, search } from "@/reducers";
 import {
   persistStore,
   persistReducer,
@@ -17,12 +17,14 @@ import storage from "redux-persist/lib/storage";
 const rootReducer = combineReducers({
   language,
   currency,
+  contact,
+  search,
 });
 
 const persistConfig = {
   key: "app-storage",
   storage,
-  whitelist: ["language", "currency"], // persist ONLY this slice
+  whitelist: ["language", "currency", "contact", "search"], // persist ONLY this slice
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

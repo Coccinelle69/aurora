@@ -2,7 +2,7 @@
 
 import { StaticImageData } from "next/image";
 import { useState } from "react";
-import { ViewMore, LazyImage } from "../";
+import { ViewMore, LazyImage } from "@/components";
 
 interface GalleryProps {
   images: StaticImageData[];

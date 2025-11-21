@@ -1,6 +1,6 @@
 "use client";
 
-import DistanceSection from "@/components/Location/DistanceSection";
+import { DistanceSection } from "@/components";
 import dynamic from "next/dynamic";
 const MapWithMarker = dynamic(
   () => import("@/components").then((mod) => mod.MapWithMarker),

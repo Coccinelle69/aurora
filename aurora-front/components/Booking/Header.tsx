@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { FacebookIcon, InstagramIcon } from "../../icons";
 import {
   LogoAurora as Logo,
@@ -10,18 +9,10 @@ import {
 } from "..";
 
 const BookHeader = () => {
-  const [scrolled, setScrolled] = useState(false);
-  const [fullScreenMenuOpen, setFullScreenMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 15);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
   return (
     <>
       <header className="bg-babyBlue">
-        <nav className="lg:h-[175px]">
+        <nav className="lg:h-[200px]">
           <ul className="h-full flex flex-row px-[8%] justify-between">
             <li className="hidden lg:flex flex-row items-center">
               <div className="hidden lg:flex flex-row items-center gap-3 ">
@@ -33,7 +24,7 @@ const BookHeader = () => {
               </div>
             </li>
             <li>
-              <Logo fullscreen={fullScreenMenuOpen} />
+              <Logo size={200} />
             </li>
 
             <li className="flex flex-row justify-center items-center">

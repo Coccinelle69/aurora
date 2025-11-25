@@ -1,22 +1,25 @@
-import { BookingSearchBar } from "@/components";
+"use client";
 
-const SearchBooking = () => {
+import { BookingCard, BookingSearchBar, Notification } from "@/components";
+import { useState } from "react";
+
+export default function SearchBooking() {
+  const [available, setAvailable] = useState(false);
+  const [trigger, setTrigger] = useState(false);
+
+  console.log(available);
+
   return (
-    <div
-      className="
-        w-full 
-        h-full
-        bg-[url('/beach2.jpg')] 
-        bg-cover 
-        bg-center 
-        flex 
-        items-center 
-        justify-center
-      "
-    >
-      <BookingSearchBar />
+    <div>
+      <BookingSearchBar
+        setAvailable={setAvailable}
+        setTrigger={setTrigger}
+        trigger={trigger}
+      />
+
+      <Notification available={available} trigger={trigger} />
+
+      {/* <BookingCard />  */}
     </div>
   );
-};
-
-export default SearchBooking;
+}

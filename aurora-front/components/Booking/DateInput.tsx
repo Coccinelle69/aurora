@@ -7,9 +7,10 @@ type DateKeys = Extract<keyof searchState, "arrival" | "departure">;
 interface DateInputProps {
   dateType: DateKeys;
   setDate: React.Dispatch<React.SetStateAction<string>>;
+  setAvailable: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const DateInput = ({ setDate, dateType }: DateInputProps) => {
+const DateInput = ({ setDate, dateType, setAvailable }: DateInputProps) => {
   const dispatch = useDispatch();
   const { arrival, departure } = useAppSelector((state) => state.search);
 
@@ -32,6 +33,7 @@ const DateInput = ({ setDate, dateType }: DateInputProps) => {
             : departure
         }
         onChange={(e) => {
+          setAvailable(false);
           const value = e.target.value;
 
           // ----------------------------

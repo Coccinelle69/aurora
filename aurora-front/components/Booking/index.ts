@@ -6,3 +6,4 @@ export { default as GuestInput } from "./GuestInput";
 export { default as BookHeader } from "./Header";
 export { default as Notification } from "./Notification";
 export { default as SearchBooking } from "./SearchBooking";
+export { default as GuestInputs } from "./GuestInputs";

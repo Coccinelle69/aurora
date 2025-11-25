@@ -1,5 +1,11 @@
 "use client";
-import { ContactForm, DirectionsButton, Email, Phone, Socials } from "../index";
+import {
+  ContactForm,
+  DirectionsButton,
+  Email,
+  Phone,
+  Socials,
+} from "@/components";
 
 export default function Contact() {
   return (

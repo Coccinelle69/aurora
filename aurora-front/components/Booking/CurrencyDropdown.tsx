@@ -37,7 +37,6 @@ export default function CurrencyDropdown({ onChange }: Props) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
-  // outside click / Esc
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
       if (ref.current && !ref.current?.contains(e.target as Node))

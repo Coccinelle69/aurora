@@ -1,28 +1,46 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-import { GuestInput, DateInput } from "@/components";
+import { useState, useRef, useEffect, FormEvent, SetStateAction } from "react";
+import { DateInput, GuestInputs, MagnifyingGlass } from "@/components";
 import { useAppSelector } from "@/store/hooks";
+import { useResponse } from "@/utils/hooks";
+import { useTranslation } from "react-i18next";
 
-export default function BookingSearchBar() {
+interface BookingSearchBarProps {
+  setAvailable: React.Dispatch<SetStateAction<boolean>>;
+  setTrigger: React.Dispatch<SetStateAction<boolean>>;
+  trigger: boolean;
+}
+
+export default function BookingSearchBar({
+  setAvailable,
+  setTrigger,
+  trigger,
+}: BookingSearchBarProps) {
   const {
     adults: adultNo,
     children: childrenNo,
     teens: teenNo,
+    arrival,
+    departure,
   } = useAppSelector((state) => state.search);
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+  const [startDate, setStartDate] = useState(arrival);
+  const [endDate, setEndDate] = useState(departure);
+  // const [trigger, setTrigger] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const { t } = useTranslation();
 
-  const [adults, setAdults] = useState(Number(adultNo));
-  const [children, setChildren] = useState(Number(childrenNo));
-  const [teens, setTeens] = useState(Number(teenNo));
+  const [guests, setGuests] = useState({
+    adults: Number(adultNo),
+    children: Number(childrenNo),
+    teens: Number(teenNo),
+  });
 
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   const totalGuests = +adultNo + +childrenNo + +teenNo;
 
-  // close dropdown on outside click
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
       if (ref.current && !ref.current.contains(e.target as Node)) {
@@ -40,66 +58,85 @@ export default function BookingSearchBar() {
     };
   }, []);
 
+  const { data, success, done, errorMessage } = useResponse({
+    url: `/api/reservation?arrival=${startDate}&departure=${endDate}`,
+    method: "GET",
+    trigger,
+  });
+
+  useEffect(() => {
+    if (!done) return;
+
+    Promise.resolve().then(() => {
+      setSubmitting(false);
+      setTrigger(false);
+      if (success) setAvailable(true);
+    });
+  }, [done]);
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSubmitting(true);
+    setTrigger(true);
+  };
+
   return (
-    <div className="w-full max-w-5xl mx-auto bg-white/20 p-5 rounded-2xl shadow-md flex items-center gap-4">
-      {/* START DATE */}
-      <DateInput dateType="arrival" setDate={setStartDate} />
-      {/* END DATE */}
-      <DateInput dateType="departure" setDate={setEndDate} />
-
-      {/* GUEST DROPDOWN */}
-      <div className="relative" ref={ref}>
-        <button
-          className="border rounded-lg px-4 py-3 flex items-center gap-2"
-          onClick={() => setOpen((prevOpen) => !prevOpen)}
-        >
-          {totalGuests} Guests
-        </button>
-
-        {open && (
-          <div className="absolute right-0 mt-2 w-64 bg-white/60 shadow-xl border rounded-xl p-4 z-50">
-            {/* ADULTS */}
-            <GuestInput
-              guestType="adults"
-              guests={adults}
-              setGuest={setAdults}
-              guestString="Adults"
-            />
-            {/* CHILDREN 0–12 */}
-            <GuestInput
-              guestType="children"
-              guests={children}
-              setGuest={setChildren}
-              guestString="Children (0–12)"
-            />
-            {/* TEENS 13–18 */}
-            <GuestInput
-              guestType="teens"
-              guests={teens}
-              setGuest={setTeens}
-              guestString="Teens (13–18)"
-            />
-
-            {/* DONE BUTTON */}
-            <div className="pt-3 flex justify-end">
-              <button
-                onClick={() => setOpen((prevOpen) => !prevOpen)}
-                className="px-4 py-1 bg-blue-600 text-white rounded-md"
-              >
-                Done
-              </button>
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* SEARCH BUTTON */}
-      <button
-        onClick={() => setOpen(false)}
-        className="px-6 py-3 bg-blue-600 text-white rounded-lg"
+    <>
+      <form
+        onSubmit={(e) => {
+          handleSubmit(e);
+        }}
+        className="relative w-full max-w-5xl mx-auto top-5 bg-white/20 p-5 rounded-2xl shadow-md flex flex-wrap items-center gap-4"
       >
-        Search
-      </button>
-    </div>
+        <div className="flex-1 min-w-[140px]">
+          <DateInput
+            dateType="arrival"
+            setDate={setStartDate}
+            setAvailable={setAvailable}
+          />
+        </div>
+
+        <div className="flex-1 min-w-[140px]">
+          <DateInput
+            dateType="departure"
+            setDate={setEndDate}
+            setAvailable={setAvailable}
+          />
+        </div>
+
+        <div className="relative flex-1 min-w-[140px]" ref={ref}>
+          <button
+            className="border rounded-lg px-4 py-3 flex items-center gap-2 w-full"
+            onClick={() => setOpen((prevOpen) => !prevOpen)}
+          >
+            {totalGuests} Guests
+          </button>
+
+          {open && (
+            <GuestInputs
+              guests={guests}
+              setGuests={setGuests}
+              setOpen={setOpen}
+            />
+          )}
+        </div>
+
+        <button
+          type="submit"
+          onClick={() => setOpen(false)}
+          className="px-6 py-3 bg-blue-600 text-white rounded-lg w-full sm:w-auto"
+        >
+          Search
+        </button>
+      </form>
+      {submitting && (
+        <div className="flex items-center justify-center relative top-[10rem]">
+          <p className="font-bold animate-pulse text-[1.75rem] tracking-[0.1rem]">
+            Checking for availability...
+          </p>
+          <MagnifyingGlass visible={submitting} />
+        </div>
+      )}
+    </>
   );
 }

@@ -29,8 +29,11 @@ const contactSlice = createSlice({
       const { key, value } = action.payload;
       state[key] = value;
     },
+    resetField() {
+      return initialState;
+    },
   },
 });
 
-export const { persistField } = contactSlice.actions;
+export const { persistField, resetField } = contactSlice.actions;
 export default contactSlice.reducer;

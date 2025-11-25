@@ -107,5 +107,6 @@
   "zukveDesc2": "A bájos Nin városa csupán néhány percre található, híres homokos strandjairól és családbarát hangulatáról, míg a pezsgő Zadar rövid autóútra van Zukvétól, izgalmas kirándulásokkal, gyönyörű látnivalókkal és felejthetetlen naplementékkel.",
   "exploreLocation": "Fedezze fel a helyszínt",
   "amenities": "Szolgáltatások",
-  "view-more": "Több megtekintése"
+  "view-more": "Több megtekintése",
+  "fieldsError": "Kérjük, töltse ki helyesen az összes mezőt."
 }

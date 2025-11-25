@@ -1,29 +1,50 @@
 "use client";
 
 import { FormEvent, useState, useEffect } from "react";
-import FormInput from "./FormInput";
 import { useTranslation } from "react-i18next";
-import LoadingSpinner from "../UI/LoadingSpinner";
-
-interface Response {
-  success: boolean;
-}
+import { useResponse } from "@/utils/hooks";
+import { useDispatch } from "react-redux";
+import { resetField } from "@/reducers/contact";
+import { FormInputs, LoadingSpinner } from "@/components";
 
 const ContactForm = () => {
   const [submitting, setSubmitting] = useState(false);
   const [sent, setSent] = useState(false);
-  const [success, setSuccess] = useState<boolean | null>(null);
   const [fade, setFade] = useState(false);
-
+  const [body, setBody] = useState<Record<string, unknown> | null>(null);
+  const [trigger, setTrigger] = useState(false);
   const { t, i18n } = useTranslation();
+  const dispatch = useDispatch();
+
+  const { data, success, done, errorMessage } = useResponse({
+    url: "api/contact",
+    method: "POST",
+    body,
+    trigger,
+  });
+
+  useEffect(() => {
+    if (!done) return;
+
+    queueMicrotask(() => {
+      setSubmitting(false);
+      setSent(true);
+      setTrigger(false);
+    });
+
+    if (success) {
+      dispatch(resetField());
+    }
+  }, [done]);
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
+    // setError(null);
     e.preventDefault();
     setSubmitting(true);
 
     const formData = new FormData(e.currentTarget);
 
-    const jsonBody = JSON.stringify({
+    setBody({
       firstName: formData.get("firstName"),
       lastName: formData.get("lastName"),
       phone: formData.get("phone"),
@@ -32,18 +53,9 @@ const ContactForm = () => {
       language: i18n.language,
     });
 
-    const response = await fetch("api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: jsonBody,
-    });
-
-    const data: Response = await response.json();
-
-    if (data.success) setSuccess(true);
-
-    setSubmitting(false);
+    setTrigger(true);
     setSent(true);
+
     (e.target as HTMLFormElement).reset();
   }
 
@@ -55,7 +67,6 @@ const ContactForm = () => {
       // Fully hide after animation completes (5s total)
       const removeTimer = setTimeout(() => {
         setSent(false);
-        setSuccess(null);
         setFade(false);
       }, 5000);
 
@@ -74,64 +85,29 @@ const ContactForm = () => {
       </h2>
 
       <form onSubmit={onSubmit} className="max-w-4xl">
-        <div className="">
-          <FormInput
-            id="firstName"
-            name="firstName"
-            placeholder={t("firstNamePlaceholder")}
-          >
-            {t("firstName")}
-          </FormInput>
-          <FormInput
-            id="lastName"
-            name="lastName"
-            placeholder={t("lastNamePlaceholder")}
-          >
-            {t("lastName")}
-          </FormInput>
-          <FormInput
-            id="phone"
-            name="phone"
-            placeholder={t("phonePlaceholder")}
-          >
-            {t("phone")}
-          </FormInput>
-          <FormInput
-            id="email"
-            name="email"
-            placeholder={t("emailPlaceholder")}
-          >
-            {t("email")}
-          </FormInput>
-          <FormInput
-            id="message"
-            name="message"
-            placeholder={t("messagePlaceholder")}
-            input={false}
-          >
-            {t("message")}
-          </FormInput>
-        </div>
+        <FormInputs />
 
         <div className=" flex justify-end items-center">
           <button
             type="submit"
             disabled={submitting}
-            className="inline-flex items-center font-body gap-2 uppercase tracking-[.2em] text-marineBlue font-semibold px-5 mt-4 py-3 rounded-xl bg-transparent hover:bg-slate-200 transition hover:text-babyBlue"
+            className="inline-flex items-center font-body gap-2 uppercase tracking-[.2em] text-marineBlue font-semibold px-5 mt-4 py-3 rounded-xl bg-transparent hover:bg-slate-200 transition hover:text-babyBlue disabled:cursor-not-allowed"
           >
             {submitting ? t("sending") : t("send")}
           </button>
           <LoadingSpinner visible={submitting} />
         </div>
 
-        {sent && (
+        {sent && done && (
           <p
             role="status"
             className={`mt-4 text-md font-bold ${
               success ? "text-emerald-700" : "text-[#E53935]"
             } ${fade ? "fade-slide-out" : ""}`}
           >
-            {t(success ? "success" : "something-went-wrong")}
+            {success && t("success")}
+            {!success && errorMessage && t(errorMessage)}
+            {/* {!success && error && t(error)} */}
           </p>
         )}
       </form>

@@ -29,9 +29,6 @@ const BookHeader = () => {
 
             <li className="flex flex-row justify-center items-center">
               <div>
-                <BookButton />
-              </div>
-              <div>
                 <CurrencyDropdown />
               </div>
               <div>

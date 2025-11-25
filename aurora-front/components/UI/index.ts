@@ -6,3 +6,4 @@ export { default as LoadingSpinner } from "./LoadingSpinner";
 export { default as Socials } from "./Socials";
 export { default as Phone } from "./Phone";
 export { default as Email } from "./Email";
+export { default as MagnifyingGlass } from "./MagnifyingGlass";

@@ -12,8 +12,7 @@ services:
       - 8.8.8.8
       - 1.1.1.1
     volumes:
-      - ../aurora-front:/app # <-- mount the app folder, not "."
-      - node_deps:/app/node_modules
+      - ../aurora-front:/app
     environment:
       - NODE_ENV=development
       - CHOKIDAR_USEPOLLING=true # required for Windows FS
@@ -25,6 +24,9 @@ services:
     build:
       context: ../aurora-back
       dockerfile: Dockerfile.back
+    depends_on:
+      aurora-db:
+        condition: service_healthy
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://aurora-db:5432/${POSTGRES_DB}
       SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
@@ -37,6 +39,7 @@ services:
       - ../aurora-back/.env
     volumes:
       - ../aurora-back/src:/app/src
+      - /app/node_modules
     command: ./mvnw spring-boot:run
   aurora-db:
     image: postgres:15
@@ -48,11 +51,11 @@ services:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
-      # - ./db-init:/docker-entrypoint-initdb.d   # optional init scripts
+      - ./db-init:/docker-entrypoint-initdb.d # optional init scripts
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER}"]
       interval: 5s
       retries: 5
 volumes:
-  node_deps:
+  # node_deps:
   pgdata:

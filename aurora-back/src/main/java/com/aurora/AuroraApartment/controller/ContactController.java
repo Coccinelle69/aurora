@@ -14,6 +14,7 @@ import jakarta.validation.Valid;
 
 
 
+
 @RestController
 @RequestMapping("/contact")
 public class ContactController {
@@ -26,6 +27,14 @@ public ResponseEntity<?> handleContact(@Valid @RequestBody ContactRequest reques
 
     emailService.sendToAdmin(request);          
     emailService.sendConfirmationToUser(request); 
+
+    return ResponseEntity.ok("{\"success\": true}");
+}
+
+
+
+@PostMapping("/check")
+public ResponseEntity<?> verifyForm(@Valid @RequestBody ContactRequest request) {
 
     return ResponseEntity.ok("{\"success\": true}");
 }

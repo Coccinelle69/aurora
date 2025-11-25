@@ -106,5 +106,6 @@
   "zukveDesc2": "The charming town of Nin is only a few minutes away, known for its sandy beaches and family-friendly atmosphere, while the vibrant city of Zadar is just a short drive from Zukve, offering fun day trips, beautiful sights, and unforgettable sunsets.",
   "exploreLocation": "Explore the Location",
   "amenities": "Amenities",
-  "view-more": "View more"
+  "view-more": "View more",
+  "fieldsError": "Please fill in all the fields correctly."
 }

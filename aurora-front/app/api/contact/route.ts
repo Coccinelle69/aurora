@@ -2,11 +2,25 @@ import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   try {
-    const url = `http://aurora-back:8080/contact`;
+    const serverUrl = `http://aurora-back:8080`;
 
-    const body = await request.text(); //gives json string already
+    const body = await request.text();
 
-    const upstream = await fetch(url, {
+    const check = await fetch(`${serverUrl}/contact/check`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body,
+    });
+
+    if (!check.ok) {
+      const error = await check.json();
+      return NextResponse.json(
+        { success: false, errors: error },
+        { status: 400 }
+      );
+    }
+
+    const upstream = await fetch(`${serverUrl}/contact`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -21,7 +35,6 @@ export async function POST(request: Request) {
           error: "Upstream error",
           status: upstream.status,
           body: errorText,
-          url,
         },
         { status: 502 }
       );

@@ -105,5 +105,6 @@
   "zukveDesc2": "La charmante ville de Nin se trouve à seulement quelques minutes, connue pour ses plages de sable et son atmosphère familiale, tandis que la ville dynamique de Zadar n’est qu’à une courte distance en voiture depuis Zukve, offrant des excursions amusantes, de magnifiques paysages et des couchers de soleil inoubliables.",
   "exploreLocation": "Découvrir l’emplacement",
   "amenities": "Équipements",
-  "view-more": "Voir plus"
+  "view-more": "Voir plus",
+  "fieldsError": "Veuillez remplir correctement tous les champs."
 }

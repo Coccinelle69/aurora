@@ -1,7 +1,9 @@
+"use client";
 import { persistField } from "@/reducers/contact";
 import { useAppSelector } from "@/store/hooks";
 import { useDispatch } from "react-redux";
 import { ContactState } from "@/reducers/contact";
+import { useState } from "react";
 
 interface FormInputProps {
   id: string;
@@ -18,9 +20,6 @@ const FormInput = ({
   input = true,
   children,
 }: FormInputProps) => {
-  const inputStyle = `peer w-full bg-transparent px-3 py-3 rounded-md outline-none 
-                       border-2 border-transparent placeholder:text-gray-400 text-marineBlue`;
-
   const dispatch = useDispatch();
   const { firstName, lastName, phone, email, message } = useAppSelector(
     (state) => state.contact
@@ -34,36 +33,59 @@ const FormInput = ({
     message,
   };
 
+  // fade animated per–input error
+  const [error, setError] = useState({ message: "" });
+  const [fade, setFade] = useState(false);
+
+  const triggerLocalError = () => {
+    // parent error just for global message (if you need)
+    setError({ message: "Please fill in this field" });
+
+    setFade(false);
+
+    // fade out
+    setTimeout(() => setFade(true), 1000);
+    // remove message
+    setTimeout(() => setError({ message: "" }), 1500);
+  };
+
+  const handleBlur = (value: string) => {
+    if (!value.trim()) {
+      triggerLocalError();
+    }
+  };
+
+  const inputStyle = `
+    peer w-full bg-transparent px-3 py-3 rounded-md outline-none
+    border-2 border-transparent placeholder:text-gray-400 text-marineBlue
+  `;
+
   return (
     <div className="relative mt-5">
       {input ? (
-        <>
-          <input
-            id={id}
-            name={name}
-            placeholder={placeholder}
-            className={inputStyle}
-            required
-            value={contactState[name]}
-            onChange={(e) =>
-              dispatch(persistField({ key: name, value: e.target.value }))
-            }
-          />
-        </>
+        <input
+          id={id}
+          name={name}
+          placeholder={placeholder}
+          className={inputStyle}
+          value={contactState[name]}
+          onChange={(e) =>
+            dispatch(persistField({ key: name, value: e.target.value }))
+          }
+          onBlur={(e) => handleBlur(e.target.value)}
+        />
       ) : (
-        <>
-          <textarea
-            id={id}
-            name={name}
-            placeholder={placeholder}
-            className={`${inputStyle} min-h-[160px] resize-none`}
-            required
-            value={contactState[name]}
-            onChange={(e) =>
-              dispatch(persistField({ key: name, value: e.target.value }))
-            }
-          />
-        </>
+        <textarea
+          id={id}
+          name={name}
+          placeholder={placeholder}
+          className={`${inputStyle} min-h-[160px] resize-none`}
+          value={contactState[name]}
+          onChange={(e) =>
+            dispatch(persistField({ key: name, value: e.target.value }))
+          }
+          onBlur={(e) => handleBlur(e.target.value)}
+        />
       )}
 
       {/* floating label */}
@@ -73,6 +95,17 @@ const FormInput = ({
       >
         <span className="px-1 bg-white lg:bg-[#D3DAE0]">{children}</span>
       </label>
+
+      {/* local fade error */}
+      {error && error.message && (
+        <p
+          className={`text-sm font-semibold text-red-600 mt-1 transition-all duration-500 ${
+            fade ? "opacity-0 translate-y-1" : "opacity-100 translate-y-0"
+          }`}
+        >
+          {error.message}
+        </p>
+      )}
 
       {/* animated full border */}
       <span

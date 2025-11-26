@@ -5,21 +5,30 @@ import { useState } from "react";
 
 export default function SearchBooking() {
   const [available, setAvailable] = useState(false);
-  const [trigger, setTrigger] = useState(false);
-
-  console.log(available);
+  const [done, setDone] = useState(false);
+  const [error, setError] = useState(false);
+  const [notificationDisappeared, setNotificationDisappeared] = useState(false);
 
   return (
     <div>
       <BookingSearchBar
+        setError={setError}
         setAvailable={setAvailable}
-        setTrigger={setTrigger}
-        trigger={trigger}
+        setDone={setDone}
+        setNotificationDisappeared={setNotificationDisappeared}
       />
 
-      <Notification available={available} trigger={trigger} />
+      {done && (
+        <Notification
+          error={error}
+          available={available}
+          done={done}
+          setDone={setDone}
+          setNotificationDisappeared={setNotificationDisappeared}
+        />
+      )}
 
-      {/* <BookingCard />  */}
+      {notificationDisappeared && available && <BookingCard />}
     </div>
   );
 }

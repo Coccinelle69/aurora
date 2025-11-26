@@ -47,11 +47,14 @@ const GuestInput = ({
               );
             }
           }}
-          className="h-7 w-7 rounded border flex items-center justify-center"
+          className="h-7 w-7 rounded border flex items-center justify-center text-default"
+          type="button"
         >
           -
         </button>
-        <span className="w-4 text-center text-bold">{+guestsNo}</span>
+        <span className="w-4 text-center text-bold text-default">
+          {+guestsNo}
+        </span>
         <button
           onClick={() => {
             const newValue = guests + 1;
@@ -65,7 +68,8 @@ const GuestInput = ({
               })
             );
           }}
-          className="h-7 w-7 rounded border flex items-center justify-center"
+          className="h-7 w-7 rounded border flex items-center justify-center text-default"
+          type="button"
         >
           +
         </button>

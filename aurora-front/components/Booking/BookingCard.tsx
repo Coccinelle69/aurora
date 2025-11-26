@@ -1,9 +1,41 @@
 "use client";
+import { useAppSelector } from "@/store/hooks";
+import { useCurrency } from "@/utils/hooks";
 import Image from "next/image";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
 
 const BookingCard = () => {
+  const { value } = useAppSelector((state) => state.currency);
+  const {
+    adults: adultNo,
+    children: childrenNo,
+    teens: teenNo,
+    arrival,
+    departure,
+  } = useAppSelector((state) => state.search);
+  const [guests, setGuests] = useState({
+    adults: Number(adultNo),
+    children: Number(childrenNo),
+    teens: Number(teenNo),
+  });
+  const totalGuests = +adultNo + +childrenNo + +teenNo;
+  const { price, sign } = useCurrency({
+    currency: value,
+    from: arrival,
+    to: departure,
+  });
+
+  const { t } = useTranslation();
+
   return (
-    <div className="w-full px-4 mt-12 mb-12 flex justify-center">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="w-full px-4 mt-[10rem] mb-[15rem] flex justify-center sm:mb-0"
+    >
       <div
         className="
           max-w-4xl w-full
@@ -26,47 +58,54 @@ const BookingCard = () => {
         <div className="flex flex-col justify-between flex-1">
           <div>
             <h2 className="text-xl font-semibold text-gray-700">
-              Aurora apartment – 70m from the sea
+              {t("title")}
             </h2>
 
             <div className="flex items-center text-gray-500 gap-1 mt-1">
               <span>📍</span>
-              <span>Zukve, Croatia</span>
+              <span>{t("zukve")}</span>
             </div>
 
-            <p className="text-gray-600 mt-2 text-sm">
-              Aurora Suites is a brand new “jewel” in the city of Chania. They
-              are located in a nearby suburb of the city...
+            <p className="text-gray-600 mt-2 text-sm font-semibold">
+              {`• ${t("arrival")}: ${arrival} ${t("departure")}: ${departure}`}
             </p>
 
             <div className="flex flex-wrap items-center gap-3 text-gray-600 text-sm mt-3">
-              <span>• Apartment</span>
-              <span>• 2 Guests</span>
-              <span>• 2 Bedrooms</span>
-              <span>• 1 Bathroom</span>
+              <span>• {t("apartment")}</span>
+              <span>• {t("bedrooms")}</span>
+              <span>• {t("bathroom")}</span>
+              {Number(totalGuests) > 1 ? (
+                <span>
+                  • {totalGuests} {t("moreGuests")}
+                </span>
+              ) : (
+                <span>
+                  • {totalGuests} {t("oneGuest")}
+                </span>
+              )}
             </div>
           </div>
 
           {/* PRICE + BUTTON */}
           <div className="flex justify-between items-end mt-4">
             <div>
-              <div className="text-sm text-gray-500">from</div>
+              <div className="text-sm text-gray-500">{t("from")}</div>
               <div className="text-2xl text-gray-700 font-semibold">
-                €155.00
+                {sign} {price}
               </div>
-              <div className="text-xs text-gray-500">Per night</div>
+              <div className="text-xs text-gray-500">{t("perNight")}</div>
               <div className="text-xs text-gray-400 mt-1">
-                Additional charges may apply
+                {t("additionalCharges")}
               </div>
             </div>
 
             <button className="bg-sky-500 text-white px-5 py-2 rounded-lg hover:bg-sky-600 transition">
-              Book now
+              {t("book")}
             </button>
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

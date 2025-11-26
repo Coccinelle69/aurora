@@ -3,15 +3,14 @@
 import { FacebookIcon, InstagramIcon } from "../../icons";
 import {
   LogoAurora as Logo,
-  BookButton,
   CurrencyDropdown,
   LanguageDropdown,
-} from "..";
+} from "@/components";
 
 const BookHeader = () => {
   return (
     <>
-      <header className="bg-babyBlue">
+      <header className="bg-defaultBg fixed top-0 left-0 w-full z-[1000] sm:static">
         <nav className="lg:h-[200px]">
           <ul className="h-full flex flex-row px-[8%] justify-between">
             <li className="hidden lg:flex flex-row items-center">

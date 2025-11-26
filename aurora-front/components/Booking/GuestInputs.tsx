@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslation } from "react-i18next";
 import GuestInput from "./GuestInput";
 
 interface GuestsState {
@@ -16,6 +17,7 @@ interface GuestInputsProps {
 
 const GuestInputs = ({ setOpen, guests, setGuests }: GuestInputsProps) => {
   const { adults, children, teens } = guests;
+  const { t } = useTranslation();
 
   const update = (
     key: keyof GuestsState,
@@ -33,26 +35,26 @@ const GuestInputs = ({ setOpen, guests, setGuests }: GuestInputsProps) => {
         guestType="adults"
         guests={adults}
         setGuest={(v) => update("adults", v)}
-        guestString="Adults"
+        guestString={t("adults")}
       />
       <GuestInput
         guestType="children"
         guests={children}
         setGuest={(v) => update("children", v)}
-        guestString="Children (0–12)"
+        guestString={t("children")}
       />
       <GuestInput
         guestType="teens"
         guests={teens}
         setGuest={(v) => update("teens", v)}
-        guestString="Teens (13–18)"
+        guestString={t("teens")}
       />
       <div className="pt-3 flex justify-end">
         <button
           onClick={() => setOpen((prevOpen) => !prevOpen)}
           className="px-4 py-1 bg-blue-600 text-white rounded-md"
         >
-          Done
+          {t("done")}
         </button>
       </div>
     </div>

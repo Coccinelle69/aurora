@@ -25,7 +25,7 @@ const Header = () => {
         className={`${
           !scrolled && "lg:h-[125px]"
         }  fixed top-0 left-0 w-full z-1000 transition-colors duration-500 ${
-          scrolled ? "bg-babyBlue" : "bg-babyBlue lg:bg-babyBlue/50"
+          scrolled ? "bg-defaultBg" : "bg-defaultBg lg:bg-defaultBg/50"
         }
      `}
       >

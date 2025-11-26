@@ -20,10 +20,6 @@ export async function GET(request: Request) {
 
     const data = await check.json();
 
-    console.log(check);
-
-    console.log(data);
-
     if (!data.available) {
       return NextResponse.json(
         {
@@ -31,7 +27,7 @@ export async function GET(request: Request) {
           available: data.available,
           message: "No available dates",
         },
-        { status: 400 }
+        { status: 200 }
       );
     }
 

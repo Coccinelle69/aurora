@@ -1,25 +1,43 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 interface NotificationProps {
   available: boolean;
-  trigger: boolean;
+  done: boolean;
+  setDone: React.Dispatch<SetStateAction<boolean>>;
+  setNotificationDisappeared: React.Dispatch<SetStateAction<boolean>>;
+  error: boolean;
 }
 
 export default function Notification({
   available,
-  trigger,
+  done,
+  error,
+  setNotificationDisappeared,
 }: NotificationProps) {
   const [show, setShow] = useState(available);
+  const { t } = useTranslation();
 
   useEffect(() => {
-    if (trigger) {
+    if (done) {
       Promise.resolve().then(() => setShow(true));
-      const timer = setTimeout(() => setShow(false), 4000);
-      return () => clearTimeout(timer);
+      const hideNotificationTimer = setTimeout(() => {
+        setShow(false);
+      }, 4000);
+      const showBokingCardTimer = setTimeout(() => {
+        setNotificationDisappeared(true);
+      }, 6000);
+      // const timer = setTimeout(() => {
+      //   return setShow(false), setNotificationDisappeared(true);
+      // }, 4000);
+      return () => {
+        clearTimeout(hideNotificationTimer);
+        clearTimeout(showBokingCardTimer);
+      };
     }
-  }, [trigger]);
+  }, [done]);
   const content = (
     <motion.div
       initial={{ y: -15, opacity: 0 }}
@@ -33,7 +51,7 @@ export default function Notification({
         transition: { duration: 1.8 },
       }}
       transition={{ duration: 1.2, ease: "easeOut" }}
-      className="w-full flex justify-center mt-20 pointer-events-none"
+      className="w-[80%] sm:w-full flex items-center mx-auto justify-center mt-40 pointer-events-none"
     >
       <motion.div
         className="
@@ -47,12 +65,11 @@ export default function Notification({
         animate={{ x: [0, -6, 6, -4, 4, 0] }}
         transition={{ duration: 0.45, ease: "easeInOut", delay: 2 }}
       >
-        {available
-          ? "Great news — Aurora is available for the dates you selected."
-          : "Selected dates are not available. Please choose again."}
+        {available && !error ? t("available") : t("notAvailable")}
+        {error && t("something-went-wrong")}
       </motion.div>
     </motion.div>
   );
 
-  return <AnimatePresence>{trigger && content}</AnimatePresence>;
+  return <AnimatePresence>{show && content}</AnimatePresence>;
 }

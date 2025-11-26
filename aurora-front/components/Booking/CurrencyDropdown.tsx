@@ -1,6 +1,7 @@
 "use client";
 
 import { changeCurrency } from "@/reducers/currency";
+import { useAppSelector } from "@/store/hooks";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 
@@ -26,6 +27,8 @@ type Props = { onChange?: (currency: Currency) => void };
 
 export default function CurrencyDropdown({ onChange }: Props) {
   // ✅ initialize from localStorage during the initial render (no effect + setState)
+  const { value, sign } = useAppSelector((state) => state.currency);
+
   const dispatch = useDispatch();
 
   const [selected, setSelected] = useState<Currency>(() => {
@@ -58,7 +61,7 @@ export default function CurrencyDropdown({ onChange }: Props) {
     setOpen(false);
     if (typeof window !== "undefined") onChange?.(currency);
 
-    dispatch(changeCurrency(currency.code));
+    dispatch(changeCurrency({ code: currency.code, sign: currency.sign }));
   };
 
   return (
@@ -70,8 +73,8 @@ export default function CurrencyDropdown({ onChange }: Props) {
         aria-haspopup="listbox"
         aria-expanded={open}
       >
-        <span className="hidden sm:inline">{selected.code}</span>
-        <span className="hidden sm:inline">{selected.sign}</span>
+        <span>{value}</span>
+        <span>{sign}</span>
       </button>
 
       {open && (

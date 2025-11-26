@@ -10,7 +10,7 @@ interface useCurrencyProps {
 const useCurrency = ({ from, to }: useCurrencyProps) => {
   const [error, setError] = useState<string | null>(null);
   const [price, setPrice] = useState<string | null | number>(null);
-  const currency = useAppSelector((state) => state.currency.value);
+  const { value: currency, sign } = useAppSelector((state) => state.currency);
 
   useEffect(() => {
     let cancelled = false;
@@ -51,6 +51,7 @@ const useCurrency = ({ from, to }: useCurrencyProps) => {
 
   return {
     price,
+    sign,
   };
 };
 

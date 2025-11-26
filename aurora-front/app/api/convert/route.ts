@@ -3,6 +3,13 @@ import { priceList } from "@/utils/priceList";
 
 export const dynamic = "force-dynamic";
 
+interface PriceResult {
+  totalNights: number;
+  price: number | null;
+  total: number;
+  error?: string; // optional
+}
+
 export async function GET(request: Request) {
   try {
     const baseCurrency = "EUR";
@@ -14,44 +21,45 @@ export async function GET(request: Request) {
     const to = searchParams.get("to");
     const fromDate = new Date(from ?? "");
     const toDate = new Date(to ?? "");
-    let amount = null;
+    let amount: PriceResult = {
+      totalNights: 0,
+      price: 0,
+      total: 0,
+    };
 
     amount = priceList(fromDate, toDate);
 
-    console.log(amount);
+    if (selectedCurrency === "EUR")
+      return NextResponse.json({
+        priceBaseCurrency: amount.price,
+        priceSelectedCurrency: amount.price,
+      });
 
-    return NextResponse.json({ amount });
+    const url = `https://api.frankfurter.app/latest?amount=${amount.price}&from=${baseCurrency}&to=${selectedCurrency}`;
 
-    // if (selectedCurrency === "EUR")
-    //   return NextResponse.json({
-    //     priceBaseCurrency: amount,
-    //     priceSelectedCurrency: amount,
-    //   });
+    const upstream = await fetch(url, { cache: "no-store" });
 
-    // const url = `https://api.frankfurter.app/latest?amount=${amount}&from=${baseCurrency}&to=${selectedCurrency}`;
+    if (!upstream.ok) {
+      const body = await upstream.text();
+      return NextResponse.json(
+        { error: "Upstream error", status: upstream.status, body, url },
+        { status: 502 }
+      );
+    }
 
-    // const upstream = await fetch(url, { cache: "no-store" });
+    const json = await upstream.json();
 
-    // if (!upstream.ok) {
-    //   const body = await upstream.text();
-    //   return NextResponse.json(
-    //     { error: "Upstream error", status: upstream.status, body, url },
-    //     { status: 502 }
-    //   );
-    // }
+    if (!json) {
+      return NextResponse.json(
+        { error: "No currency in response", raw: json, url },
+        { status: 500 }
+      );
+    }
 
-    // const json = await upstream.json();
-    // if (!json) {
-    //   return NextResponse.json(
-    //     { error: "No currency in response", raw: json, url },
-    //     { status: 500 }
-    //   );
-    // }
-
-    // return NextResponse.json({
-    //   priceBaseCurrency: json.amount,
-    //   priceSelectedCurrency: json.rates[selectedCurrency!],
-    // });
+    return NextResponse.json({
+      priceBaseCurrency: json.amount,
+      priceSelectedCurrency: json.rates[selectedCurrency!],
+    });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (e: any) {
     console.error("SERVER ERROR:", e);

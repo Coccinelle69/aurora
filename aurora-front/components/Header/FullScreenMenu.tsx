@@ -8,13 +8,12 @@ import {
 } from "framer-motion";
 import { createPortal } from "react-dom";
 import Link from "next/link";
-import { CloseIcon, EmailIcon, PhoneIcon } from "../../icons";
-import { LogoAurora as Logo, BookButton } from "..";
+import { CloseIcon, EmailIcon, PhoneIcon } from "@/icons";
+import { LogoAurora as Logo, BookButton } from "@/components";
 import { useTranslation } from "react-i18next";
 
 type Props = { open: boolean; onClose: () => void };
 
-/* -------------------- Transitions (typed) -------------------- */
 const springSlide: Transition = {
   type: "spring",
   stiffness: 170,
@@ -22,7 +21,6 @@ const springSlide: Transition = {
   mass: 0.9,
 };
 
-// overlay slides in a bit (not from -100%), also fades
 const overlay: Variants = {
   hidden: { y: "-10%", opacity: 0 },
   visible: {
@@ -30,7 +28,6 @@ const overlay: Variants = {
     opacity: 1,
     transition: {
       ...springSlide,
-      // start children after overlay is in
       when: "beforeChildren",
     },
   },
@@ -42,8 +39,6 @@ const overlay: Variants = {
 };
 
 const springIn: Transition = { type: "spring", stiffness: 260, damping: 26 };
-
-/* -------------------- Variants -------------------- */
 
 const listParent: Variants = {
   hidden: {},
@@ -68,9 +63,7 @@ const textFromLeft: Variants = {
   visible: { x: 0, opacity: 1, transition: springIn },
 };
 
-/* -------------------- Component -------------------- */
 export default function FullScreenMenu({ open, onClose }: Props) {
-  // SSR guard for portal
   const { t } = useTranslation();
   if (typeof document === "undefined") return null;
 

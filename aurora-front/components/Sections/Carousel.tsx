@@ -34,22 +34,20 @@ export default function EmblaCarousel({ slides }: Props) {
     inViewThreshold: 0.6,
   });
 
-  // ✅ use provided slides or fallback to your images
   const items: Slide[] = slides!;
 
   useEffect(() => {
     if (!emblaApi) return;
 
-    // 🔁 Move to the next slide every 3 seconds
     const interval = setInterval(() => {
       emblaApi.scrollNext();
     }, 10000);
 
     return () => clearInterval(interval);
-  }, [emblaApi]); // 👈 use emblaApi, not emblaRef
+  }, [emblaApi]);
 
   return (
-    <div className="embla relative">
+    <div className=" relative">
       <div className="absolute inset-0 top-[15rem] left-[2rem] z-10 flex items-center justify-center pointer-events-none lg:top-0 left-0">
         <p
           className={`
@@ -61,15 +59,15 @@ export default function EmblaCarousel({ slides }: Props) {
           Aurora
         </p>
       </div>
-      <div className="embla__viewport overflow-hidden" ref={emblaRef}>
-        <div className="embla__container flex">
+      <div className="overflow-hidden" ref={emblaRef}>
+        <div className="flex">
           {items.map((src, index) => (
             <div
-              className="embla__slide flex-[0_0_100%] relative h-[80%] lg:h-[600px]"
+              className="flex-[0_0_100%] relative h-[80%] lg:h-[600px]"
               key={typeof src === "string" ? src : src.src}
             >
-              <div className="embla__image transition-transform duration-300 ease-out will-change-transform">
-                <div className="embla__image relative h-[800px] w-full">
+              <div className="transition-transform duration-300 ease-out will-change-transform">
+                <div className="relative h-[800px] w-full">
                   <Image
                     src={src}
                     alt={`Slide ${index + 1}`}

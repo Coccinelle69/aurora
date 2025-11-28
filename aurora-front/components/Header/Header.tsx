@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CloseIcon, FacebookIcon, InstagramIcon, MenuIcon } from "../../icons";
+import { CloseIcon, FacebookIcon, InstagramIcon, MenuIcon } from "@/icons";
 import {
   LogoAurora as Logo,
   BookButton,
   FullScreenMenu,
   LanguageDropdown,
-} from "..";
+} from "@/components";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -50,24 +50,25 @@ const Header = () => {
               </li>
             )}
 
-            <li className="flex flex-row justify-center items-center">
-              <div
-                className="cursor-pointer pr-6 hover:scale-110 transition-transform duration-300 ease-out"
+            <li className="flex flex-row items-center justify-center ">
+              <button
+                className="-translate-y-[10px] sm:px-[25px]"
                 onClick={() => {
                   setMenuBtnClosed(!menuBtnClosed);
                   setFullScreenMenuOpen(true);
                 }}
               >
                 {menuBtnClosed || !fullScreenMenuOpen ? (
-                  <MenuIcon size={45} color="white" />
+                  <MenuIcon size={40} color="white" />
                 ) : (
-                  <CloseIcon size={35} color="white" />
+                  <CloseIcon size={40} color="white" />
                 )}
-              </div>
+              </button>
+
               <div>
                 <BookButton />
               </div>
-              <div>
+              <div className="-translate-y-[9px]">
                 <LanguageDropdown />
               </div>
             </li>

@@ -29,9 +29,6 @@ export default function Notification({
       const showBokingCardTimer = setTimeout(() => {
         setNotificationDisappeared(true);
       }, 6000);
-      // const timer = setTimeout(() => {
-      //   return setShow(false), setNotificationDisappeared(true);
-      // }, 4000);
       return () => {
         clearTimeout(hideNotificationTimer);
         clearTimeout(showBokingCardTimer);

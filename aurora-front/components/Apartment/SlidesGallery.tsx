@@ -34,17 +34,17 @@ export default function GalleryBackdrop({ images }: Props) {
   }, [emblaApi]); // 👈 use emblaApi, not emblaRef
 
   return (
-    <div className="embla relative">
-      <div className="embla__viewport overflow-hidden" ref={emblaRef}>
-        <div className="embla__container flex">
+    <div className=" relative">
+      <div className="overflow-hidden" ref={emblaRef}>
+        <div className="flex">
           {items.map((src, index) => (
             <div
-              className="embla__slide flex-[0_0_100%] relative h-[400px] md:h-[450px] lg:h-[600px]
+              className="flex-[0_0_100%] relative h-[400px] md:h-[450px] lg:h-[600px]
 "
               key={typeof src === "string" ? src : src.src}
             >
-              <div className="embla__image transition-transform duration-300 ease-out will-change-transform">
-                <div className="embla__image relative h-[450px] md:h-[500px] lg:h-[650px] w-full">
+              <div className="transition-transform duration-300 ease-out will-change-transform">
+                <div className="relative h-[450px] md:h-[500px] lg:h-[650px] w-full">
                   <Image
                     src={src}
                     alt={`Slide ${index + 1}`}

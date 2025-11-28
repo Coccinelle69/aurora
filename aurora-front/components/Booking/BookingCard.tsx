@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const BookingCard = () => {
   const { value } = useAppSelector((state) => state.currency);
@@ -99,9 +100,11 @@ const BookingCard = () => {
               </div>
             </div>
 
-            <button className="bg-sky-500 text-white px-5 py-2 rounded-lg hover:bg-sky-600 transition">
-              {t("book")}
-            </button>
+            <Link href="/book/details">
+              <button className="bg-sky-500 text-white px-5 py-2 rounded-lg hover:bg-sky-600 transition">
+                {t("book")}
+              </button>
+            </Link>
           </div>
         </div>
       </div>

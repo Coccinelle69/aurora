@@ -13,14 +13,14 @@ export default function Footer() {
   const { temperature, isDayCode, windspeed, weather } = useOpenMeteo();
 
   return (
-    <footer className="bg-babyBlue text-white">
+    <footer className="bg-defaultBg text-white">
       {/* Top content */}
       <div
         className="
           mx-auto w-full max-w-6xl px-6 py-16
           grid grid-cols-1 gap-12 md:grid-cols-4
           text-center md:text-left
-          md:items-start     /* align items to start on md+ */
+          md:items-start    
         "
       >
         {/* Weather & Time */}

@@ -127,5 +127,65 @@
   "adults": "Felnőttek",
   "children": "Gyermekek (0–12)",
   "teens": "Tinédzserek (13–18)",
-  "done": "Kész"
+  "done": "Kész",
+  "apartmentZukve": {
+    "title": "Aurora Apartman – 70 m-re a tengertől",
+    "description": "Leírás",
+    "intro": "A zukvei apartmanunk frissen felújított, 75 m²-es szállás, amely kényelmet, teret és igazi mediterrán élményt kínál. Mindössze 70 méterre található a tengertől (1 perc séta), ideális családoknak és pároknak. A felújítás most fejeződött be – a homlokzat, ablakok, ajtók, padló, készülékek és bútorok teljesen újak.",
+    "amenitiesTitle": "Felszereltség",
+    "amenities": [
+      "Légkondicionálás",
+      "Ingyenes privát parkoló",
+      "Wi-Fi & Smart TV Netflixszel és Disney+-szal",
+      "Mosógép & mosogatógép",
+      "Kültéri grill",
+      "Tágas terasz tenger- és hegykilátással"
+    ],
+    "spaceTitle": "A Tér",
+    "spaceDescription": "Az apartman 75 m²-es és két felújított hálószobával rendelkezik. Mindegyikben kényelmes ágyak, szekrény és Smart TV található Netflixszel és Disney+-szal.\n\nA konyha teljesen felszerelt új készülékekkel: sütő, főzőlap, hűtőszekrény fagyasztóval, mosogatógép, vízforraló, pirító, Nutribullet és Nespresso gép.\n\nAz étkező világos és kilépést biztosít a teraszra. A fürdőszoba mosógéppel felszerelt.\n\nMinden streaming szolgáltatás ingyenes és előre be van jelentkeztetve.\n\nA nagy privát terasz csodálatos kilátást nyújt a tengerre és a Velebitre. Grill is rendelkezésre áll.\n\nIngyenes privát parkoló biztosított.",
+    "beach": {
+      "title": "Strandközelség",
+      "description": "Mindössze 70 méterre a tengertől. A strand beton és kavics keveréke – ideális gyerekek számára."
+    },
+    "neighborhood": {
+      "title": "Környék",
+      "description": "Zukve Vrsi csendes tengerparti része, tökéletes családi pihenéshez. Természetes strandok, nyugodt utcák és gyönyörű kilátás várja.",
+      "nearby": [
+        "Nin – történelmi város (10 perc)",
+        "Zadar – kulturális központ (20 perc)",
+        "Pag szigete – 25 perc",
+        "Velebit & Paklenica Nemzeti Park – túrázáshoz ideális"
+      ]
+    },
+    "interaction": {
+      "title": "Kapcsolat",
+      "description": "Mindig elérhetők vagyunk, bármiben segítünk. Személyesen üdvözöljük Önt.",
+      "pickup": "Ingyenes transzfer a zárai repülőtérről vagy buszpályaudvarról (elérhetőségtől függően).",
+      "note": "A vendégek a felső apartmanban szállnak meg, a tulajdonosok az alsóban élnek."
+    },
+    "other": {
+      "title": "Megjegyzések",
+      "points": [
+        "Minden berendezés új (2024–2025).",
+        "Ideális családok számára.",
+        "Helyi csendrendelet betartása.",
+        "Ingyenes Wi-Fi és streaming.",
+        "Terasz tengerre néző kilátással."
+      ]
+    },
+    "gettingAround": {
+      "title": "Közlekedés",
+      "options": [
+        "Taxi (kérésre szervezhető)",
+        "Autóbérlés (helyi árak)",
+        "Busz Ninbe és Zadarba"
+      ],
+      "parking": "Ingyenes parkoló rendelkezésre áll."
+    },
+    "checkInOut": {
+      "title": "Érkezés és távozás",
+      "checkIn": "Érkezés: 15:00 - 22:00",
+      "checkOut": "Távozás: 10:00"
+    }
+  }
 }

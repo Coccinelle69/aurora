@@ -127,5 +127,65 @@
   "adults": "Dospělí",
   "children": "Děti (0–12)",
   "teens": "Teenageři (13–18)",
-  "done": "Hotovo"
+  "done": "Hotovo",
+  "apartmentZukve": {
+    "title": "Apartmán Aurora – 70 m od moře",
+    "description": "Popis",
+    "intro": "Náš apartmán v Zukve je nově zrekonstruovaný prostor o velikosti 75 m², určený pro pohodlnou a klidnou dovolenou. Pouhých 70 metrů od moře (1 minuta chůze), ideální pro rodiny i páry. Rekonstrukce byla nedávno dokončena – fasáda, okna, dveře, podlahy, spotřebiče i nábytek jsou nové.",
+    "amenitiesTitle": "Vybavení",
+    "amenities": [
+      "Klimatizace",
+      "Soukromé parkování zdarma",
+      "Wi-Fi & Smart TV s Netflixem a Disney+",
+      "Pračka & myčka",
+      "Venkovní gril",
+      "Prostorná terasa s výhledem na moře a hory"
+    ],
+    "spaceTitle": "Prostor",
+    "spaceDescription": "Apartmán má 75 m² a dvě zrekonstruované ložnice. Každá ložnice má pohodlné postele, skříň a Smart TV s Netflixem a Disney+.\n\nKuchyň je plně vybavena novými spotřebiči: trouba, varná deska, lednice s mrazákem, myčka, rychlovarná konvice, toustovač, Nutribullet a kávovar Nespresso.\n\nJídelní prostor je světlý a vede na terasu. Koupelna je renovovaná a vybavená pračkou.\n\nStreamingové služby jsou zdarma a již přihlášené.\n\nSoukromá terasa nabízí krásný výhled na moře a pohoří Velebit. Gril je k dispozici.\n\nSoukromé parkování je zajištěno.",
+    "beach": {
+      "title": "Pláž",
+      "description": "Pouhých 70 metrů od moře. Pláž je kombinací betonu a oblázků – vhodné pro rodiny."
+    },
+    "neighborhood": {
+      "title": "Okolí",
+      "description": "Zukve je klidná přímořská oblast vhodná pro rodinnou dovolenou. Nabízí přírodní pláže, tiché ulice a krásné výhledy.",
+      "nearby": [
+        "Nin – historické město (10 min)",
+        "Zadar – kulturní centrum (20 min)",
+        "Ostrov Pag – 25 min",
+        "Velebit & Národní park Paklenica – ideální pro turistiku"
+      ]
+    },
+    "interaction": {
+      "title": "Interakce",
+      "description": "Jsme vám kdykoli k dispozici. Osobně vás přivítáme a zajistíme pohodlný pobyt.",
+      "pickup": "Možnost bezplatného vyzvednutí na letišti Zadar nebo autobusovém nádraží (dle dostupnosti).",
+      "note": "Hosté bydlí v horním apartmánu, majitelé v dolním."
+    },
+    "other": {
+      "title": "Další informace",
+      "points": [
+        "Veškeré vybavení a nábytek je nový (2024–2025).",
+        "Ideální pro rodiny s dětmi.",
+        "Dodržování místního nočního klidu.",
+        "Wi-Fi a streaming zdarma.",
+        "Terasa s výhledem na moře – ideální pro ranní kávu."
+      ]
+    },
+    "gettingAround": {
+      "title": "Doprava",
+      "options": [
+        "Taxi (možnost zajistit přepravu)",
+        "Půjčení auta (místní ceny)",
+        "Autobus (přímé linky do Ninu a Zadaru)"
+      ],
+      "parking": "Soukromé parkování zdarma."
+    },
+    "checkInOut": {
+      "title": "Příjezd a odjezd",
+      "checkIn": "Check-in: 15:00 - 22:00",
+      "checkOut": "Check-out: 10:00"
+    }
+  }
 }

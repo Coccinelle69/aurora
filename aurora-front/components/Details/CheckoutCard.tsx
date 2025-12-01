@@ -1,5 +1,96 @@
+"use client";
+
+import { useAppSelector } from "@/store/hooks";
+import { formatDate, formatPriceUniversal } from "@/utils/format";
+import i18next from "i18next";
+import { useTranslation } from "react-i18next";
+
 const CheckoutCard = () => {
-  return <div>CheckoutCard</div>;
+  const { t } = useTranslation();
+  const {
+    arrival: from,
+    departure: to,
+    guests,
+  } = useAppSelector((state) => state.search);
+  const { arrival, departure, nights } = formatDate({
+    from,
+    to,
+    locale: i18next.language,
+  });
+  const { amount, sign } = useAppSelector((state) => state.price);
+  const { value } = useAppSelector((state) => state.currency);
+
+  const price = nights * +amount;
+  const formattedPrice = formatPriceUniversal(price, value, i18next.language);
+
+  return (
+    <div className="w-full max-w-[560px] sm:w-[400px] mx-auto bg-white rounded-2xl shadow-lg border p-6 flex flex-col gap-4 sm:sticky sm:top-[25px] sm:self-start order-1 sm:order-2">
+      {/* TITLE */}
+      <h2 className="text-xl text-center font-semibold text-default leading-tight">
+        Aurora apartment
+      </h2>
+
+      {/* CHECK-IN / CHECK-OUT / NIGHTS / GUEST */}
+      <div className="flex justify-between text-sm text-gray-600 border-b pb-3">
+        <div>
+          <p className="checkout-item-title">Check In</p>
+          <p className="checkout-item">{arrival}</p>
+        </div>
+        <div>
+          <p className="checkout-item-title">Check Out</p>
+          <p className="checkout-item">{departure}</p>
+        </div>
+        <div>
+          <p className="checkout-item-title">Nights</p>
+          <p className="checkout-item">{nights} Nights</p>
+        </div>
+        <div>
+          <p className="checkout-item-title">Guest</p>
+          <p className="checkout-item">{guests}</p>
+        </div>
+      </div>
+
+      {/* CANCELLATION */}
+      <div>
+        <p className="text-sm text-gray-700 cursor-pointer flex items-center justify-between border-b pb-3">
+          A 30% deposit is required. The remaining amount is paid upon arrival.
+          <span className="text-gray-500 text-lg">&#9662;</span>
+        </p>
+      </div>
+
+      {/* COUPON */}
+      <label className="flex items-center gap-2 text-sm text-gray-700 border-b pb-3 cursor-pointer">
+        <input type="checkbox" className="w-4 h-4 rounded border-gray-400" />I
+        have a coupon
+      </label>
+
+      {/* PRICE DETAILS */}
+      <div className="text-sm text-gray-700 border-b pb-3 space-y-2">
+        <div className="flex justify-between">
+          <span className="font-medium">Subtotal</span>
+          <span>{formattedPrice}</span>
+        </div>
+
+        <div className="flex justify-between">
+          <span className="font-medium">Taxes</span>
+          <span>Tourist tax is included in the price.</span>
+        </div>
+      </div>
+
+      {/* TOTAL */}
+      <div className="flex justify-between text-lg font-semibold  text-gray-900">
+        <span className="text-default">Total</span>
+        <span className="text-blue-700">{formattedPrice}</span>
+      </div>
+
+      {/* ACTION BUTTONS */}
+      <div className="flex items-center gap-3 pt-2">
+        <button className="flex-1 bg-blue-500 text-white py-3 rounded-lg text-center font-medium hover:bg-blue-600 transition">
+          Request to Book
+        </button>
+      </div>
+    </div>
+  );
 };
 
 export default CheckoutCard;

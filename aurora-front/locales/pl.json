@@ -127,5 +127,65 @@
   "adults": "Dorośli",
   "children": "Dzieci (0–12)",
   "teens": "Nastolatki (13–18)",
-  "done": "Gotowe"
+  "done": "Gotowe",
+  "apartmentZukve": {
+    "title": "Apartament Aurora – 70 m od morza",
+    "description": "Opis",
+    "intro": "Nasz apartament w Zukve to świeżo wyremontowana przestrzeń o powierzchni 75 m², idealna na spokojny wakacyjny pobyt. Znajduje się zaledwie 70 metrów od morza (1 minuta pieszo). Remont obejmował wszystko: elewację, okna, drzwi, podłogi, sprzęty AGD i meble – wszystko jest nowe.",
+    "amenitiesTitle": "Udogodnienia",
+    "amenities": [
+      "Klimatyzacja",
+      "Bezpłatny prywatny parking",
+      "Wi-Fi i Smart TV z Netflixem i Disney+",
+      "Pralka i zmywarka",
+      "Grill ogrodowy",
+      "Duży taras z widokiem na morze i góry"
+    ],
+    "spaceTitle": "Przestrzeń",
+    "spaceDescription": "Apartament ma 75 m² i dwie odnowione sypialnie. W każdej znajdują się wygodne łóżka, szafa oraz Smart TV z dostępem do Netflixa i Disney+.\n\nKuchnia jest w pełni wyposażona w nowe sprzęty: piekarnik, płytę grzewczą, lodówkę z zamrażarką, zmywarkę, czajnik, toster, Nutribullet oraz ekspres Nespresso.\n\nJadalnia jest jasna i prowadzi na taras. W łazience znajduje się pralka.\n\nWszystkie usługi streamingowe są darmowe i gotowe do użycia.\n\nDuży prywatny taras oferuje piękny widok na morze i góry Velebit. Grill jest dostępny.\n\nZapewniony jest prywatny parking.",
+    "beach": {
+      "title": "Plaża",
+      "description": "Zaledwie 70 metrów od morza. Plaża jest mieszanką betonu i żwiru – idealna dla rodzin."
+    },
+    "neighborhood": {
+      "title": "Okolica",
+      "description": "Zukve to spokojny nadmorski rejon Vrsi, idealny na rodzinne wakacje. Znajdziesz tu naturalne plaże, ciche ulice i piękne widoki.",
+      "nearby": [
+        "Nin – historyczne miasto (10 min)",
+        "Zadar – centrum kultury (20 min)",
+        "Wyspa Pag – 25 min",
+        "Velebit & Park Narodowy Paklenica – idealne na wędrówki"
+      ]
+    },
+    "interaction": {
+      "title": "Kontakt",
+      "description": "Jesteśmy zawsze dostępni, aby pomóc. Przywitamy Cię osobiście i zadbamy o komfortowy pobyt.",
+      "pickup": "Możliwy bezpłatny transport z lotniska Zadar lub dworca autobusowego (w zależności od dostępności).",
+      "note": "Goście mieszkają w górnym apartamencie, właściciele w dolnym."
+    },
+    "other": {
+      "title": "Inne informacje",
+      "points": [
+        "Wszystkie meble i sprzęty są nowe (2024–2025).",
+        "Idealne dla rodzin z dziećmi.",
+        "Obowiązują lokalne godziny ciszy.",
+        "Darmowe Wi-Fi i usługi streamingowe.",
+        "Taras z widokiem na morze – idealny na poranną kawę."
+      ]
+    },
+    "gettingAround": {
+      "title": "Transport",
+      "options": [
+        "Taxi (organizujemy transport)",
+        "Wynajem samochodu (lokalne ceny)",
+        "Autobus (bezpośrednie połączenia do Nina i Zadaru)"
+      ],
+      "parking": "Prywatny parking dostępny na miejscu."
+    },
+    "checkInOut": {
+      "title": "Zameldowanie i wymeldowanie",
+      "checkIn": "Zameldowanie: 15:00 - 22:00",
+      "checkOut": "Wymeldowanie: 10:00"
+    }
+  }
 }

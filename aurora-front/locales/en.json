@@ -126,5 +126,66 @@
   "adults": "Adults",
   "children": "Children (0–12)",
   "teens": "Teens (13–18)",
-  "done": "Done"
+  "done": "Done",
+
+  "apartmentZukve": {
+    "title": "Aurora Apartment - 70m from the sea",
+    "description": "Description",
+    "intro": "Our apartment in Zukve is a newly renovated 75 m² retreat designed to offer comfort, space, and the perfect Mediterranean seaside experience. Located only 70 meters from the sea (1 minute on foot), the property is ideal for families, couples, and guests looking for a peaceful holiday near beautiful beaches and nature. The renovation has just been completed, and everything is brand new: façade, windows, doors, floors, appliances, and furniture. Enjoy a clean, modern, and fully equipped home just steps from the Adriatic.",
+    "amenitiesTitle": "Amenities included",
+    "amenities": [
+      "Air conditioning",
+      "Free private parking",
+      "Wi-Fi & Smart TV with Netflix & Disney+",
+      "Washing machine & dishwasher",
+      "Outdoor grill area",
+      "Spacious terrace with sea & mountain view"
+    ],
+    "spaceTitle": "The Space",
+    "spaceDescription": "Our apartment is 75 m² and features two newly renovated bedrooms. Each bedroom includes comfortable beds, wardrobes, and Smart TVs with Netflix and Disney+ already available.\n\nThe kitchen is fully equipped with brand-new appliances, including an oven, stovetop, refrigerator with freezer, dishwasher, electric kettle, toaster, Nutribullet blender, and a Nespresso machine. You will also find all cookware and utensils needed to prepare meals. The kitchen area is air-conditioned.\n\nThe dining space is connected to the kitchen and offers a bright, comfortable atmosphere with direct access to the terrace. The bathroom is fully renovated and includes a washing machine for your convenience.\n\nAll streaming services (Netflix, Disney+ and others) are already logged in and free to use — no login required.\n\nA large private terrace provides an outdoor dining area along with a beautiful view of the sea and the Velebit mountains. Guests may also use the outdoor grill located in the yard.\n\nPrivate parking is available on-site.",
+    "beach": {
+      "title": "Beach proximity",
+      "description": "Just 70 meters from the sea. The beach is a combination of concrete and pebble, perfect for families and children."
+    },
+    "neighborhood": {
+      "title": "Neighbourhood",
+      "description": "Zukve is a quiet coastal area of Vrsi, ideal for relaxation and family holidays. The area offers beautiful natural beaches, peaceful streets, and stunning views of the sea and the mountains.",
+      "nearby": [
+        "Nin – historical town (10 min)",
+        "Zadar – cultural center (20 min)",
+        "Island of Pag – 25 min",
+        "Velebit & Paklenica National Park – perfect for hiking"
+      ]
+    },
+    "interaction": {
+      "title": "Interaction",
+      "description": "We are always available to help with anything you may need. We will welcome you personally and ensure your stay is comfortable from arrival to departure.",
+      "pickup": "Free pick-up is possible from Zadar Airport or Zadar Bus Station (depending on availability).",
+      "note": "Guests stay in the upper apartment, while the owners live in the lower one."
+    },
+    "other": {
+      "title": "Other Things to Note",
+      "points": [
+        "All appliances and furniture are brand new (2024–2025).",
+        "The apartment is ideal for families with children.",
+        "Quiet hours follow local community rules.",
+        "Enjoy free Wi-Fi and all streaming services.",
+        "The terrace offers a beautiful sea view — the perfect place for morning coffee or evening dinners."
+      ]
+    },
+    "gettingAround": {
+      "title": "Getting Around",
+      "options": [
+        "Taxi (we can arrange transportation)",
+        "Car rental (we can assist with rentals at local prices)",
+        "Bus (direct lines to Nin & Zadar)"
+      ],
+      "parking": "Parking is free and provided on-site."
+    },
+    "checkInOut": {
+      "title": "Check in and out",
+      "checkIn": "Check in: 15:00 - 22:00",
+      "checkOut": "Check out: 10:00"
+    }
+  }
 }

@@ -125,5 +125,65 @@
   "adults": "Adulti",
   "children": "Bambini (0–12)",
   "teens": "Adolescenti (13–18)",
-  "done": "Fatto"
+  "done": "Fatto",
+  "apartmentZukve": {
+    "title": "Appartamento Aurora – a 70 m dal mare",
+    "description": "Descrizione",
+    "intro": "Il nostro appartamento a Zukve è una sistemazione rinnovata di recente di 75 m², pensata per offrire comfort, spazio e una vera esperienza mediterranea. Situato a soli 70 metri dal mare (1 minuto a piedi), è ideale per famiglie, coppie e ospiti in cerca di una vacanza tranquilla vicino a spiagge splendide. La ristrutturazione è stata appena completata: facciata, finestre, porte, pavimenti, elettrodomestici e mobili sono tutti nuovi.",
+    "amenitiesTitle": "Servizi inclusi",
+    "amenities": [
+      "Aria condizionata",
+      "Parcheggio privato gratuito",
+      "Wi-Fi & Smart TV con Netflix e Disney+",
+      "Lavatrice & lavastoviglie",
+      "Area barbecue esterna",
+      "Ampia terrazza con vista mare e monti"
+    ],
+    "spaceTitle": "Lo Spazio",
+    "spaceDescription": "L’appartamento misura 75 m² e dispone di due camere da letto completamente ristrutturate. Ogni camera è dotata di letti confortevoli, armadio e Smart TV con Netflix e Disney+.\n\nLa cucina è completamente attrezzata con elettrodomestici nuovi: forno, piano cottura, frigorifero con freezer, lavastoviglie, bollitore, tostapane, frullatore Nutribullet e macchina Nespresso. L’area cucina è climatizzata.\n\nLa zona pranzo è luminosa e offre accesso diretto alla terrazza. Il bagno rinnovato è dotato di lavatrice.\n\nTutti i servizi di streaming sono gratuiti e già accessibili.\n\nLa grande terrazza privata offre una zona pranzo esterna con vista mare e Velebit. Il barbecue in giardino è a disposizione degli ospiti.\n\nParcheggio privato disponibile in loco.",
+    "beach": {
+      "title": "Vicino alla spiaggia",
+      "description": "A soli 70 metri dal mare. La spiaggia è una combinazione di cemento e ghiaia, perfetta per le famiglie."
+    },
+    "neighborhood": {
+      "title": "Quartiere",
+      "description": "Zukve è una tranquilla zona costiera di Vrsi, ideale per vacanze rilassanti in famiglia. L’area offre spiagge naturali, strade tranquille e una splendida vista.",
+      "nearby": [
+        "Nin – città storica (10 min)",
+        "Zara – centro culturale (20 min)",
+        "Isola di Pag – 25 min",
+        "Velebit & Parco nazionale di Paklenica – ideale per escursioni"
+      ]
+    },
+    "interaction": {
+      "title": "Interazione",
+      "description": "Siamo sempre disponibili per qualsiasi necessità. Vi accoglieremo personalmente e ci assicureremo che il vostro soggiorno sia confortevole.",
+      "pickup": "Trasferimento gratuito dall’aeroporto di Zara o dalla stazione degli autobus (in base alla disponibilità).",
+      "note": "Gli ospiti soggiornano nell’appartamento superiore, i proprietari vivono in quello inferiore."
+    },
+    "other": {
+      "title": "Altre informazioni",
+      "points": [
+        "Tutti gli elettrodomestici e mobili sono nuovi (2024–2025).",
+        "Ideale per famiglie con bambini.",
+        "Rispetto degli orari di silenzio locali.",
+        "Wi-Fi e streaming gratuiti.",
+        "Terrazza con vista mare – perfetta per colazione o cena."
+      ]
+    },
+    "gettingAround": {
+      "title": "Come muoversi",
+      "options": [
+        "Taxi (possiamo organizzare il trasporto)",
+        "Noleggio auto (tariffe locali)",
+        "Autobus (linee dirette per Nin e Zara)"
+      ],
+      "parking": "Parcheggio gratuito disponibile in loco."
+    },
+    "checkInOut": {
+      "title": "Check-in e Check-out",
+      "checkIn": "Check-in: 15:00 - 22:00",
+      "checkOut": "Check-out: 10:00"
+    }
+  }
 }

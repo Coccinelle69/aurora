@@ -1,14 +1,19 @@
 "use client";
 import { useAppSelector } from "@/store/hooks";
-import { useCurrency } from "@/utils/hooks";
 import Image from "next/image";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-const BookingCard = () => {
-  const { value } = useAppSelector((state) => state.currency);
+interface BookingCardProps {
+  finalPrice: {
+    price: null | number | string;
+    sign: string;
+  };
+}
+
+const BookingCard = ({ finalPrice }: BookingCardProps) => {
   const {
     adults: adultNo,
     children: childrenNo,
@@ -22,11 +27,6 @@ const BookingCard = () => {
     teens: Number(teenNo),
   });
   const totalGuests = +adultNo + +childrenNo + +teenNo;
-  const { price, sign } = useCurrency({
-    currency: value,
-    from: arrival,
-    to: departure,
-  });
 
   const { t } = useTranslation();
 
@@ -92,7 +92,7 @@ const BookingCard = () => {
             <div>
               <div className="text-sm text-gray-500">{t("from")}</div>
               <div className="text-2xl text-gray-700 font-semibold">
-                {sign} {price}
+                {finalPrice.sign} {finalPrice.price}
               </div>
               <div className="text-xs text-gray-500">{t("perNight")}</div>
               <div className="text-xs text-gray-400 mt-1">

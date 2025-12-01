@@ -126,5 +126,65 @@
   "adults": "Odrasli",
   "children": "Otroci (0–12)",
   "teens": "Najstniki (13–18)",
-  "done": "Končano"
+  "done": "Končano",
+  "apartmentZukve": {
+    "title": "Apartma Aurora – 70 m od morja",
+    "description": "Opis",
+    "intro": "Naš apartma v Zukvah je na novo prenovljen prostor velikosti 75 m², zasnovan za udobje in sproščen mediteranski oddih. Od morja je oddaljen le 70 metrov (1 minuta hoje). Prenova je popolna: fasada, okna, vrata, tla, naprave in pohištvo so novi.",
+    "amenitiesTitle": "Vključena oprema",
+    "amenities": [
+      "Klimatska naprava",
+      "Brezplačno zasebno parkirišče",
+      "Wi-Fi in Smart TV z Netflixom in Disney+",
+      "Pralni stroj in pomivalni stroj",
+      "Zunanji žar",
+      "Prostorna terasa z razgledom na morje in gore"
+    ],
+    "spaceTitle": "Prostor",
+    "spaceDescription": "Apartma ima 75 m² in dve popolnoma prenovljeni spalnici. Obe spalnici imata udobne postelje, omare in Smart TV z dostopom do Netflixa in Disney+.\n\nKuhinja je opremljena z novimi napravami: pečica, kuhalna plošča, hladilnik z zamrzovalnikom, pomivalni stroj, grelnik vode, toaster, Nutribullet in Nespresso.\n\nJedilnica je svetla in vodi na teraso. Kopalnica vključuje pralni stroj.\n\nVse pretočne storitve so brezplačne in že omogočene.\n\nVelika zasebna terasa nudi pogled na morje in Velebit. Gostom je na voljo vrtni žar.\n\nZasebno parkirišče je zagotovljeno.",
+    "beach": {
+      "title": "Bližina plaže",
+      "description": "Le 70 metrov od morja. Plaža je kombinacija betona in prodnikov – primerna za družine."
+    },
+    "neighborhood": {
+      "title": "Soseska",
+      "description": "Zukve so mirno obmorsko območje, idealno za družinski oddih. Ponuja naravne plaže, mirne ulice in čudovite razglede.",
+      "nearby": [
+        "Nin – zgodovinsko mesto (10 min)",
+        "Zadar – kulturno središče (20 min)",
+        "Otok Pag – 25 min",
+        "Velebit & Nacionalni park Paklenica – za pohodništvo"
+      ]
+    },
+    "interaction": {
+      "title": "Interakcija",
+      "description": "Vedno smo na voljo za pomoč. Osebno vas bomo sprejeli in poskrbeli za prijetno bivanje.",
+      "pickup": "Možen brezplačen prevoz iz letališča Zadar ali avtobusne postaje (odvisno od razpoložljivosti).",
+      "note": "Gostje bivajo v zgornjem apartmaju, lastniki živijo spodaj."
+    },
+    "other": {
+      "title": "Dodatne informacije",
+      "points": [
+        "Vsa oprema in pohištvo je novo (2024–2025).",
+        "Primerno za družine z otroki.",
+        "Upoštevanje lokalnih ur miru.",
+        "Brezplačen Wi-Fi in pretočne storitve.",
+        "Terasa s pogledom na morje – popolna za jutranjo kavo."
+      ]
+    },
+    "gettingAround": {
+      "title": "Prevoz",
+      "options": [
+        "Taksi (organiziramo prevoz)",
+        "Najem avtomobila (lokalne cene)",
+        "Avtobusne linije do Nina in Zadra"
+      ],
+      "parking": "Na voljo je brezplačno zasebno parkirišče."
+    },
+    "checkInOut": {
+      "title": "Prijava in odjava",
+      "checkIn": "Prijava: 15:00 - 22:00",
+      "checkOut": "Odjava: 10:00"
+    }
+  }
 }

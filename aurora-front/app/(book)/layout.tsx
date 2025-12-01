@@ -1,5 +1,5 @@
 "use client";
-import "../globals.css";
+import "@/app/globals.css";
 
 import { Roboto, Princess_Sofia, Quintessential } from "next/font/google";
 import ClientProviders from "@/ClientProviders";

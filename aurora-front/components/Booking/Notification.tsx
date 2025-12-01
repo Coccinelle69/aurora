@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 interface NotificationProps {
   available: boolean;
   done: boolean;
+  stayDurationError: boolean;
   setDone: React.Dispatch<SetStateAction<boolean>>;
   setNotificationDisappeared: React.Dispatch<SetStateAction<boolean>>;
   error: boolean;
@@ -15,6 +16,7 @@ export default function Notification({
   available,
   done,
   error,
+  stayDurationError,
   setNotificationDisappeared,
 }: NotificationProps) {
   const [show, setShow] = useState(available);
@@ -62,8 +64,10 @@ export default function Notification({
         animate={{ x: [0, -6, 6, -4, 4, 0] }}
         transition={{ duration: 0.45, ease: "easeInOut", delay: 2 }}
       >
-        {available && !error ? t("available") : t("notAvailable")}
-        {error && t("something-went-wrong")}
+        {stayDurationError && t("minimumStay")}
+        {available && !stayDurationError && t("available")}
+        {!available && !stayDurationError && t("notAvailable")}
+        {error && !stayDurationError && t("something-went-wrong")}
       </motion.div>
     </motion.div>
   );

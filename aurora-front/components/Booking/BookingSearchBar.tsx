@@ -11,33 +11,32 @@ import {
 } from "react";
 import { DateInput, GuestInputs, MagnifyingGlass } from "@/components";
 import { useAppSelector } from "@/store/hooks";
-import { useResponse } from "@/utils/hooks";
+import { useCurrency, useResponse } from "@/utils/hooks";
 import { useTranslation } from "react-i18next";
+import { formatDate } from "@/utils/format";
+import { useDispatch } from "react-redux";
+import { finalPriceCalc } from "@/reducers/price";
 
 interface BookingSearchBarProps {
   setAvailable: React.Dispatch<SetStateAction<boolean>>;
   setDone: React.Dispatch<SetStateAction<boolean>>;
   setNotificationDisappeared: React.Dispatch<SetStateAction<boolean>>;
+  setStayDurationError: React.Dispatch<SetStateAction<boolean>>;
   setError: React.Dispatch<SetStateAction<boolean>>;
+  setFinalPrice: React.Dispatch<
+    SetStateAction<{ price: null | number | string; sign: string }>
+  >;
 }
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const paramsEqual = (a: any, b: any) => {
-  return (
-    a.arrival === b.arrival &&
-    a.departure === b.departure &&
-    a.adults === b.adults &&
-    a.children === b.children &&
-    a.teens === b.teens
-  );
-};
 
 export default function BookingSearchBar({
   setAvailable,
   setNotificationDisappeared,
+  setStayDurationError,
   setDone,
   setError,
+  setFinalPrice,
 }: BookingSearchBarProps) {
+  const dispatch = useDispatch();
   const {
     adults: adultNo,
     children: childrenNo,
@@ -45,6 +44,12 @@ export default function BookingSearchBar({
     arrival,
     departure,
   } = useAppSelector((state) => state.search);
+  const { value } = useAppSelector((state) => state.currency);
+  const { price, sign } = useCurrency({
+    currency: value,
+    from: arrival,
+    to: departure,
+  });
   const [startDate, setStartDate] = useState(arrival);
   const [endDate, setEndDate] = useState(departure);
   const [trigger, setTrigger] = useState(false);
@@ -61,14 +66,6 @@ export default function BookingSearchBar({
   const ref = useRef<HTMLDivElement>(null);
 
   const totalGuests = +adultNo + +childrenNo + +teenNo;
-
-  const initialParamsRef = useRef({
-    arrival,
-    departure,
-    adults: Number(adultNo),
-    children: Number(childrenNo),
-    teens: Number(teenNo),
-  });
 
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
@@ -107,31 +104,25 @@ export default function BookingSearchBar({
       setDone(true);
       errorMessage && setError(true);
       if (success) setAvailable(true);
+      const { nights } = formatDate({ from: startDate, to: endDate });
+
+      if (nights < 7) setStayDurationError(true);
     }, 4000);
 
     return () => clearTimeout(timer);
   }, [done]);
 
+  useEffect(() => {
+    if (price !== null) {
+      setFinalPrice((prev) => ({ ...prev, price, sign }));
+      dispatch(finalPriceCalc({ amount: price, sign }));
+    }
+  }, [value, price]);
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setNotificationDisappeared(false);
-    const initial = initialParamsRef.current;
-    const current = {
-      arrival: startDate,
-      departure: endDate,
-      adults: guests.adults,
-      children: guests.children,
-      teens: guests.teens,
-    };
-
-    // BLOCK duplicate searches
-    if (paramsEqual(initial, current)) {
-      console.log("No search: parameters unchanged.");
-      return;
-    }
-
-    // UPDATE baseline AFTER a valid search
-    initialParamsRef.current = { ...current };
+    setStayDurationError(false);
 
     setDone(false);
     setSubmitting(true);

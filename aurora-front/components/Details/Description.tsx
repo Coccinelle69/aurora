@@ -1,6 +1,10 @@
 "use client";
+import { memo } from "react";
 
 import { useTranslation } from "react-i18next";
+import HouseRules from "./HouseRules";
+import PropertyAmenities from "./PropertyAmenities";
+import PropertyFeatures from "./PropertyFeatures";
 
 const Description = () => {
   const { t } = useTranslation();
@@ -100,8 +104,17 @@ const Description = () => {
           </div>
         ))}
       </section>
+      <section className="details-margin">
+        <PropertyFeatures />
+      </section>
+      <section className="details-margin">
+        <PropertyAmenities />
+      </section>
+      <section className="details-margin">
+        <HouseRules />
+      </section>
     </div>
   );
 };
 
-export default Description;
+export default memo(Description);

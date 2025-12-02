@@ -2,7 +2,6 @@ import { useAppSelector } from "@/store/hooks";
 import { useEffect, useState } from "react";
 
 interface useCurrencyProps {
-  currency: string;
   from: string;
   to: string;
 }

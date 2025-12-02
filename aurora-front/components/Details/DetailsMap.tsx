@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, memo } from "react";
 import Script from "next/script";
 
 type Props = {
@@ -11,12 +11,7 @@ type Props = {
   title?: string;
 };
 
-export default function DetailsMap({
-  lat,
-  lng,
-  zoom = 14,
-  title = "Location",
-}: Props) {
+function DetailsMap({ lat, lng, zoom = 14, title = "Location" }: Props) {
   const elRef = useRef<HTMLDivElement | null>(null);
   const inited = useRef(false);
 
@@ -88,9 +83,11 @@ export default function DetailsMap({
       />
       <div
         ref={elRef}
-        className="mx-[5rem] my-[5rem] rounded-2xl overflow-hidden"
-        style={{ width: "50%", height: 350 }}
+        className="mx-auto sm:mx-[5rem] my-[3rem] sm:my-[5rem] rounded-2xl overflow-hidden w-[90%] sm:w-[50%] "
+        style={{ height: 350 }}
       />
     </>
   );
 }
+
+export default memo(DetailsMap);

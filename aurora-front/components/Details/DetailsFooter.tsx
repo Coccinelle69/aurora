@@ -1,4 +1,7 @@
 "use client";
+
+import { memo } from "react";
+
 const DetailsFooter = () => {
   return (
     <footer className="w-full bg-[#f1f1f1] py-10">
@@ -24,4 +27,4 @@ const DetailsFooter = () => {
   );
 };
 
-export default DetailsFooter;
+export default memo(DetailsFooter);

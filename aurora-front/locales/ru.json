@@ -186,5 +186,62 @@
       "checkIn": "Заезд: 15:00 - 22:00",
       "checkOut": "Выезд: 10:00"
     }
-  }
+  },
+  "houseRules": "Правила проживания",
+  "noPets": "Размещение с домашними животными запрещено",
+  "noSmoking": "Курение внутри запрещено",
+  "noParties": "Вечеринки и мероприятия запрещены",
+  "suitableForChildren": "Подходит для детей (от 2 до 12 лет)",
+  "suitableForInfants": "Подходит для младенцев (до 2 лет)",
+
+  "houseAmenities": {
+    "bedrooms": "2 спальни",
+    "bathrooms": "1 ванная",
+    "kitchens": "1 кухня",
+    "kingSizeBed": "1 кровать king-size",
+    "singleBeds": "2 односпальные кровати",
+    "pullOutCouch": "1 раскладной диван",
+
+    "airConditioner": "Кондиционер",
+    "backyard": "Задний двор",
+    "coffeeMachine": "Кофемашина",
+    "cookware": "Кухонная посуда",
+    "crib": "Детская кроватка",
+    "dishwasher": "Посудомоечная машина",
+    "disney": "Disney+",
+    "fireExtinguisher": "Огнетушитель",
+    "firstAidKit": "Аптечка",
+    "fridge": "Холодильник",
+    "gasStove": "Газовая плита",
+    "hairdryer": "Фен",
+    "handSanitizer": "Уборка и дезинфекция",
+    "hanger": "Вешалки",
+    "highChair": "Детский стульчик",
+    "iron": "Утюг",
+    "kettle": "Чайник",
+    "laundryMachine": "Стиральная машина",
+    "luggage": "Разрешено оставить багаж",
+    "netflix": "Netflix",
+    "safe": "Безопасная среда",
+    "shampoo": "Шампунь",
+    "silverware": "Столовые приборы",
+    "familyFriendly": "Подходит для семей",
+    "toaster": "Тостер",
+    "towels": "Полотенца"
+  },
+  "propertyFeatures": "Особенности недвижимости",
+
+  "cancellationPolicyTitle": "Правила отмены.",
+  "cancellationPolicyText": "Требуется предоплата 30%. Остальная сумма оплачивается до прибытия. Пожалуйста, обратите внимание, что в случае отмены депозита не возвращается.",
+
+  "apartmentTitle": "Апартаменты Aurora",
+  "checkIn": "Заезд",
+  "checkOut": "Выезд",
+  "nights": "Ночи",
+  "subtotal": "Промежуточный итог",
+  "taxes": "Налоги",
+  "touristTaxIncluded": "Туристический сбор включён в цену.",
+  "total": "Итого",
+  "requestToBook": "Запросить бронирование",
+  "iHaveCoupon": "Mam kupon"
 }

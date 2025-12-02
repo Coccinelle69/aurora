@@ -23,7 +23,7 @@ interface BookingSearchBarProps {
   setNotificationDisappeared: React.Dispatch<SetStateAction<boolean>>;
   setStayDurationError: React.Dispatch<SetStateAction<boolean>>;
   setError: React.Dispatch<SetStateAction<boolean>>;
-  setFinalPrice: React.Dispatch<
+  setPrice: React.Dispatch<
     SetStateAction<{ price: null | number | string; sign: string }>
   >;
 }
@@ -34,7 +34,7 @@ export default function BookingSearchBar({
   setStayDurationError,
   setDone,
   setError,
-  setFinalPrice,
+  setPrice,
 }: BookingSearchBarProps) {
   const dispatch = useDispatch();
   const {
@@ -46,7 +46,6 @@ export default function BookingSearchBar({
   } = useAppSelector((state) => state.search);
   const { value } = useAppSelector((state) => state.currency);
   const { price, sign } = useCurrency({
-    currency: value,
     from: arrival,
     to: departure,
   });
@@ -95,6 +94,8 @@ export default function BookingSearchBar({
     trigger,
   });
 
+  const { nights } = formatDate({ from: startDate, to: endDate });
+
   useEffect(() => {
     if (!done) return;
 
@@ -104,7 +105,6 @@ export default function BookingSearchBar({
       setDone(true);
       errorMessage && setError(true);
       if (success) setAvailable(true);
-      const { nights } = formatDate({ from: startDate, to: endDate });
 
       if (nights < 7) setStayDurationError(true);
     }, 4000);
@@ -114,8 +114,8 @@ export default function BookingSearchBar({
 
   useEffect(() => {
     if (price !== null) {
-      setFinalPrice((prev) => ({ ...prev, price, sign }));
-      dispatch(finalPriceCalc({ amount: price, sign }));
+      setPrice((prev) => ({ ...prev, price, sign }));
+      dispatch(finalPriceCalc({ amount: price, sign, nights }));
     }
   }, [value, price]);
 
@@ -137,7 +137,7 @@ export default function BookingSearchBar({
         }}
         className="relative w-full max-w-5xl mx-auto top-20 bg-white/20 p-5 rounded-2xl shadow-md flex flex-wrap items-center gap-4"
       >
-        <div className="flex-1 min-w-[140px]">
+        <div className="input">
           <DateInput
             dateType="arrival"
             setDate={setStartDate}
@@ -145,7 +145,7 @@ export default function BookingSearchBar({
           />
         </div>
 
-        <div className="flex-1 min-w-[140px]">
+        <div className="input">
           <DateInput
             dateType="departure"
             setDate={setEndDate}
@@ -153,7 +153,7 @@ export default function BookingSearchBar({
           />
         </div>
 
-        <div className="relative flex-1 min-w-[140px]" ref={ref}>
+        <div className="relative input" ref={ref}>
           <button
             className="border rounded-lg px-4 py-3 flex items-center gap-2 w-full"
             onClick={() => setOpen((prevOpen) => !prevOpen)}

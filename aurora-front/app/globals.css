@@ -54,4 +54,11 @@ body {
   .details-margin {
     @apply mt-[2rem];
   }
+  .input {
+    @apply flex-1 min-w-[140px];
+  }
+
+  .border-top {
+    @apply border-t border-t-[2px] border-[#AAB9C9];
+  }
 }

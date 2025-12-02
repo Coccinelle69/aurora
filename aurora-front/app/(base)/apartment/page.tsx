@@ -9,8 +9,8 @@ import {
   Amenities,
 } from "@/components";
 
-import * as houseImages from "../../../assets/carousel";
-import * as apartmentImages from "../../../assets/aurora";
+import * as houseImages from "@/assets/carousel";
+import * as apartmentImages from "@/assets/aurora";
 import { useState } from "react";
 
 const ApartmentPage = () => {

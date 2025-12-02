@@ -2,7 +2,7 @@
 import Image, { StaticImageData } from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
 import { EmblaOptionsType } from "embla-carousel";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, memo } from "react";
 
 type Slide = StaticImageData | string;
 
@@ -11,7 +11,7 @@ interface PropType {
   options?: EmblaOptionsType;
 }
 
-export default function DetailsGallery({ slides, options }: PropType) {
+function DetailsGallery({ slides, options }: PropType) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     ...options,
     loop: true,
@@ -127,3 +127,5 @@ export default function DetailsGallery({ slides, options }: PropType) {
     </div>
   );
 }
+
+export default memo(DetailsGallery);

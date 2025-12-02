@@ -9,7 +9,7 @@ export default function SearchBooking() {
   const [error, setError] = useState(false);
   const [notificationDisappeared, setNotificationDisappeared] = useState(false);
   const [stayDurationError, setStayDurationError] = useState(false);
-  const [finalPrice, setFinalPrice] = useState<{
+  const [price, setPrice] = useState<{
     price: null | number | string;
     sign: string;
   }>({
@@ -25,7 +25,7 @@ export default function SearchBooking() {
         setDone={setDone}
         setNotificationDisappeared={setNotificationDisappeared}
         setStayDurationError={setStayDurationError}
-        setFinalPrice={setFinalPrice}
+        setPrice={setPrice}
       />
 
       {done && (
@@ -40,7 +40,7 @@ export default function SearchBooking() {
       )}
 
       {notificationDisappeared && available && !stayDurationError && (
-        <BookingCard finalPrice={finalPrice} />
+        <BookingCard finalPrice={price} />
       )}
     </div>
   );

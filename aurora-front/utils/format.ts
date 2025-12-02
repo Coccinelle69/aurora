@@ -24,19 +24,11 @@ export function formatDate({ from, to, locale }: formatDate) {
   };
 }
 
-export function formatPriceUniversal(
-  amount: number,
-  currency: string,
-  locale: string
-) {
+export function formatPriceUniversal(amount: number, locale: string) {
   const formatter = new Intl.NumberFormat(locale, {
-    style: "currency",
-    currency,
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   });
 
-  const formatted = formatter.format(amount);
-
-  return formatted;
+  return formatter.format(amount);
 }

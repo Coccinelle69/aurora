@@ -5,3 +5,4 @@ export { default as DetailsFooter } from "./DetailsFooter";
 export { default as DetailsMap } from "./DetailsMap";
 export { default as PropertyAmenities } from "./PropertyAmenities";
 export { default as PropertyFeatures } from "./PropertyFeatures";
+export { default as HouseRules } from "./HouseRules";

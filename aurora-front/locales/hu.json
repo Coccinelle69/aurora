@@ -213,7 +213,7 @@
     "fireExtinguisher": "Tűzoltó készülék",
     "firstAidKit": "Elsősegélycsomag",
     "fridge": "Hűtőszekrény",
-    "gasStove": "Gáztűzhely",
+    "stove": "Tűzhely",
     "hairdryer": "Hajszárító",
     "handSanitizer": "Tisztítás és fertőtlenítés",
     "hanger": "Vállfák",
@@ -243,5 +243,10 @@
   "touristTaxIncluded": "Az idegenforgalmi adó az árban szerepel.",
   "total": "Összesen",
   "requestToBook": "Foglalási kérelem",
-  "iHaveCoupon": "Van kuponom"
+  "iHaveCoupon": "Van kuponom",
+  "paymentCurrencyNote": "Kérjük, vegye figyelembe, hogy minden tranzakció euróban történik. Más pénznemek kizárólag tájékoztató jellegűek.",
+  "priceBreakdown": "Árbontás",
+  "cleaningFee": "Takarítási díj",
+  "includedInPrice": "Az ár tartalmazza.",
+  "minimumStay": "Legalább 7 éjszakás tartózkodás szükséges."
 }

@@ -19,7 +19,7 @@ const HouseRules = () => {
     <div className="border-top">
       <p className="details-title pt-[1rem]">{t("houseRules")}</p>
       <div className="pt-3">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-center">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
           {rules.map((rule, i) => {
             const src = rule.src;
             const props = {

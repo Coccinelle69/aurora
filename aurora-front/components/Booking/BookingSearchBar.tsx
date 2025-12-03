@@ -45,7 +45,7 @@ export default function BookingSearchBar({
     departure,
   } = useAppSelector((state) => state.search);
   const { value } = useAppSelector((state) => state.currency);
-  const { price, sign } = useCurrency({
+  const { priceData, sign } = useCurrency({
     from: arrival,
     to: departure,
   });
@@ -56,15 +56,16 @@ export default function BookingSearchBar({
   const { t } = useTranslation();
 
   const [guests, setGuests] = useState({
-    adults: Number(adultNo),
-    children: Number(childrenNo),
-    teens: Number(teenNo),
+    adults: +adultNo,
+    children: +childrenNo,
+    teens: +teenNo,
   });
 
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   const totalGuests = +adultNo + +childrenNo + +teenNo;
+  console.log(priceData);
 
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
@@ -111,6 +112,8 @@ export default function BookingSearchBar({
 
     return () => clearTimeout(timer);
   }, [done]);
+
+  const price = priceData?.price ?? 0;
 
   useEffect(() => {
     if (price !== null) {

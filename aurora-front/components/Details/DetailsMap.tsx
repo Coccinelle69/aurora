@@ -15,8 +15,6 @@ function DetailsMap({ lat, lng, zoom = 14, title = "Location" }: Props) {
   const elRef = useRef<HTMLDivElement | null>(null);
   const inited = useRef(false);
 
-  console.log(lat, lng);
-
   useEffect(() => {
     const init = async () => {
       if (inited.current) return;

@@ -212,7 +212,7 @@
     "fireExtinguisher": "Aparat za gašenje požara",
     "firstAidKit": "Pribor prve pomoći",
     "fridge": "Hladnjak",
-    "gasStove": "Plinski štednjak",
+    "stove": "Štednjak",
     "hairdryer": "Fenir",
     "handSanitizer": "Čišćenje i dezinfekcija",
     "hanger": "Vješalice",
@@ -242,5 +242,10 @@
   "touristTaxIncluded": "Boravišna pristojba je uključena u cijenu.",
   "total": "Ukupno",
   "requestToBook": "Zatraži rezervaciju",
-  "iHaveCoupon": "Imam kupon"
+  "iHaveCoupon": "Imam kupon",
+  "paymentCurrencyNote": "Imajte na umu da se sve transakcije obrađuju u eurima. Ostale valute služe samo u informativne svrhe.",
+  "priceBreakdown": "Raspodjela cijene",
+  "cleaningFee": "Naknada za čišćenje",
+  "includedInPrice": "Uključeno u cijenu.",
+  "minimumStay": "Minimalan boravak od 7 noći je potreban."
 }

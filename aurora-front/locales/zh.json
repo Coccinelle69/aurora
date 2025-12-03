@@ -212,7 +212,7 @@
     "fireExtinguisher": "灭火器",
     "firstAidKit": "急救箱",
     "fridge": "冰箱",
-    "gasStove": "燃气灶",
+    "stove": "炉灶",
     "hairdryer": "吹风机",
     "handSanitizer": "清洁与消毒",
     "hanger": "衣架",
@@ -241,5 +241,10 @@
   "touristTaxIncluded": "已包含旅游税。",
   "total": "总计",
   "requestToBook": "请求预订",
-  "iHaveCoupon": "我有优惠券"
+  "iHaveCoupon": "我有优惠券",
+  "paymentCurrencyNote": "请注意，所有交易均以欧元处理。其他货币仅供参考。",
+  "priceBreakdown": "Rozpis ceny",
+  "cleaningFee": "Poplatek za úklid",
+  "includedInPrice": "Zahrnuto v ceně.",
+  "minimumStay": "Je vyžadován minimální pobyt na 7 nocí."
 }

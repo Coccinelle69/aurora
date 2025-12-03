@@ -211,7 +211,7 @@
     "fireExtinguisher": "Extincteur",
     "firstAidKit": "Trousse de premiers secours",
     "fridge": "Réfrigérateur",
-    "gasStove": "Cuisinière à gaz",
+    "stove": "Cuisinière",
     "hairdryer": "Sèche-cheveux",
     "handSanitizer": "Nettoyage et désinfection",
     "hanger": "Cintres",
@@ -241,5 +241,11 @@
   "touristTaxIncluded": "La taxe de séjour est incluse dans le prix.",
   "total": "Total",
   "requestToBook": "Demander à réserver",
-  "iHaveCoupon": "I have a coupon"
+  "iHaveCoupon": "J’ai un coupon",
+
+  "paymentCurrencyNote": "Veuillez noter que toutes les transactions sont traitées en euros. Les autres devises sont fournies uniquement à titre informatif.",
+  "priceBreakdown": "Détail du prix",
+  "cleaningFee": "Frais de ménage",
+  "includedInPrice": "Inclus dans le prix.",
+  "minimumStay": "Un séjour minimum de 7 nuits est requis."
 }

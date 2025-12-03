@@ -5,27 +5,28 @@ export interface PriceResult {
   price: number | null;
   total: number;
 
-  fromDays?: number;
-  fromDaysPrice?: number;
-  fromDaysTotalPrice?: number;
+  fromNights?: number;
+  fromPrice?: number;
+  fromTotalPrice?: number;
+  fromDates?: Date[];
 
-  toDays?: number;
-  toDaysPrice?: number;
-  toDaysTotalPrice?: number;
+  toNights?: number;
+  toPrice?: number;
+  toTotalPrice?: number;
+  toDates?: Date[];
 
   error?: string;
 }
 
 export const priceList = (fromDate: Date, toDate: Date): PriceResult => {
-  const year = fromDate.getFullYear(); // ⭐ DYNAMIC YEAR HERE
+  const year = fromDate.getFullYear();
 
   let nights: number;
   let total: number;
-  let fromDays: number;
-  let toDays: number;
+  let fromNights: number;
+  let toNights: number;
   let totalNights: number;
 
-  // helper to build date with the same year
   const d = (mmdd: string) => new Date(`${year}-${mmdd}`);
 
   // MAY
@@ -73,21 +74,26 @@ export const priceList = (fromDate: Date, toDate: Date): PriceResult => {
     const endMay = d("05-31");
     const beginJune = d("06-01");
 
-    fromDays = endMay.getDate() - fromDate.getDate() + 1;
-    toDays = toDate.getDate() - beginJune.getDate();
+    fromNights = endMay.getDate() - fromDate.getDate() + 1;
+    toNights = toDate.getDate() - beginJune.getDate();
 
-    totalNights = fromDays + toDays;
+    totalNights = fromNights + toNights;
+
+    const fromDates = [fromDate, endMay];
+    const toDates = [beginJune, toDate];
 
     return {
       totalNights,
       price: 90,
-      total: fromDays * 90 + toDays * 105,
-      fromDays,
-      fromDaysPrice: 90,
-      fromDaysTotalPrice: fromDays * 90,
-      toDays,
-      toDaysPrice: 105,
-      toDaysTotalPrice: toDays * 105,
+      total: fromNights * 90 + toNights * 105,
+      fromDates,
+      fromNights,
+      fromPrice: 90,
+      fromTotalPrice: fromNights * 90,
+      toDates,
+      toNights,
+      toPrice: 105,
+      toTotalPrice: toNights * 105,
     };
   }
 
@@ -99,23 +105,28 @@ export const priceList = (fromDate: Date, toDate: Date): PriceResult => {
     toDate <= d("08-31")
   ) {
     const endJune = d("06-30");
-    const julyAugust = d("07-01");
+    const beginJuly = d("07-01");
 
-    fromDays = endJune.getDate() - fromDate.getDate() + 1;
-    toDays = toDate.getDate() - julyAugust.getDate();
+    fromNights = endJune.getDate() - fromDate.getDate() + 1;
+    toNights = toDate.getDate() - beginJuly.getDate();
 
-    totalNights = fromDays + toDays;
+    totalNights = fromNights + toNights;
+
+    const fromDates = [fromDate, endJune];
+    const toDates = [beginJuly, toDate];
 
     return {
       totalNights,
       price: 105,
-      total: fromDays * 105 + toDays * 120,
-      fromDays,
-      fromDaysPrice: 105,
-      fromDaysTotalPrice: fromDays * 105,
-      toDays,
-      toDaysPrice: 120,
-      toDaysTotalPrice: toDays * 120,
+      total: fromNights * 105 + toNights * 120,
+      fromDates,
+      fromNights,
+      fromPrice: 105,
+      fromTotalPrice: fromNights * 105,
+      toDates,
+      toNights,
+      toPrice: 120,
+      toTotalPrice: toNights * 120,
     };
   }
 
@@ -129,21 +140,26 @@ export const priceList = (fromDate: Date, toDate: Date): PriceResult => {
     const endAugust = d("08-31");
     const beginSeptember = d("09-01");
 
-    fromDays = endAugust.getDate() - fromDate.getDate() + 1;
-    toDays = toDate.getDate() - beginSeptember.getDate();
+    fromNights = endAugust.getDate() - fromDate.getDate() + 1;
+    toNights = toDate.getDate() - beginSeptember.getDate();
 
-    totalNights = fromDays + toDays;
+    totalNights = fromNights + toNights;
+
+    const fromDates = [fromDate, endAugust];
+    const toDates = [beginSeptember, toDate];
 
     return {
       totalNights,
       price: 120,
-      total: fromDays * 120 + toDays * 105,
-      fromDays,
-      fromDaysPrice: 120,
-      fromDaysTotalPrice: fromDays * 120,
-      toDays,
-      toDaysPrice: 105,
-      toDaysTotalPrice: toDays * 105,
+      total: fromNights * 120 + toNights * 105,
+      fromDates,
+      fromNights,
+      fromPrice: 120,
+      fromTotalPrice: fromNights * 120,
+      toDates,
+      toNights,
+      toPrice: 105,
+      toTotalPrice: toNights * 105,
     };
   }
 

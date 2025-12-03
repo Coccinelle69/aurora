@@ -212,7 +212,7 @@
     "fireExtinguisher": "Feuerlöscher",
     "firstAidKit": "Erste-Hilfe-Set",
     "fridge": "Kühlschrank",
-    "gasStove": "Gasherd",
+    "stove": "Herd",
     "hairdryer": "Haartrockner",
     "handSanitizer": "Reinigung & Desinfektion",
     "hanger": "Kleiderbügel",
@@ -242,5 +242,11 @@
   "touristTaxIncluded": "Kurtaxe ist im Preis enthalten.",
   "total": "Gesamt",
   "requestToBook": "Buchungsanfrage",
-  "iHaveCoupon": "Ich habe einen Gutschein"
+  "iHaveCoupon": "Ich habe einen Gutschein",
+  "paymentCurrencyNote": "Bitte beachten Sie, dass alle Transaktionen in Euro verarbeitet werden. Andere Währungen dienen ausschließlich Informationszwecken.",
+
+  "priceBreakdown": "Preisaufschlüsselung",
+  "cleaningFee": "Reinigungsgebühr",
+  "includedInPrice": "Im Preis inbegriffen.",
+  "minimumStay": "Ein Mindestaufenthalt von 7 Nächten ist erforderlich."
 }

@@ -5,6 +5,8 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { formatPriceUniversal } from "@/utils/format";
+import i18next from "i18next";
 
 interface BookingCardProps {
   finalPrice: {
@@ -29,6 +31,11 @@ const BookingCard = ({ finalPrice }: BookingCardProps) => {
   const totalGuests = +adultNo + +childrenNo + +teenNo;
 
   const { t } = useTranslation();
+
+  const formattedFinalPrice = formatPriceUniversal(
+    +finalPrice.price!,
+    i18next.language
+  );
 
   return (
     <motion.div
@@ -92,7 +99,7 @@ const BookingCard = ({ finalPrice }: BookingCardProps) => {
             <div>
               <div className="text-sm text-gray-500">{t("from")}</div>
               <div className="text-2xl text-gray-700 font-semibold">
-                {finalPrice.sign} {finalPrice.price}
+                {finalPrice.sign} {formattedFinalPrice}
               </div>
               <div className="text-xs text-gray-500">{t("perNight")}</div>
               <div className="text-xs text-gray-400 mt-1">

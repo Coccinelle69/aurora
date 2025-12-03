@@ -7,7 +7,11 @@ interface PriceResult {
   totalNights: number;
   price: number | null;
   total: number;
-  error?: string; // optional
+  error?: string;
+  fromPrice?: number;
+  fromTotalPrice?: number;
+  toPrice?: number;
+  toTotalPrice?: number;
 }
 
 export async function GET(request: Request) {
@@ -28,14 +32,21 @@ export async function GET(request: Request) {
     };
 
     amount = priceList(fromDate, toDate);
+    console.log(amount);
 
-    if (selectedCurrency === "EUR")
-      return NextResponse.json({
-        priceBaseCurrency: amount.price,
-        priceSelectedCurrency: amount.price,
-      });
+    const pricesEUR = {
+      ...amount,
+      fromPrice: amount.fromPrice,
+      fromTotalPrice: amount.fromTotalPrice!,
+      toPrice: amount.toPrice,
+      toTotalPrice: amount.toTotalPrice!,
+      price: amount.price,
+      total: amount.total,
+    };
 
-    const url = `https://api.frankfurter.app/latest?amount=${amount.price}&from=${baseCurrency}&to=${selectedCurrency}`;
+    if (selectedCurrency === "EUR") return NextResponse.json(pricesEUR);
+
+    const url = `https://api.frankfurter.app/latest?amount=1&from=${baseCurrency}&to=${selectedCurrency}`;
 
     const upstream = await fetch(url, { cache: "no-store" });
 
@@ -48,6 +59,19 @@ export async function GET(request: Request) {
     }
 
     const json = await upstream.json();
+    const rate = json.rates[selectedCurrency!];
+    const converted = {
+      ...amount,
+      fromPrice: amount.fromPrice! * +rate,
+      fromTotalPrice: amount.fromTotalPrice! * +rate,
+      toPrice: amount.toPrice! * +rate,
+      toTotalPrice: amount.toTotalPrice! * +rate,
+      price: amount.price! * +rate,
+      total: amount.total! * +rate,
+      rate,
+      priceEUR: amount.fromPrice,
+      totalPriceEUR: amount.total,
+    };
 
     if (!json) {
       return NextResponse.json(
@@ -56,10 +80,9 @@ export async function GET(request: Request) {
       );
     }
 
-    return NextResponse.json({
-      priceBaseCurrency: json.amount,
-      priceSelectedCurrency: json.rates[selectedCurrency!],
-    });
+    console.log(json.rates[selectedCurrency!]);
+
+    return NextResponse.json(converted);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (e: any) {
     console.error("SERVER ERROR:", e);

@@ -13,7 +13,7 @@ export async function GET(request: Request) {
       `${serverUrl}/reservation/check?arrival=${arrival}&departure=${departure}`,
       {
         headers: { "Content-Type": "application/json" },
-        cache: "no-store", // <--- THIS FIXES IT
+        cache: "no-store",
         next: { revalidate: 0 },
       }
     );

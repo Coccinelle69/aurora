@@ -24,7 +24,7 @@ export default function ViewMore({
       <div className="my-[7rem]">
         <button
           onClick={(e) => {
-            e.stopPropagation(); // ⬅️ prevent parent onClick from firing
+            e.stopPropagation();
             window.open("/book", "_blank", "noopener,noreferrer");
           }}
           className="

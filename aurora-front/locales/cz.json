@@ -213,7 +213,7 @@
     "fireExtinguisher": "Hasicí přístroj",
     "firstAidKit": "Lékárnička",
     "fridge": "Lednice",
-    "gasStove": "Plynový sporák",
+    "stove": "Sporák",
     "hairdryer": "Fén",
     "handSanitizer": "Čištění a dezinfekce",
     "hanger": "Ramínka",
@@ -243,5 +243,10 @@
   "touristTaxIncluded": "Turistická taxa je zahrnuta v ceně.",
   "total": "Celkem",
   "requestToBook": "Požádat o rezervaci",
-  "iHaveCoupon": "Mám kupón"
+  "iHaveCoupon": "Mám kupón",
+  "paymentCurrencyNote": "Vezměte prosím na vědomí, že všechny transakce jsou zpracovány v eurech. Ostatní měny slouží pouze k informaci.",
+  "priceBreakdown": "Rozpis ceny",
+  "cleaningFee": "Poplatek za úklid",
+  "includedInPrice": "Zahrnuto v ceně.",
+  "minimumStay": "Je vyžadován minimální pobyt na 7 nocí."
 }

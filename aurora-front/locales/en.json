@@ -212,8 +212,8 @@
     "disney": "Disney+",
     "fireExtinguisher": "Fire extinguisher",
     "firstAidKit": "First aid kit",
-    "fridge": "Refrigerator",
-    "gasStove": "Gas stove",
+    "fridge": "Fridge",
+    "stove": "Stove",
     "hairdryer": "Hairdryer",
     "handSanitizer": "Cleaning & disinfection",
     "hanger": "Hangers",
@@ -242,5 +242,10 @@
   "touristTaxIncluded": "Tourist tax is included in the price.",
   "total": "Total",
   "requestToBook": "Request to Book",
-  "iHaveCoupon": "I have a coupon"
+  "iHaveCoupon": "I have a coupon",
+  "paymentCurrencyNote": "Please note that all transactions are processed in euros. Alternative currencies are for informational purpose only.",
+  "priceBreakdown": "Price breakdown",
+  "cleaningFee": "Cleaning Fee",
+  "includedInPrice": "Included in the price.",
+  "minimumStay": "Minimum 7 nights stay required."
 }

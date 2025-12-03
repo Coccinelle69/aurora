@@ -1,4 +1,5 @@
 "use client";
+import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -20,11 +21,19 @@ export const CancellationPolicy = () => {
           &#9662;
         </span>
       </p>
-      {open && (
-        <p className="text-sm text-gray-700 cursor-pointer flex items-center justify-between border-b pb-3">
-          {t("cancellationPolicyText")}
-        </p>
-      )}
+      <AnimatePresence>
+        {open && (
+          <motion.p
+            initial={{ opacity: 0, y: 5 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -5 }}
+            transition={{ duration: 0.15 }}
+            className="text-sm text-gray-700 cursor-pointer flex items-center justify-between border-b pb-3"
+          >
+            {t("cancellationPolicyText")}
+          </motion.p>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

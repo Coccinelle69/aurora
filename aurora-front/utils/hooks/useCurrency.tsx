@@ -6,9 +6,24 @@ interface useCurrencyProps {
   to: string;
 }
 
+interface ConvertedPriceData {
+  totalNights: number;
+  price: number;
+  total: number;
+  fromPrice: number;
+  fromTotalPrice: number;
+  toPrice: number;
+  toTotalPrice: number;
+  rate?: number;
+  fromDates?: Date[];
+  toDates?: Date[];
+  fromNights?: number;
+  toNights?: number;
+}
+
 const useCurrency = ({ from, to }: useCurrencyProps) => {
   const [error, setError] = useState<string | null>(null);
-  const [price, setPrice] = useState<string | null | number>(null);
+  const [priceData, setPriceData] = useState<ConvertedPriceData>();
   const { value: currency, sign } = useAppSelector((state) => state.currency);
 
   useEffect(() => {
@@ -28,12 +43,12 @@ const useCurrency = ({ from, to }: useCurrencyProps) => {
             setError(`Currency error ${res.status}: ${msg || "no body"}`);
           return;
         }
-        const data: {
-          priceBaseCurrency: number;
-          priceSelectedCurrency: number;
-        } = await res.json();
-        if (currency === "EUR") setPrice(data.priceBaseCurrency);
-        setPrice(data.priceSelectedCurrency);
+        const data = await res.json();
+        // if (currency === "EUR") setPriceData(data.priceBaseCurrency);
+        // setPriceData(data.priceSelectedCurrency);
+        // if (currency === "EUR") setPriceData(data.priceBaseCurrency);
+        setPriceData(data);
+
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (e: any) {
         console.log(e);
@@ -49,7 +64,7 @@ const useCurrency = ({ from, to }: useCurrencyProps) => {
   }, [currency]);
 
   return {
-    price,
+    priceData,
     sign,
   };
 };

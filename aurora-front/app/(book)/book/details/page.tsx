@@ -11,7 +11,7 @@ const DetailsPage = () => {
 
   return (
     <div>
-      <div className="bg-[#dce4eb] w-[96%] mx-auto ">
+      <div className="bg-[#dce4eb] w-[96%] mx-auto pb-[0.75rem]">
         <DetailsGallery slides={slides} />
         <div className="mt-0 sm:mt-[1.5rem] mx-[1rem] sm:mx-[3rem] sm:mx-[5rem] flex flex-col sm:flex-row gap-[5rem] items-start">
           <Description />
@@ -23,7 +23,7 @@ const DetailsPage = () => {
           zoom={25}
         />
       </div>
-      <div className="bg-[#f1f1f1] h-[2px] w-[50%] mx-auto mb-[4rem]"></div>
+      <div className="bg-[#f1f1f1] h-[2px] w-[50%] mx-auto my-[4rem]"></div>
       <DetailsFooter />
     </div>
   );

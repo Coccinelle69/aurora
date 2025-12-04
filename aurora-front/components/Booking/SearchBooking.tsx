@@ -1,9 +1,9 @@
 "use client";
 
 import { BookingCard, BookingSearchBar, Notification } from "@/components";
-import { useState } from "react";
+import { useState, memo } from "react";
 
-export default function SearchBooking() {
+function SearchBooking() {
   const [available, setAvailable] = useState(false);
   const [done, setDone] = useState(false);
   const [error, setError] = useState(false);
@@ -45,3 +45,5 @@ export default function SearchBooking() {
     </div>
   );
 }
+
+export default memo(SearchBooking);

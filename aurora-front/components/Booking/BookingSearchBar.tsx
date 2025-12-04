@@ -9,7 +9,12 @@ import {
   SetStateAction,
   useMemo,
 } from "react";
-import { DateInput, GuestInputs, MagnifyingGlass } from "@/components";
+import {
+  DateInput,
+  GuestInputs,
+  MagnifyingGlass,
+  PriceAvailabilityActions,
+} from "@/components";
 import { useAppSelector } from "@/store/hooks";
 import { useCurrency, useResponse } from "@/utils/hooks";
 import { useTranslation } from "react-i18next";
@@ -175,6 +180,7 @@ export default function BookingSearchBar({
             />
           )}
         </div>
+        <PriceAvailabilityActions />
 
         <button
           type="submit"

@@ -1,20 +1,24 @@
 "use client";
 import * as houseFeatures from "@/assets/features";
-import { memo } from "react";
+import { memo, useMemo } from "react";
 import { Icon } from "../UI/Icon";
 import { useTranslation } from "react-i18next";
 import { colors } from "@/utils/ui/colors";
 const PropertyFeatures = () => {
-  const features = Object.values(houseFeatures);
+  const features = useMemo(() => Object.values(houseFeatures), []);
   const { t } = useTranslation();
-  const titles = [
-    t("houseAmenities.bedrooms"),
-    t("houseAmenities.bathrooms"),
-    t("houseAmenities.kitchens"),
-    t("houseAmenities.kingSizeBed"),
-    t("houseAmenities.singleBeds"),
-    t("houseAmenities.pullOutCouch"),
-  ];
+  const titles = useMemo(
+    () => [
+      t("houseAmenities.bedrooms"),
+      t("houseAmenities.bathrooms"),
+      t("houseAmenities.kitchens"),
+      t("houseAmenities.kingSizeBed"),
+      t("houseAmenities.singleBeds"),
+      t("houseAmenities.pullOutCouch"),
+    ],
+    [t]
+  );
+
   return (
     <div className="border-top">
       <p className="details-title pt-[1rem]">{t("propertyFeatures")}</p>

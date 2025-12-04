@@ -18,7 +18,10 @@ export const Icon = ({ src, alt, size = 50, color = "white" }: IconProps) => (
       className="hover:scale-125 transition-transform duration-300 ease-out"
       style={{
         filter:
-          color === "#4a6ca3" || color === "#9AD5FF"
+          color === "#4a6ca3" ||
+          color === "#9AD5FF" ||
+          color === "#1a3c5b" ||
+          color == "#11344b"
             ? "invert(38%) sepia(18%) saturate(734%) hue-rotate(178deg) brightness(94%) contrast(89%)"
             : color === "white"
             ? "invert(1) brightness(100%)"

@@ -1,44 +1,47 @@
 "use client";
 import * as houseAmenities from "@/assets/amenities";
-import { memo, useRef, useState } from "react";
+import { memo, useMemo, useRef, useState } from "react";
 import { Icon } from "../UI/Icon";
 import { useTranslation } from "react-i18next";
 import { colors } from "@/utils/ui/colors";
 import { AnimatePresence, motion } from "framer-motion";
 
 const PropertyAmenities = () => {
-  const amenities = Object.values(houseAmenities);
+  const amenities = useMemo(() => Object.values(houseAmenities), []);
   const { t } = useTranslation();
   const [visibleCount, setVisibleCount] = useState(4);
   const containerRef = useRef<HTMLDivElement>(null);
-  const titles = [
-    t("houseAmenities.airConditioner"),
-    t("houseAmenities.backyard"),
-    t("houseAmenities.handSanitizer"),
-    t("houseAmenities.coffeeMachine"),
-    t("houseAmenities.cookware"),
-    t("houseAmenities.crib"),
-    t("houseAmenities.dishwasher"),
-    t("houseAmenities.disney"),
-    t("houseAmenities.familyFriendly"),
-    t("houseAmenities.fireExtinguisher"),
-    t("houseAmenities.firstAidKit"),
-    t("houseAmenities.fridge"),
-    t("houseAmenities.hairdryer"),
-    t("houseAmenities.hanger"),
-    t("houseAmenities.highChair"),
-    t("houseAmenities.iron"),
-    t("houseAmenities.kettle"),
-    t("houseAmenities.laundryMachine"),
-    t("houseAmenities.luggage"),
-    t("houseAmenities.netflix"),
-    t("houseAmenities.safe"),
-    t("houseAmenities.shampoo"),
-    t("houseAmenities.silverware"),
-    t("houseAmenities.stove"),
-    t("houseAmenities.toaster"),
-    t("houseAmenities.towels"),
-  ];
+  const titles = useMemo(
+    () => [
+      t("houseAmenities.airConditioner"),
+      t("houseAmenities.backyard"),
+      t("houseAmenities.handSanitizer"),
+      t("houseAmenities.coffeeMachine"),
+      t("houseAmenities.cookware"),
+      t("houseAmenities.crib"),
+      t("houseAmenities.dishwasher"),
+      t("houseAmenities.disney"),
+      t("houseAmenities.familyFriendly"),
+      t("houseAmenities.fireExtinguisher"),
+      t("houseAmenities.firstAidKit"),
+      t("houseAmenities.fridge"),
+      t("houseAmenities.hairdryer"),
+      t("houseAmenities.hanger"),
+      t("houseAmenities.highChair"),
+      t("houseAmenities.iron"),
+      t("houseAmenities.kettle"),
+      t("houseAmenities.laundryMachine"),
+      t("houseAmenities.luggage"),
+      t("houseAmenities.netflix"),
+      t("houseAmenities.safe"),
+      t("houseAmenities.shampoo"),
+      t("houseAmenities.silverware"),
+      t("houseAmenities.stove"),
+      t("houseAmenities.toaster"),
+      t("houseAmenities.towels"),
+    ],
+    [t]
+  );
 
   const amenitiesToDisplay = amenities.slice(0, visibleCount);
 

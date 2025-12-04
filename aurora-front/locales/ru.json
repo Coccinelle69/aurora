@@ -248,5 +248,15 @@
   "priceBreakdown": "Разбивка стоимости",
   "cleaningFee": "Плата за уборку",
   "includedInPrice": "Включено в стоимость.",
-  "minimumStay": "Требуется минимальное пребывание в 7 ночей."
+  "minimumStay": "Требуется минимальное пребывание в 7 ночей.",
+  "priceList": "Прайс-лист",
+  "availability": "Доступность",
+  "unavailableDates": "Недоступно",
+  "availableDates": "Доступно",
+
+  "regularPriceList": "Обычный прайс-лист",
+  "period": "Период",
+  "maxGuests": "Максимальное количество гостей",
+  "price": "Цена",
+  "minimumStayTitle": "Минимальное пребывание"
 }

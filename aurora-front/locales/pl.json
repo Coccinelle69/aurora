@@ -248,5 +248,14 @@
   "priceBreakdown": "Szczegółowy podział ceny",
   "cleaningFee": "Opłata za sprzątanie",
   "includedInPrice": "Wliczone w cenę.",
-  "minimumStay": "Zahtevano je minimalno 7 nočitev."
+  "minimumStay": "Zahtevano je minimalno 7 nočitev.",
+  "priceList": "Cennik",
+  "availability": "Dostępność",
+  "unavailableDates": "Niedostępne",
+  "availableDates": "Dostępne",
+  "regularPriceList": "Zwykły cennik",
+  "period": "Okres",
+  "maxGuests": "Maksymalna liczba gości",
+  "price": "Cena",
+  "minimumStayTitle": "Minimalny pobyt"
 }

@@ -247,5 +247,14 @@
   "priceBreakdown": "Dettaglio del prezzo",
   "cleaningFee": "Costo di pulizia",
   "includedInPrice": "Incluso nel prezzo.",
-  "minimumStay": "È richiesto un soggiorno minimo di 7 notti."
+  "minimumStay": "È richiesto un soggiorno minimo di 7 notti.",
+  "priceList": "Listino prezzi",
+  "availability": "Disponibilità",
+  "unavailableDates": "Non disponibile",
+  "availableDates": "Disponibile",
+  "regularPriceList": "Listino prezzi standard",
+  "period": "Periodo",
+  "maxGuests": "Numero massimo di ospiti",
+  "price": "Prezzo",
+  "minimumStayTitle": "Soggiorno minimo"
 }

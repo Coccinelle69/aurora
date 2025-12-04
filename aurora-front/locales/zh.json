@@ -246,5 +246,15 @@
   "priceBreakdown": "Rozpis ceny",
   "cleaningFee": "Poplatek za úklid",
   "includedInPrice": "Zahrnuto v ceně.",
-  "minimumStay": "Je vyžadován minimální pobyt na 7 nocí."
+  "minimumStay": "Je vyžadován minimální pobyt na 7 nocí.",
+  "priceList": "价格表",
+  "availability": "可用性",
+  "availableDates": "可用",
+
+  "unavailableDates": "不可用",
+  "regularPriceList": "常规价格表",
+  "period": "时段",
+  "maxGuests": "最多人数",
+  "price": "价格",
+  "minimumStayTitle": "最短入住天数"
 }

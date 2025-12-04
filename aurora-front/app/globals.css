@@ -61,4 +61,12 @@ body {
   .border-top {
     @apply border-t border-t-[2px] border-[#AAB9C9];
   }
+
+  .booking-btn {
+    @apply px-6 py-3 bg-[#00A6F4] text-white rounded-3xl w-full mt-[1rem] sm:mt-0 sm:w-auto hover:bg-[#0E7DB5];
+  }
+
+  .tab {
+    @apply w-full pb-[10px] text-default flex flex-row items-center justify-center font-semibold gap-1 transition border-b-[2px] border-[#D1DBE3] duration-300 ease-out hover:border-default;
+  }
 }

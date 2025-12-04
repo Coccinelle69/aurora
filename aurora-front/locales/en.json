@@ -247,5 +247,14 @@
   "priceBreakdown": "Price breakdown",
   "cleaningFee": "Cleaning Fee",
   "includedInPrice": "Included in the price.",
-  "minimumStay": "Minimum 7 nights stay required."
+  "minimumStay": "Minimum 7 nights stay required.",
+  "priceList": "Price List",
+  "availability": "Availability",
+  "unavailableDates": "Unavailable",
+  "availableDates": "Available",
+  "regularPriceList": "Regular Price List",
+  "period": "Period",
+  "maxGuests": "Max number of Guests",
+  "price": "Price",
+  "minimumStayTitle": "Minimum Stay"
 }

@@ -30,7 +30,7 @@ const GuestInputs = ({ setOpen, guests, setGuests }: GuestInputsProps) => {
   };
 
   return (
-    <div className="absolute right-0 mt-2 w-64 bg-white/60 shadow-xl border rounded-xl p-4 z-50">
+    <div className="absolute right-0 mt-2 w-64 bg-white/85 shadow-xl border rounded-xl p-4 z-50">
       <GuestInput
         guestType="adults"
         guests={adults}

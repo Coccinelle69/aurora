@@ -247,5 +247,14 @@
   "priceBreakdown": "Raspodjela cijene",
   "cleaningFee": "Naknada za čišćenje",
   "includedInPrice": "Uključeno u cijenu.",
-  "minimumStay": "Minimalan boravak od 7 noći je potreban."
+  "minimumStay": "Minimalan boravak od 7 noći je potreban.",
+  "priceList": "Cjenik",
+  "availability": "Dostupnost",
+  "unavailableDates": "Nedostupno",
+  "availableDates": "Dostupno",
+  "regularPriceList": "Redovni cjenik",
+  "period": "Razdoblje",
+  "maxGuests": "Maksimalan broj gostiju",
+  "price": "Cijena",
+  "minimumStayTitle": "Minimalni boravak"
 }

@@ -248,5 +248,14 @@
   "priceBreakdown": "Árbontás",
   "cleaningFee": "Takarítási díj",
   "includedInPrice": "Az ár tartalmazza.",
-  "minimumStay": "Legalább 7 éjszakás tartózkodás szükséges."
+  "minimumStay": "Legalább 7 éjszakás tartózkodás szükséges.",
+  "priceList": "Árlista",
+  "availability": "Elérhetőség",
+  "unavailableDates": "Nem elérhető",
+  "availableDates": "Elérhető",
+  "regularPriceList": "Rendes árlista",
+  "period": "Időszak",
+  "maxGuests": "Maximális vendégszám",
+  "price": "Ár",
+  "minimumStayTitle": "Minimális tartózkodás"
 }

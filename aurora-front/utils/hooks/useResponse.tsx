@@ -13,7 +13,7 @@ interface UseResponseOptions {
   method?: "GET" | "POST";
   url: string;
   body?: jsonBodyProps | null;
-  trigger: boolean; // manual trigger
+  trigger: boolean;
 }
 
 const useResponse = ({
@@ -63,7 +63,7 @@ const useResponse = ({
         setSuccess(false);
         setError("NETWORK_ERROR");
       } finally {
-        setDone(true); // <-- ALWAYS RUNS NOW
+        setDone(true);
       }
     };
 

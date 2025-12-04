@@ -81,8 +81,8 @@ function DetailsMap({ lat, lng, zoom = 14, title = "Location" }: Props) {
       />
       <div
         ref={elRef}
-        className="mx-auto sm:mx-[5rem] my-[3rem] sm:my-[5rem] rounded-2xl overflow-hidden w-[90%] sm:w-[50%] "
-        style={{ height: 350 }}
+        className="mx-auto sm:mx-[5rem] my-[3rem]  rounded-2xl overflow-hidden w-[90%] sm:w-[50%] "
+        style={{ height: 450 }}
       />
     </>
   );

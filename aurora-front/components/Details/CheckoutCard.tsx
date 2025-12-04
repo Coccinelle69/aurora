@@ -6,7 +6,7 @@ import { useCurrency } from "@/utils/hooks";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
 import { CancellationPolicy } from "./CancellationPolicy";
-import { useEffect } from "react";
+import { useEffect, memo } from "react";
 import { finalPriceCalc } from "@/reducers/price";
 import { useDispatch } from "react-redux";
 import PriceBreakdown from "./PriceBreakdown";
@@ -23,7 +23,6 @@ const CheckoutCard = () => {
     children,
   } = useAppSelector((state) => state.search);
   const { priceData, sign } = useCurrency({ from, to });
-  // const { finalPrice } = useAppSelector((state) => state.price);
   const { value } = useAppSelector((state) => state.currency);
 
   const { arrival, departure, nights } = formatDate({
@@ -82,6 +81,7 @@ const CheckoutCard = () => {
         {t("iHaveCoupon")}
       </label>
 
+      {/* BREAKDOWN */}
       <PriceBreakdown />
 
       {/* TOTAL */}
@@ -108,4 +108,4 @@ const CheckoutCard = () => {
   );
 };
 
-export default CheckoutCard;
+export default memo(CheckoutCard);

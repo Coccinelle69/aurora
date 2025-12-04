@@ -7,4 +7,7 @@ export { default as BookHeader } from "./Header";
 export { default as Notification } from "./Notification";
 export { default as SearchBooking } from "./SearchBooking";
 export { default as GuestInputs } from "./GuestInputs";
-export { default as PriceList } from "./PriceList";
+export { default as Prices } from "./Prices";
+export { default as AvailabilityCalendar } from "./AvailabilityCalendar";
+export { default as PriceAvailabilityActions } from "./PriceAvailabilityActions";
+export { default as PriceAvailability } from "./PriceAvailability";

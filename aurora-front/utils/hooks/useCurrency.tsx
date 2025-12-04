@@ -44,9 +44,6 @@ const useCurrency = ({ from, to }: useCurrencyProps) => {
           return;
         }
         const data = await res.json();
-        // if (currency === "EUR") setPriceData(data.priceBaseCurrency);
-        // setPriceData(data.priceSelectedCurrency);
-        // if (currency === "EUR") setPriceData(data.priceBaseCurrency);
         setPriceData(data);
 
         // eslint-disable-next-line @typescript-eslint/no-explicit-any

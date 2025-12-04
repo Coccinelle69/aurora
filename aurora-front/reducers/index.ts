@@ -3,5 +3,6 @@ import currency from "./currency";
 import contact from "./contact";
 import search from "./search";
 import price from "./price";
+import modal from "./modal";
 
-export { language, currency, contact, search, price };
+export { language, currency, contact, search, price, modal };

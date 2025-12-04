@@ -54,7 +54,7 @@ export default function Footer() {
         {/* Find us */}
         <div className="w-full flex flex-col items-center md:items-start">
           <h3 className="font-heading text-2xl font-semibold tracking-wide mb-6">
-            {t("footer-findUs")}
+            {t("contact")}
           </h3>
           <div className="space-y-6">
             <div>
@@ -70,14 +70,11 @@ export default function Footer() {
         {/* Contact / Social */}
         <div className="w-full flex flex-col items-center md:items-start">
           <h3 className="font-heading text-2xl font-semibold tracking-wide mb-6">
-            {t("contact")}
+            {t("footer-findUs")}
           </h3>
           <Socials className="text-md font-semibold" />
         </div>
 
-        {/* Location / CTA */}
-        {/* If you want this visible from md and up, use hidden md:flex. 
-           Your previous sm:hidden lg:flex hides it on md (768–1023px) which can create odd gaps. */}
         <div className="flex w-full flex-col items-center md:items-start">
           <h3 className="font-heading text-2xl font-semibold tracking-wide mb-6">
             {t("footer-location")}

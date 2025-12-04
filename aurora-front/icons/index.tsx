@@ -159,3 +159,11 @@ export const ThunderstormIcon = (props: { size?: number; color?: string }) => (
 export const AddressIcon = (props: { size?: number; color?: string }) => (
   <Icon src="/footer/address.png" alt="Address" {...props} />
 );
+
+export const EuroIcon = (props: { size?: number; color?: string }) => (
+  <Icon src="/header/euro.png" alt="Euro" {...props} />
+);
+
+export const CalendarIcon = (props: { size?: number; color?: string }) => (
+  <Icon src="/header/calendar.png" alt="Calendar" {...props} />
+);

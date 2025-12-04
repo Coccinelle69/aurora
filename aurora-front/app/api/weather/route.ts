@@ -10,8 +10,8 @@ export async function GET() {
       ""
     ).trim();
     const lonStr = (
-      process.env.LON ??
-      process.env.NEXT_PUBLIC_LON ??
+      process.env.LNG ??
+      process.env.NEXT_PUBLIC_LNG ??
       ""
     ).trim();
 
@@ -40,6 +40,7 @@ export async function GET() {
 
     if (!upstream.ok) {
       const body = await upstream.text();
+      console.error("OpenMeteo ERROR:", upstream.status, await upstream.text());
       return NextResponse.json(
         { error: "Upstream error", status: upstream.status, body, url },
         { status: 502 }
@@ -48,6 +49,7 @@ export async function GET() {
 
     const json = await upstream.json();
     if (!json?.current_weather) {
+      console.error("OpenMeteo ERROR:", json.status, await json.text());
       return NextResponse.json(
         { error: "No current_weather in response", raw: json, url },
         { status: 500 }

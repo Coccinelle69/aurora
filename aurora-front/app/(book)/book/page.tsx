@@ -1,8 +1,11 @@
 "use client";
 
-import { SearchBooking } from "@/components/";
+import { SearchBooking, PriceAvailability } from "@/components/";
+import { useAppSelector } from "@/store/hooks";
 
 const BookingPage = () => {
+  const modalOpen = useAppSelector((state) => state.modal.value);
+
   return (
     <div className="relative min-h-screen">
       <div
@@ -16,6 +19,7 @@ const BookingPage = () => {
       />
       <div className="relative top-[10rem]   md:top-0 ">
         <SearchBooking />
+        {modalOpen && <PriceAvailability />}
       </div>
     </div>
   );

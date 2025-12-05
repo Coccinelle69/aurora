@@ -4,8 +4,6 @@ import { useEffect } from "react";
 import Image, { StaticImageData } from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
 import type { EmblaOptionsType } from "embla-carousel";
-import { Princess_Sofia } from "next/font/google";
-const sofia = Princess_Sofia({ subsets: ["latin"], weight: "400" });
 
 type Slide = string | StaticImageData;
 type Props = {
@@ -50,11 +48,8 @@ export default function EmblaCarousel({ slides }: Props) {
     <div className=" relative">
       <div className="absolute inset-0 top-[15rem] left-[2rem] z-10 flex items-center justify-center pointer-events-none lg:top-0 left-0">
         <p
-          className={`
-          ${sofia.className}
-          text-white tracking-[0.25rem] text-[5rem] opacity-70 lg:text-[8rem]
-          
-        `}
+          className="font-logo
+          text-white tracking-[0.25rem] text-[5rem] opacity-70 lg:text-[8rem]"
         >
           Aurora
         </p>

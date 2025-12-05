@@ -5,11 +5,10 @@ import { formatDate, formatPriceUniversal } from "@/utils/format";
 import { useCurrency } from "@/utils/hooks";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
-import { CancellationPolicy } from "./CancellationPolicy";
 import { useEffect, memo } from "react";
 import { finalPriceCalc } from "@/reducers/price";
 import { useDispatch } from "react-redux";
-import PriceBreakdown from "./PriceBreakdown";
+import { PriceBreakdown, CancellationPolicy } from "@/components";
 
 const CheckoutCard = () => {
   const { t } = useTranslation();
@@ -34,11 +33,6 @@ const CheckoutCard = () => {
 
   const price = priceData?.total ?? 0;
 
-  useEffect(() => {
-    if (price !== null) {
-      dispatch(finalPriceCalc({ amount: price, sign, nights }));
-    }
-  }, [value, price]);
   const formattedPrice = formatPriceUniversal(price, i18next.language);
 
   return (

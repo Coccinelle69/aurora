@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
-import { Distances } from "../";
+import { Distances } from "@/components";
 import {
   BeachIcon,
   BusIcon,
@@ -16,7 +16,7 @@ import {
   BankIcon,
 } from "@/icons";
 
-export default function DistanceSection() {
+export default function Distance() {
   const { t } = useTranslation();
   const items = [
     {

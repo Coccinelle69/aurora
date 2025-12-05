@@ -2,9 +2,7 @@
 import { memo } from "react";
 
 import { useTranslation } from "react-i18next";
-import HouseRules from "./HouseRules";
-import PropertyAmenities from "./PropertyAmenities";
-import PropertyFeatures from "./PropertyFeatures";
+import { HouseRules, PropertyAmenities, PropertyFeatures } from "@/components";
 
 const Description = () => {
   const { t } = useTranslation();

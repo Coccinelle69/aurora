@@ -34,7 +34,7 @@ export default function Distances({ items }: DistancesProps) {
   const { t } = useTranslation();
 
   return (
-    <section className="border-t border-gray-200 bg-white">
+    <section className="border-t border-gray-200 bg-white min-h-[200px]">
       <div className="mx-auto w-full max-w-5xl px-4 py-6">
         <h2 className="mb-4 text-lg font-semibold text-gray-900 font-body">
           {t("distances.title")}

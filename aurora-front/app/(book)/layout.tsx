@@ -34,6 +34,14 @@ export default function BookLayout({
       window.matchMedia("(hover: none)").matches);
   return (
     <html lang="en">
+      <head>
+        <link
+          rel="preload"
+          as="image"
+          href="/beach2.jpg"
+          imageSrcSet="/beach2.jpg"
+        />
+      </head>
       <body
         suppressHydrationWarning
         className={`${roboto.variable} ${quintessential.variable} ${sofia.variable} antialiased`}

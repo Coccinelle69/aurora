@@ -5,7 +5,7 @@ import { useState, memo } from "react";
 
 function SearchBooking() {
   const [available, setAvailable] = useState(false);
-  const [done, setDone] = useState(false);
+  const [searchDone, setSerchDone] = useState(false);
   const [error, setError] = useState(false);
   const [notificationDisappeared, setNotificationDisappeared] = useState(false);
   const [stayDurationError, setStayDurationError] = useState(false);
@@ -22,18 +22,18 @@ function SearchBooking() {
       <BookingSearchBar
         setError={setError}
         setAvailable={setAvailable}
-        setDone={setDone}
+        setSerchDone={setSerchDone}
         setNotificationDisappeared={setNotificationDisappeared}
         setStayDurationError={setStayDurationError}
         setPrice={setPrice}
       />
 
-      {done && (
+      {searchDone && (
         <Notification
           error={error}
           available={available}
-          done={done}
-          setDone={setDone}
+          done={searchDone}
+          setSerchDone={setSerchDone}
           stayDurationError={stayDurationError}
           setNotificationDisappeared={setNotificationDisappeared}
         />

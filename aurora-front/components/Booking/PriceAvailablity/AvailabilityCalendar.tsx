@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import i18next from "i18next";
-import { useTranslation } from "react-i18next";
+import { CalendarLegend } from "@/components";
 
 type Range = { start: string; end: string };
 
@@ -25,7 +25,6 @@ function eachDay(start: Date, end: Date): string[] {
 
 export default function AvailabilityCalendar({ unavailable }: CalendarProps) {
   const today = new Date();
-  const { t } = useTranslation();
 
   const [page, setPage] = useState(0); // each page = 4 months
   const totalPages = Math.ceil(monthsAhead / 4);
@@ -86,15 +85,13 @@ export default function AvailabilityCalendar({ unavailable }: CalendarProps) {
       </div>
 
       {/* 4-month grid */}
-      <div className="grid grid-cols-1 w-[90%] mx-auto md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 w-[90%] mx-auto md:grid-cols-2 gap-6 ">
         {visibleMonths.map((month) => {
           const year = month.getFullYear();
           const m = month.getMonth();
 
           const first = new Date(year, m, 1);
 
-          // ✅ PERFECT MONDAY-FIRST OFFSET
-          // JS: Sunday=0, Monday=1 → convert to Monday=0 ... Sunday=6
           const startIndex = (first.getDay() + 6) % 7;
 
           const daysInMonth = new Date(year, m + 1, 0).getDate();
@@ -120,8 +117,8 @@ export default function AvailabilityCalendar({ unavailable }: CalendarProps) {
 
               {/* Weekday header */}
               <div className="grid grid-cols-7 mb-2 text-xs text-gray-400">
-                {weekdayLabels.map((w, idx) => (
-                  <div className="text-center" key={idx}>
+                {weekdayLabels.map((w, i) => (
+                  <div className="text-center" key={i}>
                     {w}
                   </div>
                 ))}
@@ -134,14 +131,33 @@ export default function AvailabilityCalendar({ unavailable }: CalendarProps) {
 
                   const unavailable = isUnavailable(date);
 
+                  function pure(date: Date): Date {
+                    return new Date(
+                      date.getFullYear(),
+                      date.getMonth(),
+                      date.getDate()
+                    );
+                  }
+
+                  function isSeasonal(date: Date): boolean {
+                    const y = date.getFullYear();
+                    const d = pure(date);
+                    const start = new Date(y, 4, 15); // May = 4
+                    const end = new Date(y, 8, 30); // Sept = 8
+
+                    return d >= start && d <= end;
+                  }
+
                   return (
                     <div
                       key={date.toISOString()}
                       className={[
                         "h-8 flex items-center justify-center rounded-xl",
                         unavailable
-                          ? "bg-red-100 text-red-700"
-                          : "text-gray-800",
+                          ? "bg-red-100 text-red-700" // unavailable always red
+                          : isSeasonal(date)
+                          ? " text-gray-500"
+                          : "bg-gray-300 text-gray-500",
                       ].join(" ")}
                     >
                       {date.getDate()}
@@ -155,16 +171,7 @@ export default function AvailabilityCalendar({ unavailable }: CalendarProps) {
       </div>
 
       {/* Legend */}
-      <div className="flex gap-6 text-sm">
-        <div className="flex items-center gap-2">
-          <span className="w-3 h-3 rounded-full border border-[#9FB1C5]"></span>
-          <span className="text-default">{t("availableDates")}</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="w-3 h-3 rounded-full bg-red-200"></span>
-          <span className="text-default">{t("unavailableDates")}</span>
-        </div>
-      </div>
+      <CalendarLegend />
     </div>
   );
 }

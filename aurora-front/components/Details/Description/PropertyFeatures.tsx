@@ -1,7 +1,7 @@
 "use client";
 import * as houseFeatures from "@/assets/features";
 import { memo, useMemo } from "react";
-import { Icon } from "../UI/Icon";
+import { Icon } from "../../UI/Icon";
 import { useTranslation } from "react-i18next";
 import { colors } from "@/utils/ui/colors";
 const PropertyFeatures = () => {

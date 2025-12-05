@@ -1,9 +1,9 @@
-export { default as BookButton } from "./BookButton";
+export { default as BookButton } from "./Buttons/BookButton";
 export { default as LogoAurora } from "./Logo";
 export { default as AnimCursor } from "./AnimatedCursor";
-export { default as DirectionsButton } from "./DirectionsBtn";
-export { default as LoadingSpinner } from "./LoadingSpinner";
-export { default as Socials } from "./Socials";
-export { default as Phone } from "./Phone";
-export { default as Email } from "./Email";
-export { default as MagnifyingGlass } from "./MagnifyingGlass";
+export { default as DirectionsButton } from "./Buttons/DirectionsBtn";
+export { default as LoadingSpinner } from "./Spinners/LoadingSpinner";
+export { default as Socials } from "./Socials/Socials";
+export { default as Phone } from "./Socials/Phone";
+export { default as Email } from "./Socials/Email";
+export { default as MagnifyingGlass } from "./Spinners/MagnifyingGlass";

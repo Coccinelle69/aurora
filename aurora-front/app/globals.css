@@ -67,6 +67,6 @@ body {
   }
 
   .tab {
-    @apply w-full pb-[10px] text-default flex flex-row items-center justify-center font-semibold gap-1 transition border-b-[2px] border-[#D1DBE3] duration-300 ease-out hover:border-default;
+    @apply w-full pb-[10px] text-default flex flex-row items-center justify-center font-semibold gap-1 transition border-b-[2px] border-[#D1DBE3];
   }
 }

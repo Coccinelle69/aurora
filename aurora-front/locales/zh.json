@@ -256,5 +256,8 @@
   "period": "时段",
   "maxGuests": "最多人数",
   "price": "价格",
-  "minimumStayTitle": "最短入住天数"
+  "minimumStayTitle": "最短入住天数",
+  "showMore": "查看更多",
+  "showLess": "收起",
+  "outOfSeason": "非旺季"
 }

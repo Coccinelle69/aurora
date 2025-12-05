@@ -1,7 +1,7 @@
 "use client";
 import * as houseAmenities from "@/assets/amenities";
 import { memo, useMemo, useRef, useState } from "react";
-import { Icon } from "../UI/Icon";
+import { Icon } from "../../UI/Icon";
 import { useTranslation } from "react-i18next";
 import { colors } from "@/utils/ui/colors";
 import { AnimatePresence, motion } from "framer-motion";
@@ -98,7 +98,7 @@ const PropertyAmenities = () => {
         onClick={handleToggle}
         className="font-semibold mt-5 text-[#27C2F5] px-2 py-3 rounded-2xl text-shadow-lg duration-400 ease-out hover:text-white hover:bg-white/30 active:text-white active:bg-white/30"
       >
-        {visibleCount === 4 ? "Show More" : "Show Less"}
+        {visibleCount === 4 ? t("showMore") : t("showLess")}
       </button>
     </div>
   );

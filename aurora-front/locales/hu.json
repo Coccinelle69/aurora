@@ -257,5 +257,8 @@
   "period": "Időszak",
   "maxGuests": "Maximális vendégszám",
   "price": "Ár",
-  "minimumStayTitle": "Minimális tartózkodás"
+  "minimumStayTitle": "Minimális tartózkodás",
+  "showMore": "Mutass többet",
+  "showLess": "Mutass kevesebbet",
+  "outOfSeason": "Szezonon kívül"
 }

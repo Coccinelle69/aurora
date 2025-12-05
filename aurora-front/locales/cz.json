@@ -257,5 +257,8 @@
   "period": "Období",
   "maxGuests": "Maximální počet hostů",
   "price": "Cena",
-  "minimumStayTitle": "Minimální pobyt"
+  "minimumStayTitle": "Minimální pobyt",
+  "showMore": "Zobrazit více",
+  "showLess": "Zobrazit méně",
+  "outOfSeason": "Mimo sezónu"
 }

@@ -258,5 +258,8 @@
   "period": "Период",
   "maxGuests": "Максимальное количество гостей",
   "price": "Цена",
-  "minimumStayTitle": "Минимальное пребывание"
+  "minimumStayTitle": "Минимальное пребывание",
+  "showMore": "Показать больше",
+  "showLess": "Показать меньше",
+  "outOfSeason": "Не сезон"
 }

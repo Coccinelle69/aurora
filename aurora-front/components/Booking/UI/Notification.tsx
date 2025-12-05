@@ -7,7 +7,7 @@ interface NotificationProps {
   available: boolean;
   done: boolean;
   stayDurationError: boolean;
-  setDone: React.Dispatch<SetStateAction<boolean>>;
+  setSerchDone: React.Dispatch<SetStateAction<boolean>>;
   setNotificationDisappeared: React.Dispatch<SetStateAction<boolean>>;
   error: boolean;
 }

@@ -24,7 +24,7 @@ import { finalPriceCalc } from "@/reducers/price";
 
 interface BookingSearchBarProps {
   setAvailable: React.Dispatch<SetStateAction<boolean>>;
-  setDone: React.Dispatch<SetStateAction<boolean>>;
+  setSerchDone: React.Dispatch<SetStateAction<boolean>>;
   setNotificationDisappeared: React.Dispatch<SetStateAction<boolean>>;
   setStayDurationError: React.Dispatch<SetStateAction<boolean>>;
   setError: React.Dispatch<SetStateAction<boolean>>;
@@ -37,7 +37,7 @@ export default function BookingSearchBar({
   setAvailable,
   setNotificationDisappeared,
   setStayDurationError,
-  setDone,
+  setSerchDone,
   setError,
   setPrice,
 }: BookingSearchBarProps) {
@@ -108,7 +108,7 @@ export default function BookingSearchBar({
     const timer = setTimeout(() => {
       setSubmitting(false);
       setTrigger(false);
-      setDone(true);
+      setSerchDone(true);
       errorMessage && setError(true);
       if (success) setAvailable(true);
 
@@ -132,7 +132,7 @@ export default function BookingSearchBar({
     setNotificationDisappeared(false);
     setStayDurationError(false);
 
-    setDone(false);
+    setSerchDone(false);
     setSubmitting(true);
     setTrigger(true);
   };

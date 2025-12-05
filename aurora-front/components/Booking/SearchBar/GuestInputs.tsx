@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
-import GuestInput from "./GuestInput";
+import { GuestInput } from "@/components";
 
 interface GuestsState {
   adults: number;

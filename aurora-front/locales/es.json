@@ -256,5 +256,8 @@
   "period": "Período",
   "maxGuests": "Número máximo de huéspedes",
   "price": "Precio",
-  "minimumStayTitle": "Estancia mínima"
+  "minimumStayTitle": "Estancia mínima",
+  "showMore": "Ver más",
+  "showLess": "Ver menos",
+  "outOfSeason": "Fuera de temporada"
 }

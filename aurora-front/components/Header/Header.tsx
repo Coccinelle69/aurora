@@ -41,12 +41,12 @@ const Header = () => {
               </div>
             </li>
             <li className="block lg:hidden">
-              <Logo className="" fullscreen={fullScreenMenuOpen} />
+              <Logo fullscreen={fullScreenMenuOpen} />
             </li>
 
             {scrolled && (
               <li className="hidden lg:block">
-                <Logo size={200} className="" fullscreen={fullScreenMenuOpen} />
+                <Logo size={200} fullscreen={fullScreenMenuOpen} />
               </li>
             )}
 
@@ -54,7 +54,7 @@ const Header = () => {
               <button
                 className="-translate-y-[10px] sm:px-[25px]"
                 onClick={() => {
-                  setMenuBtnClosed(!menuBtnClosed);
+                  setMenuBtnClosed((prev) => !prev);
                   setFullScreenMenuOpen(true);
                 }}
               >

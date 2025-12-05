@@ -3,8 +3,13 @@
 import { MoonIcon, SunIcon } from "@/icons";
 import { useTranslation } from "react-i18next";
 import { useTime, useOpenMeteo } from "@/utils/hooks";
-import DirectionsButton from "../UI/DirectionsBtn";
-import { Copyrights, Socials, Email, Phone } from "../index";
+import {
+  Copyrights,
+  Socials,
+  Email,
+  Phone,
+  DirectionsButton,
+} from "@/components";
 
 export default function Footer() {
   const { t } = useTranslation();

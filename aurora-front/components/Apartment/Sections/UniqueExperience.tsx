@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { SlidesGallery } from "..";
-import * as outdoorsImages from "../../assets/outdoors";
+import { SlidesGallery } from "@/components";
+import * as outdoorsImages from "@/assets/outdoors";
 import { useTranslation } from "react-i18next";
 
 export default function UniqueExperience() {

@@ -1,3 +1,4 @@
+"use client";
 import {
   CheckoutCard,
   Description,
@@ -6,8 +7,22 @@ import {
   DetailsMap,
 } from "@/components";
 import * as houseImages from "@/assets/carousel";
+import { useRouter } from "next/navigation";
+import { useAppSelector } from "@/store/hooks";
+import { useLayoutEffect } from "react";
 const DetailsPage = () => {
   const slides = Object.values(houseImages);
+  const router = useRouter();
+
+  const { departure } = useAppSelector((state) => state.search);
+
+  useLayoutEffect(() => {
+    if (!departure) {
+      router.replace("/book");
+    }
+  }, [departure, router]);
+
+  if (!departure) return null;
 
   return (
     <div>

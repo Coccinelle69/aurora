@@ -3,6 +3,7 @@ import Image, { StaticImageData } from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
 import { EmblaOptionsType } from "embla-carousel";
 import { useEffect, useState, useCallback, memo } from "react";
+import { ThumbnailGallery } from "@/components";
 
 type Slide = StaticImageData | string;
 
@@ -107,23 +108,7 @@ function DetailsGallery({ slides, options }: PropType) {
       </div>
 
       {/* THUMBNAILS */}
-      <div className="hidden md:flex flex-col flex-[1] gap-4">
-        {slides.map((src, i) => (
-          <button
-            key={i}
-            className={`relative flex-1 w-full overflow-hidden transition-all duration-300 ${
-              i === 0 ? "rounded-tr-3xl" : ""
-            } ${i === slides.length - 1 ? "rounded-br-3xl" : ""}`}
-          >
-            <Image
-              src={src}
-              fill
-              alt={`Thumbnail ${i + 1}`}
-              className="object-cover"
-            />
-          </button>
-        ))}
-      </div>
+      <ThumbnailGallery />
     </div>
   );
 }

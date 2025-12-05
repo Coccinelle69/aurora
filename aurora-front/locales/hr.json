@@ -256,5 +256,8 @@
   "period": "Razdoblje",
   "maxGuests": "Maksimalan broj gostiju",
   "price": "Cijena",
-  "minimumStayTitle": "Minimalni boravak"
+  "minimumStayTitle": "Minimalni boravak",
+  "showMore": "Prikaži više",
+  "showLess": "Prikaži manje",
+  "outOfSeason": "Izvan sezone"
 }

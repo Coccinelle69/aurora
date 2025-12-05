@@ -256,5 +256,8 @@
   "period": "Période",
   "maxGuests": "Nombre maximal de personnes",
   "price": "Prix",
-  "minimumStayTitle": "Durée minimale"
+  "minimumStayTitle": "Durée minimale",
+  "showMore": "Voir plus",
+  "showLess": "Voir moins",
+  "outOfSeason": "Hors saison"
 }

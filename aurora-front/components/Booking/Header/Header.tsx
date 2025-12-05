@@ -1,6 +1,6 @@
 "use client";
 
-import { FacebookIcon, InstagramIcon } from "../../icons";
+import { FacebookIcon, InstagramIcon } from "@/icons";
 import {
   LogoAurora as Logo,
   CurrencyDropdown,

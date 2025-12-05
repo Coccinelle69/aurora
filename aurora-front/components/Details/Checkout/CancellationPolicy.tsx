@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-export const CancellationPolicy = () => {
+const CancellationPolicy = () => {
   const [open, setOpen] = useState(false);
   const { t } = useTranslation();
   return (
@@ -37,3 +37,5 @@ export const CancellationPolicy = () => {
     </div>
   );
 };
+
+export default CancellationPolicy;

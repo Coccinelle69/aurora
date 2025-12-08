@@ -261,5 +261,9 @@
   "minimumStayTitle": "Минимальное пребывание",
   "showMore": "Показать больше",
   "showLess": "Показать меньше",
-  "outOfSeason": "Не сезон"
+  "outOfSeason": "Не сезон",
+  "fillDetails": "Введите свои данные",
+  "guestInformation": "Информация о госте",
+  "specialRequestTitle": "Особое пожелание",
+  "specialRequestPlaceholder": "Добавьте особое пожелание"
 }

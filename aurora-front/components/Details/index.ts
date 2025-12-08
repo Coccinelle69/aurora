@@ -9,3 +9,4 @@ export { default as PropertyAmenities } from "./Description/PropertyAmenities";
 export { default as PropertyFeatures } from "./Description/PropertyFeatures";
 export { default as HouseRules } from "./Description/HouseRules";
 export { default as PriceBreakdown } from "./Checkout/PriceBreakdown";
+export { default as CheckoutForm } from "./Checkout/CheckoutForm";

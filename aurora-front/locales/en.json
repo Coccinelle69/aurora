@@ -259,5 +259,9 @@
   "minimumStayTitle": "Minimum Stay",
   "showMore": "Show more",
   "showLess": "Show less",
-  "outOfSeason": "Out of season"
+  "outOfSeason": "Out of season",
+  "fillDetails": "Fill in your details",
+  "guestInformation": "Guest information",
+  "specialRequestTitle": "Special request",
+  "specialRequestPlaceholder": "Add a special request"
 }

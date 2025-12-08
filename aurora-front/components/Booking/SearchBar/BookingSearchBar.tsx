@@ -21,8 +21,10 @@ import { useTranslation } from "react-i18next";
 import { formatDate } from "@/utils/format";
 import { useDispatch } from "react-redux";
 import { finalPriceCalc } from "@/reducers/price";
+import { searchUIPayload } from "@/components/Booking/SearchBooking";
 
 interface BookingSearchBarProps {
+  setSearchUI: React.Dispatch<SetStateAction<searchUIPayload>>;
   setAvailable: React.Dispatch<SetStateAction<boolean>>;
   setSerchDone: React.Dispatch<SetStateAction<boolean>>;
   setNotificationDisappeared: React.Dispatch<SetStateAction<boolean>>;
@@ -40,6 +42,7 @@ export default function BookingSearchBar({
   setSerchDone,
   setError,
   setPrice,
+  setSearchUI,
 }: BookingSearchBarProps) {
   const dispatch = useDispatch();
   const {
@@ -90,7 +93,8 @@ export default function BookingSearchBar({
   }, []);
 
   const url = useMemo(
-    () => `/api/reservation?arrival=${startDate}&departure=${endDate}`,
+    () =>
+      `/api/reservation/availability?arrival=${startDate}&departure=${endDate}`,
     [startDate, endDate]
   );
 
@@ -110,6 +114,7 @@ export default function BookingSearchBar({
       setTrigger(false);
       setSerchDone(true);
       errorMessage && setError(true);
+      priceData!.error === "hors-season" && setError(true);
       if (success) setAvailable(true);
 
       if (nights < 7) setStayDurationError(true);

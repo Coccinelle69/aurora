@@ -259,5 +259,9 @@
   "minimumStayTitle": "Estancia mínima",
   "showMore": "Ver más",
   "showLess": "Ver menos",
-  "outOfSeason": "Fuera de temporada"
+  "outOfSeason": "Fuera de temporada",
+  "fillDetails": "Introduce tus datos",
+  "guestInformation": "Información del huésped",
+  "specialRequestTitle": "Petición especial",
+  "specialRequestPlaceholder": "Añade una petición especial"
 }

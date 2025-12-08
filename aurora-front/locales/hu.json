@@ -260,5 +260,9 @@
   "minimumStayTitle": "Minimális tartózkodás",
   "showMore": "Mutass többet",
   "showLess": "Mutass kevesebbet",
-  "outOfSeason": "Szezonon kívül"
+  "outOfSeason": "Szezonon kívül",
+  "fillDetails": "Adja meg adatait",
+  "guestInformation": "Vendéginformációk",
+  "specialRequestTitle": "Különleges kérés",
+  "specialRequestPlaceholder": "Adjon hozzá egy különleges kérést"
 }

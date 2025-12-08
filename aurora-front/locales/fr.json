@@ -259,5 +259,9 @@
   "minimumStayTitle": "Durée minimale",
   "showMore": "Voir plus",
   "showLess": "Voir moins",
-  "outOfSeason": "Hors saison"
+  "outOfSeason": "Hors saison",
+  "fillDetails": "Renseignez vos informations",
+  "guestInformation": "Informations du client",
+  "specialRequestTitle": "Demande spéciale",
+  "specialRequestPlaceholder": "Ajoutez une demande spéciale"
 }

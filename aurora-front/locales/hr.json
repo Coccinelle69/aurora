@@ -259,5 +259,9 @@
   "minimumStayTitle": "Minimalni boravak",
   "showMore": "Prikaži više",
   "showLess": "Prikaži manje",
-  "outOfSeason": "Izvan sezone"
+  "outOfSeason": "Izvan sezone",
+  "fillDetails": "Unesite svoje podatke",
+  "guestInformation": "Podaci o gostu",
+  "specialRequestTitle": "Poseban zahtjev",
+  "specialRequestPlaceholder": "Dodajte poseban zahtjev"
 }

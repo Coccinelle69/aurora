@@ -259,5 +259,9 @@
   "minimumStayTitle": "Soggiorno minimo",
   "showMore": "Mostra di più",
   "showLess": "Mostra di meno",
-  "outOfSeason": "Fuori stagione"
+  "outOfSeason": "Fuori stagione",
+  "fillDetails": "Inserisci i tuoi dati",
+  "guestInformation": "Informazioni dell'ospite",
+  "specialRequestTitle": "Richiesta speciale",
+  "specialRequestPlaceholder": "Aggiungi una richiesta speciale"
 }

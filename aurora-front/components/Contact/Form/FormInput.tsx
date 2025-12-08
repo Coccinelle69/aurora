@@ -11,6 +11,7 @@ interface FormInputProps {
   placeholder: string;
   children: React.ReactNode;
   input?: boolean;
+  checkout?: boolean;
 }
 
 const FormInput = ({
@@ -19,6 +20,7 @@ const FormInput = ({
   placeholder,
   input = true,
   children,
+  checkout,
 }: FormInputProps) => {
   const dispatch = useDispatch();
   const { firstName, lastName, phone, email, message } = useAppSelector(
@@ -56,7 +58,11 @@ const FormInput = ({
   };
 
   const inputStyle = `
-    peer w-full bg-transparent px-3 py-3 rounded-md outline-none
+    peer w-full ${
+      checkout
+        ? "bg-white px-2 py-2 placeholder:text-[0.75rem] placeholder:sm:text-sm"
+        : "bg-transparent"
+    } px-3 py-3  rounded-md outline-none
     border-2 border-transparent placeholder:text-gray-400 text-marineBlue
   `;
 
@@ -79,7 +85,9 @@ const FormInput = ({
           id={id}
           name={name}
           placeholder={placeholder}
-          className={`${inputStyle} min-h-[160px] resize-none`}
+          className={`${inputStyle} ${
+            checkout && "h-[120px]"
+          } min-h-[160px] resize-none`}
           value={contactState[name]}
           onChange={(e) =>
             dispatch(persistField({ key: name, value: e.target.value }))
@@ -93,19 +101,29 @@ const FormInput = ({
         htmlFor={id}
         className="absolute -top-2 left-3 z-20 text-xs font-bold uppercase tracking-widest text-slate-700 font-body"
       >
-        <span className="px-1 bg-white lg:bg-[#D3DAE0]">{children}</span>
+        <span
+          className={`px-1 ${
+            checkout ? "bg-white" : "bg-white lg:bg-[#D3DAE0]"
+          } `}
+        >
+          {children}
+        </span>
       </label>
 
       {/* local fade error */}
-      {error && error.message && (
-        <p
-          className={`text-sm font-semibold text-red-600 mt-1 transition-all duration-500 ${
-            fade ? "opacity-0 translate-y-1" : "opacity-100 translate-y-0"
-          }`}
-        >
-          {error.message}
-        </p>
-      )}
+      <div className={`px-1 ${checkout ? "h-4 mb-2" : "h-3 mb-2"} `}>
+        {error.message && (
+          <p
+            className={`text-sm font-semibold text-red-600 transition-all duration-500 ${
+              checkout && "text-[0.75rem]"
+            } ${
+              fade ? "opacity-0 translate-y-1" : "opacity-100 translate-y-0"
+            }`}
+          >
+            {error.message}
+          </p>
+        )}
+      </div>
 
       {/* animated full border */}
       <span

@@ -1,5 +1,3 @@
-// priceList.ts
-
 export interface PriceResult {
   totalNights: number;
   price: number | null;

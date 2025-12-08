@@ -3,6 +3,18 @@
 import { BookingCard, BookingSearchBar, Notification } from "@/components";
 import { useState, memo } from "react";
 
+export interface searchUIPayload {
+  available: boolean;
+  searchDone: boolean;
+  error: boolean;
+  notificationDisappeared: boolean;
+  stayDurationError: boolean;
+  price: {
+    price: null | string | number;
+    sign: string;
+  };
+}
+
 function SearchBooking() {
   const [available, setAvailable] = useState(false);
   const [searchDone, setSerchDone] = useState(false);
@@ -17,6 +29,18 @@ function SearchBooking() {
     sign: "",
   });
 
+  const [searchUI, setSearchUI] = useState<searchUIPayload>({
+    available: false,
+    searchDone: false,
+    error: false,
+    notificationDisappeared: false,
+    stayDurationError: false,
+    price: {
+      price: null,
+      sign: "",
+    },
+  });
+
   return (
     <div>
       <BookingSearchBar
@@ -26,6 +50,7 @@ function SearchBooking() {
         setNotificationDisappeared={setNotificationDisappeared}
         setStayDurationError={setStayDurationError}
         setPrice={setPrice}
+        setSearchUI={setSearchUI}
       />
 
       {searchDone && (
@@ -36,10 +61,12 @@ function SearchBooking() {
           setSerchDone={setSerchDone}
           stayDurationError={stayDurationError}
           setNotificationDisappeared={setNotificationDisappeared}
+          setSearchUI={setSearchUI}
+          searchUI={searchUI}
         />
       )}
 
-      {notificationDisappeared && available && !stayDurationError && (
+      {notificationDisappeared && available && !stayDurationError && !error && (
         <BookingCard finalPrice={price} />
       )}
     </div>

@@ -2,8 +2,11 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { SetStateAction, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { searchUIPayload } from "@/components/Booking/SearchBooking";
 
 interface NotificationProps {
+  setSearchUI: React.Dispatch<SetStateAction<searchUIPayload>>;
+  searchUI: searchUIPayload;
   available: boolean;
   done: boolean;
   stayDurationError: boolean;
@@ -65,7 +68,7 @@ export default function Notification({
         transition={{ duration: 0.45, ease: "easeInOut", delay: 2 }}
       >
         {stayDurationError && t("minimumStay")}
-        {available && !stayDurationError && t("available")}
+        {available && !stayDurationError && !error && t("available")}
         {!available && !stayDurationError && t("notAvailable")}
         {error && !stayDurationError && t("something-went-wrong")}
       </motion.div>

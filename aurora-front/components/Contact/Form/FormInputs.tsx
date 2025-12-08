@@ -3,37 +3,60 @@
 import { useTranslation } from "react-i18next";
 import { FormInput } from "@/components";
 
-const FormInputs = () => {
+interface FormInputsProps {
+  checkout?: boolean;
+}
+
+const FormInputs = ({ checkout }: FormInputsProps) => {
   const { t } = useTranslation();
   return (
-    <div className="">
-      <FormInput
-        id="firstName"
-        name="firstName"
-        placeholder={t("firstNamePlaceholder")}
-      >
-        {t("firstName")}
-      </FormInput>
-      <FormInput
-        id="lastName"
-        name="lastName"
-        placeholder={t("lastNamePlaceholder")}
-      >
-        {t("lastName")}
-      </FormInput>
-      <FormInput id="phone" name="phone" placeholder={t("phonePlaceholder")}>
-        {t("phone")}
-      </FormInput>
-      <FormInput id="email" name="email" placeholder={t("emailPlaceholder")}>
-        {t("email")}
-      </FormInput>
+    <div>
+      <div className={`${checkout ? "flex flex-row" : ""} `}>
+        <FormInput
+          id="firstName"
+          name="firstName"
+          placeholder={t("firstNamePlaceholder")}
+          checkout={checkout}
+        >
+          {t("firstName")}
+        </FormInput>
+        <FormInput
+          id="lastName"
+          name="lastName"
+          placeholder={t("lastNamePlaceholder")}
+          checkout={checkout}
+        >
+          {t("lastName")}
+        </FormInput>
+      </div>
+      <div className={`${checkout ? "flex flex-row" : ""} `}>
+        <FormInput
+          id="phone"
+          name="phone"
+          placeholder={t("phonePlaceholder")}
+          checkout={checkout}
+        >
+          {t("phone")}
+        </FormInput>
+        <FormInput
+          id="email"
+          name="email"
+          placeholder={t("emailPlaceholder")}
+          checkout={checkout}
+        >
+          {t("email")}
+        </FormInput>
+      </div>
       <FormInput
         id="message"
         name="message"
-        placeholder={t("messagePlaceholder")}
+        placeholder={
+          checkout ? t("specialRequestTitle") : t("messagePlaceholder")
+        }
         input={false}
+        checkout={checkout}
       >
-        {t("message")}
+        {checkout ? t("specialRequestPlaceholder") : t("message")}
       </FormInput>
     </div>
   );

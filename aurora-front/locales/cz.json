@@ -260,5 +260,9 @@
   "minimumStayTitle": "Minimální pobyt",
   "showMore": "Zobrazit více",
   "showLess": "Zobrazit méně",
-  "outOfSeason": "Mimo sezónu"
+  "outOfSeason": "Mimo sezónu",
+  "fillDetails": "Vyplňte své údaje",
+  "guestInformation": "Informace o hostovi",
+  "specialRequestTitle": "Zvláštní požadavek",
+  "specialRequestPlaceholder": "Přidejte zvláštní požadavek"
 }

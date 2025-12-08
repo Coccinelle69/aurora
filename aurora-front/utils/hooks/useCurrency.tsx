@@ -19,6 +19,7 @@ interface ConvertedPriceData {
   toDates?: Date[];
   fromNights?: number;
   toNights?: number;
+  error?: string;
 }
 
 const useCurrency = ({ from, to }: useCurrencyProps) => {

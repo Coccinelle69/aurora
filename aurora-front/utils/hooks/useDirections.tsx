@@ -2,7 +2,7 @@ import { useCallback } from "react";
 
 export default function useDirections() {
   const lat = Number(process.env.NEXT_PUBLIC_LAT);
-  const lon = Number(process.env.NEXT_PUBLIC_LON);
+  const lon = Number(process.env.NEXT_PUBLIC_LNG);
 
   const encodedDestination = `${lat},${lon}`;
   const fallbackUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodedDestination}`;

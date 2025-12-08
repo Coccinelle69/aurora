@@ -1,6 +1,7 @@
 "use client";
 import {
   CheckoutCard,
+  CheckoutForm,
   Description,
   DetailsFooter,
   DetailsGallery,
@@ -9,10 +10,15 @@ import {
 import * as houseImages from "@/assets/carousel";
 import { useRouter } from "next/navigation";
 import { useAppSelector } from "@/store/hooks";
-import { useLayoutEffect } from "react";
+import { useLayoutEffect, useState } from "react";
 const DetailsPage = () => {
   const slides = Object.values(houseImages);
   const router = useRouter();
+  const [checkoutUI, setCheckoutUI] = useState({
+    checkoutCardRemove: false,
+    checkoutFormRemove: true,
+    changeUI: false,
+  });
 
   const { departure } = useAppSelector((state) => state.search);
 
@@ -24,13 +30,28 @@ const DetailsPage = () => {
 
   if (!departure) return null;
 
+  console.log(checkoutUI);
+
   return (
     <div>
       <div className="bg-[#dce4eb] w-[96%] mx-auto pb-[0.75rem]">
         <DetailsGallery slides={slides} />
-        <div className="mt-0 sm:mt-[1.5rem] mx-[1rem] sm:mx-[3rem] sm:mx-[5rem] flex flex-col sm:flex-row gap-[5rem] items-start">
+        <div className="mt-0 sm:mt-[1.5rem] mx-[1rem] sm:mx-[3rem] sm:mx-[5rem] flex flex-col sm:flex-row gap-[10rem] items-start">
           <Description />
-          <CheckoutCard />
+
+          {!checkoutUI.checkoutCardRemove && (
+            <CheckoutCard
+              checkoutUI={checkoutUI}
+              setCheckoutUI={setCheckoutUI}
+            />
+          )}
+
+          {!checkoutUI.checkoutFormRemove && (
+            <CheckoutForm
+              checkoutUI={checkoutUI}
+              setCheckoutUI={setCheckoutUI}
+            />
+          )}
         </div>
         <DetailsMap
           lat={Number(process.env.NEXT_PUBLIC_LAT)}

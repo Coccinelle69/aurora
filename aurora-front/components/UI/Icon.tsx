@@ -1,12 +1,5 @@
+import { IconProps } from "@/utils/interfaces";
 import Image from "next/image";
-
-interface IconProps {
-  src: string;
-  alt: string;
-  size?: number;
-  color?: string;
-  className?: string;
-}
 
 export const Icon = ({ src, alt, size = 50, color = "white" }: IconProps) => (
   <>

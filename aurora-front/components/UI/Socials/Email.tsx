@@ -3,11 +3,7 @@
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 
-interface EmailProps {
-  className?: string;
-}
-
-const Email = ({ className }: EmailProps) => {
+const Email = ({ className }: { className?: string }) => {
   const { t } = useTranslation();
 
   return (

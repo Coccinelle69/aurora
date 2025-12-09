@@ -264,5 +264,7 @@
   "fillDetails": "Vyplňte své údaje",
   "guestInformation": "Informace o hostovi",
   "specialRequestTitle": "Zvláštní požadavek",
-  "specialRequestPlaceholder": "Přidejte zvláštní požadavek"
+  "specialRequestPlaceholder": "Přidejte zvláštní požadavek",
+  "outOfSeasonMessage": "Vybrané termíny jsou mimo sezónu. Pro upravený ceník prosím kontaktujte majitele.",
+  "emptyField": "Prosím vyplňte toto pole"
 }

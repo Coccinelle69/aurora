@@ -3,11 +3,8 @@
 import { FacebookIcon, InstagramIcon } from "@/icons";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
-interface SocialsProps {
-  className?: string;
-}
 
-const Socials = ({ className }: SocialsProps) => {
+const Socials = ({ className }: { className?: string }) => {
   const { t } = useTranslation();
   return (
     <div>

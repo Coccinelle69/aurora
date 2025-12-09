@@ -6,25 +6,15 @@ import { useCurrency } from "@/utils/hooks";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
 import { PriceBreakdown, CancellationPolicy } from "@/components";
-import { SetStateAction, useEffect } from "react";
+import { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { CheckoutProps } from "@/utils/interfaces";
 
-interface CheckoutCardProps {
-  setCheckoutUI: React.Dispatch<
-    SetStateAction<{
-      checkoutCardRemove: boolean;
-      checkoutFormRemove: boolean;
-      changeUI: boolean;
-    }>
-  >;
-  checkoutUI: {
-    checkoutCardRemove: boolean;
-    checkoutFormRemove: boolean;
-    changeUI: boolean;
-  };
-}
-
-const CheckoutCard = ({ setCheckoutUI, checkoutUI }: CheckoutCardProps) => {
+const CheckoutCard = ({
+  setCheckoutUI,
+  checkoutUI,
+  internalNavigationRef,
+}: CheckoutProps) => {
   const { t } = useTranslation();
 
   const {
@@ -37,7 +27,7 @@ const CheckoutCard = ({ setCheckoutUI, checkoutUI }: CheckoutCardProps) => {
   const { priceData, sign } = useCurrency({ from, to });
   const { value } = useAppSelector((state) => state.currency);
 
-  const { arrival, departure, nights } = formatDate({
+  const { arrival, departure } = formatDate({
     from,
     to,
     locale: i18next.language,
@@ -48,7 +38,11 @@ const CheckoutCard = ({ setCheckoutUI, checkoutUI }: CheckoutCardProps) => {
 
   const formattedPrice = formatPriceUniversal(price, i18next.language);
 
+  const nights = priceData?.totalNights;
+
   const goToCheckoutForm = () => {
+    internalNavigationRef!.current = true;
+
     window.history.pushState({}, "", "/book/details/checkout");
 
     setCheckoutUI((prev) => {

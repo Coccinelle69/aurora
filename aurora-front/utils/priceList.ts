@@ -27,6 +27,8 @@ export const priceList = (fromDate: Date, toDate: Date): PriceResult => {
 
   const d = (mmdd: string) => new Date(`${year}-${mmdd}`);
 
+  console.log("PRICE LLIST " + fromDate, toDate);
+
   // MAY
   if (fromDate >= d("05-15") && toDate <= d("05-31")) {
     nights = toDate.getDate() - fromDate.getDate();
@@ -43,16 +45,26 @@ export const priceList = (fromDate: Date, toDate: Date): PriceResult => {
 
   // JULY-AUGUST
   if (fromDate >= d("07-01") && toDate <= d("08-31")) {
-    const endJuly = d("07-31");
-    const daysJuly = endJuly.getDate() - fromDate.getDate() + 1;
+    const julyStart = fromDate < d("07-01") ? d("07-01") : fromDate;
+    const julyEnd = toDate > d("07-31") ? d("07-31") : toDate;
 
-    const beginAugust = d("08-01");
-    const daysAugust = toDate.getDate() - beginAugust.getDate();
+    const augustStart = fromDate > d("08-01") ? fromDate : d("08-01");
+    const augustEnd = toDate;
 
-    nights = daysJuly + daysAugust;
-    total = nights * 120;
+    const julyNights = Math.max(
+      0,
+      Math.ceil((julyEnd.getTime() - julyStart.getTime()) / 86400000)
+    );
 
-    return { totalNights: nights, price: 120, total };
+    const augustNights = Math.max(
+      0,
+      Math.ceil((augustEnd.getTime() - augustStart.getTime()) / 86400000)
+    );
+
+    const totalNights = julyNights + augustNights;
+    const total = totalNights * 120;
+
+    return { totalNights, price: 120, total };
   }
 
   // SEPTEMBER

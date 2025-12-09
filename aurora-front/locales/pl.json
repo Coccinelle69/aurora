@@ -264,5 +264,7 @@
   "fillDetails": "Wprowadź swoje dane",
   "guestInformation": "Informacje o gościu",
   "specialRequestTitle": "Specjalne życzenie",
-  "specialRequestPlaceholder": "Dodaj specjalne życzenie"
+  "specialRequestPlaceholder": "Dodaj specjalne życzenie",
+  "outOfSeasonMessage": "Wybrane terminy są poza sezonem. Proszę skontaktować się z właścicielem w celu uzyskania dostosowanego cennika.",
+  "emptyField": "Proszę wypełnić to pole"
 }

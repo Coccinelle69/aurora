@@ -264,5 +264,7 @@
   "fillDetails": "Adja meg adatait",
   "guestInformation": "Vendéginformációk",
   "specialRequestTitle": "Különleges kérés",
-  "specialRequestPlaceholder": "Adjon hozzá egy különleges kérést"
+  "specialRequestPlaceholder": "Adjon hozzá egy különleges kérést",
+  "outOfSeasonMessage": "A kiválasztott dátumok szezonon kívül esnek. Kérjük, lépjen kapcsolatba a tulajdonossal a módosított árlista miatt.",
+  "emptyField": "Kérjük, töltse ki ezt a mezőt"
 }

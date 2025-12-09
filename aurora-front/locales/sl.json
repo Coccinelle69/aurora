@@ -263,5 +263,7 @@
   "fillDetails": "Vnesite svoje podatke",
   "guestInformation": "Podatki o gostu",
   "specialRequestTitle": "Posebna želja",
-  "specialRequestPlaceholder": "Dodajte posebno željo"
+  "specialRequestPlaceholder": "Dodajte posebno željo",
+  "outOfSeasonMessage": "Izbrani datumi so izven sezone. Za prilagojen cenik prosimo, da kontaktirate lastnika.",
+  "emptyField": "Prosimo, izpolnite to polje"
 }

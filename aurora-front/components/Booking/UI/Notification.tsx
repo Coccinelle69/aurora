@@ -1,45 +1,46 @@
 "use client";
+import { searchUIProps } from "@/utils/interfaces";
 import { motion, AnimatePresence } from "framer-motion";
-import { SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { searchUIPayload } from "@/components/Booking/SearchBooking";
 
-interface NotificationProps {
-  setSearchUI: React.Dispatch<SetStateAction<searchUIPayload>>;
-  searchUI: searchUIPayload;
-  available: boolean;
-  done: boolean;
-  stayDurationError: boolean;
-  setSerchDone: React.Dispatch<SetStateAction<boolean>>;
-  setNotificationDisappeared: React.Dispatch<SetStateAction<boolean>>;
-  error: boolean;
-}
-
-export default function Notification({
-  available,
-  done,
-  error,
-  stayDurationError,
-  setNotificationDisappeared,
-}: NotificationProps) {
-  const [show, setShow] = useState(available);
+export default function Notification({ searchUI, setSearchUI }: searchUIProps) {
+  const [show, setShow] = useState(searchUI.available);
   const { t } = useTranslation();
 
+  const getMessage = () => {
+    if (searchUI.stayDurationError) return t("minimumStay");
+
+    if (searchUI.available && !searchUI.stayDurationError && !searchUI.error)
+      return t("available");
+    if (
+      !searchUI.available &&
+      !searchUI.outOfSeason &&
+      !searchUI.stayDurationError
+    )
+      return t("notAvailable");
+    if (searchUI.error && !searchUI.stayDurationError)
+      return t("something-went-wrong");
+    if (searchUI.outOfSeason && !searchUI.available)
+      return t("outOfSeasonMessage");
+  };
   useEffect(() => {
-    if (done) {
+    if (searchUI.searchDone) {
       Promise.resolve().then(() => setShow(true));
       const hideNotificationTimer = setTimeout(() => {
         setShow(false);
       }, 4000);
       const showBokingCardTimer = setTimeout(() => {
-        setNotificationDisappeared(true);
+        setSearchUI((prev) => {
+          return { ...prev, notificationDisappeared: true };
+        });
       }, 6000);
       return () => {
         clearTimeout(hideNotificationTimer);
         clearTimeout(showBokingCardTimer);
       };
     }
-  }, [done]);
+  }, [searchUI.searchDone]);
   const content = (
     <motion.div
       initial={{ y: -15, opacity: 0 }}
@@ -67,10 +68,23 @@ export default function Notification({
         animate={{ x: [0, -6, 6, -4, 4, 0] }}
         transition={{ duration: 0.45, ease: "easeInOut", delay: 2 }}
       >
-        {stayDurationError && t("minimumStay")}
-        {available && !stayDurationError && !error && t("available")}
-        {!available && !stayDurationError && t("notAvailable")}
-        {error && !stayDurationError && t("something-went-wrong")}
+        {/* {getMessage()} */}
+        {searchUI.stayDurationError &&
+          !searchUI.outOfSeason &&
+          t("minimumStay")}
+        {searchUI.available &&
+          !searchUI.stayDurationError &&
+          !searchUI.error &&
+          !searchUI.outOfSeason &&
+          t("available")}
+        {!searchUI.available &&
+          !searchUI.outOfSeason &&
+          !searchUI.stayDurationError &&
+          t("notAvailable")}
+        {searchUI.error &&
+          !searchUI.stayDurationError &&
+          t("something-went-wrong")}
+        {searchUI.outOfSeason && t("outOfSeasonMessage")}
       </motion.div>
     </motion.div>
   );

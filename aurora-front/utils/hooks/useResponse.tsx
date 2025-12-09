@@ -15,8 +15,8 @@ interface UseResponseOptions {
   body?: jsonBodyProps | null;
   trigger: boolean;
 }
-
-const useResponse = ({
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const useResponse = <T = any,>({
   method = "GET",
   url,
   body = null,
@@ -24,7 +24,7 @@ const useResponse = ({
 }: UseResponseOptions) => {
   const [done, setDone] = useState(false);
   const [success, setSuccess] = useState<boolean | null>(null);
-  const [data, setData] = useState<unknown>(null);
+  const [data, setData] = useState<T | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {

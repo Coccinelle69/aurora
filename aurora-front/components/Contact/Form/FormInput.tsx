@@ -1,18 +1,10 @@
 "use client";
-import { persistField } from "@/reducers/contact";
+import { ContactState, persistField } from "@/reducers/contact";
 import { useAppSelector } from "@/store/hooks";
 import { useDispatch } from "react-redux";
-import { ContactState } from "@/reducers/contact";
 import { useState } from "react";
-
-interface FormInputProps {
-  id: string;
-  name: keyof ContactState;
-  placeholder: string;
-  children: React.ReactNode;
-  input?: boolean;
-  checkout?: boolean;
-}
+import { FormInputProps } from "@/utils/interfaces";
+import { useTranslation } from "react-i18next";
 
 const FormInput = ({
   id,
@@ -38,10 +30,11 @@ const FormInput = ({
   // fade animated per–input error
   const [error, setError] = useState({ message: "" });
   const [fade, setFade] = useState(false);
+  const { t } = useTranslation();
 
   const triggerLocalError = () => {
-    // parent error just for global message (if you need)
-    setError({ message: "Please fill in this field" });
+    // parent error just for global message
+    setError({ message: t("emptyField") });
 
     setFade(false);
 

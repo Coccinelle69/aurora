@@ -1,28 +1,15 @@
 "use client";
 
-import { FormEvent, useState, useEffect, SetStateAction } from "react";
+import { FormEvent, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useResponse } from "@/utils/hooks";
 import { useDispatch } from "react-redux";
 import { resetField } from "@/reducers/contact";
 import { FormInputs, LoadingSpinner } from "@/components";
 import { AnimatePresence, motion } from "framer-motion";
-interface CheckoutFormProps {
-  setCheckoutUI: React.Dispatch<
-    SetStateAction<{
-      checkoutCardRemove: boolean;
-      checkoutFormRemove: boolean;
-      changeUI: boolean;
-    }>
-  >;
-  checkoutUI: {
-    checkoutCardRemove: boolean;
-    checkoutFormRemove: boolean;
-    changeUI: boolean;
-  };
-}
+import { CheckoutProps } from "@/utils/interfaces";
 
-const CheckoutForm = ({ setCheckoutUI, checkoutUI }: CheckoutFormProps) => {
+const CheckoutForm = ({ setCheckoutUI, checkoutUI }: CheckoutProps) => {
   const [submitting, setSubmitting] = useState(false);
   const [sent, setSent] = useState(false);
   const [fade, setFade] = useState(false);

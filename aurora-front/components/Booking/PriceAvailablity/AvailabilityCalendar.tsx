@@ -9,10 +9,6 @@ type Range = { start: string; end: string };
 const monthsAhead = 24;
 const weekdayFormat = "short";
 
-interface CalendarProps {
-  unavailable: Range[];
-}
-
 function eachDay(start: Date, end: Date): string[] {
   const arr: string[] = [];
   const d = new Date(start);
@@ -23,7 +19,11 @@ function eachDay(start: Date, end: Date): string[] {
   return arr;
 }
 
-export default function AvailabilityCalendar({ unavailable }: CalendarProps) {
+export default function AvailabilityCalendar({
+  unavailable,
+}: {
+  unavailable: Range[];
+}) {
   const today = new Date();
 
   const [page, setPage] = useState(0); // each page = 4 months

@@ -3,14 +3,7 @@
 
 import { useEffect, useRef } from "react";
 import Script from "next/script";
-
-type Props = {
-  lat: number;
-  lng: number;
-  zoom?: number;
-  title?: string;
-  className?: string;
-};
+import { MapProps } from "@/utils/interfaces";
 
 export default function MapWithMarker({
   lat,
@@ -18,7 +11,7 @@ export default function MapWithMarker({
   zoom = 14,
   title = "Location",
   className,
-}: Props) {
+}: MapProps) {
   const elRef = useRef<HTMLDivElement | null>(null);
   const inited = useRef(false);
 

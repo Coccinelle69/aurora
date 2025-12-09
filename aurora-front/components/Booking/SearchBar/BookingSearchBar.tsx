@@ -1,19 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 "use client";
 
+import { useState, useRef, useEffect, FormEvent, useMemo } from "react";
 import {
-  useState,
-  useRef,
-  useEffect,
-  FormEvent,
-  SetStateAction,
-  useMemo,
-} from "react";
-import {
-  DateInput,
   GuestInputs,
   MagnifyingGlass,
   PriceAvailabilityActions,
+  DateInputs,
 } from "@/components";
 import { useAppSelector } from "@/store/hooks";
 import { useCurrency, useResponse } from "@/utils/hooks";
@@ -21,29 +14,12 @@ import { useTranslation } from "react-i18next";
 import { formatDate } from "@/utils/format";
 import { useDispatch } from "react-redux";
 import { finalPriceCalc } from "@/reducers/price";
-import { searchUIPayload } from "@/components/Booking/SearchBooking";
-
-interface BookingSearchBarProps {
-  setSearchUI: React.Dispatch<SetStateAction<searchUIPayload>>;
-  setAvailable: React.Dispatch<SetStateAction<boolean>>;
-  setSerchDone: React.Dispatch<SetStateAction<boolean>>;
-  setNotificationDisappeared: React.Dispatch<SetStateAction<boolean>>;
-  setStayDurationError: React.Dispatch<SetStateAction<boolean>>;
-  setError: React.Dispatch<SetStateAction<boolean>>;
-  setPrice: React.Dispatch<
-    SetStateAction<{ price: null | number | string; sign: string }>
-  >;
-}
+import { searchUI, searchUIProps } from "@/utils/interfaces";
 
 export default function BookingSearchBar({
-  setAvailable,
-  setNotificationDisappeared,
-  setStayDurationError,
-  setSerchDone,
-  setError,
-  setPrice,
   setSearchUI,
-}: BookingSearchBarProps) {
+  searchUI,
+}: searchUIProps) {
   const dispatch = useDispatch();
   const {
     adults: adultNo,
@@ -53,12 +29,15 @@ export default function BookingSearchBar({
     departure,
   } = useAppSelector((state) => state.search);
   const { value } = useAppSelector((state) => state.currency);
-  const { priceData, sign } = useCurrency({
-    from: arrival,
-    to: departure,
-  });
   const [startDate, setStartDate] = useState(arrival);
   const [endDate, setEndDate] = useState(departure);
+  const { priceData, sign } = useCurrency({
+    from: startDate,
+    to: endDate,
+  });
+
+  console.log(arrival, departure);
+
   const [trigger, setTrigger] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const { t } = useTranslation();
@@ -73,7 +52,6 @@ export default function BookingSearchBar({
   const ref = useRef<HTMLDivElement>(null);
 
   const totalGuests = +adultNo + +childrenNo + +teenNo;
-  console.log(priceData);
 
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
@@ -98,7 +76,7 @@ export default function BookingSearchBar({
     [startDate, endDate]
   );
 
-  const { success, done, errorMessage } = useResponse({
+  const { done, errorMessage, data, success } = useResponse({
     url,
     method: "GET",
     trigger,
@@ -106,18 +84,26 @@ export default function BookingSearchBar({
 
   const { nights } = formatDate({ from: startDate, to: endDate });
 
+  const updateSearchUI = (patch: Partial<searchUI>) => {
+    setSearchUI((prev) => ({ ...prev, ...patch }));
+  };
+
+  console.log(priceData);
+
   useEffect(() => {
     if (!done) return;
 
     const timer = setTimeout(() => {
       setSubmitting(false);
       setTrigger(false);
-      setSerchDone(true);
-      errorMessage && setError(true);
-      priceData!.error === "hors-season" && setError(true);
-      if (success) setAvailable(true);
+      updateSearchUI({ searchDone: true });
+      errorMessage && updateSearchUI({ error: true });
+      if (data.available && priceData!.error !== "hors-season")
+        updateSearchUI({ available: true });
 
-      if (nights < 7) setStayDurationError(true);
+      if (nights < 7) updateSearchUI({ stayDurationError: true });
+      priceData!.error === "hors-season" &&
+        updateSearchUI({ outOfSeason: true });
     }, 4000);
 
     return () => clearTimeout(timer);
@@ -127,17 +113,21 @@ export default function BookingSearchBar({
 
   useEffect(() => {
     if (price !== null) {
-      setPrice((prev) => ({ ...prev, price, sign }));
+      updateSearchUI({ price, sign });
       dispatch(finalPriceCalc({ amount: price, sign, nights }));
     }
   }, [value, price]);
 
+  console.log(searchUI);
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setNotificationDisappeared(false);
-    setStayDurationError(false);
+    updateSearchUI({
+      notificationDisappeared: false,
+      stayDurationError: false,
+      searchDone: false,
+      outOfSeason: false,
+    });
 
-    setSerchDone(false);
     setSubmitting(true);
     setTrigger(true);
   };
@@ -150,21 +140,13 @@ export default function BookingSearchBar({
         }}
         className="relative w-full max-w-5xl mx-auto top-20 bg-white/20 p-5 rounded-2xl shadow-md flex flex-wrap items-center gap-4"
       >
-        <div className="input">
-          <DateInput
-            dateType="arrival"
-            setDate={setStartDate}
-            setAvailable={setAvailable}
-          />
-        </div>
-
-        <div className="input">
-          <DateInput
-            dateType="departure"
-            setDate={setEndDate}
-            setAvailable={setAvailable}
-          />
-        </div>
+        <DateInputs
+          setAvailable={(val: boolean) => updateSearchUI({ available: val })}
+          setDates={{
+            setStartDate,
+            setEndDate,
+          }}
+        />
 
         <div className="relative input" ref={ref}>
           <button

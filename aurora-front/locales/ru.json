@@ -265,5 +265,7 @@
   "fillDetails": "Введите свои данные",
   "guestInformation": "Информация о госте",
   "specialRequestTitle": "Особое пожелание",
-  "specialRequestPlaceholder": "Добавьте особое пожелание"
+  "specialRequestPlaceholder": "Добавьте особое пожелание",
+  "outOfSeasonMessage": "Выбранные даты находятся вне сезона. Пожалуйста, свяжитесь с владельцем для получения обновленного прайс-листа.",
+  "emptyField": "Пожалуйста, заполните это поле"
 }

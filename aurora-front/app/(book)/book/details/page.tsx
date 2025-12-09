@@ -8,10 +8,11 @@ import {
   DetailsMap,
 } from "@/components";
 import * as houseImages from "@/assets/carousel";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useAppSelector } from "@/store/hooks";
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 const DetailsPage = () => {
+  const internalNavigationRef = useRef(false);
   const slides = Object.values(houseImages);
   const router = useRouter();
   const [checkoutUI, setCheckoutUI] = useState({
@@ -22,15 +23,24 @@ const DetailsPage = () => {
 
   const { departure } = useAppSelector((state) => state.search);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!departure) {
       router.replace("/book");
     }
   }, [departure, router]);
 
-  if (!departure) return null;
+  const pathname = usePathname();
 
-  console.log(checkoutUI);
+  useEffect(() => {
+    if (pathname === "/book/details/checkout") {
+      if (!internalNavigationRef.current) {
+        router.replace("/book/details");
+      }
+      internalNavigationRef.current = false;
+    }
+  }, [pathname, router]);
+
+  if (!departure) return null;
 
   return (
     <div>
@@ -43,6 +53,7 @@ const DetailsPage = () => {
             <CheckoutCard
               checkoutUI={checkoutUI}
               setCheckoutUI={setCheckoutUI}
+              internalNavigationRef={internalNavigationRef}
             />
           )}
 

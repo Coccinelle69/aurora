@@ -3,11 +3,7 @@
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 
-interface PhoneProps {
-  className?: string;
-}
-
-const Phone = ({ className }: PhoneProps) => {
+const Phone = ({ className }: { className?: string }) => {
   const { t } = useTranslation();
 
   return (

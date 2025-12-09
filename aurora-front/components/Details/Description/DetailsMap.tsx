@@ -3,15 +3,9 @@
 
 import { useEffect, useRef, memo } from "react";
 import Script from "next/script";
+import { MapProps } from "@/utils/interfaces";
 
-type Props = {
-  lat: number;
-  lng: number;
-  zoom?: number;
-  title?: string;
-};
-
-function DetailsMap({ lat, lng, zoom = 14, title = "Location" }: Props) {
+function DetailsMap({ lat, lng, zoom = 14, title = "Location" }: MapProps) {
   const elRef = useRef<HTMLDivElement | null>(null);
   const inited = useRef(false);
 

@@ -263,5 +263,7 @@
   "fillDetails": "填写您的信息",
   "guestInformation": "客人信息",
   "specialRequestTitle": "特殊要求",
-  "specialRequestPlaceholder": "添加特殊要求"
+  "specialRequestPlaceholder": "添加特殊要求",
+  "outOfSeasonMessage": "选择的日期不在旺季范围内。请联系房主获取调整后的价格表。",
+  "emptyField": "请填写此字段"
 }

@@ -4,11 +4,7 @@ import { AddressIcon } from "@/icons";
 import { useDirections } from "@/utils/hooks";
 import { useTranslation } from "react-i18next";
 
-interface DirectionsButtonProps {
-  className?: string;
-}
-
-const DirectionsButton = ({ className }: DirectionsButtonProps) => {
+const DirectionsButton = ({ className }: { className?: string }) => {
   const { t } = useTranslation();
   const { getDirections } = useDirections();
   return (

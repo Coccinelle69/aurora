@@ -7,7 +7,7 @@ type DateKeys = Extract<keyof searchState, "arrival" | "departure">;
 interface DateInputProps {
   dateType: DateKeys;
   setDate: React.Dispatch<React.SetStateAction<string>>;
-  setAvailable: React.Dispatch<React.SetStateAction<boolean>>;
+  setAvailable: (val: boolean) => void;
 }
 
 const DateInput = ({ setDate, dateType, setAvailable }: DateInputProps) => {

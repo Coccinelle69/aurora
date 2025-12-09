@@ -12,6 +12,8 @@ const PriceBreakdown = () => {
   const { priceData, sign } = useCurrency({ from, to });
   const { t } = useTranslation();
 
+  console.log(priceData);
+
   if (!priceData) {
     return null;
   }
@@ -77,7 +79,7 @@ const PriceBreakdown = () => {
                 {fromDateStartEndFormatted.arrival.split(",")[0]} –{" "}
                 {fromDateStartEndFormatted.departure.split(",")[0]}
               </span>
-              <span className="font-medium ">
+              <span className="font-medium -translate-x-[5px]">
                 {fromNights} {t("nights")} × {sign} {fromPrice}
               </span>
               <span className="font-medium">

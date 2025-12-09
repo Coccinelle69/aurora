@@ -3,11 +3,7 @@
 import { useTranslation } from "react-i18next";
 import { FormInput } from "@/components";
 
-interface FormInputsProps {
-  checkout?: boolean;
-}
-
-const FormInputs = ({ checkout }: FormInputsProps) => {
+const FormInputs = ({ checkout }: { checkout?: boolean }) => {
   const { t } = useTranslation();
   return (
     <div>

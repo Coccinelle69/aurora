@@ -1,74 +1,41 @@
 "use client";
 
 import { BookingCard, BookingSearchBar, Notification } from "@/components";
+import { searchUI } from "@/utils/interfaces";
 import { useState, memo } from "react";
 
-export interface searchUIPayload {
-  available: boolean;
-  searchDone: boolean;
-  error: boolean;
-  notificationDisappeared: boolean;
-  stayDurationError: boolean;
-  price: {
-    price: null | string | number;
-    sign: string;
-  };
-}
-
 function SearchBooking() {
-  const [available, setAvailable] = useState(false);
-  const [searchDone, setSerchDone] = useState(false);
-  const [error, setError] = useState(false);
-  const [notificationDisappeared, setNotificationDisappeared] = useState(false);
-  const [stayDurationError, setStayDurationError] = useState(false);
-  const [price, setPrice] = useState<{
-    price: null | number | string;
-    sign: string;
-  }>({
-    price: null,
-    sign: "",
-  });
-
-  const [searchUI, setSearchUI] = useState<searchUIPayload>({
+  const [searchUI, setSearchUI] = useState<searchUI>({
     available: false,
     searchDone: false,
     error: false,
     notificationDisappeared: false,
     stayDurationError: false,
-    price: {
-      price: null,
-      sign: "",
-    },
+    outOfSeason: false,
+    price: null,
+    sign: "",
   });
 
   return (
     <div>
-      <BookingSearchBar
-        setError={setError}
-        setAvailable={setAvailable}
-        setSerchDone={setSerchDone}
-        setNotificationDisappeared={setNotificationDisappeared}
-        setStayDurationError={setStayDurationError}
-        setPrice={setPrice}
-        setSearchUI={setSearchUI}
-      />
+      <BookingSearchBar setSearchUI={setSearchUI} searchUI={searchUI} />
 
-      {searchDone && (
-        <Notification
-          error={error}
-          available={available}
-          done={searchDone}
-          setSerchDone={setSerchDone}
-          stayDurationError={stayDurationError}
-          setNotificationDisappeared={setNotificationDisappeared}
-          setSearchUI={setSearchUI}
-          searchUI={searchUI}
-        />
+      {searchUI.searchDone && (
+        <Notification setSearchUI={setSearchUI} searchUI={searchUI} />
       )}
 
-      {notificationDisappeared && available && !stayDurationError && !error && (
-        <BookingCard finalPrice={price} />
-      )}
+      {searchUI.notificationDisappeared &&
+        searchUI.available &&
+        !searchUI.stayDurationError &&
+        !searchUI.error &&
+        !searchUI.outOfSeason && (
+          <BookingCard
+            finalPrice={{
+              price: searchUI.price,
+              sign: searchUI.sign,
+            }}
+          />
+        )}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 export { default as BookingCard } from "./UI/BookingCard";
 export { default as BookingSearchBar } from "./SearchBar/BookingSearchBar";
 export { default as CurrencyDropdown } from "./Header/CurrencyDropdown";
+export { default as DateInputs } from "./SearchBar/DateInputs";
 export { default as DateInput } from "./SearchBar/DateInput";
 export { default as GuestInput } from "./SearchBar/GuestInput";
 export { default as BookHeader } from "./Header/Header";

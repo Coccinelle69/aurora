@@ -45,6 +45,8 @@ const useCurrency = ({ from, to }: useCurrencyProps) => {
           return;
         }
         const data = await res.json();
+        console.log("USE CURRENCY" + data);
+
         setPriceData(data);
 
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -59,7 +61,7 @@ const useCurrency = ({ from, to }: useCurrencyProps) => {
     return () => {
       cancelled = true;
     };
-  }, [currency]);
+  }, [currency, from, to]);
 
   return {
     priceData,

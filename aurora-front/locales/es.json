@@ -263,5 +263,7 @@
   "fillDetails": "Introduce tus datos",
   "guestInformation": "Información del huésped",
   "specialRequestTitle": "Petición especial",
-  "specialRequestPlaceholder": "Añade una petición especial"
+  "specialRequestPlaceholder": "Añade una petición especial",
+  "outOfSeasonMessage": "Las fechas seleccionadas están fuera de temporada. Por favor, contacte con el propietario para una lista de precios ajustada.",
+  "emptyField": "Por favor, rellena este campo"
 }

@@ -26,7 +26,6 @@ export const CURRENCIES: Currency[] = [
 type Props = { onChange?: (currency: Currency) => void };
 
 export default function CurrencyDropdown({ onChange }: Props) {
-  // ✅ initialize from localStorage during the initial render (no effect + setState)
   const { value, sign } = useAppSelector((state) => state.currency);
 
   const dispatch = useDispatch();

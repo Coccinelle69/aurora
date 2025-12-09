@@ -32,6 +32,8 @@ const BookingCard = ({ finalPrice }: BookingCardProps) => {
 
   const { t } = useTranslation();
 
+  console.log(finalPrice);
+
   const formattedFinalPrice = formatPriceUniversal(
     +finalPrice.price!,
     i18next.language

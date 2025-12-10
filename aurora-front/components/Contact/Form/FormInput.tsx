@@ -85,7 +85,6 @@ const FormInput = ({
           onChange={(e) =>
             dispatch(persistField({ key: name, value: e.target.value }))
           }
-          onBlur={(e) => handleBlur(e.target.value)}
         />
       )}
 

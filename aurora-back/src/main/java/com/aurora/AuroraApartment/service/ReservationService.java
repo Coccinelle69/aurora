@@ -13,10 +13,19 @@ import com.aurora.AuroraApartment.repo.ReservationRepo;
 public class ReservationService {
     @Autowired
     ReservationRepo reservationRepo;
+
     public boolean isAvailable(LocalDate arrival, LocalDate departure) {
     List<Reservation> overlaps = reservationRepo
             .findOverlappingReservations(arrival, departure);
+return overlaps.isEmpty();
+}
+   
 
-    return overlaps.isEmpty();
+
+public List<Reservation> allReservations() {
+   
+    List<Reservation> reservations = reservationRepo.findAll();
+    if(reservations.isEmpty()) return List.of();
+    return reservations;
 }
 }

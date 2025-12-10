@@ -1,5 +1,7 @@
 package com.aurora.AuroraApartment.dto;
 
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -31,12 +33,12 @@ public class ContactRequest {
     @Pattern(regexp = "^[0-9+()\\-\\s]{6,20}$", message = "Invalid phone number")
     private String phone;
 
-    @NotBlank
     @Size(max = 2000)
     private String message;
 
     private String language = "en";
 
-
+    @Enumerated(EnumType.STRING)
+    private ContactSource source = ContactSource.CONTACT;
     
 }

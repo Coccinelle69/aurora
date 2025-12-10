@@ -39,6 +39,7 @@ services:
       - ../aurora-back/.env
     volumes:
       - ../aurora-back/src:/app/src
+      - ../aurora-back/secrets.properties:/app/secrets.properties
       - /app/node_modules
     command: ./mvnw spring-boot:run
   aurora-db:

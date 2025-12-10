@@ -57,9 +57,9 @@ public class Reservation {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate departureDate; 
 
-    @NotNull
-    @Min(0)
-    private Integer totalNights;
+    // @NotNull
+    // @Min(0)
+    // private Integer totalNights;
 
     // @NotNull
     // @Min(0)

@@ -1,33 +1,64 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import i18next from "i18next";
 import { CalendarLegend } from "@/components";
+import { useResponse } from "@/utils/hooks";
 
 type Range = { start: string; end: string };
 
 const monthsAhead = 24;
 const weekdayFormat = "short";
 
+function toLocalYMD(date: Date) {
+  return date.toLocaleDateString("en-CA");
+}
+
 function eachDay(start: Date, end: Date): string[] {
   const arr: string[] = [];
   const d = new Date(start);
+
   while (d <= end) {
-    arr.push(d.toISOString().slice(0, 10));
+    arr.push(toLocalYMD(d)); // << FIX HERE
     d.setDate(d.getDate() + 1);
   }
+
   return arr;
 }
 
-export default function AvailabilityCalendar({
-  unavailable,
-}: {
-  unavailable: Range[];
-}) {
+export default function AvailabilityCalendar() {
   const today = new Date();
 
   const [page, setPage] = useState(0); // each page = 4 months
   const totalPages = Math.ceil(monthsAhead / 4);
+  const [unavailable, setUnavailable] = useState<Range[]>([]);
+  const [trigger, setTrigger] = useState(true);
+
+  const { done, errorMessage, data, success } = useResponse({
+    url: "/api/reservation/availability",
+    method: "GET",
+    trigger,
+  });
+
+  useEffect(() => {
+    console.log(data);
+    if (success && data.reservations) {
+      const ranges = data.reservations.map(
+        (r: { arrivalDate: string; departureDate: string }) => {
+          return {
+            start: r.arrivalDate,
+            end: r.departureDate,
+          };
+        }
+      );
+      console.log(ranges);
+
+      Promise.resolve().then(() => setUnavailable(ranges));
+    }
+
+    if (done) Promise.resolve().then(() => setTrigger(false));
+  }, [done]);
 
   // Build list of months from current month → +24 months
   const allMonths = Array.from({ length: monthsAhead }, (_, i) => {
@@ -47,11 +78,12 @@ export default function AvailabilityCalendar({
         set.add(d);
       }
     }
+    console.log(set);
+
     return set;
   }, [unavailable]);
 
-  const isUnavailable = (date: Date) =>
-    unavailableSet.has(date.toISOString().slice(0, 10));
+  const isUnavailable = (date: Date) => unavailableSet.has(toLocalYMD(date));
 
   // ✅ CORRECT WEEKDAY LABELS — always Monday → Sunday
   const weekdayLabels = Array.from({ length: 7 }, (_, i) => {
@@ -60,9 +92,8 @@ export default function AvailabilityCalendar({
       weekday: weekdayFormat,
     });
   });
-
   return (
-    <div className="w-full bg-[#f5f5f5] rounded-3xl flex flex-col gap-6">
+    <div className="w-full bg-[#f5f5f5] rounded-3xl flex flex-col gap-6 ">
       {/* Navigation */}
       <div className="flex justify-center gap-3 px-2">
         <button
@@ -109,7 +140,7 @@ export default function AvailabilityCalendar({
           return (
             <div
               key={label}
-              className="bg-white h-[310px] p-4 rounded-3xl shadow-sm"
+              className="bg-white h-[310px] p-4 rounded-3xl shadow-sm "
             >
               <h3 className="font-semibold text-default capitalize mb-4 text-lg">
                 {label}
@@ -129,7 +160,7 @@ export default function AvailabilityCalendar({
                 {days.map((date, i) => {
                   if (!date) return <div key={i} />;
 
-                  const unavailable = isUnavailable(date);
+                  const notAvailable = isUnavailable(date);
 
                   function pure(date: Date): Date {
                     return new Date(
@@ -142,8 +173,8 @@ export default function AvailabilityCalendar({
                   function isSeasonal(date: Date): boolean {
                     const y = date.getFullYear();
                     const d = pure(date);
-                    const start = new Date(y, 4, 15); // May = 4
-                    const end = new Date(y, 8, 30); // Sept = 8
+                    const start = new Date(y, 4, 15);
+                    const end = new Date(y, 8, 30);
 
                     return d >= start && d <= end;
                   }
@@ -153,8 +184,8 @@ export default function AvailabilityCalendar({
                       key={date.toISOString()}
                       className={[
                         "h-8 flex items-center justify-center rounded-xl",
-                        unavailable
-                          ? "bg-red-100 text-red-700" // unavailable always red
+                        notAvailable
+                          ? "bg-red-100 text-red-700"
                           : isSeasonal(date)
                           ? " text-gray-500"
                           : "bg-gray-300 text-gray-500",

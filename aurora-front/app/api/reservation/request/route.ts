@@ -23,7 +23,7 @@ export async function GET(request: Request) {
     if (!data.available) {
       return NextResponse.json(
         {
-          success: false,
+          success: true,
           available: data.available,
           message: "No available dates",
         },

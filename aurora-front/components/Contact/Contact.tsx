@@ -10,7 +10,7 @@ import {
 export default function Contact() {
   return (
     <section className="relative overflow-hidden bg-white py-24">
-      <div className="absolute right-0 top-28 h-[950px] lg:h-[900px] w-[62vw] bg-[#D3DAE0]" />
+      <div className="absolute right-0 top-28 h-[950px] lg:h-[925px] w-[62vw] bg-[#D3DAE0]" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
         <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between">

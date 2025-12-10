@@ -49,7 +49,7 @@ const ContactForm = () => {
       lastName: formData.get("lastName"),
       phone: formData.get("phone"),
       email: formData.get("email"),
-      message: formData.get("message"),
+      message: formData.get("message") ?? "",
       language: i18n.language,
     });
 

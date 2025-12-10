@@ -1,18 +1,21 @@
 package com.aurora.AuroraApartment.service;
 
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Locale;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.mail.javamail.MimeMessageHelper;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
-import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 
 import com.aurora.AuroraApartment.dto.ContactRequest;
@@ -24,17 +27,77 @@ public class EmailService {
 
     private final JavaMailSender mailSender;
 
-    @Value("${contact.receiver.email}")
+    @Value("${CONTACT_RECEIVER_EMAIL}")
     private String adminEmail;
 
-    @Value("${spring.mail.username}")
+    @Value("${SPRING_MAIL_USERNAME}")
     private String fromEmail;
 
     @Autowired
     private MessageSource messageSource;
 
+    private void sendHtmlEmail(String to, String subject, String html, String replyTo) {
+        try {
+            MimeMessage message = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+
+            helper.setFrom(fromEmail);
+            helper.setTo(to);
+            helper.setSubject(subject);
+            helper.setText(html, true);
+
+            if (replyTo != null) {
+                helper.setReplyTo(replyTo);
+            }
+
+            mailSender.send(message);
+
+        } catch (MessagingException e) {
+            throw new RuntimeException("Failed to send email to " + to, e);
+        }
+    }
+
+    private String loadTemplate(String name) {
+    try {
+        ClassPathResource resource = new ClassPathResource("email-templates/" + name + ".html");
+        return new String(resource.getInputStream().readAllBytes(), StandardCharsets.UTF_8);
+    } catch (IOException e) {
+        throw new RuntimeException("Cannot load template: " + name, e);
+    }
+}
+
+private String apply(String template, Map<String, String> values) {
+    String result = template;
+    for (var entry : values.entrySet()) {
+        result = result.replace("{{" + entry.getKey() + "}}", entry.getValue());
+    }
+    return result;
+}
+
     public record EmailContent(String subject, String html) {}
 
+
+    // 1. Email TO admin
+    public void sendToAdmin(ContactRequest request) {
+        String template = loadTemplate("contact-admin");
+
+    String html = apply(template, Map.of(
+            "firstname", request.getFirstName(),
+            "lastname", request.getLastName(),
+            "message", request.getMessage(),
+            "email", request.getEmail(),
+            "phone", request.getPhone()
+    ));
+
+    sendHtmlEmail(
+                adminEmail,
+                "New message from " + request.getFirstName() + " " + request.getLastName(),
+                html,
+                request.getEmail()
+        );
+    }
+
+    // 2. Confirmation email TO USER & translation
 
     private EmailContent translateMessage(String language, ContactRequest request) {
         Locale locale = Locale.forLanguageTag(language);
@@ -48,104 +111,34 @@ public class EmailService {
         String regards = messageSource.getMessage("email.regards", null, locale);
         String signature = messageSource.getMessage("email.signature", null, locale);
 
-        String html = """
-    <div style="font-family: Arial, sans-serif; padding: 20px;">
-        <h2 style="color: #234361;">%s</h2>
-        <p style="font-size: 16px;">%s</p>
+        String template = loadTemplate("contact-confirmation");
 
-        <div style="margin-top: 20px; padding: 15px; background: #F0F4F8;
-            border-left: 4px solid #234361;">
-            <strong>%s</strong>
-            <p>%s</p>
-        </div>
+    String html = apply(template, Map.of(
+            "hello", hello,
+            "thanks", thanks,
+            "yourMessage", yourMsg,
+            "message", request.getMessage(),
+            "regards", regards,
+            "signature", signature
+    ));
 
-        <p style="margin-top: 25px; font-size: 14px; color: #234361;">
-            %s<br>
-            <strong>%s</strong>
-        </p>
-    </div>
-    """.formatted(hello, thanks, yourMsg, request.getMessage(), regards, signature);
 
     return new EmailContent(subject, html);
 
     }
 
-   
-
-    // 1. Email TO admin
-    public void sendToAdmin(ContactRequest request) {
-        MimeMessage message = mailSender.createMimeMessage();
-        try {
-            MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
-            helper.setFrom(fromEmail);
-            helper.setTo(adminEmail);
-            helper.setReplyTo(request.getEmail());
-            helper.setSubject("New message from " + request.getFirstName() + " " + request.getLastName());
-
-            @NotNull
-           final String html = """
-                <div style="font-family: Arial, sans-serif; padding: 20px;">
-                    <h2 style="color: #234361;">Hello Dorotea,</h2>
-                    <p style="font-size: 16px;">
-                       {{firstname}} {{lastname}} has just sent you a message and is waiting for your response.
-                    </p>
-
-                    <div style="margin-top: 20px; padding: 15px; background: #F0F4F8; border-left: 4px solid #234361;">
-                        <strong>Their message:</strong>
-                        <p>{{message}}</p>
-                    </div>
-
-                    <p style="margin-top: 25px; font-size: 16px;">
-                        Be sure to respond by mail or give them a call <strong>{{phone}}</strong>
-                    </p>
-
-                    <p style="margin-top: 25px; font-size: 14px; color: #234361;">
-                        Best regards,<br>
-                        <strong>Admin Team</strong>
-                    </p>
-                </div>
-                """.replace("{{firstname}}", request.getFirstName())
-                    .replace("{{lastname}}", request.getLastName())
-                    .replace("{{message}}", request.getMessage())
-                    .replace("{{phone}}", request.getPhone());
-
-        helper.setText(html, true); 
-
-        mailSender.send(message);
-        } catch (MessagingException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } 
-       
-
-    }
-
-    // 2. Confirmation email TO USER
-
 
 public void sendConfirmationToUser(ContactRequest request) {
-    try {
-       
-
-       MimeMessage message = mailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
-
-        helper.setFrom(fromEmail);
-        helper.setTo(request.getEmail());
-        
-        
+   
         EmailContent email = translateMessage(request.getLanguage(), request);
         
-        helper.setSubject(email.subject());
+        sendHtmlEmail(
+                adminEmail,
+                email.subject(),
+                email.html(),
+                request.getEmail()
+        );
 
-        helper.setText(email.html(), true); 
-        // helper.setText("TEST CONFIRMATION", false); 
-
-        mailSender.send(message);
-
-    } catch (Exception ex) {
-        ex.printStackTrace();
-    }
 }
 
 }

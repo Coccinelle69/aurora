@@ -14,6 +14,7 @@ import com.aurora.AuroraApartment.model.Reservation;
 @Repository
 public interface ReservationRepo extends JpaRepository<Reservation, Integer> {
 
+
     @Query("""
         SELECT r FROM Reservation r
         WHERE r.arrivalDate < :departure
@@ -23,4 +24,6 @@ public interface ReservationRepo extends JpaRepository<Reservation, Integer> {
         LocalDate arrival,
         LocalDate departure
     );
+    
+    
 }

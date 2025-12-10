@@ -36,8 +36,6 @@ export default function BookingSearchBar({
     to: endDate,
   });
 
-  console.log(arrival, departure);
-
   const [trigger, setTrigger] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const { t } = useTranslation();
@@ -87,8 +85,6 @@ export default function BookingSearchBar({
   const updateSearchUI = (patch: Partial<searchUI>) => {
     setSearchUI((prev) => ({ ...prev, ...patch }));
   };
-
-  console.log(priceData);
 
   useEffect(() => {
     if (!done) return;

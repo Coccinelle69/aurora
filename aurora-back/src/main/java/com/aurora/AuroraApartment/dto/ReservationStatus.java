@@ -1,4 +1,4 @@
-package com.aurora.AuroraApartment.repo;
+package com.aurora.AuroraApartment.dto;
 
     public enum ReservationStatus {
     PENDING,      

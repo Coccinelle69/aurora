@@ -2,7 +2,7 @@ package com.aurora.AuroraApartment.model;
 
 import java.time.LocalDate;
 
-import com.aurora.AuroraApartment.repo.ReservationStatus;
+import com.aurora.AuroraApartment.dto.ReservationStatus;
 
 import jakarta.persistence.*;
 import lombok.Data;

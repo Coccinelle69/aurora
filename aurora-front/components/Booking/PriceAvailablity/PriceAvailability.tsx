@@ -71,11 +71,7 @@ const PriceAvailability = () => {
           </div>
         </div>
 
-        {activeTab === "availability" && (
-          <AvailabilityCalendar
-            unavailable={[{ start: "2026-06-10", end: "2026-06-17" }]}
-          />
-        )}
+        {activeTab === "availability" && <AvailabilityCalendar />}
         {activeTab === "prices" && <Prices />}
       </div>
     </div>,

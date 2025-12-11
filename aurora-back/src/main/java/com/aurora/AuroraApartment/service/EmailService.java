@@ -3,6 +3,7 @@ package com.aurora.AuroraApartment.service;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
@@ -19,6 +20,7 @@ import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 
 import com.aurora.AuroraApartment.dto.ContactRequest;
+import com.aurora.AuroraApartment.dto.ReservationRequest;
 
 
 @Service
@@ -84,7 +86,7 @@ private String apply(String template, Map<String, String> values) {
     String html = apply(template, Map.of(
             "firstname", request.getFirstName(),
             "lastname", request.getLastName(),
-            "message", request.getMessage(),
+            "userMessage", request.getMessage(),
             "email", request.getEmail(),
             "phone", request.getPhone()
     ));
@@ -97,27 +99,59 @@ private String apply(String template, Map<String, String> values) {
         );
     }
 
+     public void sendCheckoutRecapToAdmin(ReservationRequest request) {
+        String template = loadTemplate("checkout-admin");
+
+        String userMessageBlock = "";
+        if (request.getMessage() != null && !request.getMessage().isBlank()) {
+            userMessageBlock =
+            "<div style=\"margin-top: 20px; padding: 15px; background: #f0f4f8; border-left: 4px solid #234361;\">" +
+            "<strong>Their message:</strong>" +
+            "<p>" + request.getMessage() + "</p>" +
+            "</div>";
+}
+        Integer guests = request.getAdults() + request.getAdults() +  request.getAdults();
+
+        String html = apply(template, Map.of(
+            "firstname", request.getFirstName(),
+            "lastname", request.getLastName(),
+            "userMessage", userMessageBlock,
+            "email", request.getEmail(),
+            "phone", request.getPhone(),
+            "guests", guests.toString(),
+            "arrival", request.getArrivalDate().toString(),
+            "departure", request.getDepartureDate().toString()
+            
+    ));
+
+    sendHtmlEmail(
+                adminEmail,
+                "New booking inquiry from " + request.getFirstName() + " " + request.getLastName(),
+                html,
+                request.getEmail()
+        );
+    }
+
     // 2. Confirmation email TO USER & translation
 
     private EmailContent translateMessage(String language, ContactRequest request) {
         Locale locale = Locale.forLanguageTag(language);
 
         String subject = messageSource.getMessage("email.subject", null, locale);
-
         String hello = messageSource.getMessage("email.hello", new Object[]{request.getFirstName()}, locale);
-
         String thanks = messageSource.getMessage("email.thanks", null, locale);
         String yourMsg = messageSource.getMessage("email.yourMessage", null, locale);
         String regards = messageSource.getMessage("email.regards", null, locale);
         String signature = messageSource.getMessage("email.signature", null, locale);
 
+
         String template = loadTemplate("contact-confirmation");
 
-    String html = apply(template, Map.of(
+        String html = apply(template, Map.of(
             "hello", hello,
             "thanks", thanks,
-            "yourMessage", yourMsg,
-            "message", request.getMessage(),
+            "yourMessage",yourMsg,
+            "userMessage", request.getMessage(),
             "regards", regards,
             "signature", signature
     ));
@@ -126,14 +160,79 @@ private String apply(String template, Map<String, String> values) {
     return new EmailContent(subject, html);
 
     }
+    private EmailContent translateMessage(String language, ReservationRequest request) {
+        Locale locale = Locale.forLanguageTag(language);
+
+        String bookingSubject = messageSource.getMessage("email.bookingSubject", null, locale);
+        String hello = messageSource.getMessage("email.hello", new Object[]{request.getFirstName()}, locale);
+        String thanks = messageSource.getMessage("email.thanksMessage", null, locale);
+        String yourMsg = messageSource.getMessage("email.yourMessage", null, locale);
+        String regards = messageSource.getMessage("email.regards", null, locale);
+        String signature = messageSource.getMessage("email.signature", null, locale);
+        String recap = messageSource.getMessage("email.recap",null, locale);
+        String payment = messageSource.getMessage("email.payment",null, locale);
+        String arrival = messageSource.getMessage("email.arrival",null, locale);
+        String departure = messageSource.getMessage("email.departure",null, locale);
+        String nights = messageSource.getMessage("email.nights",null, locale);
+        String guests = messageSource.getMessage("email.guests",null, locale);
+        String cancellationPolicy = messageSource.getMessage("email.cancellationPolicy",null, locale);
+        String cancellationText = messageSource.getMessage("email.cancellationText",null, locale);
+        String total = messageSource.getMessage("email.total",null, locale);
+        String cleaningFee = messageSource.getMessage("email.cleaningFee",null, locale);
+        String cleaningIncluded = messageSource.getMessage("email.cleaningIncluded",null, locale);
+        String taxes = messageSource.getMessage("email.taxes",null, locale);
+        String taxesIncluded = messageSource.getMessage("email.taxesIncluded",null, locale);
+        String priceDetails = messageSource.getMessage("email.priceDetails",null, locale);
+
+        String userMessageBlock = "";
+        if (request.getMessage() != null && !request.getMessage().isBlank()) {
+            userMessageBlock =
+                "<div style=\"margin-top: 20px; padding: 15px; background: #f0f4f8; border-left: 4px solid #234361;\">" +
+                "<strong>"+ yourMsg +":</strong>" +
+                "<p>" + request.getMessage() + "</p>" +
+                "</div>";
+}
+        String template = loadTemplate("checkout-confirmation");
+        Integer guestsNo = request.getAdults() + request.getAdults() +  request.getAdults();
+
+
+       Map<String, String> vars = new HashMap<>();
+
+        vars.put("bookingSubject", bookingSubject);
+        vars.put("hello", hello);
+        vars.put("thanks", thanks);
+        vars.put("userMessage", userMessageBlock);
+        vars.put("regards", regards);
+        vars.put("signature", signature);
+        vars.put("recap", recap);
+        vars.put("payment", payment);
+        vars.put("arrival", arrival);
+        vars.put("departure", departure);
+        vars.put("nights", nights);
+        vars.put("guests", guests);
+        vars.put("cancellationPolicy", cancellationPolicy);
+        vars.put("cancellationText", cancellationText);
+        vars.put("total", total);
+        vars.put("cleaningFee", cleaningFee);
+        vars.put("cleaningIncluded", cleaningIncluded);
+        vars.put("taxes", taxes);
+        vars.put("taxesIncluded", taxesIncluded);
+        vars.put("priceDetails", priceDetails);
+        vars.put("arrival", request.getArrivalDate().toString());
+        vars.put("departure", request.getDepartureDate().toString());
+        vars.put("guestsNo", guestsNo.toString());
+
+        String html = apply(template, vars);
+
+    return new EmailContent(bookingSubject, html);
+
+    }
 
 
 public void sendConfirmationToUser(ContactRequest request) {
-   
         EmailContent email = translateMessage(request.getLanguage(), request);
-        
         sendHtmlEmail(
-                adminEmail,
+                request.getEmail(),
                 email.subject(),
                 email.html(),
                 request.getEmail()
@@ -141,4 +240,16 @@ public void sendConfirmationToUser(ContactRequest request) {
 
 }
 
+public void sendCheckoutRecapToUser(ReservationRequest request) {
+        EmailContent email = translateMessage(request.getLanguage(), request);
+        sendHtmlEmail(
+                request.getEmail(),
+                email.subject(),
+                email.html(),
+                request.getEmail()
+        );
+    }
+
 }
+
+

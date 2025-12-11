@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.aurora.AuroraApartment.dto.ContactRequest;
+import com.aurora.AuroraApartment.service.ContactService;
 import com.aurora.AuroraApartment.service.EmailService;
 
 import jakarta.validation.Valid;
@@ -21,16 +22,19 @@ public class ContactController {
 
 @Autowired
 EmailService emailService;
+
+@Autowired
+ContactService contactService;
     
 @PostMapping
 public ResponseEntity<?> handleContact(@Valid @RequestBody ContactRequest request) {
 
     emailService.sendToAdmin(request);          
     emailService.sendConfirmationToUser(request); 
+    contactService.conserveContact(request);
 
     return ResponseEntity.ok("{\"success\": true}");
 }
-
 
 
 @PostMapping("/check")

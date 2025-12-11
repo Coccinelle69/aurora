@@ -1,11 +1,12 @@
 CREATE TABLE Reservation (
   id SERIAL PRIMARY KEY,
 
-  reservation_first_name VARCHAR(100) NOT NULL,
-  reservation_last_name VARCHAR(100) NOT NULL,
-  email VARCHAR(100) NOT NULL,
-  phone VARCHAR(100) NOT NULL,
+  main_contact_first_name VARCHAR(100) NOT NULL,
+  main_contact_last_name VARCHAR(100) NOT NULL,
+  main_contact_email VARCHAR(100) NOT NULL,
+  main_contact_phone VARCHAR(100) NOT NULL,
 
+  guests INT NOT NULL,
   adults INT NOT NULL,
   children INT NOT NULL,
   teens INT NOT NULL,
@@ -17,6 +18,17 @@ CREATE TABLE Reservation (
   departure_date DATE NOT NULL,
 
   status VARCHAR(20) DEFAULT 'PENDING' 
+);
+
+CREATE TABLE Contact (
+  id SERIAL PRIMARY KEY,
+
+  first_name VARCHAR(100) NOT NULL,
+  last_name VARCHAR(100) NOT NULL,
+  email VARCHAR(100) NOT NULL,
+  phone VARCHAR(100) NOT NULL,
+  language VARCHAR(100) NOT NULL,
+  message VARCHAR(2000),
 );
    
 

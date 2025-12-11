@@ -9,10 +9,12 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class ContactRequest {
 
     @NotBlank
@@ -36,9 +38,11 @@ public class ContactRequest {
     @Size(max = 2000)
     private String message;
 
+    @Builder.Default
     private String language = "en";
 
     @Enumerated(EnumType.STRING)
+    @Builder.Default
     private ContactSource source = ContactSource.CONTACT;
     
 }

@@ -8,30 +8,40 @@ import { resetField } from "@/reducers/contact";
 import { FormInputs, LoadingSpinner } from "@/components";
 import { AnimatePresence, motion } from "framer-motion";
 import { CheckoutProps } from "@/utils/interfaces";
+import { useAppSelector } from "@/store/hooks";
 
 const CheckoutForm = ({ setCheckoutUI, checkoutUI }: CheckoutProps) => {
-  const [submitting, setSubmitting] = useState(false);
-  const [sent, setSent] = useState(false);
-  const [fade, setFade] = useState(false);
+  const [formStatus, setFormStatus] = useState({
+    submitting: false,
+    fade: false,
+    sent: false,
+    trigger: false,
+  });
   const [body, setBody] = useState<Record<string, unknown> | null>(null);
-  const [trigger, setTrigger] = useState(false);
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
+  const {
+    adults,
+    teens,
+    children,
+    arrival: arrivalDate,
+    departure: departureDate,
+  } = useAppSelector((state) => state.search);
 
   const { data, success, done, errorMessage } = useResponse({
     url: "api/reservation/request",
     method: "POST",
     body,
-    trigger,
+    trigger: formStatus.trigger,
   });
 
   useEffect(() => {
     if (!done) return;
 
     queueMicrotask(() => {
-      setSubmitting(false);
-      setSent(true);
-      setTrigger(false);
+      setFormStatus((prev) => {
+        return { ...prev, submitting: false, sent: false, trigger: false };
+      });
     });
 
     if (success) {
@@ -42,7 +52,6 @@ const CheckoutForm = ({ setCheckoutUI, checkoutUI }: CheckoutProps) => {
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     // setError(null);
     e.preventDefault();
-    setSubmitting(true);
 
     const formData = new FormData(e.currentTarget);
 
@@ -52,22 +61,36 @@ const CheckoutForm = ({ setCheckoutUI, checkoutUI }: CheckoutProps) => {
       phone: formData.get("phone"),
       email: formData.get("email"),
       message: formData.get("message"),
+      adults,
+      teens,
+      children,
+      arrivalDate,
+      departureDate,
       language: i18n.language,
+      source: "CHECKOUT",
     });
 
-    setTrigger(true);
-    setSent(true);
+    setFormStatus((prev) => {
+      return { ...prev, submitting: true, sent: true, trigger: true };
+    });
 
     (e.target as HTMLFormElement).reset();
   }
 
   useEffect(() => {
-    if (sent) {
-      const fadeTimer = setTimeout(() => setFade(true), 4500);
+    if (formStatus.sent) {
+      const fadeTimer = setTimeout(
+        () =>
+          setFormStatus((prev) => {
+            return { ...prev, fade: true };
+          }),
+        4500
+      );
 
       const removeTimer = setTimeout(() => {
-        setSent(false);
-        setFade(false);
+        setFormStatus((prev) => {
+          return { ...prev, sent: false, fade: false };
+        });
       }, 5000);
 
       return () => {
@@ -75,7 +98,7 @@ const CheckoutForm = ({ setCheckoutUI, checkoutUI }: CheckoutProps) => {
         clearTimeout(removeTimer);
       };
     }
-  }, [sent, success]);
+  }, [formStatus.sent, success]);
 
   const goToCheckoutCard = () => {
     window.history.pushState({}, "", "/book/details");
@@ -139,20 +162,20 @@ const CheckoutForm = ({ setCheckoutUI, checkoutUI }: CheckoutProps) => {
               </button>
               <button
                 type="submit"
-                disabled={submitting}
+                disabled={formStatus.submitting}
                 className="inline-flex items-center font-body gap-2 uppercase tracking-[.2em] text-marineBlue font-semibold px-5 mt-4 py-3 rounded-xl bg-transparent hover:bg-slate-200 transition hover:text-babyBlue disabled:cursor-not-allowed"
               >
-                {submitting ? t("sending") : t("send")}
+                {formStatus.submitting ? t("sending") : t("send")}
               </button>
-              <LoadingSpinner visible={submitting} />
+              <LoadingSpinner visible={formStatus.submitting} />
             </div>
 
-            {sent && done && (
+            {formStatus.sent && done && (
               <p
                 role="status"
                 className={`mt-4 text-md font-bold ${
                   success ? "text-emerald-700" : "text-[#E53935]"
-                } ${fade ? "fade-slide-out" : ""}`}
+                } ${formStatus.fade ? "fade-slide-out" : ""}`}
               >
                 {success && t("success")}
                 {!success && errorMessage && t(errorMessage)}

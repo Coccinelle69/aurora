@@ -8,11 +8,13 @@ import { resetField } from "@/reducers/contact";
 import { FormInputs, LoadingSpinner } from "@/components";
 
 const ContactForm = () => {
-  const [submitting, setSubmitting] = useState(false);
-  const [sent, setSent] = useState(false);
-  const [fade, setFade] = useState(false);
+  const [formStatus, setFormStatus] = useState({
+    submitting: false,
+    fade: false,
+    sent: false,
+    trigger: false,
+  });
   const [body, setBody] = useState<Record<string, unknown> | null>(null);
-  const [trigger, setTrigger] = useState(false);
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
 
@@ -20,16 +22,16 @@ const ContactForm = () => {
     url: "api/contact",
     method: "POST",
     body,
-    trigger,
+    trigger: formStatus.trigger,
   });
 
   useEffect(() => {
     if (!done) return;
 
     queueMicrotask(() => {
-      setSubmitting(false);
-      setSent(true);
-      setTrigger(false);
+      setFormStatus((prev) => {
+        return { ...prev, submitting: false, sent: false, trigger: false };
+      });
     });
 
     if (success) {
@@ -40,7 +42,6 @@ const ContactForm = () => {
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     // setError(null);
     e.preventDefault();
-    setSubmitting(true);
 
     const formData = new FormData(e.currentTarget);
 
@@ -53,21 +54,29 @@ const ContactForm = () => {
       language: i18n.language,
     });
 
-    setTrigger(true);
-    setSent(true);
+    setFormStatus((prev) => {
+      return { ...prev, submitting: true, sent: true, trigger: true };
+    });
 
     (e.target as HTMLFormElement).reset();
   }
 
   useEffect(() => {
-    if (sent) {
+    if (formStatus.sent) {
       // Trigger fade+slide at 4.5s
-      const fadeTimer = setTimeout(() => setFade(true), 4500);
+      const fadeTimer = setTimeout(
+        () =>
+          setFormStatus((prev) => {
+            return { ...prev, fade: true };
+          }),
+        4500
+      );
 
       // Fully hide after animation completes (5s total)
       const removeTimer = setTimeout(() => {
-        setSent(false);
-        setFade(false);
+        setFormStatus((prev) => {
+          return { ...prev, fade: false, sent: false };
+        });
       }, 5000);
 
       return () => {
@@ -75,7 +84,7 @@ const ContactForm = () => {
         clearTimeout(removeTimer);
       };
     }
-  }, [sent, success]);
+  }, [formStatus.sent, success]);
   return (
     <section className="p-8 sm:p-12 lg:p-16">
       <h2 className="font-heading text-marineBlue text-4xl sm:text-5xl leading-tight mb-15">
@@ -90,24 +99,23 @@ const ContactForm = () => {
         <div className=" flex justify-end items-center">
           <button
             type="submit"
-            disabled={submitting}
+            disabled={formStatus.submitting}
             className="inline-flex items-center font-body gap-2 uppercase tracking-[.2em] text-marineBlue font-semibold px-5 mt-4 py-3 rounded-xl bg-transparent hover:bg-slate-200 transition hover:text-babyBlue disabled:cursor-not-allowed"
           >
-            {submitting ? t("sending") : t("send")}
+            {formStatus.submitting ? t("sending") : t("send")}
           </button>
-          <LoadingSpinner visible={submitting} />
+          <LoadingSpinner visible={formStatus.submitting} />
         </div>
 
-        {sent && done && (
+        {formStatus.sent && done && (
           <p
             role="status"
             className={`mt-4 text-md font-bold ${
               success ? "text-emerald-700" : "text-[#E53935]"
-            } ${fade ? "fade-slide-out" : ""}`}
+            } ${formStatus.fade ? "fade-slide-out" : ""}`}
           >
             {success && t("success")}
-            {!success && errorMessage && t(errorMessage)}
-            {/* {!success && error && t(error)} */}
+            {!success && errorMessage && t(errorMessage)}{" "}
           </p>
         )}
       </form>

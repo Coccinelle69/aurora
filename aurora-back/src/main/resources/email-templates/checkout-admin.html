@@ -1,0 +1,154 @@
+<div style="font-family: Arial, sans-serif; padding: 20px">
+  <h2 style="color: #234361"><strong>Hello Dorotea,</strong></h2>
+  <p style="font-size: 16px">
+    {{firstname}} {{lastname}} has just required a booking at your Aurora
+    Apartment and is waiting for your response.
+  </p>
+
+  <div
+    style="
+      margin-top: 20px;
+      padding: 15px;
+      background: #f0f4f8;
+      border-left: 4px solid #234361;
+    "
+  >
+    <strong>Booking recap:</strong>
+    <!-- Center wrapper -->
+    <div style="width: 100%; text-align: center; margin-top: 20px">
+      <div
+        style="
+          display: inline-block;
+          width: 360px;
+          background: #ffffff;
+          border-radius: 12px;
+          padding: 20px;
+          text-align: left;
+          border: 1px solid #e5e8eb;
+        "
+      >
+        <!-- Title -->
+        <h2
+          style="
+            font-size: 20px;
+            color: #234361;
+            margin: 0 0 15px 0;
+            text-align: center;
+          "
+        >
+          Aurora Apartment
+        </h2>
+
+        <!-- Dates info -->
+        <table style="width: 100%; font-size: 14px; margin-bottom: 15px">
+          <tr>
+            <td><strong>Arrival</strong></td>
+            <td><strong>Departure</strong></td>
+            <td><strong>Nights</strong></td>
+            <td><strong>Guests</strong></td>
+          </tr>
+          <tr>
+            <td style="color: #234361">25 Aug 2026</td>
+            <td style="color: #234361">3 Sep 2026</td>
+            <td>9 Nights</td>
+            <td>3</td>
+          </tr>
+        </table>
+
+        <!-- Price breakdown -->
+        <hr
+          style="border: none; border-top: 1px solid #d9d9d9; margin: 15px 0"
+        />
+
+        <p style="font-size: 14px; color: #234361; margin-bottom: 8px">
+          <strong>Price details</strong>
+        </p>
+
+        <table style="font-size: 14px; width: 100%; margin-bottom: 15px">
+          <tr>
+            <td>25 Aug – 31 Aug</td>
+            <td style="text-align: right">7 Nights × € 120.00</td>
+            <td style="text-align: right">€ 840.00</td>
+          </tr>
+          <tr>
+            <td>1 Sep – 3 Sep</td>
+            <td style="text-align: right">2 Nights × € 105.00</td>
+            <td style="text-align: right">€ 210.00</td>
+          </tr>
+          <tr>
+            <td colspan="3" style="height: 10px"></td>
+          </tr>
+          <tr>
+            <td>Taxes</td>
+            <td></td>
+            <td style="text-align: right">Included</td>
+          </tr>
+          <tr>
+            <td>Cleaning fee</td>
+            <td></td>
+            <td style="text-align: right">Included</td>
+          </tr>
+        </table>
+
+        <hr
+          style="border: none; border-top: 1px solid #d9d9d9; margin: 15px 0"
+        />
+
+        <!-- Total -->
+        <table style="width: 100%; font-size: 16px; font-weight: bold">
+          <tr>
+            <td>Total</td>
+            <td style="text-align: right; color: #234361">€ 1 050.00</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <br />
+  {{userMessage}}
+
+  <p style="margin-top: 25px; font-size: 16px">
+    Be sure to respond by mail to <strong>{{email}}</strong> or give them a call
+    <strong>{{phone}}</strong>.
+  </p>
+
+  <p style="margin-top: 25px; font-size: 16px; display: flex; gap: 12px">
+    <!-- Confirm button -->
+    <a
+      href="http://localhost:8080/reservation/confirm?bookingId={{bookingId}}"
+      style="
+        background-color: #234361;
+        color: #ffffff;
+        padding: 10px 18px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: bold;
+        display: inline-block;
+      "
+    >
+      Confirm reservation
+    </a>
+
+    <!-- Cancel button -->
+    <a
+      href="http://localhost:8080/reservation/cancel?bookingId={{bookingId}}"
+      style="
+        background-color: #ffffff;
+        color: #234361;
+        padding: 10px 18px;
+        border-radius: 6px;
+        border: 2px solid #234361;
+        text-decoration: none;
+        font-weight: bold;
+        display: inline-block;
+      "
+    >
+      Cancel reservation
+    </a>
+  </p>
+
+  <p style="margin-top: 25px; font-size: 14px; color: #234361">
+    Best regards,<br />
+    <strong>Admin Team</strong>
+  </p>
+</div>

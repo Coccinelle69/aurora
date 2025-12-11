@@ -33,9 +33,7 @@ const FormInput = ({
   const { t } = useTranslation();
 
   const triggerLocalError = () => {
-    // parent error just for global message
     setError({ message: t("emptyField") });
-
     setFade(false);
 
     // fade out
@@ -45,7 +43,7 @@ const FormInput = ({
   };
 
   const handleBlur = (value: string) => {
-    if (!value.trim()) {
+    if (!value.trim() && placeholder !== t("specialRequestTitle")) {
       triggerLocalError();
     }
   };
@@ -76,7 +74,9 @@ const FormInput = ({
       ) : (
         <textarea
           id={id}
+          maxLength={2000}
           name={name}
+          onBlur={(e) => handleBlur(e.target.value)}
           placeholder={placeholder}
           className={`${inputStyle} ${
             checkout && "h-[120px]"

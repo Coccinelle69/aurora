@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -17,15 +19,15 @@ import lombok.AllArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Reservation {
+public class ReservationRequest {
 
     @NotBlank
     @Size(max = 100)
-    private String reservationFirstName;
+    private String firstName;
 
     @NotBlank
     @Size(max = 100)
-    private String reservationLastName;
+    private String lastName;
 
     @NotBlank
     @Email
@@ -57,14 +59,13 @@ public class Reservation {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate departureDate; 
 
-    // @NotNull
-    // @Min(0)
-    // private Integer totalNights;
+    @NotNull
+    @Size(max = 2000)
+    private String message;
 
-    // @NotNull
-    // @Min(0)
-    // private Integer totalPrice;
+    private String language = "en";
 
-
+    @Enumerated(EnumType.STRING)
+    private ContactSource source = ContactSource.CHECKOUT;
     
 }

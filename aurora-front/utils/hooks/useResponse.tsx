@@ -50,14 +50,19 @@ const useResponse = <T = any,>({
         try {
           json = await response.json();
         } catch (e) {
-          setSuccess(false);
-          setError("INVALID_JSON");
-          return;
+          setError("INVALID RESPONSE");
         }
 
         setData(json);
         console.log(json);
 
+        if (!response.ok) {
+          setSuccess(false);
+          if (json?.errors?.email) {
+            setError("BLANK");
+          }
+          return;
+        }
         setSuccess(response.ok && json.success);
       } catch (e) {
         setSuccess(false);

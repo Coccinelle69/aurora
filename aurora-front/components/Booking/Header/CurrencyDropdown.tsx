@@ -72,8 +72,8 @@ export default function CurrencyDropdown({ onChange }: Props) {
         aria-haspopup="listbox"
         aria-expanded={open}
       >
-        <span>{value}</span>
-        <span>{sign}</span>
+        <span className="text-[1rem]">{value}</span>
+        <span className="text-[1rem]">{sign}</span>
       </button>
 
       {open && (

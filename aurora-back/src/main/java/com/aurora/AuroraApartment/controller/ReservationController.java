@@ -61,26 +61,20 @@ public ResponseEntity<?> fetchReservations() {
 @PostMapping("/checkout")
 public ResponseEntity<?> checkout(@Valid @RequestBody ReservationRequest request) {
     reservationService.createReservation(request);
-    emailService.sendCheckoutRecapToAdmin(request);          
-    emailService.sendCheckoutRecapToUser(request); 
 
     return ResponseEntity.ok("{\"success\": true}");
 }
 
 @PostMapping("/confirm/{id}")
 public ResponseEntity<?> confirm(@Valid @RequestBody ReservationRequest request, @PathVariable Integer id) {
-    reservationService.createReservation(request);
-    emailService.sendCheckoutRecapToAdmin(request);          
-    emailService.sendCheckoutRecapToUser(request); 
+    reservationService.confirmReservation(id);
 
     return ResponseEntity.ok("{\"success\": true}");
 }
 
 @PostMapping("/cancel/{id}")
 public ResponseEntity<?> cancel(@Valid @RequestBody ReservationRequest request, @PathVariable Integer id) {
-    reservationService.createReservation(request);
-    emailService.sendCheckoutRecapToAdmin(request);          
-    emailService.sendCheckoutRecapToUser(request); 
+    reservationService.cancelReservation(id);
 
     return ResponseEntity.ok("{\"success\": true}");
 }

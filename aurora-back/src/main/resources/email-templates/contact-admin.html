@@ -1,29 +1,57 @@
-<div style="font-family: Arial, sans-serif; padding: 20px">
-  <h2 style="color: #234361">Hello Dorotea,</h2>
-  <p style="font-size: 16px">
-    {{firstname}} {{lastname}} has just sent you a message and is waiting for
-    your response.
-  </p>
+<div style="font-family: Arial, sans-serif; padding: 16px; background: #ffffff">
+  <!-- Wrapper -->
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+    <tr>
+      <td align="center">
+        <table
+          role="presentation"
+          width="100%"
+          cellspacing="0"
+          cellpadding="0"
+          style="max-width: 520px"
+        >
+          <tr>
+            <td>
+              <h2 style="color: #234361; font-size: 20px; margin: 0 0 12px 0">
+                Hello Dorotea,
+              </h2>
 
-  <div
-    style="
-      margin-top: 20px;
-      padding: 15px;
-      background: #f0f4f8;
-      border-left: 4px solid #234361;
-    "
-  >
-    <strong>Their message:</strong>
-    <p>{{userMessage}}</p>
-  </div>
+              <p style="font-size: 16px; margin: 0 0 16px 0">
+                {{firstname}} {{lastname}} has just sent you a message and is
+                waiting for your response.
+              </p>
 
-  <p style="margin-top: 25px; font-size: 16px">
-    Be sure to respond by mail to <strong>{{email}}</strong> or give them a call
-    <strong>{{phone}}</strong>
-  </p>
+              <!-- Message block -->
+              <div
+                style="
+                  margin-top: 16px;
+                  padding: 16px;
+                  background: #f0f4f8;
+                  border-left: 4px solid #234361;
+                  font-size: 15px;
+                "
+              >
+                <strong>Their message:</strong>
+                <p style="margin: 8px 0 0 0; line-height: 1.4">
+                  {{userMessage}}
+                </p>
+              </div>
 
-  <p style="margin-top: 25px; font-size: 14px; color: #234361">
-    Best regards,<br />
-    <strong>Admin Team</strong>
-  </p>
+              <p style="margin-top: 20px; font-size: 16px">
+                Be sure to respond by mail to
+                <strong>{{email}}</strong><br />
+                or give them a call
+                <strong>{{phone}}</strong>
+              </p>
+
+              <p style="margin-top: 24px; font-size: 14px; color: #234361">
+                Best regards,<br />
+                <strong>Admin Team</strong>
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
 </div>

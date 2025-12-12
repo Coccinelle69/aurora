@@ -25,12 +25,14 @@ const ContactForm = () => {
     trigger: formStatus.trigger,
   });
 
+  console.log(errorMessage);
+
   useEffect(() => {
     if (!done) return;
 
     queueMicrotask(() => {
       setFormStatus((prev) => {
-        return { ...prev, submitting: false, sent: false, trigger: false };
+        return { ...prev, submitting: false, sent: true, trigger: false };
       });
     });
 
@@ -50,12 +52,12 @@ const ContactForm = () => {
       lastName: formData.get("lastName"),
       phone: formData.get("phone"),
       email: formData.get("email"),
-      message: formData.get("message") ?? "",
+      message: formData.get("message"),
       language: i18n.language,
     });
 
     setFormStatus((prev) => {
-      return { ...prev, submitting: true, sent: true, trigger: true };
+      return { ...prev, submitting: true, trigger: true };
     });
 
     (e.target as HTMLFormElement).reset();
@@ -115,7 +117,8 @@ const ContactForm = () => {
             } ${formStatus.fade ? "fade-slide-out" : ""}`}
           >
             {success && t("success")}
-            {!success && errorMessage && t(errorMessage)}{" "}
+            {!success && errorMessage === "BLANK" && t("fieldsError")}{" "}
+            {!success && errorMessage !== "BLANK" && t("something-went-wrong")}{" "}
           </p>
         )}
       </form>

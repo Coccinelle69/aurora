@@ -1,10 +1,12 @@
 CREATE TABLE Reservation (
   id SERIAL PRIMARY KEY,
+  public_token UUID NOT NULL UNIQUE,
 
   main_contact_first_name VARCHAR(100) NOT NULL,
   main_contact_last_name VARCHAR(100) NOT NULL,
   main_contact_email VARCHAR(100) NOT NULL,
   main_contact_phone VARCHAR(100) NOT NULL,
+  language VARCHAR(10)  NOT NULL DEFAULT 'en',
 
   guests INT NOT NULL,
   adults INT NOT NULL,
@@ -17,7 +19,10 @@ CREATE TABLE Reservation (
   arrival_date DATE NOT NULL,
   departure_date DATE NOT NULL,
 
-  status VARCHAR(20) DEFAULT 'PENDING' 
+  status VARCHAR(20) DEFAULT 'PENDING',
+  created_at  TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  message VARCHAR(2000)
+
 );
 
 CREATE TABLE Contact (
@@ -27,13 +32,8 @@ CREATE TABLE Contact (
   last_name VARCHAR(100) NOT NULL,
   email VARCHAR(100) NOT NULL,
   phone VARCHAR(100) NOT NULL,
-  language VARCHAR(100) NOT NULL,
-  message VARCHAR(2000),
+  language VARCHAR(10) NOT NULL DEFAULT 'en',
+  message VARCHAR(2000) NOT NULL,
+  created_at  TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
    
-
-
-INSERT INTO Reservation
-(arrival_date, departure_date, reservation_first_name, reservation_last_name, email, phone, adults, children, teens, total_nights, total_price, status)
-VALUES
-('2025-06-10', '2025-06-17', 'John', 'Doe', 'john@example.com', '123456789', 2, 0, 0, 7, 700, 'PENDING');

@@ -29,8 +29,6 @@ ContactService contactService;
 @PostMapping
 public ResponseEntity<?> handleContact(@Valid @RequestBody ContactRequest request) {
 
-    emailService.sendToAdmin(request);          
-    emailService.sendConfirmationToUser(request); 
     contactService.conserveContact(request);
 
     return ResponseEntity.ok("{\"success\": true}");

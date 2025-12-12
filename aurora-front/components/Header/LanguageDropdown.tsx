@@ -79,10 +79,7 @@ export default function LanguageDropdown({ onChange }: Props) {
           alt={selected.native}
           className="rounded-sm h-[14px] w-[20px]"
         />
-        <span className="hidden sm:inline">{selected.native}</span>
-        <svg width="14" height="14" viewBox="0 0 20 20" className="opacity-80">
-          <path d="M5 7l5 6 5-6H5z" fill="currentColor" />
-        </svg>
+        <span className="hidden sm:inline text-[1rem]">{selected.native}</span>
       </button>
 
       {open && (

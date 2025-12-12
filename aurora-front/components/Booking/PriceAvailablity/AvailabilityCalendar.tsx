@@ -35,7 +35,7 @@ export default function AvailabilityCalendar() {
   const [unavailable, setUnavailable] = useState<Range[]>([]);
   const [trigger, setTrigger] = useState(true);
 
-  const { done, errorMessage, data, success } = useResponse({
+  const { done, data, success } = useResponse({
     url: "/api/reservation/all",
     method: "GET",
     trigger,

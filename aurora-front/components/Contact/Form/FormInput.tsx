@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { FormInputProps } from "@/utils/interfaces";
 import { useTranslation } from "react-i18next";
+import { useIsMobile } from "@/utils/hooks";
 
 const FormInput = ({
   id,
@@ -31,6 +32,8 @@ const FormInput = ({
   const [error, setError] = useState({ message: "" });
   const [fade, setFade] = useState(false);
   const { t } = useTranslation();
+  const [charNumber, setCharNumber] = useState(0);
+  const isMobile = useIsMobile();
 
   const triggerLocalError = () => {
     setError({ message: t("emptyField") });
@@ -82,9 +85,10 @@ const FormInput = ({
             checkout && "h-[120px]"
           } min-h-[160px] resize-none`}
           value={contactState[name]}
-          onChange={(e) =>
-            dispatch(persistField({ key: name, value: e.target.value }))
-          }
+          onChange={(e) => {
+            dispatch(persistField({ key: name, value: e.target.value }));
+            setCharNumber(e.target.value.length);
+          }}
         />
       )}
 
@@ -101,7 +105,22 @@ const FormInput = ({
           {children}
         </span>
       </label>
-
+      {!input && (
+        <span
+          className={`absolute -top-2 ${
+            checkout && !isMobile
+              ? "right-3"
+              : checkout && isMobile
+              ? "right-2"
+              : "left-26"
+          }  z-20
+                text-xs px-1
+                ${checkout ? "bg-white" : "bg-[#D3DAE0]"}
+                ${charNumber === 2000 ? "text-red-500" : "text-slate-500"}`}
+        >
+          {charNumber}/2000
+        </span>
+      )}
       {/* local fade error */}
       <div className={`px-1 ${checkout ? "h-4 mb-2" : "h-3 mb-2"} `}>
         {error.message && (

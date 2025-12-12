@@ -2,20 +2,24 @@ package com.aurora.AuroraApartment.service;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.aurora.AuroraApartment.dto.ReservationRequest;
+import com.aurora.AuroraApartment.dto.ReservationStatus;
 import com.aurora.AuroraApartment.model.Reservation;
 import com.aurora.AuroraApartment.repo.ReservationRepo;
 import com.aurora.AuroraApartment.service.pricing.PriceCalculator;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class ReservationService {
     @Autowired
     ReservationRepo reservationRepo;
+
+    private EmailService emailService;
 
 public boolean isAvailable(LocalDate arrival, LocalDate departure) {
     List<Reservation> overlaps = reservationRepo
@@ -46,8 +50,29 @@ public Reservation createReservation(ReservationRequest reservation) {
         .teens(reservation.getTeens())
         .children(reservation.getChildren())
         .build();
+    Reservation saved = reservationRepo.save(newReservation);
 
-    return reservationRepo.save(newReservation);
+    
+    emailService.sendCheckoutRecapToAdmin(saved);          
+    emailService.sendCheckoutRecapToUser(saved); 
+
+    return saved;
+
+}
+
+@Transactional
+public Reservation cancelReservation(Integer reservationId) {
+    Reservation reservation = reservationRepo.findById(reservationId).orElseThrow(() -> new RuntimeException("Not found"));
+    reservation.setStatus(ReservationStatus.CANCELLED);
+    return reservation;
+
+}
+
+@Transactional
+public Reservation confirmReservation(Integer reservationId) {
+    Reservation reservation = reservationRepo.findById(reservationId).orElseThrow(() -> new RuntimeException("Not found"));
+    reservation.setStatus(ReservationStatus.CONFIRMED);
+    return reservation;
 
 }
 }

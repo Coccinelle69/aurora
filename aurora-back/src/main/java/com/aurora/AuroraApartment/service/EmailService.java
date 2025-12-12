@@ -21,13 +21,18 @@ import lombok.RequiredArgsConstructor;
 
 import com.aurora.AuroraApartment.dto.ContactRequest;
 import com.aurora.AuroraApartment.dto.ReservationRequest;
-
+import com.aurora.AuroraApartment.model.Contact;
+import com.aurora.AuroraApartment.model.Reservation;
+import com.aurora.AuroraApartment.service.pricing.CheckoutCard;
+import com.aurora.AuroraApartment.service.pricing.CheckoutService;
 
 @Service
 @RequiredArgsConstructor
 public class EmailService {
 
     private final JavaMailSender mailSender;
+    private final CheckoutService checkoutService;
+    private final ReservationService reservationService;
 
     @Value("${CONTACT_RECEIVER_EMAIL}")
     private String adminEmail;
@@ -80,65 +85,115 @@ private String apply(String template, Map<String, String> values) {
 
 
     // 1. Email TO admin
-    public void sendToAdmin(ContactRequest request) {
+    public void sendToAdmin(Contact contact) {
         String template = loadTemplate("contact-admin");
 
     String html = apply(template, Map.of(
-            "firstname", request.getFirstName(),
-            "lastname", request.getLastName(),
-            "userMessage", request.getMessage(),
-            "email", request.getEmail(),
-            "phone", request.getPhone()
+            "firstname", contact.getFirstName(),
+            "lastname", contact.getLastName(),
+            "userMessage", contact.getMessage(),
+            "email", contact.getEmail(),
+            "phone", contact.getPhone()
     ));
 
     sendHtmlEmail(
                 adminEmail,
-                "New message from " + request.getFirstName() + " " + request.getLastName(),
+                "New message from " + contact.getFirstName() + " " + contact.getLastName(),
                 html,
-                request.getEmail()
+                contact.getEmail()
         );
     }
 
-     public void sendCheckoutRecapToAdmin(ReservationRequest request) {
+     public void sendCheckoutRecapToAdmin(Reservation reservation) {
         String template = loadTemplate("checkout-admin");
 
         String userMessageBlock = "";
-        if (request.getMessage() != null && !request.getMessage().isBlank()) {
+        if (reservation.getMessage() != null && !reservation.getMessage().isBlank()) {
             userMessageBlock =
             "<div style=\"margin-top: 20px; padding: 15px; background: #f0f4f8; border-left: 4px solid #234361;\">" +
             "<strong>Their message:</strong>" +
-            "<p>" + request.getMessage() + "</p>" +
+            "<p>" + reservation.getMessage() + "</p>" +
             "</div>";
 }
-        Integer guests = request.getAdults() + request.getAdults() +  request.getAdults();
+    Integer guests = reservation.getAdults() + reservation.getChildren() +  reservation.getTeens();
+    CheckoutCard  checkoutCard = checkoutService.build(reservation.getArrivalDate(), reservation.getDepartureDate(), guests);
 
-        String html = apply(template, Map.of(
-            "firstname", request.getFirstName(),
-            "lastname", request.getLastName(),
-            "userMessage", userMessageBlock,
-            "email", request.getEmail(),
-            "phone", request.getPhone(),
-            "guests", guests.toString(),
-            "arrival", request.getArrivalDate().toString(),
-            "departure", request.getDepartureDate().toString()
-            
-    ));
+    Map<String, String> vars = new HashMap<>();
+
+    String priceDetails;
+
+    if (checkoutCard.isSplit()) {
+    priceDetails = """
+        <tr>
+            <td>%s – %s</td>
+            <td style="text-align: right">%d Nights × € %d</td>
+            <td style="text-align: right">€ %d</td>
+        </tr>
+        <tr>
+            <td>%s – %s</td>
+            <td style="text-align: right">%d Nights × € %d</td>
+            <td style="text-align: right">€ %d</td>
+        </tr>
+    """.formatted(
+        checkoutCard.getFromDates().get(0),
+        checkoutCard.getFromDates().get(1),
+        checkoutCard.getFromNights(),
+        checkoutCard.getFromPrice(),
+        checkoutCard.getFromTotalPrice(),
+
+        checkoutCard.getToDates().get(0),
+        checkoutCard.getToDates().get(1),
+        checkoutCard.getToNights(),
+        checkoutCard.getToPrice(),
+        checkoutCard.getToTotalPrice()
+    );
+} else {
+    priceDetails = """
+        <tr>
+            <td>%s – %s</td>
+            <td style="text-align: right">%d Nights × € %d</td>
+            <td style="text-align: right">€ %d</td>
+        </tr>
+    """.formatted(
+        checkoutCard.getFromDates().get(0),
+        checkoutCard.getFromDates().get(1),
+        checkoutCard.getTotalNights(),
+        checkoutCard.getFromPrice(),
+        checkoutCard.getTotalPrice()
+    );
+}
+
+        vars.put("firstname", reservation.getMainContactFirstName());
+        vars.put("lastname",reservation.getMainContactLastName());
+        vars.put("userMessage", userMessageBlock);
+        vars.put("email",reservation.getEmail());
+        vars.put("phone",reservation.getPhone());
+        vars.put("guestsNo", guests.toString());
+        vars.put("arrivalDate",reservation.getArrivalDate().toString());
+        vars.put("departureDate", reservation.getDepartureDate().toString());
+        vars.put("priceDetails", priceDetails);
+        vars.put("totalNights", checkoutCard.getTotalNights().toString());
+        vars.put("totalPrice", checkoutCard.getTotalPrice().toString());
+        vars.put("reservationToken", reservation.getPublicToken().toString());
+
+       
+        String html = apply(template, vars);
 
     sendHtmlEmail(
                 adminEmail,
-                "New booking inquiry from " + request.getFirstName() + " " + request.getLastName(),
+                "New booking inquiry from " + reservation.getMainContactFirstName() + " " + reservation.getMainContactLastName(),
                 html,
-                request.getEmail()
+                reservation.getEmail()
         );
     }
 
     // 2. Confirmation email TO USER & translation
 
-    private EmailContent translateMessage(String language, ContactRequest request) {
+    private EmailContent translateMessage(String language, Contact contact) {
         Locale locale = Locale.forLanguageTag(language);
 
         String subject = messageSource.getMessage("email.subject", null, locale);
-        String hello = messageSource.getMessage("email.hello", new Object[]{request.getFirstName()}, locale);
+        String hello = messageSource.getMessage("email.hello", new Object[]{contact.getFirstName()}, locale);
         String thanks = messageSource.getMessage("email.thanks", null, locale);
         String yourMsg = messageSource.getMessage("email.yourMessage", null, locale);
         String regards = messageSource.getMessage("email.regards", null, locale);
@@ -151,7 +206,7 @@ private String apply(String template, Map<String, String> values) {
             "hello", hello,
             "thanks", thanks,
             "yourMessage",yourMsg,
-            "userMessage", request.getMessage(),
+            "userMessage", contact.getMessage(),
             "regards", regards,
             "signature", signature
     ));
@@ -160,12 +215,12 @@ private String apply(String template, Map<String, String> values) {
     return new EmailContent(subject, html);
 
     }
-    private EmailContent translateMessage(String language, ReservationRequest request) {
+    private EmailContent translateMessage(String language, Reservation reservation) {
         Locale locale = Locale.forLanguageTag(language);
 
         String bookingSubject = messageSource.getMessage("email.bookingSubject", null, locale);
-        String hello = messageSource.getMessage("email.hello", new Object[]{request.getFirstName()}, locale);
-        String thanks = messageSource.getMessage("email.thanksMessage", null, locale);
+        String hello = messageSource.getMessage("email.hello", new Object[]{reservation.getMainContactFirstName()}, locale);
+        String thanksMessage = messageSource.getMessage("email.thanksMessage", null, locale);
         String yourMsg = messageSource.getMessage("email.yourMessage", null, locale);
         String regards = messageSource.getMessage("email.regards", null, locale);
         String signature = messageSource.getMessage("email.signature", null, locale);
@@ -185,22 +240,68 @@ private String apply(String template, Map<String, String> values) {
         String priceDetails = messageSource.getMessage("email.priceDetails",null, locale);
 
         String userMessageBlock = "";
-        if (request.getMessage() != null && !request.getMessage().isBlank()) {
+        if (reservation.getMessage() != null && !reservation.getMessage().isBlank()) {
             userMessageBlock =
                 "<div style=\"margin-top: 20px; padding: 15px; background: #f0f4f8; border-left: 4px solid #234361;\">" +
                 "<strong>"+ yourMsg +":</strong>" +
-                "<p>" + request.getMessage() + "</p>" +
+                "<p>" + reservation.getMessage() + "</p>" +
                 "</div>";
 }
         String template = loadTemplate("checkout-confirmation");
-        Integer guestsNo = request.getAdults() + request.getAdults() +  request.getAdults();
+        Integer guestsNo = reservation.getAdults() + reservation.getTeens() +  reservation.getChildren();
+        CheckoutCard checkoutCard = checkoutService.build(reservation.getArrivalDate(), reservation.getDepartureDate(), guestsNo);
+        String priceBreakdown;
+
+    if (checkoutCard.isSplit()) {
+    priceBreakdown = """
+        <tr>
+            <td>%s – %s</td>
+            <td style="text-align: right">%d %s × € %d</td>
+            <td style="text-align: right">€ %d</td>
+        </tr>
+        <tr>
+            <td>%s – %s</td>
+            <td style="text-align: right">%d %s × € %d</td>
+            <td style="text-align: right">€ %d</td>
+        </tr>
+    """.formatted(
+        checkoutCard.getFromDates().get(0),
+        checkoutCard.getFromDates().get(1),
+        checkoutCard.getFromNights(),
+        nights,
+        checkoutCard.getFromPrice(),
+        checkoutCard.getFromTotalPrice(),
+
+        checkoutCard.getToDates().get(0),
+        checkoutCard.getToDates().get(1),
+        checkoutCard.getToNights(),
+        nights,
+        checkoutCard.getToPrice(),
+        checkoutCard.getToTotalPrice()
+    );
+} else {
+    priceBreakdown = """
+        <tr>
+            <td>%s – %s</td>
+            <td style="text-align: right">%d %s × € %d</td>
+            <td style="text-align: right">€ %d</td>
+        </tr>
+    """.formatted(
+        checkoutCard.getFromDates().get(0),
+        checkoutCard.getFromDates().get(1),
+        checkoutCard.getTotalNights(),
+        nights,
+        checkoutCard.getFromPrice(),
+        checkoutCard.getTotalPrice()
+    );
+}
 
 
        Map<String, String> vars = new HashMap<>();
 
         vars.put("bookingSubject", bookingSubject);
         vars.put("hello", hello);
-        vars.put("thanks", thanks);
+        vars.put("thanksMessage", thanksMessage);
         vars.put("userMessage", userMessageBlock);
         vars.put("regards", regards);
         vars.put("signature", signature);
@@ -218,9 +319,12 @@ private String apply(String template, Map<String, String> values) {
         vars.put("taxes", taxes);
         vars.put("taxesIncluded", taxesIncluded);
         vars.put("priceDetails", priceDetails);
-        vars.put("arrival", request.getArrivalDate().toString());
-        vars.put("departure", request.getDepartureDate().toString());
+        vars.put("arrivalDate", reservation.getArrivalDate().toString());
+        vars.put("departureDate", reservation.getDepartureDate().toString());
         vars.put("guestsNo", guestsNo.toString());
+        vars.put("priceBreakdown", priceBreakdown);
+        vars.put("totalNights", checkoutCard.getTotalNights().toString());
+        vars.put("totalPrice", checkoutCard.getTotalPrice().toString());
 
         String html = apply(template, vars);
 
@@ -229,24 +333,24 @@ private String apply(String template, Map<String, String> values) {
     }
 
 
-public void sendConfirmationToUser(ContactRequest request) {
-        EmailContent email = translateMessage(request.getLanguage(), request);
+public void sendConfirmationToUser(Contact contact) {
+        EmailContent email = translateMessage(contact.getLanguage(), contact);
         sendHtmlEmail(
-                request.getEmail(),
+                contact.getEmail(),
                 email.subject(),
                 email.html(),
-                request.getEmail()
+                contact.getEmail()
         );
 
 }
 
-public void sendCheckoutRecapToUser(ReservationRequest request) {
-        EmailContent email = translateMessage(request.getLanguage(), request);
+public void sendCheckoutRecapToUser(Reservation reservation) {
+        EmailContent email = translateMessage(reservation.getLanguage(), reservation);
         sendHtmlEmail(
-                request.getEmail(),
+                reservation.getEmail(),
                 email.subject(),
                 email.html(),
-                request.getEmail()
+                reservation.getEmail()
         );
     }
 

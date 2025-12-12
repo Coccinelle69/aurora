@@ -1,112 +1,163 @@
-<div style="font-family: Arial, sans-serif; padding: 20px">
-  <h2 style="color: #234361"><strong>{{hello}} {{firstname}},</strong></h2>
-  <p style="font-size: 16px">
-   {{thanksMessage}}
-  </p>
+<div style="font-family: Arial, sans-serif; padding: 16px; background: #ffffff">
+  <h2 style="color: #234361; font-size: 20px; margin-bottom: 10px">
+    <strong>{{hello}}</strong>
+  </h2>
 
+  <p style="font-size: 16px; margin: 0 0 16px 0">{{thanksMessage}}</p>
+
+  <!-- Recap container -->
   <div
     style="
-      margin-top: 20px;
-      padding: 15px;
+      margin-top: 16px;
+      padding: 16px;
       background: #f0f4f8;
       border-left: 4px solid #234361;
     "
   >
-    <strong>{{recap}}:</strong>
-    <!-- Center wrapper -->
-<div style="width: 100%; text-align: center; margin-top: 20px;">
-  <div style="
-    display: inline-block;
-    width: 360px;
-    background: #ffffff;
-    border-radius: 12px;
-    padding: 20px;
-    text-align: left;
-    border: 1px solid #e5e8eb;
-  ">
-    
-    <!-- Title -->
-    <h2 style="font-size: 20px; color: #234361; margin: 0 0 15px 0; text-align:center;">
-      <strong>Aurora Apartment</strong>
-    </h2>
+    <strong style="font-size: 16px">{{recap}}</strong>
 
-    <!-- Dates info -->
-    <table style="width:100%; font-size:14px; margin-bottom: 15px;">
+    <!-- Card wrapper -->
+    <table
+      role="presentation"
+      width="100%"
+      cellspacing="0"
+      cellpadding="0"
+      style="margin-top: 16px"
+    >
       <tr>
-        <td><strong>{{arrival}}</strong></td>
-        <td><strong>{{departure}}</strong></td>
-        <td><strong>{{nights}}</strong></td>
-        <td><strong>{{guests}}</strong></td>
-      </tr>
-      <tr>
-        <td style="color:#234361;">{{arrivalDate}}</td>
-        <td style="color:#234361;">{{departureDate}}</td>
-        <td>{{nights}} {{nights}}</td>
-        <td>{{guests}}</td>
+        <td align="center">
+          <!-- Card -->
+          <table
+            role="presentation"
+            width="100%"
+            cellspacing="0"
+            cellpadding="0"
+            style="
+              max-width: 420px;
+              background: #ffffff;
+              border-radius: 12px;
+              padding: 16px;
+              border: 1px solid #e5e8eb;
+            "
+          >
+            <tr>
+              <td>
+                <!-- Title -->
+                <h2
+                  style="
+                    font-size: 18px;
+                    color: #234361;
+                    margin: 0 0 12px 0;
+                    text-align: center;
+                  "
+                >
+                  <strong>Aurora Apartment</strong>
+                </h2>
+
+                <!-- Dates (stackable) -->
+                <table
+                  width="100%"
+                  style="font-size: 14px; margin-bottom: 12px"
+                >
+                  <tr>
+                    <td style="padding: 4px 0"><strong>{{arrival}}</strong></td>
+                    <td
+                      style="padding: 4px 0; text-align: right; color: #234361"
+                    >
+                      {{arrivalDate}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 4px 0">
+                      <strong>{{departure}}</strong>
+                    </td>
+                    <td
+                      style="padding: 4px 0; text-align: right; color: #234361"
+                    >
+                      {{departureDate}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 4px 0"><strong>{{nights}}</strong></td>
+                    <td style="padding: 4px 0; text-align: right">
+                      {{totalNights}} {{nights}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 4px 0"><strong>{{guests}}</strong></td>
+                    <td style="padding: 4px 0; text-align: right">
+                      {{guestsNo}} {{guests}}
+                    </td>
+                  </tr>
+                </table>
+
+                <!-- Cancellation -->
+                <p style="font-size: 14px; margin: 10px 0">
+                  <strong>{{cancellationPolicy}}</strong><br />
+                  {{cancellationText}}
+                </p>
+
+                <hr
+                  style="
+                    border: none;
+                    border-top: 1px solid #d9d9d9;
+                    margin: 16px 0;
+                  "
+                />
+
+                <!-- Price -->
+                <p style="font-size: 14px; color: #234361; margin-bottom: 8px">
+                  <strong>{{priceDetails}}</strong>
+                </p>
+
+                <table width="100%" style="font-size: 14px">
+                  {{priceBreakdown}}
+                  <tr>
+                    <td colspan="3" style="height: 8px"></td>
+                  </tr>
+                  <tr>
+                    <td>{{taxes}}</td>
+                    <td></td>
+                    <td style="text-align: right">{{taxesIncluded}}</td>
+                  </tr>
+                  <tr>
+                    <td>{{cleaningFee}}</td>
+                    <td></td>
+                    <td style="text-align: right">{{cleaningIncluded}}</td>
+                  </tr>
+                </table>
+
+                <hr
+                  style="
+                    border: none;
+                    border-top: 1px solid #d9d9d9;
+                    margin: 16px 0;
+                  "
+                />
+
+                <!-- Total -->
+                <table width="100%" style="font-size: 16px; font-weight: bold">
+                  <tr>
+                    <td>{{total}}</td>
+                    <td style="text-align: right; color: #234361">
+                      € {{totalPrice}}
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
       </tr>
     </table>
-
-    <!-- Cancellation -->
-    <p style="font-size:14px; margin-top:5px; margin-bottom:5px;">
-      <strong>{{cancellationPolicy}}</strong>
-      <p style="font-size:14px">{{cancellationText}}</p>
-    </p>
-
-    <!-- Price breakdown -->
-    <hr style="border:none;border-top:1px solid #d9d9d9;margin:15px 0;" />
-
-    <p style="font-size:14px; color:#234361; margin-bottom:8px;">
-      <strong>{{priceDetails}}</strong>
-    </p>
-
-    <table style="font-size:14px; width:100%; margin-bottom:15px;">
-      <tr>
-        <td>25 Aug – 31 Aug</td>
-        <td style="text-align:right;">7 {{nights}} × € 120.00</td>
-        <td style="text-align:right;">€ 840.00</td>
-      </tr>
-      <tr>
-        <td>1 Sep – 3 Sep</td>
-        <td style="text-align:right;">2 {{nights}} × € 105.00</td>
-        <td style="text-align:right;">€ 210.00</td>
-      </tr>
-      <tr><td colspan="3" style="height:10px;"></td></tr>
-      <tr>
-        <td>{{taxes}}</td>
-        <td></td>
-        <td style="text-align:right;">{{taxesIncluded}}</td>
-      </tr>
-      <tr>
-        <td>{{cleaningFee}}</td>
-        <td></td>
-        <td style="text-align:right;">{{cleaningIncluded}}</td>
-      </tr>
-    </table>
-
-    <hr style="border:none;border-top:1px solid #d9d9d9;margin:15px 0;" />
-
-    <!-- Total -->
-    <table style="width:100%; font-size:16px; font-weight:bold;">
-      <tr>
-        <td>{{total}}</td>
-        <td style="text-align:right; color:#234361;">€ 1 050.00</td>
-      </tr>
-    </table>
-
-    
   </div>
-</div>
 
-  </div>
-  <br>
+  <!-- Optional user message -->
   {{userMessage}}
 
-  <p style="margin-top: 25px; font-size: 16px">
-    {{payment}}
-  </p>
+  <p style="margin-top: 20px; font-size: 16px">{{payment}}</p>
 
-
-  <p style="margin-top: 25px; font-size: 14px; color: #234361">
+  <p style="margin-top: 20px; font-size: 14px; color: #234361">
     {{regards}}<br />
     <strong>{{signature}}</strong>
   </p>

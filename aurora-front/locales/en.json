@@ -262,8 +262,8 @@
   "outOfSeason": "Out of season",
   "fillDetails": "Fill in your details",
   "guestInformation": "Guest information",
-  "specialRequestTitle": "Special request",
-  "specialRequestPlaceholder": "Add a special request",
+  "specialRequestTitle": "Special request (optional)",
+  "specialRequestPlaceholder": "Add a special request ",
   "outOfSeasonMessage": "Selected dates are out of season. Please contact the owner for adjusted price list.",
   "emptyField": "Please fill in this field"
 }

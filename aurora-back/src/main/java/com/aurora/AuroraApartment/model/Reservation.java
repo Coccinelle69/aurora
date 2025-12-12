@@ -1,6 +1,10 @@
 package com.aurora.AuroraApartment.model;
 
+import java.time.Instant;
 import java.time.LocalDate;
+import java.util.UUID;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import com.aurora.AuroraApartment.dto.ReservationStatus;
 
@@ -22,15 +26,18 @@ public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(nullable = false, unique = true, updatable = false)
+    private UUID publicToken;
 
-    @Column(name = "main_contact_first_name")
+    @Column(name = "main_contact_first_name", nullable = false)
     private String mainContactFirstName;
-    @Column(name = "main_contact_last_name")
+    @Column(name = "main_contact_last_name", nullable = false)
     private String mainContactLastName;
-    @Column(name = "main_contact_email")
+    @Column(name = "main_contact_email", nullable = false)
     private String email;
-    @Column(name = "main_contact_phone")
+    @Column(name = "main_contact_phone", nullable = false)
     private String phone;
+    private String message;
     @Builder.Default
     private String language="en";
 
@@ -40,7 +47,7 @@ public class Reservation {
     private Integer teens;
     @Column(name = "total_nights")
     private Integer totalNights;
-    @Column(name = "price")
+    @Column(name = "total_price")
     private Integer totalPrice;
 
     @Column(name = "arrival_date")
@@ -51,4 +58,15 @@ public class Reservation {
     @Enumerated(EnumType.STRING)
     @Builder.Default
     private ReservationStatus status = ReservationStatus.PENDING;
+
+    @CreationTimestamp
+    @Column(name = "created_at",nullable = false, updatable = false)
+    private Instant createdAt;
+
+    @PrePersist
+    private void prePersist() {
+        if (publicToken == null) {
+            publicToken = UUID.randomUUID();
+        }
+    }
 }

@@ -32,7 +32,6 @@ public class EmailService {
 
     private final JavaMailSender mailSender;
     private final CheckoutService checkoutService;
-    private final ReservationService reservationService;
 
     @Value("${CONTACT_RECEIVER_EMAIL}")
     private String adminEmail;

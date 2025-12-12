@@ -59,7 +59,6 @@ public class ReservationRequest {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate departureDate; 
 
-    @NotNull
     @Size(max = 2000)
     private String message;
 

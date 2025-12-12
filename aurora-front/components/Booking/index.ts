@@ -6,7 +6,7 @@ export { default as DateInput } from "./SearchBar/DateInput";
 export { default as GuestInput } from "./SearchBar/GuestInput";
 export { default as BookHeader } from "./Header/Header";
 export { default as Notification } from "./UI/Notification";
-export { default as SearchBooking } from "./SearchBooking";
+export { default as SearchBooking } from "./SearchBar/SearchBooking";
 export { default as GuestInputs } from "./SearchBar/GuestInputs";
 export { default as Prices } from "./PriceAvailablity/Prices";
 export { default as AvailabilityCalendar } from "./PriceAvailablity/AvailabilityCalendar";

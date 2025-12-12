@@ -6,11 +6,37 @@ export async function POST(request: Request) {
 
     const body = await request.text();
 
+    const check = await fetch(`${serverUrl}/reservation/check`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body,
+    });
+
+    if (!check.ok) {
+      const error = await check.json();
+      return NextResponse.json(
+        { success: false, errors: error },
+        { status: 400 }
+      );
+    }
+
     const upstream = await fetch(`${serverUrl}/reservation/checkout`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body,
     });
+
+    if (!upstream.ok) {
+      const errorText = await upstream.text();
+      return NextResponse.json(
+        {
+          error: "Upstream error",
+          status: upstream.status,
+          body: errorText,
+        },
+        { status: 502 }
+      );
+    }
 
     const data = await upstream.json();
 

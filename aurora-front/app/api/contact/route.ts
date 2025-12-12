@@ -40,9 +40,9 @@ export async function POST(request: Request) {
       );
     }
 
-    const json = await upstream.json();
+    const data = await upstream.json();
 
-    return NextResponse.json(json);
+    return NextResponse.json(data);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (e: any) {
     console.error("API /api/contact error:", e);

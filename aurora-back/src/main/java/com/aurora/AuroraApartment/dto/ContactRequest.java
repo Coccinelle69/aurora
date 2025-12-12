@@ -36,6 +36,7 @@ public class ContactRequest {
     private String phone;
 
     @Size(max = 2000)
+    @NotBlank
     private String message;
 
     @Builder.Default

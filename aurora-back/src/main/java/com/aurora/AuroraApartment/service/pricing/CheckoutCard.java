@@ -5,16 +5,18 @@ import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @Data
+@NoArgsConstructor
 public class CheckoutCard {
     private LocalDate arrival;
     private LocalDate departure;
     
-    private int totalNights;
-    private Integer price; 
-    private int total;
+    private Integer totalNights;
+    private Integer guests;
+    private Integer totalPrice;
 
     private Integer fromNights;
     private Integer fromPrice;
@@ -26,6 +28,6 @@ public class CheckoutCard {
     private Integer toTotalPrice;
     private List<LocalDate> toDates;
 
-     private boolean isSplit;   // true for 2 rows
-    private boolean outOfSeason;
+    private boolean isSplit;   
+    private boolean outOfSeason;   
 }

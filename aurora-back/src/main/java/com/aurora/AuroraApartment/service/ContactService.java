@@ -16,6 +16,8 @@ public class ContactService {
     @Autowired
     ContactRepo contactRepo;
 
+    private EmailService emailService;
+
     public Contact conserveContact(ContactRequest contact){
       Contact newContact = Contact.builder()
         .firstName(contact.getFirstName())
@@ -25,6 +27,9 @@ public class ContactService {
         .message(contact.getMessage())
         .language(contact.getLanguage()).build();
 
-        return contactRepo.save(newContact);
+      emailService.sendToAdmin(newContact);          
+      emailService.sendConfirmationToUser(newContact); 
+
+      return contactRepo.save(newContact);
     }
 }

@@ -2,7 +2,7 @@
 
 import { FormEvent, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { useResponse } from "@/utils/hooks";
+import { useIsMobile, useResponse } from "@/utils/hooks";
 import { useDispatch } from "react-redux";
 import { resetField } from "@/reducers/contact";
 import { FormInputs, LoadingSpinner } from "@/components";
@@ -27,9 +27,11 @@ const CheckoutForm = ({ setCheckoutUI, checkoutUI }: CheckoutProps) => {
     arrival: arrivalDate,
     departure: departureDate,
   } = useAppSelector((state) => state.search);
+  const isMobile = useIsMobile();
+  const xOffset = isMobile ? 0 : -40;
 
   const { data, success, done, errorMessage } = useResponse({
-    url: "api/reservation/request",
+    url: "/api/reservation/request",
     method: "POST",
     body,
     trigger: formStatus.trigger,
@@ -40,7 +42,7 @@ const CheckoutForm = ({ setCheckoutUI, checkoutUI }: CheckoutProps) => {
 
     queueMicrotask(() => {
       setFormStatus((prev) => {
-        return { ...prev, submitting: false, sent: false, trigger: false };
+        return { ...prev, submitting: false, sent: true, trigger: false };
       });
     });
 
@@ -71,7 +73,7 @@ const CheckoutForm = ({ setCheckoutUI, checkoutUI }: CheckoutProps) => {
     });
 
     setFormStatus((prev) => {
-      return { ...prev, submitting: true, sent: true, trigger: true };
+      return { ...prev, submitting: true, trigger: true };
     });
 
     (e.target as HTMLFormElement).reset();
@@ -135,13 +137,13 @@ const CheckoutForm = ({ setCheckoutUI, checkoutUI }: CheckoutProps) => {
           animate={
             checkoutUI.changeUI && !checkoutUI.checkoutFormRemove
               ? { x: 0, opacity: 0 }
-              : { x: -40, opacity: 1 }
+              : { x: xOffset, opacity: 1 }
           }
           transition={{
             duration: 1.2,
             ease: "easeOut",
           }}
-          className="shadow-lg max-w-[560px] sm:w-full sm:p-10 sm:sticky sm:top-[25px] order-1 sm:order-2 rounded-3xl bg-white"
+          className="shadow-lg max-w-[560px] sm:w-full p-5 sm:p-10 sm:sticky sm:top-[25px]  order-1 sm:order-2 rounded-3xl bg-white"
         >
           <h2 className="font-heading text-marineBlue text-4xl sm:text-5xl leading-tight mb-10">
             {t("fillDetails")}
@@ -178,7 +180,10 @@ const CheckoutForm = ({ setCheckoutUI, checkoutUI }: CheckoutProps) => {
                 } ${formStatus.fade ? "fade-slide-out" : ""}`}
               >
                 {success && t("success")}
-                {!success && errorMessage && t(errorMessage)}
+                {!success && errorMessage === "BLANK" && t("fieldsError")}{" "}
+                {!success &&
+                  errorMessage !== "BLANK" &&
+                  t("something-went-wrong")}{" "}
               </p>
             )}
           </form>

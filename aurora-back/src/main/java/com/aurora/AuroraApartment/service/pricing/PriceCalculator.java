@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.function.Function;
 
+import org.springframework.stereotype.Service;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,6 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Service
 public class PriceCalculator {
     private int totalNights;
     private Integer price; 
@@ -57,8 +60,9 @@ public class PriceCalculator {
     // JULY–AUGUST (01–31, 01–31)
     if (!from.isBefore(d.apply("07-01")) && !to.isAfter(d.apply("08-31"))) {
 
-        LocalDate julyStart = from.isBefore(d.apply("07-01")) ? d.apply("07-01") : from;
+        LocalDate julyStart = from;
         LocalDate julyEnd = to.isAfter(d.apply("07-31")) ? d.apply("07-31") : to;
+
 
         LocalDate augustStart = from.isAfter(d.apply("08-01")) ? from : d.apply("08-01");
         LocalDate augustEnd = to;

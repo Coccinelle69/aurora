@@ -58,7 +58,12 @@ const useResponse = <T = any,>({
 
         if (!response.ok) {
           setSuccess(false);
-          if (json?.errors?.email) {
+          if (
+            json?.errors?.email ||
+            // json?.errors?.message ||
+            json?.errors?.firstname ||
+            json?.errors?.lastname
+          ) {
             setError("BLANK");
           }
           return;

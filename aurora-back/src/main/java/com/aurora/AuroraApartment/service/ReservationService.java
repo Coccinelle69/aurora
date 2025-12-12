@@ -18,8 +18,16 @@ import jakarta.transaction.Transactional;
 public class ReservationService {
     @Autowired
     ReservationRepo reservationRepo;
+    private final EmailService emailService;
 
-    private EmailService emailService;
+    public ReservationService(
+            ReservationRepo reservationRepo,
+            EmailService emailService
+    ) {
+        this.reservationRepo = reservationRepo;
+        this.emailService = emailService;
+    }
+
 
 public boolean isAvailable(LocalDate arrival, LocalDate departure) {
     List<Reservation> overlaps = reservationRepo

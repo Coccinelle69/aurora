@@ -16,7 +16,7 @@ public class ContactService {
     @Autowired
     ContactRepo contactRepo;
 
-    private EmailService emailService;
+    private final EmailService emailService;
 
     public Contact conserveContact(ContactRequest contact){
       Contact newContact = Contact.builder()

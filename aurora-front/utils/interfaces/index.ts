@@ -23,6 +23,7 @@ export interface MapProps {
   zoom?: number;
   title?: string;
   className?: string;
+  detailsMap?: boolean;
 }
 
 export interface IconProps {

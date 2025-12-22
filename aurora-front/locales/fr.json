@@ -265,5 +265,14 @@
   "specialRequestTitle": "Demande spéciale",
   "specialRequestPlaceholder": "Ajoutez une demande spéciale",
   "outOfSeasonMessage": "Les dates sélectionnées sont hors saison. Veuillez contacter le propriétaire pour une liste de prix adaptée.",
-  "emptyField": "Veuillez remplir ce champ"
+  "emptyField": "Veuillez remplir ce champ",
+  "paymentPolicyTitle": "Modes de paiement.",
+  "paymentPolicy": {
+    "intro": "Nous proposons deux modes de paiement pratiques :",
+    "methods": [
+      "Virement bancaire direct (IBAN)",
+      "Paiement en ligne sécurisé via Stripe (lien de paiement)"
+    ],
+    "outro": "Les informations de paiement vous seront communiquées une fois la réservation confirmée."
+  }
 }

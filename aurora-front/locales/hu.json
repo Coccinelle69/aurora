@@ -266,5 +266,14 @@
   "specialRequestTitle": "Különleges kérés",
   "specialRequestPlaceholder": "Adjon hozzá egy különleges kérést",
   "outOfSeasonMessage": "A kiválasztott dátumok szezonon kívül esnek. Kérjük, lépjen kapcsolatba a tulajdonossal a módosított árlista miatt.",
-  "emptyField": "Kérjük, töltse ki ezt a mezőt"
+  "emptyField": "Kérjük, töltse ki ezt a mezőt",
+  "paymentPolicyTitle": "Fizetési módok.",
+  "paymentPolicy": {
+    "intro": "Két kényelmes fizetési lehetőséget kínálunk:",
+    "methods": [
+      "Közvetlen banki átutalás (IBAN)",
+      "Biztonságos online fizetés Stripe-on keresztül (fizetési linken)"
+    ],
+    "outro": "A fizetési adatok a foglalás visszaigazolása után kerülnek megosztásra."
+  }
 }

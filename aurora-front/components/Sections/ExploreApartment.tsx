@@ -22,23 +22,23 @@ export default function ExploreApartment() {
       </div>
 
       {/* overlay card */}
-      <div className="pointer-events-none absolute inset-0">
+      <div className="pointer-events-none absolute inset-0 w-screen">
         <div className="pointer-events-auto mx-auto h-full max-w-7xl px-4 sm:px-6">
-          <div className="relative flex h-full justify-start pt-24 pr-[20rem]">
+          <div className="relative flex h-full justify-start mt-5 sm:mt-24 w-full mx-auto">
             {/* left-aligned panel */}
-            <div className="absolute w-[100%] max-w-2xl lg:max-w-xl lg:-left-[10rem] ">
+            <div className="absolute w-full  lg:max-w-xl 2xl:-left-30 lg:left-20">
               {/* title bar */}
-              <div className="bg-marineBlue px-8 py-8 text-white shadow-md">
+              <div className="bg-marineBlue p-6 sm:p-8 text-white shadow-md">
                 <h2 className={`font-heading text-3xl md:text-4xl`}>
                   {t("explore-h2")}
                 </h2>
               </div>
               {/* body box */}
               <div className="bg-white/60 px-8 py-8 shadow-md backdrop-blur">
-                <p className="text-slate-700 leading-relaxed font-body">
+                <p className="text-slate-700 leading-relaxed font-body text-[0.85rem] sm:text-[1rem]">
                   {t("explore-p-1")}
                 </p>
-                <p className="mt-4 text-slate-700 leading-relaxed font-body">
+                <p className="mt-4 text-slate-700 leading-relaxed font-body text-[0.85rem] sm:text-[1rem]">
                   {t("explore-p-2")}
                 </p>
 

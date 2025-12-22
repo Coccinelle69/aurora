@@ -264,5 +264,15 @@
   "guestInformation": "Podaci o gostu",
   "specialRequestTitle": "Poseban zahtjev",
   "specialRequestPlaceholder": "Dodajte poseban zahtjev",
-  "outOfSeasonMessage": "Odabrani datumi su izvan sezone. Molimo kontaktirajte vlasnika za prilagođeni cjenik."
+  "paymentPolicyTitle": "Načini plaćanja.",
+  "emptyField": "Molimo ispunite ovo polje",
+  "outOfSeasonMessage": "Odabrani datumi su izvan sezone. Molimo kontaktirajte vlasnika za prilagođeni cjenik.",
+  "paymentPolicy": {
+    "intro": "Nudimo dvije praktične mogućnosti plaćanja:",
+    "methods": [
+      "Izravna bankovna uplata (IBAN)",
+      "Sigurno online plaćanje putem Stripea (putem poveznice za plaćanje)"
+    ],
+    "outro": "Podaci za plaćanje bit će dostavljeni nakon potvrde rezervacije."
+  }
 }

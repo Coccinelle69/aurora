@@ -4,11 +4,11 @@ import { FacebookIcon, InstagramIcon } from "@/icons";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 
-const Socials = ({ className }: { className?: string }) => {
+const Socials = () => {
   const { t } = useTranslation();
   return (
-    <div>
-      <p className={`${className}`}>{t("followUs")} </p>
+    <div className="flex flex-col items-center justify-center lg:block">
+      <p className="text-md font-semibold text-white">{t("followUs")} </p>
       <p className="text-md opacity-90 mb-4">{t("onSocial")}</p>
       <div className="flex items-center justify-center md:justify-start gap-4">
         <Link

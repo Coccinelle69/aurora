@@ -265,5 +265,14 @@
   "specialRequestTitle": "特殊要求",
   "specialRequestPlaceholder": "添加特殊要求",
   "outOfSeasonMessage": "选择的日期不在旺季范围内。请联系房主获取调整后的价格表。",
-  "emptyField": "请填写此字段"
+  "emptyField": "请填写此字段",
+  "paymentPolicyTitle": "付款方式.",
+  "paymentPolicy": {
+    "intro": "我们提供两种便捷的付款方式：",
+    "methods": [
+      "银行直接转账（IBAN）",
+      "通过 Stripe 的安全在线支付（支付链接）"
+    ],
+    "outro": "预订确认后将向您提供付款详情。"
+  }
 }

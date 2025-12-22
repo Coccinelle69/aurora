@@ -265,5 +265,14 @@
   "specialRequestTitle": "Special request (optional)",
   "specialRequestPlaceholder": "Add a special request ",
   "outOfSeasonMessage": "Selected dates are out of season. Please contact the owner for adjusted price list.",
-  "emptyField": "Please fill in this field"
+  "emptyField": "Please fill in this field",
+  "paymentPolicyTitle": "Payment Methods.",
+  "paymentPolicy": {
+    "intro": "We offer two convenient payment options:",
+    "methods": [
+      "Direct bank transfer (IBAN)",
+      "Secure online payment via Stripe (via payment link)"
+    ],
+    "outro": "Payment details will be shared once your reservation is confirmed."
+  }
 }

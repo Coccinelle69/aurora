@@ -44,15 +44,21 @@ export default function AvailabilityCalendar() {
   useEffect(() => {
     console.log(data);
     if (success && data.reservations) {
-      const ranges = data.reservations.map(
-        (r: { arrivalDate: string; departureDate: string }) => {
-          return {
-            start: r.arrivalDate,
-            end: r.departureDate,
-          };
-        }
-      );
-      console.log(ranges);
+      const ranges = data.reservations
+        .filter((r: { status: string }) => r.status === "APPROVED")
+        .map(
+          (r: {
+            arrivalDate: string;
+            departureDate: string;
+            status: string;
+          }) => {
+            return {
+              start: r.arrivalDate,
+              end: r.departureDate,
+              status: r.status,
+            };
+          }
+        );
 
       Promise.resolve().then(() => setUnavailable(ranges));
     }

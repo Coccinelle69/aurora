@@ -23,69 +23,69 @@ export default function Footer() {
       <div
         className="
           mx-auto w-full max-w-6xl px-6 py-16
-          grid grid-cols-1 gap-12 md:grid-cols-4
+          grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4
           text-center md:text-left
-          md:items-start    
+          sm:items-start
         "
       >
         {/* Weather & Time */}
-        <div className="w-full flex flex-col items-center md:items-start">
-          <h3 className="font-heading text-2xl font-body font-semibold tracking-wide mb-6">
+        <div className="w-full flex flex-col items-center lg:items-start">
+          <h3 className="font-heading text-2xl font-semibold tracking-wide mb-6">
             {t("footer-timeWeather")}
           </h3>
           <div className="space-y-2 ">
-            <p className="text-md font-semibold   flex justify-center items-center gap-1 md:justify-start">
+            <p className="footer-title">
               <span>
                 {t("footer-time")}: {time}
               </span>
               {isDayCode ? <SunIcon size={22} /> : <MoonIcon size={22} />}
             </p>
-            <p className="text-md font-semibold ">
+            <p className="footer-title">
               {t("footer-weather")}: <span>{t(`${weather?.description}`)}</span>
             </p>
             <p className="flex justify-center">
               <span>{weather?.icon}</span>
             </p>
-            <p className="text-md font-semibold">
+            <p className="footer-title">
               {t("footer-temperature")}: <span>{temperature}</span>°C
             </p>
 
-            <p className="text-md font-semibold">
+            <p className="footer-title">
               {t("footer-windspeed")}: <span>{windspeed}</span>km/h
             </p>
           </div>
         </div>
 
         {/* Find us */}
-        <div className="w-full flex flex-col items-center md:items-start">
+        <div className="w-full flex flex-col items-center lg:items-start">
           <h3 className="font-heading text-2xl font-semibold tracking-wide mb-6">
             {t("contact")}
           </h3>
           <div className="space-y-6">
             <div>
-              <Phone className="text-md font-semibold" />
+              <Phone />
             </div>
 
             <div>
-              <Email className="text-md font-semibold" />
+              <Email />
             </div>
           </div>
         </div>
 
         {/* Contact / Social */}
-        <div className="w-full flex flex-col items-center md:items-start">
+        <div className="w-full flex flex-col items-center lg:items-start">
           <h3 className="font-heading text-2xl font-semibold tracking-wide mb-6">
             {t("footer-findUs")}
           </h3>
-          <Socials className="text-md font-semibold" />
+          <Socials />
         </div>
 
-        <div className="flex w-full flex-col items-center md:items-start">
+        <div className="flex w-full flex-col items-center lg:items-start">
           <h3 className="font-heading text-2xl font-semibold tracking-wide mb-6">
             {t("footer-location")}
           </h3>
           <div>
-            <DirectionsButton className="text-md font-semibold" />
+            <DirectionsButton />
           </div>
         </div>
       </div>

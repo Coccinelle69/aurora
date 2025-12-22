@@ -2,7 +2,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Script from "next/script";
 import { MapProps } from "@/utils/interfaces";
 
 export default function MapWithMarker({
@@ -11,11 +10,14 @@ export default function MapWithMarker({
   zoom = 14,
   title = "Location",
   className,
+  detailsMap,
 }: MapProps) {
   const elRef = useRef<HTMLDivElement | null>(null);
   const inited = useRef(false);
 
   useEffect(() => {
+    console.log("MAP COORDS", lat, lng, typeof lat, typeof lng);
+
     const init = async () => {
       if (inited.current) return;
       const el = elRef.current;
@@ -71,22 +73,10 @@ export default function MapWithMarker({
 
   return (
     <>
-      {/* Ensure this script is loaded ONCE per page/app */}
-      <Script
-        id="gmaps"
-        strategy="afterInteractive"
-        src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GMAPS_KEY}&v=weekly&libraries=marker&loading=async`}
-        onLoad={() => {
-          // try init again right after the script becomes available
-          if (!inited.current) {
-            // let the effect run again naturally on next tick
-          }
-        }}
-      />
       <div
         ref={elRef}
         className={className}
-        style={{ width: "100%", height: 700 }}
+        style={!detailsMap ? { width: "100%", height: 700 } : { height: 450 }}
       />
     </>
   );

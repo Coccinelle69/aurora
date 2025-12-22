@@ -71,7 +71,7 @@ export default function FullScreenMenu({ open, onClose }: Props) {
     <AnimatePresence>
       {open && (
         <motion.aside
-          className="fixed inset-0 z-[9999]"
+          className="fixed inset-0 z-9999 "
           role="dialog"
           aria-modal="true"
           variants={overlay}
@@ -80,33 +80,32 @@ export default function FullScreenMenu({ open, onClose }: Props) {
           exit="exit"
         >
           {/* Backdrop */}
-          <div className="absolute inset-0 bg-black/40" />
+          <div className="absolute inset-0 bg-black/40 " />
 
           {/* Panel */}
-          <div className="relative z-10 h-full w-full bg-default/95 backdrop-blur-sm text-white">
+          <div className="relative  overflow-y-auto z-10 h-screen w-screen bg-default/95 backdrop-blur-sm text-white ">
             {/* Close */}
             <button
               onClick={onClose}
-              className="absolute right-6 top-6 p-2 hover:scale-110 transition-transform"
+              className="z-10000 absolute right-6 top-6 md:top-12 p-2 hover:scale-110 transition-transform"
               aria-label="Close menu"
             >
               <CloseIcon size={32} color="white" />
             </button>
 
             {/* Layout (give left column a bit more room if you like) */}
-            <div className="mx-auto h-full w-full max-w-7xl px-[8%] py-10 grid grid-cols-1 lg:grid-cols-[1.25fr_1fr_1fr] gap-10">
+            <div className="mx-auto relative bottom-[15%] md:bottom-0 h-screen w-screen max-w-7xl px-[8%] py-10 grid grid-cols-1 lg:grid-cols-[1.25fr_1fr_1fr] sm:gap-5 md:gap-10">
               {/* Left: Logo / CTA / Contacts */}
               <div className="flex flex-col justify-between">
                 <div className="w-full h-full">
-                  {/* Ensure LogoAurora itself is not width-capped; pass a larger size if needed */}
-                  <Logo className="" fullscreen={open} />
+                  <Logo fullscreen={open} />
                 </div>
 
-                <div className="pb-10 space-y-6">
+                <div className="pb-10 space-y-6 md:pb-0">
                   <BookButton />
 
                   <motion.div
-                    className="space-y-2 text-gray-200"
+                    className="space-y-2 sm:space-y-0 text-gray-200"
                     variants={listParent}
                     initial="hidden"
                     animate="visible"
@@ -115,7 +114,7 @@ export default function FullScreenMenu({ open, onClose }: Props) {
                       variants={textFromLeft}
                       className="font-body flex"
                     >
-                      <span className="font-semibold">
+                      <span className="font-semibold mb-2 flex">
                         <PhoneIcon size={28} />
                       </span>{" "}
                       <span className="pl-2">+385 92138 5595</span>
@@ -135,7 +134,7 @@ export default function FullScreenMenu({ open, onClose }: Props) {
 
               {/* Middle: Menu — numbers from LEFT with fixed underline, labels from RIGHT */}
               <motion.ul
-                className="flex flex-col justify-center gap-8"
+                className="relative flex flex-col justify-center  gap-8 md:right-5 lg:right-0 lg:-left-12"
                 variants={listParent}
                 initial="hidden"
                 animate="visible"

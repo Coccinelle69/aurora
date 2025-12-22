@@ -21,7 +21,8 @@ const btnStyle = `top-[65%] -translate-y-1/2 text-white/90
     hover:scale-110 hover:shadow-[0_8px_20px_rgba(0,0,0,0.6)]
     active:scale-95
     hover:text-white/100 cursor-pointer`;
-const btnStyleRight = "absolute right-4 " + btnStyle;
+const btnStyleRight =
+  "absolute right-4 sm:right-5 xl:right-8 2xl:right-9 " + btnStyle;
 const btnStyleLeft = "absolute left-4 " + btnStyle;
 
 export default function EmblaCarousel({ slides }: Props) {
@@ -49,7 +50,7 @@ export default function EmblaCarousel({ slides }: Props) {
       <div className="absolute inset-0 top-[15rem] left-[2rem] z-10 flex items-center justify-center pointer-events-none lg:top-0 left-0">
         <p
           className="font-logo
-          text-white tracking-[0.25rem] text-[5rem] opacity-70 lg:text-[8rem]"
+          text-white tracking-[0.25rem] text-[4rem] opacity-70 sm:text-[8rem]"
         >
           Aurora
         </p>

@@ -146,7 +146,7 @@ export default function BookingSearchBar({
 
         <div className="relative input" ref={ref}>
           <button
-            className="border rounded-lg px-4 py-3 flex items-center gap-2 w-full"
+            className="border rounded-lg px-4 py-3 flex items-center gap-2 w-full text-white"
             onClick={() => setOpen((prevOpen) => !prevOpen)}
             type="button"
           >
@@ -175,7 +175,7 @@ export default function BookingSearchBar({
       </form>
       {submitting && (
         <div className="flex flex-col sm:flex-row items-center justify-center relative top-[10rem]">
-          <p className="font-bold animate-pulse text-[1.75rem] tracking-[0.1rem] text-center">
+          <p className="font-bold animate-pulse text-[1.75rem] tracking-[0.1rem] text-center text-white">
             {t("checkingAvailability")}
           </p>
           <MagnifyingGlass visible={submitting} />

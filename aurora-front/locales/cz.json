@@ -266,5 +266,14 @@
   "specialRequestTitle": "Zvláštní požadavek",
   "specialRequestPlaceholder": "Přidejte zvláštní požadavek",
   "outOfSeasonMessage": "Vybrané termíny jsou mimo sezónu. Pro upravený ceník prosím kontaktujte majitele.",
-  "emptyField": "Prosím vyplňte toto pole"
+  "emptyField": "Prosím vyplňte toto pole",
+  "paymentPolicyTitle": "Způsoby platby.",
+  "paymentPolicy": {
+    "intro": "Nabízíme dvě pohodlné možnosti platby:",
+    "methods": [
+      "Přímý bankovní převod (IBAN)",
+      "Bezpečná online platba prostřednictvím Stripe (platební odkaz)"
+    ],
+    "outro": "Platební údaje vám budou sděleny po potvrzení rezervace."
+  }
 }

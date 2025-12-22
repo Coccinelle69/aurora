@@ -42,7 +42,6 @@ const ContactForm = () => {
   }, [done]);
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
-    // setError(null);
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
@@ -74,7 +73,6 @@ const ContactForm = () => {
         4500
       );
 
-      // Fully hide after animation completes (5s total)
       const removeTimer = setTimeout(() => {
         setFormStatus((prev) => {
           return { ...prev, fade: false, sent: false };

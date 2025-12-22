@@ -31,3 +31,6 @@ coverage
 docker-compose*.yml
 [Dd]ockerfile*
 
+# env files
+.env
+

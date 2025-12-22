@@ -266,5 +266,14 @@
   "specialRequestTitle": "Specjalne życzenie",
   "specialRequestPlaceholder": "Dodaj specjalne życzenie",
   "outOfSeasonMessage": "Wybrane terminy są poza sezonem. Proszę skontaktować się z właścicielem w celu uzyskania dostosowanego cennika.",
-  "emptyField": "Proszę wypełnić to pole"
+  "emptyField": "Proszę wypełnić to pole",
+  "paymentPolicyTitle": "Metody płatności.",
+  "paymentPolicy": {
+    "intro": "Oferujemy dwie wygodne metody płatności:",
+    "methods": [
+      "Bezpośredni przelew bankowy (IBAN)",
+      "Bezpieczna płatność online przez Stripe (link do płatności)"
+    ],
+    "outro": "Szczegóły płatności zostaną przekazane po potwierdzeniu rezerwacji."
+  }
 }

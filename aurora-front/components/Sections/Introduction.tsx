@@ -8,14 +8,14 @@ export default function ComfortSection() {
   return (
     <section className="relative overflow-hidden bg-white py-24">
       {/* FULL-BLEED RIGHT PANEL (goes to the screen edge, taller than the photo) */}
-      <div className="absolute right-0 top-28 h-[480px] w-[62vw] bg-[#D3DAE0]" />
+      <div className="absolute right-0 top-28 h-180 sm:h-[480px] lg:h-[550px] xl:h-[480px] w-[62vw] bg-[#D3DAE0]" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
         {/* CONTENT LAYER (sits above the panel) */}
         <div className="relative z-10 flex items-center justify-between">
           {/* LEFT PHOTO (shorter than panel) */}
           <div className="hidden lg:block">
-            <div className="h-[500px] w-[410px] overflow-hidden shadow-[0_35px_35px_rgba(0,0,0,0.20)]">
+            <div className="h-[500px] w-[410px] xl:relative xl:left-24 overflow-hidden shadow-[0_35px_35px_rgba(0,0,0,0.20)]">
               <Image
                 src="/beach.jpg" // <-- your image
                 alt="Aurora Suites pool"
@@ -27,8 +27,7 @@ export default function ComfortSection() {
             </div>
           </div>
 
-          {/* RIGHT COPY AREA (centered inside the gray panel) */}
-          <div className="ml-auto flex w-full justify-center lg:w-[47%]">
+          <div className="mx-auto xl:ml-auto  flex w-full justify-center lg:w-[47%]">
             <div className="py-16 text-center">
               <h2
                 className={`font-heading text-2xl md:text-3xl text-slate-800`}

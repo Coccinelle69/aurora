@@ -1,10 +1,9 @@
 export { default as CheckoutCard } from "./Checkout/CheckoutCard";
-export { default as CancellationPolicy } from "./Checkout/CancellationPolicy";
+export { default as Policy } from "./Checkout/Policy";
 export { default as Description } from "./Description/Description";
 export { default as DetailsGallery } from "./Gallery/DetailsGallery";
 export { default as ThumbnailGallery } from "./Gallery/ThumbnailGallery";
 export { default as DetailsFooter } from "./DetailsFooter";
-export { default as DetailsMap } from "./Description/DetailsMap";
 export { default as PropertyAmenities } from "./Description/PropertyAmenities";
 export { default as PropertyFeatures } from "./Description/PropertyFeatures";
 export { default as HouseRules } from "./Description/HouseRules";

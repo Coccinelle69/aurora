@@ -265,5 +265,14 @@
   "specialRequestTitle": "Posebna želja",
   "specialRequestPlaceholder": "Dodajte posebno željo",
   "outOfSeasonMessage": "Izbrani datumi so izven sezone. Za prilagojen cenik prosimo, da kontaktirate lastnika.",
-  "emptyField": "Prosimo, izpolnite to polje"
+  "emptyField": "Prosimo, izpolnite to polje",
+  "paymentPolicyTitle": "Načini plačila.",
+  "paymentPolicy": {
+    "intro": "Ponujamo dve priročni možnosti plačila:",
+    "methods": [
+      "Neposredno bančno nakazilo (IBAN)",
+      "Varno spletno plačilo prek Stripea (prek plačilne povezave)"
+    ],
+    "outro": "Podrobnosti o plačilu bodo posredovane po potrditvi rezervacije."
+  }
 }

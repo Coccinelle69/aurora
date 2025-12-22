@@ -19,7 +19,7 @@ const DateInput = ({ setDate, dateType, setAvailable }: DateInputProps) => {
   const minDate = dateType === "arrival" ? today : arrival || today;
 
   return (
-    <div className="flex-1 border rounded-lg px-4 py-3">
+    <div className="flex-1 border rounded-lg px-4 py-3 text-white">
       <input
         type="date"
         min={minDate}

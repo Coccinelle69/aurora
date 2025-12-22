@@ -265,5 +265,14 @@
   "specialRequestTitle": "Petición especial",
   "specialRequestPlaceholder": "Añade una petición especial",
   "outOfSeasonMessage": "Las fechas seleccionadas están fuera de temporada. Por favor, contacte con el propietario para una lista de precios ajustada.",
-  "emptyField": "Por favor, rellena este campo"
+  "emptyField": "Por favor, rellena este campo",
+  "paymentPolicyTitle": "Métodos de pago.",
+  "paymentPolicy": {
+    "intro": "Ofrecemos dos opciones de pago convenientes:",
+    "methods": [
+      "Transferencia bancaria directa (IBAN)",
+      "Pago online seguro a través de Stripe (enlace de pago)"
+    ],
+    "outro": "Los datos de pago se compartirán una vez confirmada la reserva."
+  }
 }

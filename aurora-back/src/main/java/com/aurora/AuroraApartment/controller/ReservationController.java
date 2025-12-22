@@ -30,9 +30,6 @@ public class ReservationController {
     @Autowired
     ReservationService reservationService;
 
-    @Autowired
-    EmailService emailService;
-
 @GetMapping("/availability")
 public ResponseEntity<?> checkAvailability(
     @RequestParam LocalDate arrival,

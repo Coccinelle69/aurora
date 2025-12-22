@@ -4,6 +4,7 @@ import "@/app/globals.css";
 import { Roboto, Princess_Sofia, Quintessential } from "next/font/google";
 import ClientProviders from "@/ClientProviders";
 import { AnimCursor, BookHeader } from "@/components";
+import Script from "next/script";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -49,6 +50,11 @@ export default function BookLayout({
         <ClientProviders>
           {!isCoarse && <AnimCursor />}
           <BookHeader />
+          <Script
+            id="gmaps"
+            strategy="afterInteractive"
+            src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GMAPS_KEY}&v=weekly&libraries=marker&loading=async`}
+          />
           {children}
         </ClientProviders>
       </body>

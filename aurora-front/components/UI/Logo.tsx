@@ -13,7 +13,7 @@ export default function LogoAurora({
 }) {
   return (
     <>
-      <div className="relative flex flex-col items-center justify-center ">
+      <div className="relative md:-top-6 sm:top-2 top-3 flex flex-col items-center justify-center ">
         <Image
           src="/header/image.png"
           alt="Aurora logo"
@@ -22,7 +22,7 @@ export default function LogoAurora({
           priority
           className={`${className} ${
             fullscreen
-              ? "h-full w-full lg:max-w-none  h-[600px] lg:w-[600px]" // <-- add lg: to w
+              ? "h-full w-full lg:max-w-none sm:w-[300px] md:w-[400px] lg:w-[600px]"
               : ""
           }`}
         />
@@ -34,7 +34,7 @@ export default function LogoAurora({
           ${
             fullscreen
               ? // ✅ Fullscreen — center it completely and enlarge it
-                "text-[3.5rem] left-1/2 -translate-x-1/2 bottom-[10rem] lg:text-[7rem] top-1/2 left-1/2 -translate-x-1/2 translate-y-20"
+                "text-[3.5rem] left-1/2 -translate-x-1/2 bottom-[10rem] lg:text-[7rem] top-1/2 translate-y-20"
               : // ✅ Default — responsive per breakpoint
                 "text-[2rem] left-[2.5rem] top-[7rem] lg:left-[2rem] lg:top-[7.75rem] lg:text-[3.25rem]"
           }

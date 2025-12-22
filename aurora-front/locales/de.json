@@ -266,5 +266,14 @@
   "specialRequestTitle": "Sonderwunsch",
   "specialRequestPlaceholder": "Fügen Sie einen Sonderwunsch hinzu",
   "outOfSeasonMessage": "Die ausgewählten Daten liegen außerhalb der Saison. Bitte kontaktieren Sie den Eigentümer für eine angepasste Preisliste.",
-  "emptyField": "Bitte füllen Sie dieses Feld aus"
+  "emptyField": "Bitte füllen Sie dieses Feld aus",
+  "paymentPolicyTitle": "Zahlungsmethoden.",
+  "paymentPolicy": {
+    "intro": "Wir bieten zwei bequeme Zahlungsmöglichkeiten an:",
+    "methods": [
+      "Direkte Banküberweisung (IBAN)",
+      "Sichere Online-Zahlung über Stripe (per Zahlungslink)"
+    ],
+    "outro": "Die Zahlungsdetails werden Ihnen nach Bestätigung Ihrer Reservierung mitgeteilt."
+  }
 }

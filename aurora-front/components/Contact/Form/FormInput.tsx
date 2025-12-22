@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { FormInputProps } from "@/utils/interfaces";
 import { useTranslation } from "react-i18next";
-import { useIsMobile } from "@/utils/hooks";
 
 const FormInput = ({
   id,
@@ -28,12 +27,10 @@ const FormInput = ({
     message,
   };
 
-  // fade animated per–input error
   const [error, setError] = useState({ message: "" });
   const [fade, setFade] = useState(false);
   const { t } = useTranslation();
   const [charNumber, setCharNumber] = useState(0);
-  const isMobile = useIsMobile();
 
   const triggerLocalError = () => {
     setError({ message: t("emptyField") });
@@ -54,9 +51,9 @@ const FormInput = ({
   const inputStyle = `
     peer w-full ${
       checkout
-        ? "bg-white px-2 py-2 placeholder:text-[0.75rem] placeholder:sm:text-sm"
+        ? "bg-white px-2 py-2 placeholder:text-[0.75rem] placeholder:sm:text-sm "
         : "bg-transparent"
-    } px-3 py-3  rounded-md outline-none
+    } px-0 sm:px-3 py-3  rounded-md outline-none
     border-2 border-transparent placeholder:text-gray-400 text-marineBlue
   `;
 
@@ -83,7 +80,7 @@ const FormInput = ({
           placeholder={placeholder}
           className={`${inputStyle} ${
             checkout && "h-[120px]"
-          } min-h-[160px] resize-none`}
+          } min-h-40 resize-none`}
           value={contactState[name]}
           onChange={(e) => {
             dispatch(persistField({ key: name, value: e.target.value }));
@@ -95,7 +92,7 @@ const FormInput = ({
       {/* floating label */}
       <label
         htmlFor={id}
-        className="absolute -top-2 left-3 z-20 text-xs font-bold uppercase tracking-widest text-slate-700 font-body"
+        className="absolute -top-2 left-0 sm:left-3 z-20 text-xs font-bold uppercase tracking-widest text-slate-700 font-body"
       >
         <span
           className={`px-1 ${
@@ -107,13 +104,7 @@ const FormInput = ({
       </label>
       {!input && (
         <span
-          className={`absolute -top-2 ${
-            checkout && !isMobile
-              ? "right-3"
-              : checkout && isMobile
-              ? "right-2"
-              : "left-26"
-          }  z-20
+          className={`absolute -top-2 left-26 sm:left-45 md:left-55 lg:left-35 z-20
                 text-xs px-1
                 ${checkout ? "bg-white" : "bg-[#D3DAE0]"}
                 ${charNumber === 2000 ? "text-red-500" : "text-slate-500"}`}

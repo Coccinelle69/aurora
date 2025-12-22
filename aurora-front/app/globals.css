@@ -69,4 +69,8 @@ body {
   .tab {
     @apply w-full pb-[10px] text-default flex flex-row items-center justify-center font-semibold gap-1 transition border-b-[2px] border-[#D1DBE3];
   }
+
+  .footer-title {
+    @apply text-base font-semibold flex justify-center items-center gap-1 lg:justify-start;
+  }
 }

@@ -5,7 +5,7 @@ import { formatDate, formatPriceUniversal } from "@/utils/format";
 import { useCurrency } from "@/utils/hooks";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
-import { PriceBreakdown, CancellationPolicy } from "@/components";
+import { PriceBreakdown, Policy } from "@/components";
 import { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { CheckoutProps } from "@/utils/interfaces";
@@ -112,7 +112,9 @@ const CheckoutCard = ({
           </div>
 
           {/* CANCELLATION */}
-          <CancellationPolicy />
+          {/* <CancellationPolicy /> */}
+          <Policy policy="cancellation" />
+          <Policy policy="payment" />
 
           {/* COUPON */}
           <label className="flex items-center gap-2 text-sm text-gray-700 border-b pb-3 cursor-pointer">

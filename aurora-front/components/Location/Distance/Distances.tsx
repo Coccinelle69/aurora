@@ -1,36 +1,19 @@
-// components/Location/Distances.tsx
 "use client";
-import { ReactNode, useMemo } from "react";
+import { ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 
-type DistanceItem = { icon: ReactNode; label: string; value: string };
+type DistanceItem = {
+  icon: ReactNode;
+  label: string;
+  value: string;
+};
 
-type ColumnProps = { data: DistanceItem[] };
-function DistancesColumn({ data }: ColumnProps) {
-  return (
-    <ul className="divide-y divide-gray-200">
-      {data.map(({ icon, label, value }, i) => (
-        <li key={i} className="flex items-center gap-3 py-3">
-          <span className="shrink-0 text-gray-700">{icon}</span>
-          <span className="flex-1 text-gray-800 font-body">{label}</span>
-          <span className="shrink-0 text-gray-900 font-body">{value}</span>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-type DistancesProps = { title?: string; items: DistanceItem[] };
+type DistancesProps = {
+  title?: string;
+  items: DistanceItem[];
+};
 
 export default function Distances({ items }: DistancesProps) {
-  // (optional) keep the split stable between renders
-  const [left, right] = useMemo(() => {
-    const l: DistanceItem[] = [];
-    const r: DistanceItem[] = [];
-    items.forEach((it, i) => (i % 2 === 0 ? l : r).push(it));
-    return [l, r];
-  }, [items]);
-
   const { t } = useTranslation();
 
   return (
@@ -40,10 +23,15 @@ export default function Distances({ items }: DistancesProps) {
           {t("distances.title")}
         </h2>
 
-        <div className="grid grid-cols-1 gap-x-12 md:grid-cols-2">
-          <DistancesColumn data={left} />
-          <DistancesColumn data={right} />
-        </div>
+        <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-12 divide-y divide-gray-200 sm:w-[80%] sm:mx-auto  xl:w-full xl:mx-0">
+          {items.map(({ icon, label, value }, i) => (
+            <li key={i} className="flex items-center gap-3 py-3">
+              <span className="shrink-0 text-gray-700">{icon}</span>
+              <span className="flex-1 text-gray-800 font-body">{label}</span>
+              <span className="shrink-0 text-gray-900 font-body">{value}</span>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

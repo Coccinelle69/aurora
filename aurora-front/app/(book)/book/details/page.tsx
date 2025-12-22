@@ -5,7 +5,7 @@ import {
   Description,
   DetailsFooter,
   DetailsGallery,
-  DetailsMap,
+  MapWithMarker,
 } from "@/components";
 import * as houseImages from "@/assets/carousel";
 import { usePathname, useRouter } from "next/navigation";
@@ -64,10 +64,12 @@ const DetailsPage = () => {
             />
           )}
         </div>
-        <DetailsMap
+        <MapWithMarker
           lat={Number(process.env.NEXT_PUBLIC_LAT)}
           lng={Number(process.env.NEXT_PUBLIC_LNG)}
           zoom={25}
+          detailsMap={true}
+          className="mx-auto sm:mx-[5rem] my-[3rem]  rounded-2xl overflow-hidden w-[90%] sm:w-[50%]"
         />
       </div>
       <div className="bg-[#f1f1f1] h-[2px] w-[50%] mx-auto my-[4rem]"></div>

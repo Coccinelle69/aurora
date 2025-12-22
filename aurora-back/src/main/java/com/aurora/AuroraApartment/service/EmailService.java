@@ -173,7 +173,7 @@ private String apply(String template, Map<String, String> values) {
         vars.put("priceDetails", priceDetails);
         vars.put("totalNights", checkoutCard.getTotalNights().toString());
         vars.put("totalPrice", checkoutCard.getTotalPrice().toString());
-        vars.put("reservationToken", reservation.getPublicToken().toString());
+        vars.put("reservationId", reservation.getPublicToken().toString());
 
        
         String html = apply(template, vars);

@@ -23,9 +23,9 @@ const LANGS: Lang[] = [
   // { code: "zh", native: "中文", flag: "/languages/ZH.png" },
 ];
 
-type Props = { onChange?: (lang: Lang) => void };
+type Props = { onChange?: (lang: Lang) => void; book?: boolean };
 
-export default function LanguageDropdown({ onChange }: Props) {
+export default function LanguageDropdown({ onChange, book }: Props) {
   // ✅ initialize from localStorage during the initial render (no effect + setState)
   const dispatch = useDispatch();
 
@@ -66,18 +66,18 @@ export default function LanguageDropdown({ onChange }: Props) {
   };
 
   return (
-    <div ref={ref} className="relative pl-6">
+    <div ref={ref} className="relative pl-3">
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className={`flex items-center gap-2 rounded-md  bg-transparent px-3 py-2 text-sm text-white hover:bg-white/10 `}
+        className={`flex items-center gap-2 rounded-md  bg-transparent px-1 py-2 text-sm text-white hover:bg-white/10 `}
         aria-haspopup="listbox"
         aria-expanded={open}
       >
         <img
           src={selected.flag}
           alt={selected.native}
-          className="rounded-sm h-[14px] w-[20px]"
+          className={`rounded-sm h-[14px] ${book ? "w-[30px]" : "w-[20px]"} `}
         />
         <span className="hidden sm:inline text-[1rem]">{selected.native}</span>
       </button>

@@ -10,8 +10,8 @@ import {
 const BookHeader = () => {
   return (
     <>
-      <header className="bg-defaultBg fixed top-0 left-0 w-full z-[1000] sm:static">
-        <nav className="lg:h-[200px]">
+      <header className="bg-defaultBg fixed top-0 left-0 w-full z-1000 sm:static">
+        <nav className="h-[185px] lg:h-[200px]">
           <ul className="h-full flex flex-row px-[8%] justify-between">
             <li className="hidden lg:flex flex-row items-center">
               <div className="hidden lg:flex flex-row items-center gap-3 ">
@@ -23,7 +23,7 @@ const BookHeader = () => {
               </div>
             </li>
             <li>
-              <Logo size={200} />
+              <Logo size={200} book={true} />
             </li>
 
             <li className="flex flex-row justify-center items-center">
@@ -31,7 +31,7 @@ const BookHeader = () => {
                 <CurrencyDropdown />
               </div>
               <div>
-                <LanguageDropdown />
+                <LanguageDropdown book={true} />
               </div>
             </li>
           </ul>

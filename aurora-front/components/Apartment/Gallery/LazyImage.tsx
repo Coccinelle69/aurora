@@ -6,9 +6,16 @@ import { useEffect, useRef, useState } from "react";
 interface LazyImageProps {
   src: StaticImageData;
   alt: string;
+  openBackdrop: React.Dispatch<React.SetStateAction<number | null>>;
+  index: number;
 }
 
-export default function LazyImage({ src, alt }: LazyImageProps) {
+export default function LazyImage({
+  src,
+  alt,
+  openBackdrop,
+  index,
+}: LazyImageProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -17,14 +24,15 @@ export default function LazyImage({ src, alt }: LazyImageProps) {
     if (!el) return;
 
     const observer = new IntersectionObserver(
-      (entries) => {
-        console.log(entries);
-        if (entries[0].isIntersecting) {
-          setVisible(true);
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true); // reveal ONLY when visible
           observer.disconnect();
         }
       },
-      { rootMargin: "-300px" }
+      {
+        rootMargin: "100px 0px",
+      }
     );
 
     observer.observe(el);
@@ -35,7 +43,7 @@ export default function LazyImage({ src, alt }: LazyImageProps) {
     <div
       ref={ref}
       className={`
-      mx-[1rem] lg:mx-0 transition-all duration-1000 ease-out
+      mx-4 lg:mx-0 transition-all duration-1000 ease-out h-auto block
     ${
       visible
         ? "opacity-100 scale-100 pointer-events-auto"
@@ -54,6 +62,10 @@ export default function LazyImage({ src, alt }: LazyImageProps) {
           loading="lazy"
         />
       )}
+      <div
+        onClick={() => openBackdrop(index)}
+        className="absolute inset-0 rounded-xl bg-black opacity-0 hover:opacity-60 transition-opacity duration-300 cursor-pointer"
+      />
     </div>
   );
 }

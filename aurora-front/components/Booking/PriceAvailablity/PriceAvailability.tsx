@@ -34,11 +34,11 @@ const PriceAvailability = () => {
   }, []);
 
   return createPortal(
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center overflow-y-auto sm:overflow-hidden">
+    <div className="fixed inset-0 z-9999 flex items-center justify-center overflow-y-auto sm:overflow-hidden">
       <div className="absolute  inset-0 bg-black/80"></div>
       <div
         ref={ref}
-        className="relative w-full sm:w-[50%] h-auto sm:max-h-[900px] bg-[#f5f5f5] p-8 sm:rounded-3xl flex flex-col gap-6 mx-auto my-auto "
+        className="relative w-full sm:w-[95%] 2xl:w-[60%] h-auto sm:max-h-[900px] bg-[#f5f5f5] p-8 sm:rounded-3xl flex flex-col gap-6 mx-auto my-auto "
       >
         <div className="visible sm:hidden text-default font-bold flex justify-end">
           <span
@@ -53,7 +53,7 @@ const PriceAvailability = () => {
             onClick={() => dispatch(openModal("availability"))}
             className={`tab duration-300 ease-out hover:border-default ${
               activeTab === "availability"
-                ? "border-[#11344b]"
+                ? "border-marineBlue"
                 : "border-[#D1DBE3]"
             }`}
           >
@@ -63,7 +63,7 @@ const PriceAvailability = () => {
           <div
             onClick={() => dispatch(openModal("prices"))}
             className={`tab duration-300 ease-out hover:border-default ${
-              activeTab === "prices" ? "border-[#11344b]" : "border-[#D1DBE3]"
+              activeTab === "prices" ? "border-marineBlue" : "border-[#D1DBE3]"
             }`}
           >
             <EuroIcon size={20} color="#11344b" />

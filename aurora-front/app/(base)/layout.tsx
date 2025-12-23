@@ -3,7 +3,8 @@ import "@/globals.css";
 
 import { Roboto, Princess_Sofia, Quintessential } from "next/font/google";
 import ClientProviders from "@/ClientProviders";
-import { Footer, Header, AnimCursor } from "@/components";
+import { Footer, Header } from "@/components";
+import ClientWrapper from "@/app/ClientWrapper";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -46,10 +47,6 @@ export default function BaseLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const isCoarse =
-    typeof window !== "undefined" &&
-    (window.matchMedia("(pointer: coarse)").matches ||
-      window.matchMedia("(hover: none)").matches);
   return (
     <html lang="en">
       <body
@@ -57,11 +54,11 @@ export default function BaseLayout({
         className={`${roboto.variable} ${quintessential.variable} ${sofia.variable} antialiased`}
       >
         <ClientProviders>
-          {!isCoarse && <AnimCursor />}
-
-          <Header />
-          {children}
-          <Footer />
+          <ClientWrapper>
+            <Header />
+            {children}
+            <Footer />
+          </ClientWrapper>
         </ClientProviders>
       </body>
     </html>

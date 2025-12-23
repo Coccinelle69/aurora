@@ -80,7 +80,7 @@ const CheckoutCard = ({
               : { opacity: 1, y: 60 }
           }
           transition={{ duration: 1.2, ease: "easeOut" }}
-          className="w-full max-w-[560px] sm:w-[400px] mx-auto bg-white rounded-2xl sm:sticky sm:top-[1px] sm:self-start order-1 sm:order-2 shadow-lg border p-6 flex flex-col gap-4  "
+          className="w-full max-w-[560px] sm:w-[400px] md:w-120 lg:w-155 2xl:w-[480px] mx-auto bg-white rounded-2xl lg:sticky lg:top-px lg:self-start order-1 lg:order-2 shadow-lg border p-6 flex flex-col gap-4  "
         >
           {/* TITLE */}
           <h2 className="text-xl text-center font-semibold text-default leading-tight">
@@ -112,7 +112,6 @@ const CheckoutCard = ({
           </div>
 
           {/* CANCELLATION */}
-          {/* <CancellationPolicy /> */}
           <Policy policy="cancellation" />
           <Policy policy="payment" />
 

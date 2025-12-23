@@ -22,11 +22,11 @@ const Description = () => {
   );
 
   return (
-    <div className="w-full sm:w-[60%] text-default order-2 sm:order-1">
+    <div className="w-full md:w-[70%] text-default order-2 lg:order-1">
       <h2 className="font-bold font-heading text-[2rem]">
         {t("apartmentZukve.title")}
       </h2>
-      <section className="mt-[3rem]">
+      <section className="mt-12">
         <h3 className="details-title">{t("apartmentZukve.description")}</h3>
         <p>{t("apartmentZukve.intro")}</p>
       </section>

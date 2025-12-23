@@ -39,12 +39,12 @@ export default function GalleryBackdrop({ images }: Props) {
         <div className="flex">
           {items.map((src, index) => (
             <div
-              className="flex-[0_0_100%] relative h-[400px] md:h-[450px] lg:h-[600px]
+              className="flex-[0_0_100%] relative h-[400px] md:h-[450px] lg:h-[712px]
 "
               key={typeof src === "string" ? src : src.src}
             >
               <div className="transition-transform duration-300 ease-out will-change-transform">
-                <div className="relative h-[450px] md:h-[500px] lg:h-[650px] w-full">
+                <div className="relative h-[450px] md:h-[500px] lg:h-[712px] w-full">
                   <Image
                     src={src}
                     alt={`Slide ${index + 1}`}

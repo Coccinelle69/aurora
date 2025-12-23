@@ -18,14 +18,12 @@ const ContactForm = () => {
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
 
-  const { data, success, done, errorMessage } = useResponse({
+  const { success, done, errorMessage } = useResponse({
     url: "api/contact",
     method: "POST",
     body,
     trigger: formStatus.trigger,
   });
-
-  console.log(errorMessage);
 
   useEffect(() => {
     if (!done) return;

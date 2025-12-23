@@ -134,7 +134,7 @@ export default function BookingSearchBar({
         onSubmit={(e) => {
           handleSubmit(e);
         }}
-        className="relative w-full max-w-5xl mx-auto top-20 bg-white/20 p-5 rounded-2xl shadow-md flex flex-wrap items-center gap-4"
+        className="relative w-full max-w-5xl mx-auto top-20 sm:-top-16 md:top-20 bg-white/20 p-5 rounded-2xl shadow-md flex flex-wrap items-center gap-4"
       >
         <DateInputs
           setAvailable={(val: boolean) => updateSearchUI({ available: val })}
@@ -168,7 +168,10 @@ export default function BookingSearchBar({
         <button
           type="submit"
           onClick={() => setOpen(false)}
-          className="px-6 py-3 bg-defaultBg text-white rounded-lg w-full sm:w-auto hover:bg-[#0E7DB5]"
+          className="px-6 py-3 bg-defaultBg text-white rounded-lg
+             w-full sm:w-auto
+             mx-auto
+             hover:bg-[#0E7DB5]"
         >
           {t("search")}
         </button>

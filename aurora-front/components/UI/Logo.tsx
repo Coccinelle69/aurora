@@ -6,10 +6,12 @@ export default function LogoAurora({
   size = 180,
   className,
   fullscreen,
+  book,
 }: {
   size?: number;
   className?: string;
   fullscreen?: boolean;
+  book?: boolean;
 }) {
   return (
     <>
@@ -36,7 +38,9 @@ export default function LogoAurora({
               ? // ✅ Fullscreen — center it completely and enlarge it
                 "text-[3.5rem] left-1/2 -translate-x-1/2 bottom-[10rem] lg:text-[7rem] top-1/2 translate-y-20"
               : // ✅ Default — responsive per breakpoint
-                "text-[2rem] left-[2.5rem] top-[7rem] lg:left-[2rem] lg:top-[7.75rem] lg:text-[3.25rem]"
+                `text-[2rem] left-14 ${
+                  book ? "top-28 sm:top-32" : "top-28"
+                }  lg:left-8 lg:top-[7.75rem] lg:text-[3.25rem]`
           }
         `}
         >

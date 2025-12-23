@@ -2,7 +2,7 @@
 
 import { FormEvent, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { useIsMobile, useResponse } from "@/utils/hooks";
+import { useDevice, useResponse } from "@/utils/hooks";
 import { useDispatch } from "react-redux";
 import { resetField } from "@/reducers/contact";
 import { FormInputs, LoadingSpinner } from "@/components";
@@ -27,10 +27,11 @@ const CheckoutForm = ({ setCheckoutUI, checkoutUI }: CheckoutProps) => {
     arrival: arrivalDate,
     departure: departureDate,
   } = useAppSelector((state) => state.search);
-  const isMobile = useIsMobile();
-  const xOffset = isMobile ? 0 : -40;
+  const { sm, lg, md } = useDevice();
+  const initialX = !sm ? 40 : !md ? 60 : !lg ? 200 : 40;
+  const xOffset = !sm ? 0 : !md ? 0 : !lg ? 50 : -40;
 
-  const { data, success, done, errorMessage } = useResponse({
+  const { success, done, errorMessage } = useResponse({
     url: "/api/reservation/request",
     method: "POST",
     body,
@@ -52,7 +53,6 @@ const CheckoutForm = ({ setCheckoutUI, checkoutUI }: CheckoutProps) => {
   }, [done]);
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
-    // setError(null);
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
@@ -133,17 +133,17 @@ const CheckoutForm = ({ setCheckoutUI, checkoutUI }: CheckoutProps) => {
     <AnimatePresence mode="wait">
       {!checkoutUI.checkoutFormRemove && (
         <motion.div
-          initial={{ x: 40, opacity: 0 }}
+          initial={{ x: initialX, opacity: 0 }}
           animate={
             checkoutUI.changeUI && !checkoutUI.checkoutFormRemove
-              ? { x: 0, opacity: 0 }
+              ? { x: initialX, opacity: 0 }
               : { x: xOffset, opacity: 1 }
           }
           transition={{
             duration: 1.2,
             ease: "easeOut",
           }}
-          className="shadow-lg max-w-[560px] sm:w-full p-5 sm:p-10 sm:sticky sm:top-[25px]  order-1 sm:order-2 rounded-3xl bg-white"
+          className="shadow-lg max-w-[560px] lg:w-full p-5 sm:p-10 lg:sticky lg:top-[25px]  order-1 lg:order-2 rounded-3xl bg-white"
         >
           <h2 className="font-heading text-marineBlue text-4xl sm:text-5xl leading-tight mb-10">
             {t("fillDetails")}

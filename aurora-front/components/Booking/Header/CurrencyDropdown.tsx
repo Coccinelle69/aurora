@@ -68,7 +68,7 @@ export default function CurrencyDropdown({ onChange }: Props) {
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className={`flex items-center gap-2 rounded-md  bg-transparent px-3 py-2 text-sm text-white hover:bg-white/10 `}
+        className={`flex items-center gap-2 rounded-md  bg-transparent px-1 py-2 text-sm text-white hover:bg-white/10 `}
         aria-haspopup="listbox"
         aria-expanded={open}
       >

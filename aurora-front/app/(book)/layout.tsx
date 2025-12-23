@@ -3,8 +3,9 @@ import "@/app/globals.css";
 
 import { Roboto, Princess_Sofia, Quintessential } from "next/font/google";
 import ClientProviders from "@/ClientProviders";
-import { AnimCursor, BookHeader } from "@/components";
+import { BookHeader } from "@/components";
 import Script from "next/script";
+import ClientWrapper from "@/app/ClientWrapper";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -29,10 +30,6 @@ export default function BookLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const isCoarse =
-    typeof window !== "undefined" &&
-    (window.matchMedia("(pointer: coarse)").matches ||
-      window.matchMedia("(hover: none)").matches);
   return (
     <html lang="en">
       <head>
@@ -48,14 +45,15 @@ export default function BookLayout({
         className={`${roboto.variable} ${quintessential.variable} ${sofia.variable} antialiased`}
       >
         <ClientProviders>
-          {!isCoarse && <AnimCursor />}
-          <BookHeader />
-          <Script
-            id="gmaps"
-            strategy="afterInteractive"
-            src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GMAPS_KEY}&v=weekly&libraries=marker&loading=async`}
-          />
-          {children}
+          <ClientWrapper>
+            <BookHeader />
+            <Script
+              id="gmaps"
+              strategy="afterInteractive"
+              src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GMAPS_KEY}&v=weekly&libraries=marker&loading=async`}
+            />
+            {children}
+          </ClientWrapper>
         </ClientProviders>
       </body>
     </html>

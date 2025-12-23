@@ -122,7 +122,7 @@ export default function AvailabilityCalendar() {
       </div>
 
       {/* 4-month grid */}
-      <div className="grid grid-cols-1 w-[90%] mx-auto md:grid-cols-2 gap-6 ">
+      <div className="grid grid-cols-1 w-[90%] mx-auto sm:grid-cols-2 gap-6 ">
         {visibleMonths.map((month) => {
           const year = month.getFullYear();
           const m = month.getMonth();

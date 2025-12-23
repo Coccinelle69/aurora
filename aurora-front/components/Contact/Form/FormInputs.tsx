@@ -7,7 +7,11 @@ const FormInputs = ({ checkout }: { checkout?: boolean }) => {
   const { t } = useTranslation();
   return (
     <div>
-      <div className={`${checkout ? "flex flex-row" : ""} `}>
+      <div
+        className={`${
+          checkout ? "flex flex-col md:flex-row xl:flex-row" : ""
+        } `}
+      >
         <FormInput
           id="firstName"
           name="firstName"
@@ -25,7 +29,11 @@ const FormInputs = ({ checkout }: { checkout?: boolean }) => {
           {t("lastName")}
         </FormInput>
       </div>
-      <div className={`${checkout ? "flex flex-row" : ""} `}>
+      <div
+        className={`${
+          checkout ? "flex flex-col md:flex-row lg:flex-col xl:flex-row" : ""
+        } `}
+      >
         <FormInput
           id="phone"
           name="phone"

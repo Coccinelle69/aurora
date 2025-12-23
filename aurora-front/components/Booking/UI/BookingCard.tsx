@@ -44,7 +44,7 @@ const BookingCard = ({ finalPrice }: BookingCardProps) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className="w-full px-4 mt-[10rem] mb-[15rem] flex justify-center sm:mb-0"
+      className="w-full px-4 mt-40 sm:mt-0 md:mt-40 mb-60 flex justify-center sm:mb-0"
     >
       <div
         className="

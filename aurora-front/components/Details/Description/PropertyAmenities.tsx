@@ -65,9 +65,9 @@ const PropertyAmenities = () => {
 
   return (
     <div className="border-top" ref={containerRef}>
-      <p className="details-title pt-[1rem]">{t("amenities")}</p>
+      <p className="details-title pt-4">{t("amenities")}</p>
       <div className="pt-3">
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-5 text-center">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-5 text-center">
           <AnimatePresence>
             {amenitiesToDisplay.map((amenity, i) => {
               const src = amenity.src;

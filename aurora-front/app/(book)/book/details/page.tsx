@@ -44,9 +44,9 @@ const DetailsPage = () => {
 
   return (
     <div>
-      <div className="bg-[#dce4eb] w-[96%] mx-auto pb-[0.75rem]">
+      <div className="bg-[#dce4eb] w-[96%] mx-auto pb-3">
         <DetailsGallery slides={slides} />
-        <div className="mt-0 sm:mt-[1.5rem] mx-[1rem] sm:mx-[3rem] sm:mx-[5rem] flex flex-col sm:flex-row gap-[10rem] items-start">
+        <div className="mt-0 sm:mt-6 mx-4 sm:mx-12  flex flex-col lg:flex-row gap-40 items-start">
           <Description />
 
           {!checkoutUI.checkoutCardRemove && (
@@ -69,10 +69,10 @@ const DetailsPage = () => {
           lng={Number(process.env.NEXT_PUBLIC_LNG)}
           zoom={25}
           detailsMap={true}
-          className="mx-auto sm:mx-[5rem] my-[3rem]  rounded-2xl overflow-hidden w-[90%] sm:w-[50%]"
+          className="mx-auto 2xl:mx-20 my-12 lg:mt-35  rounded-2xl overflow-hidden w-[90%] 2xl:w-[50%]"
         />
       </div>
-      <div className="bg-[#f1f1f1] h-[2px] w-[50%] mx-auto my-[4rem]"></div>
+      <div className="bg-[#f1f1f1] h-0.5 w-[50%] mx-auto my-16"></div>
       <DetailsFooter />
     </div>
   );

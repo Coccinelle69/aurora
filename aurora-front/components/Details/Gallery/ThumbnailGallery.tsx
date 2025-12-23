@@ -14,7 +14,7 @@ const ThumbnailGallery = () => {
   const slides = Object.values(houseImages);
 
   return (
-    <div ref={emblaRef} className="hidden md:flex flex-col flex-[1] gap-4">
+    <div ref={emblaRef} className="hidden lg:flex flex-col flex-1 gap-4">
       {slides.map((src, i) => (
         <button
           key={i}

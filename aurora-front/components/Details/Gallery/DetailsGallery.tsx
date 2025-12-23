@@ -47,9 +47,9 @@ function DetailsGallery({ slides, options }: PropType) {
   const btnStyleLeft = "absolute left-4 " + btnStyle;
 
   return (
-    <div className="flex flex-col md:flex-row w-full sm:w-[90%]  gap-10 mx-auto mt-[5rem] py-[7rem]  sm:py-[2rem] overflow-hidden ">
+    <div className="flex flex-col md:flex-row w-full sm:w-[90%]  gap-10 mx-auto mt-20 py-28  sm:py-8 overflow-hidden ">
       {/* MAIN GALLERY */}
-      <div className="relative flex-[4] overflow-hidden sm:rounded-tl-3xl sm:rounded-bl-3xl">
+      <div className="relative flex-4 overflow-hidden sm:rounded-3xl lg:rounded-tr-none lg:rounded-br-none">
         {/* Embla viewport */}
         <div className="overflow-hidden" ref={emblaRef}>
           <div className="flex">

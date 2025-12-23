@@ -3,7 +3,8 @@ import useTime from "./useTime";
 import useDirections from "./useDirections";
 import useCurrency from "./useCurrency";
 import useResponse from "./useResponse";
-import useIsMobile from "./useIsMobile";
+import useDevice from "./useDevice";
+import useMouse from "./useMouse";
 
 export {
   useOpenMeteo,
@@ -11,5 +12,6 @@ export {
   useDirections,
   useCurrency,
   useResponse,
-  useIsMobile,
+  useDevice,
+  useMouse,
 };

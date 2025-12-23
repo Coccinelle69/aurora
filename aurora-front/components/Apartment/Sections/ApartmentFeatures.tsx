@@ -7,21 +7,33 @@ import {
   OceanIcon,
   TerraceIcon,
 } from "@/icons";
+import { useDevice } from "@/utils/hooks";
 import { useTranslation } from "react-i18next";
 
 export default function ApartmentFeatures() {
   const { t } = useTranslation();
+  const mq = useDevice();
+  const lg = !mq.xl;
 
   const features = [
     {
-      icon: <SurfaceIcon color="#4a6ca3" size={70} />,
+      icon: <SurfaceIcon color="#4a6ca3" size={lg ? 50 : 70} />,
       label: `${t("surface")}`,
     },
-    { icon: <PeopleIcon color="#4a6ca3" size={70} />, label: `${t("guests")}` },
-    { icon: <BedIcon color="#4a6ca3" size={70} />, label: `${t("beds")}` },
-    { icon: <OceanIcon color="#4a6ca3" size={70} />, label: `${t("view")}` },
     {
-      icon: <TerraceIcon color="#4a6ca3" size={70} />,
+      icon: <PeopleIcon color="#4a6ca3" size={lg ? 50 : 70} />,
+      label: `${t("guests")}`,
+    },
+    {
+      icon: <BedIcon color="#4a6ca3" size={lg ? 50 : 70} />,
+      label: `${t("beds")}`,
+    },
+    {
+      icon: <OceanIcon color="#4a6ca3" size={lg ? 50 : 70} />,
+      label: `${t("view")}`,
+    },
+    {
+      icon: <TerraceIcon color="#4a6ca3" size={lg ? 50 : 70} />,
       label: `${t("terrace")}`,
     },
   ];
@@ -32,7 +44,7 @@ export default function ApartmentFeatures() {
           mx-0 flex flex-wrap justify-center items-center
           px-6 py-8 
           lg:px-10
-          lg:divide-x-[2px] lg:divide-[#4a6ca3]
+          lg:divide-x-[2px] lg:divide-babyBlue
         "
       >
         {features.map(({ icon, label }, i) => (
@@ -44,7 +56,11 @@ export default function ApartmentFeatures() {
             "
           >
             {icon}
-            <span className="text-lg font-medium text-[#4a6ca3] whitespace-nowrap">
+            <span
+              className={`${
+                lg ? "text-base" : "text-lg"
+              } font-medium text-babyBlue whitespace-nowrap`}
+            >
               {label}
             </span>
           </div>

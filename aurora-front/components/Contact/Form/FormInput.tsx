@@ -51,9 +51,9 @@ const FormInput = ({
   const inputStyle = `
     peer w-full ${
       checkout
-        ? "bg-white px-2 py-2 placeholder:text-[0.75rem] placeholder:sm:text-sm "
+        ? "bg-white px-2 py-2 placeholder:text-[1rem]  "
         : "bg-transparent"
-    } px-0 sm:px-3 py-3  rounded-md outline-none
+    } px-1 sm:px-3 py-1  rounded-md outline-none placeholder:text-[0.8rem] placeholder:sm:text-[1rem]
     border-2 border-transparent placeholder:text-gray-400 text-marineBlue
   `;
 
@@ -79,8 +79,8 @@ const FormInput = ({
           onBlur={(e) => handleBlur(e.target.value)}
           placeholder={placeholder}
           className={`${inputStyle} ${
-            checkout && "h-[120px]"
-          } min-h-40 resize-none`}
+            checkout && "h-[100px]"
+          } max-h-[200px] h-[150px] resize-none`}
           value={contactState[name]}
           onChange={(e) => {
             dispatch(persistField({ key: name, value: e.target.value }));
@@ -92,7 +92,9 @@ const FormInput = ({
       {/* floating label */}
       <label
         htmlFor={id}
-        className="absolute -top-2 left-0 sm:left-3 z-20 text-xs font-bold uppercase tracking-widest text-slate-700 font-body"
+        className={`absolute -top-2 left-0 sm:left-3 z-20 ${
+          checkout && "text-[0.7rem]"
+        } text-[0.65rem] sm:text-xs  font-bold uppercase tracking-widest text-slate-700 font-body`}
       >
         <span
           className={`px-1 ${
@@ -104,7 +106,8 @@ const FormInput = ({
       </label>
       {!input && (
         <span
-          className={`absolute -top-2 left-26 sm:left-45 md:left-55 lg:left-35 z-20
+          className={`absolute top-40 sm:-top-2 left-54 sm:left-45 md:left-65 lg:left-35 z-20
+            ${checkout && "left-54 sm:left-78 md:left-79 lg:left-81"}
                 text-xs px-1
                 ${checkout ? "bg-white" : "bg-[#D3DAE0]"}
                 ${charNumber === 2000 ? "text-red-500" : "text-slate-500"}`}

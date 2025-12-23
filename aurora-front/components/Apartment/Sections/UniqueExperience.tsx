@@ -9,18 +9,18 @@ export default function UniqueExperience() {
   const images = Object.values(outdoorsImages);
   const { t } = useTranslation();
   return (
-    <section className="w-full flex flex-col lg:flex-row">
+    <section className="w-full flex flex-col lg:flex-row ">
       {/* LEFT CONTENT */}
-      <div className="bg-[#dce4eb] flex flex-col justify-center px-10 lg:px-20 py-20 lg:w-1/2">
-        <h2 className="font-heading text-default text-5xl mb-8">
+      <div className="relative bg-[#dce4eb] flex flex-col  justify-center px-10  lg:px-20 lg:w-1/2">
+        <h2 className=" font-heading text-default text-5xl mt-6 lg:mt-0 mb-8 text-center lg:text-left">
           {t("uniqueExperience")}
         </h2>
 
-        <p className="text-[#4a6ca3] leading-relaxed mb-6 max-w-[600px]">
+        <p className="text-babyBlue leading-relaxed mb-6 max-w-[600px] ">
           {t("zukveDesc1")}
         </p>
 
-        <p className="text-[#4a6ca3] leading-relaxed mb-10 max-w-[600px]">
+        <p className="text-babyBlue leading-relaxed mb-10 max-w-[600px] ">
           {t("zukveDesc2")}
         </p>
 
@@ -31,6 +31,7 @@ export default function UniqueExperience() {
           hover:bg-[#133a6d] 
           transition
           w-fit
+          mb-6 lg:mb-0
         "
         >
           <Link href="/location"> {t("exploreLocation")}</Link>

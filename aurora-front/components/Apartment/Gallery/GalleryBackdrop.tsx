@@ -14,16 +14,6 @@ type Props = {
   startIndex: number;
 };
 
-const btnStyle = `absolute top-1/2 -translate-y-1/2 
-  text-white text-3xl
-  opacity-80 hover:opacity-100
-  bg-transparent
-  p-5
-  cursor-pointer
-  select-none`;
-const btnStyleRight = "absolute right-[15%] " + btnStyle;
-const btnStyleLeft = "absolute left-[15%] " + btnStyle;
-
 export default function GalleryBackdrop({
   images,
   startIndex,
@@ -88,7 +78,7 @@ export default function GalleryBackdrop({
             e.stopPropagation();
             emblaApi?.scrollPrev();
           }}
-          className={btnStyleLeft}
+          className="btn-gallery left"
         >
           ‹
         </button>
@@ -97,7 +87,7 @@ export default function GalleryBackdrop({
             e.stopPropagation();
             emblaApi?.scrollNext();
           }}
-          className={btnStyleRight}
+          className="btn-gallery right"
         >
           ›
         </button>

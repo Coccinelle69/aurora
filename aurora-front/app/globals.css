@@ -73,4 +73,24 @@ body {
   .footer-title {
     @apply text-base font-semibold flex justify-center items-center gap-1 lg:justify-start;
   }
+
+  .btn-gallery {
+    @apply absolute top-1/2 -translate-y-1/2 text-white text-3xl opacity-80 hover:opacity-100 bg-transparent p-5 cursor-pointer select-none;
+  }
+  .btn-gallery.left {
+    @apply -left-4 sm:left-[2rem] md:left-[4rem] lg:left-[8rem] xl:left-[12rem] 2xl:left-[20rem];
+  }
+  .btn-gallery.right {
+    @apply -right-4 sm:right-[2rem] md:right-[4rem] lg:right-[8rem] xl:right-[12rem] 2xl:right-[20rem];
+  }
+
+  .btn-carousel {
+    @apply top-[65%] -translate-y-1/2 text-white/90 text-[4rem] px-3 py-0 rounded-full bg-gradient-to-br from-white/30 to-white/10 text-white hover:text-black shadow-[0_4px_15px_rgba(0,0,0,0.4)] border border-white/30 transition-all duration-300 lg:top-1/2 hover:scale-110 hover:shadow-[0_8px_20px_rgba(0,0,0,0.6)] active:scale-95 hover:text-white/100 cursor-pointer;
+  }
+  .btn-carousel.left {
+    @apply absolute left-4;
+  }
+  .btn-carousel.right {
+    @apply absolute right-4;
+  }
 }

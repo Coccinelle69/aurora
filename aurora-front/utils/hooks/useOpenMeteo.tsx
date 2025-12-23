@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { getWeatherInfo } from "../weather-codes";
 

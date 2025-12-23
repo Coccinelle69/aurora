@@ -52,7 +52,7 @@ const Header = () => {
 
             <li className="flex flex-row items-center justify-center ">
               <button
-                className="-translate-y-[10px] sm:px-[25px]"
+                className="-translate-y-2.5 sm:px-[25px]"
                 onClick={() => {
                   setMenuBtnClosed((prev) => !prev);
                   setFullScreenMenuOpen(true);

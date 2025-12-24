@@ -22,7 +22,7 @@ export default function ExploreApartment() {
       </div>
 
       {/* overlay card */}
-      <div className="pointer-events-none absolute inset-0 w-screen">
+      <div className="pointer-events-none absolute inset-0 w-full">
         <div className="pointer-events-auto mx-auto h-full max-w-7xl px-4 sm:px-6">
           <div className="relative flex h-full justify-start mt-5 sm:mt-24 w-full mx-auto">
             {/* left-aligned panel */}

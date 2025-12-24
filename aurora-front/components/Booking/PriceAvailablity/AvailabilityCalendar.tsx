@@ -45,7 +45,7 @@ export default function AvailabilityCalendar() {
     console.log(data);
     if (success && data.reservations) {
       const ranges = data.reservations
-        .filter((r: { status: string }) => r.status === "APPROVED")
+        .filter((r: { status: string }) => r.status === "CONFIRMED")
         .map(
           (r: {
             arrivalDate: string;

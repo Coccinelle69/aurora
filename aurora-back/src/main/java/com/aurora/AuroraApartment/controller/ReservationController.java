@@ -3,6 +3,7 @@ package com.aurora.AuroraApartment.controller;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -63,15 +64,15 @@ public ResponseEntity<?> checkout(@Valid @RequestBody ReservationRequest request
 }
 
 @PostMapping("/confirm/{id}")
-public ResponseEntity<?> confirm(@Valid @RequestBody ReservationRequest request, @PathVariable Integer id) {
-    reservationService.confirmReservation(id);
+public ResponseEntity<?> confirm(@Valid @RequestBody ReservationRequest request, @PathVariable UUID token) {
+    reservationService.confirmReservation(token);
 
     return ResponseEntity.ok("{\"success\": true}");
 }
 
 @PostMapping("/cancel/{id}")
-public ResponseEntity<?> cancel(@Valid @RequestBody ReservationRequest request, @PathVariable Integer id) {
-    reservationService.cancelReservation(id);
+public ResponseEntity<?> cancel(@Valid @RequestBody ReservationRequest request, @PathVariable UUID token) {
+    reservationService.cancelReservation( token);
 
     return ResponseEntity.ok("{\"success\": true}");
 }

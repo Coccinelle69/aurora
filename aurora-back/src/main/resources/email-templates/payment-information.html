@@ -1,0 +1,133 @@
+<div style="font-family: Arial, sans-serif; padding: 16px; background: #ffffff">
+  <!-- Greeting -->
+  <h2 style="color: #234361; font-size: 20px; margin-bottom: 10px">
+    <strong>{{hello}}</strong>
+  </h2>
+
+  <p style="font-size: 16px; margin: 0 0 16px 0">{{paymentIntro}}</p>
+
+  <!-- Light recap -->
+  <div
+    style="
+      margin-top: 16px;
+      padding: 16px;
+      background: #f0f4f8;
+      border-left: 4px solid #234361;
+    "
+  >
+    <strong style="font-size: 16px">{{paymentSummary}}</strong>
+
+    <table
+      width="100%"
+      cellspacing="0"
+      cellpadding="0"
+      style="font-size: 14px; margin-top: 12px"
+    >
+      <tr>
+        <td><strong>{{stayDates}}</strong></td>
+        <td style="text-align: right">{{arrivalDate}} – {{departureDate}}</td>
+      </tr>
+      <tr>
+        <td><strong>{{amountDue}}</strong></td>
+        <td style="text-align: right; color: #234361">€ {{totalPrice}}</td>
+      </tr>
+      <tr>
+        <td><strong>{{reference}}</strong></td>
+        <td style="text-align: right">{{paymentReference}}</td>
+      </tr>
+      <tr>
+        <td><strong>{{paymentDeadline}}</strong></td>
+        <td style="text-align: right">{{deadlineDate}}</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Payment methods -->
+  <div style="margin-top: 20px">
+    <p style="font-size: 16px; margin-bottom: 10px">
+      <strong>{{paymentMethodsTitle}}</strong>
+    </p>
+
+    <!-- Method 1: Bank transfer -->
+    <p style="font-size: 14px; color: #234361; margin-bottom: 6px">
+      <strong>{{bankTransferTitle}}</strong>
+    </p>
+
+    <table width="100%" style="font-size: 14px; margin-bottom: 8px">
+      <tr>
+        <td>{{accountHolder}}</td>
+        <td style="text-align: right">{{ibanHolder}}</td>
+      </tr>
+      <tr>
+        <td>IBAN</td>
+        <td style="text-align: right">{{iban}}</td>
+      </tr>
+      <tr>
+        <td>BIC / SWIFT</td>
+        <td style="text-align: right">{{bic}}</td>
+      </tr>
+      <tr>
+        <td><strong>{{reference}}</strong></td>
+        <td style="text-align: right">
+          <strong>{{paymentReference}}</strong>
+        </td>
+      </tr>
+    </table>
+
+    <p style="font-size: 13px; color: #555; margin-bottom: 16px">
+      {{bankTransferNote}}
+    </p>
+
+    <!-- Method 2: Stripe -->
+    <p style="font-size: 14px; color: #234361; margin-bottom: 6px">
+      <strong>{{onlinePaymentTitle}}</strong>
+    </p>
+
+    <p style="font-size: 14px; margin-bottom: 12px">{{onlinePaymentText}}</p>
+
+    <table width="100%">
+      <tr>
+        <td align="center">
+          <a
+            href="{{stripeLink}}"
+            target="_blank"
+            style="
+              display: inline-block;
+              padding: 12px 20px;
+              background: #234361;
+              color: #ffffff;
+              text-decoration: none;
+              border-radius: 8px;
+              font-size: 14px;
+              font-weight: bold;
+            "
+          >
+            {{payWithStripe}}
+          </a>
+        </td>
+      </tr>
+    </table>
+
+    <p
+      style="
+        font-size: 12px;
+        margin-top: 10px;
+        word-break: break-all;
+        color: #555;
+      "
+    >
+      {{stripeFallback}}<br />
+      {{stripeLink}}
+    </p>
+  </div>
+
+  <!-- Optional message -->
+  {{userMessage}}
+
+  <p style="margin-top: 20px; font-size: 14px">{{paymentOutro}}</p>
+
+  <p style="margin-top: 20px; font-size: 14px; color: #234361">
+    {{regards}}<br />
+    <strong>{{signature}}</strong>
+  </p>
+</div>

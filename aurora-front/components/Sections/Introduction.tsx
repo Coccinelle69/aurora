@@ -13,11 +13,10 @@ export default function ComfortSection() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
         {/* CONTENT LAYER (sits above the panel) */}
         <div className="relative z-10 flex items-center justify-between">
-          {/* LEFT PHOTO (shorter than panel) */}
           <div className="hidden lg:block">
-            <div className="h-[500px] w-[410px] xl:relative xl:left-24 overflow-hidden shadow-[0_35px_35px_rgba(0,0,0,0.20)]">
+            <div className="h-[500px] w-[410px] lg:ml-15 overflow-hidden shadow-[0_35px_35px_rgba(0,0,0,0.20)]">
               <Image
-                src="/beach.jpg" // <-- your image
+                src="/beach.jpg"
                 alt="Aurora Suites pool"
                 width={400}
                 height={750}

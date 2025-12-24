@@ -9,7 +9,9 @@ const FormInputs = ({ checkout }: { checkout?: boolean }) => {
     <div>
       <div
         className={`${
-          checkout ? "flex flex-col md:flex-row xl:flex-row" : ""
+          checkout
+            ? "flex flex-row justify-between md:flex-col lg:flex-row"
+            : ""
         } `}
       >
         <FormInput
@@ -31,7 +33,9 @@ const FormInputs = ({ checkout }: { checkout?: boolean }) => {
       </div>
       <div
         className={`${
-          checkout ? "flex flex-col md:flex-row lg:flex-col xl:flex-row" : ""
+          checkout
+            ? "flex flex-row md:flex-col justify-between  lg:flex-row"
+            : ""
         } `}
       >
         <FormInput

@@ -51,9 +51,9 @@ const FormInput = ({
   const inputStyle = `
     peer w-full ${
       checkout
-        ? "bg-white px-2 py-2 placeholder:text-[1rem]  "
+        ? "bg-white px-2 py-2 text-[0.8rem] sm:placeholder:text-[0.9rem]  "
         : "bg-transparent"
-    } px-1 sm:px-3 py-1  rounded-md outline-none placeholder:text-[0.8rem] placeholder:sm:text-[1rem]
+    } px-1 sm:px-3 py-1  rounded-md outline-none placeholder:text-[0.75rem] placeholder:sm:text-[1rem] 
     border-2 border-transparent placeholder:text-gray-400 text-marineBlue
   `;
 
@@ -92,7 +92,7 @@ const FormInput = ({
       {/* floating label */}
       <label
         htmlFor={id}
-        className={`absolute -top-2 left-0 sm:left-3 z-20 ${
+        className={`absolute -top-2 left-1 sm:left-3 z-20 ${
           checkout && "text-[0.7rem]"
         } text-[0.65rem] sm:text-xs  font-bold uppercase tracking-widest text-slate-700 font-body`}
       >
@@ -106,8 +106,11 @@ const FormInput = ({
       </label>
       {!input && (
         <span
-          className={`absolute top-40 sm:-top-2 left-54 sm:left-45 md:left-65 lg:left-35 z-20
-            ${checkout && "left-54 sm:left-78 md:left-79 lg:left-81"}
+          className={`absolute -top-2 left-54 sm:left-55 md:left-77 lg:left-35 z-20
+            ${
+              checkout &&
+              "top-40 sm:-top-2 left-54 sm:left-78 md:left-79 lg:left-81"
+            }
                 text-xs px-1
                 ${checkout ? "bg-white" : "bg-[#D3DAE0]"}
                 ${charNumber === 2000 ? "text-red-500" : "text-slate-500"}`}
@@ -119,7 +122,7 @@ const FormInput = ({
       <div className={`px-1 ${checkout ? "h-4 mb-2" : "h-3 mb-2"} `}>
         {error.message && (
           <p
-            className={`text-sm font-semibold text-red-600 transition-all duration-500 ${
+            className={`text-[0.75rem] sm:text-sm font-semibold text-red-600 transition-all duration-500 ${
               checkout && "text-[0.75rem]"
             } ${
               fade ? "opacity-0 translate-y-1" : "opacity-100 translate-y-0"

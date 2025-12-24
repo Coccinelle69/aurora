@@ -19,8 +19,6 @@ import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 
-import com.aurora.AuroraApartment.dto.ContactRequest;
-import com.aurora.AuroraApartment.dto.ReservationRequest;
 import com.aurora.AuroraApartment.model.Contact;
 import com.aurora.AuroraApartment.model.Reservation;
 import com.aurora.AuroraApartment.service.pricing.CheckoutCard;

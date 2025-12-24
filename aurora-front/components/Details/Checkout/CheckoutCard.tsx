@@ -80,7 +80,7 @@ const CheckoutCard = ({
               : { opacity: 1, y: 60 }
           }
           transition={{ duration: 1.2, ease: "easeOut" }}
-          className="w-full max-w-[560px] sm:w-[400px] md:w-120 lg:w-155 2xl:w-[480px] mx-auto bg-white rounded-2xl lg:sticky lg:top-px lg:self-start order-1 lg:order-2 shadow-lg border p-6 flex flex-col gap-4  "
+          className="w-full  sm:w-[400px] md:w-120 lg:w-165 2xl:w-[480px] mx-auto bg-white rounded-2xl lg:sticky lg:top-px lg:self-start order-1 lg:order-2 shadow-lg border p-6 flex flex-col gap-4  "
         >
           {/* TITLE */}
           <h2 className="text-xl text-center font-semibold text-default leading-tight">
@@ -88,7 +88,7 @@ const CheckoutCard = ({
           </h2>
 
           {/* CHECK-IN / CHECK-OUT / NIGHTS / GUEST */}
-          <div className="flex justify-between text-sm text-gray-600 border-b pb-3">
+          <div className="grid grid-cols-2 gap-2 text-center sm:flex sm:justify-between text-sm text-gray-600 border-b pb-3">
             <div>
               <p className="checkout-item-title">{t("checkIn")}</p>
               <p className="checkout-item">{arrival}</p>

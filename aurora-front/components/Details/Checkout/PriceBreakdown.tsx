@@ -67,34 +67,43 @@ const PriceBreakdown = () => {
       {/* PRICE DETAILS */}
       <div className="text-sm text-gray-700 border-b pb-3 space-y-2">
         <div className="flex justify-between">
-          <span className="font-medium underline font-semibold text-default">
+          <span className="underline font-semibold text-default">
             {t("priceBreakdown")}
           </span>
         </div>
 
         {fromDates.length > 0 && (
           <div>
-            <div className="flex justify-between">
-              <span className="font-medium">
-                {fromDateStartEndFormatted.arrival.split(",")[0]} –{" "}
-                {fromDateStartEndFormatted.departure.split(",")[0]}
-              </span>
-              <span className="font-medium -translate-x-[5px]">
-                {fromNights} {t("nights")} × {sign} {fromPrice}
-              </span>
-              <span className="font-medium">
-                {sign} {fromTotalPrice}
-              </span>
+            <div className="grid grid-col-2 sm:flex sm:justify-between">
+              <div className="flex items-center gap-4 sm:gap-8">
+                <span className="font-medium">
+                  {fromDateStartEndFormatted.arrival.split(",")[0]} –{" "}
+                  {fromDateStartEndFormatted.departure.split(",")[0]}
+                </span>
+                <span className="font-medium -translate-x-[5px]">
+                  {fromNights} {t("nights")} × {sign} {fromPrice}
+                </span>
+              </div>
+              <div className="text-end">
+                <span className="font-medium">
+                  {sign} {fromTotalPrice}
+                </span>
+              </div>
             </div>
-            <div className="flex justify-between">
-              {toDateStartEndFormatted.arrival.split(",")[0]} –{" "}
-              {toDateStartEndFormatted.departure.split(",")[0]}
-              <span className="font-medium">
-                {toNights} {t("nights")} × {sign} {toPrice}
-              </span>
-              <span className="font-medium">
-                {sign} {toTotalPrice}
-              </span>
+            <div className="grid grid-col-2 sm:flex sm:justify-between">
+              <div className="flex items-center gap-4 sm:gap-8">
+                {toDateStartEndFormatted.arrival.split(",")[0]} –{" "}
+                {toDateStartEndFormatted.departure.split(",")[0]}
+                <span className="font-medium">
+                  {toNights} {t("nights")} × {sign} {toPrice}
+                </span>
+              </div>
+
+              <div className="text-end">
+                <span className="font-medium">
+                  {sign} {toTotalPrice}
+                </span>
+              </div>
             </div>
           </div>
         )}

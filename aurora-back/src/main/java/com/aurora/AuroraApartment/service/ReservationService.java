@@ -2,6 +2,7 @@ package com.aurora.AuroraApartment.service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -69,16 +70,16 @@ public Reservation createReservation(ReservationRequest reservation) {
 }
 
 @Transactional
-public Reservation cancelReservation(Integer reservationId) {
-    Reservation reservation = reservationRepo.findById(reservationId).orElseThrow(() -> new RuntimeException("Not found"));
+public Reservation cancelReservation(UUID reservationToken) {
+    Reservation reservation = reservationRepo.findByPublicToken(reservationToken).orElseThrow(() -> new RuntimeException("Not found"));
     reservation.setStatus(ReservationStatus.CANCELLED);
     return reservation;
 
 }
 
 @Transactional
-public Reservation confirmReservation(Integer reservationId) {
-    Reservation reservation = reservationRepo.findById(reservationId).orElseThrow(() -> new RuntimeException("Not found"));
+public Reservation confirmReservation(UUID reservationToken) {
+    Reservation reservation = reservationRepo.findByPublicToken(reservationToken).orElseThrow(() -> new RuntimeException("Not found"));
     reservation.setStatus(ReservationStatus.CONFIRMED);
     return reservation;
 

@@ -33,7 +33,7 @@ export default function EmblaCarousel({ slides }: Props) {
 
   return (
     <div className=" relative">
-      <div className="absolute inset-0 top-[15rem] left-[2rem] z-10 flex items-center justify-center pointer-events-none lg:top-0 left-0">
+      <div className="absolute inset-0 top-60 z-10 flex items-center justify-center pointer-events-none lg:top-0 left-0">
         <p
           className="font-logo
           text-white tracking-[0.25rem] text-[4rem] opacity-70 sm:text-[8rem]"

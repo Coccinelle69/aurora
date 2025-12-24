@@ -21,7 +21,7 @@ public interface ReservationRepo extends JpaRepository<Reservation, Integer> {
         SELECT r FROM Reservation r
         WHERE r.arrivalDate < :departure
         AND r.departureDate > :arrival
-        AND r.status = 'APPROVED'
+        AND r.status = 'CONFIRMED'
     """)
     List<Reservation> findOverlappingReservations(
         LocalDate arrival,

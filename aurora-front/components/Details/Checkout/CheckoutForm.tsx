@@ -28,8 +28,8 @@ const CheckoutForm = ({ setCheckoutUI, checkoutUI }: CheckoutProps) => {
     departure: departureDate,
   } = useAppSelector((state) => state.search);
   const { sm, lg, md } = useDevice();
-  const initialX = !sm ? 40 : !md ? 60 : !lg ? 200 : 40;
-  const xOffset = !sm ? 0 : !md ? 0 : !lg ? 50 : -40;
+  const initialX = !sm ? 40 : !md ? 60 : !lg ? 80 : 40;
+  const xOffset = !sm ? 0 : !md ? 0 : !lg ? 0 : -20;
 
   const { success, done, errorMessage } = useResponse({
     url: "/api/reservation/request",
@@ -143,7 +143,7 @@ const CheckoutForm = ({ setCheckoutUI, checkoutUI }: CheckoutProps) => {
             duration: 1.2,
             ease: "easeOut",
           }}
-          className="shadow-lg max-w-[560px] lg:w-full p-5 sm:p-10 lg:sticky lg:top-[25px]  order-1 lg:order-2 rounded-3xl bg-white"
+          className="shadow-lg mx-auto w-full md:max-w-[560px] p-5 sm:p-10 lg:sticky lg:top-[25px]  order-1 lg:order-2 rounded-3xl bg-white"
         >
           <h2 className="font-heading text-marineBlue text-4xl sm:text-5xl leading-tight mb-10">
             {t("fillDetails")}
@@ -158,14 +158,14 @@ const CheckoutForm = ({ setCheckoutUI, checkoutUI }: CheckoutProps) => {
               <button
                 onClick={goToCheckoutCard}
                 type="button"
-                className="inline-flex items-center font-body gap-2   text-marineBlue font-bold px-5 mt-4 py-3 rounded-xl bg-transparent hover:bg-slate-200 transition"
+                className="inline-flex items-center font-body gap-2   text-marineBlue font-bold px-2 sm:px-5 mt-4 py-3 rounded-xl bg-transparent hover:bg-slate-200 transition"
               >
                 &#8592;
               </button>
               <button
                 type="submit"
                 disabled={formStatus.submitting}
-                className="inline-flex items-center font-body gap-2 uppercase tracking-[.2em] text-marineBlue font-semibold px-5 mt-4 py-3 rounded-xl bg-transparent hover:bg-slate-200 transition hover:text-babyBlue disabled:cursor-not-allowed"
+                className="inline-flex items-center text-[0.8rem] sm:text-[1rem] font-body gap-2 uppercase tracking-[.2em] text-marineBlue font-semibold px-2 sm:px-5 mt-4 py-3 rounded-xl bg-transparent hover:bg-slate-200 transition hover:text-babyBlue active:bg-slate-200 active:text-babyBlue disabled:cursor-not-allowed"
               >
                 {formStatus.submitting ? t("sending") : t("send")}
               </button>

@@ -8,7 +8,7 @@ const BookingPage = () => {
   const modalOpen = useAppSelector((state) => state.modal.value);
 
   return (
-    <div className="relative min-h-screen">
+    <div className="relative">
       <div className="fixed inset-0 -z-10">
         <Image
           src="/beach2.jpg"
@@ -20,7 +20,7 @@ const BookingPage = () => {
           sizes="100vw"
         />
       </div>
-      <div className="relative top-[10rem]   md:top-0 ">
+      <div className="relative top-40   md:top-0 ">
         <SearchBooking />
         {modalOpen && <PriceAvailability />}
       </div>

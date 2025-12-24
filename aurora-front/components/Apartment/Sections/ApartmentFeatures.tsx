@@ -12,28 +12,27 @@ import { useTranslation } from "react-i18next";
 
 export default function ApartmentFeatures() {
   const { t } = useTranslation();
-  const mq = useDevice();
-  const lg = !mq.xl;
+  const { xl } = useDevice();
 
   const features = [
     {
-      icon: <SurfaceIcon color="#4a6ca3" size={lg ? 50 : 70} />,
+      icon: <SurfaceIcon color="#4a6ca3" size={!xl ? 50 : 70} />,
       label: `${t("surface")}`,
     },
     {
-      icon: <PeopleIcon color="#4a6ca3" size={lg ? 50 : 70} />,
+      icon: <PeopleIcon color="#4a6ca3" size={!xl ? 50 : 70} />,
       label: `${t("guests")}`,
     },
     {
-      icon: <BedIcon color="#4a6ca3" size={lg ? 50 : 70} />,
+      icon: <BedIcon color="#4a6ca3" size={!xl ? 50 : 70} />,
       label: `${t("beds")}`,
     },
     {
-      icon: <OceanIcon color="#4a6ca3" size={lg ? 50 : 70} />,
+      icon: <OceanIcon color="#4a6ca3" size={!xl ? 50 : 70} />,
       label: `${t("view")}`,
     },
     {
-      icon: <TerraceIcon color="#4a6ca3" size={lg ? 50 : 70} />,
+      icon: <TerraceIcon color="#4a6ca3" size={!xl ? 50 : 70} />,
       label: `${t("terrace")}`,
     },
   ];
@@ -51,14 +50,14 @@ export default function ApartmentFeatures() {
           <div
             key={i}
             className="
-              flex flex-col sm:flex-row items-center justify-center gap-3 text-center
-              flex-1 min-w-[160px] py-4 mx-0
+              flex flex-col 2xl:flex-row items-center justify-center gap-3 text-center
+              flex-1 min-w-40 py-4 mx-0
             "
           >
             {icon}
             <span
               className={`${
-                lg ? "text-base" : "text-lg"
+                !xl ? "text-base" : "text-lg"
               } font-medium text-babyBlue whitespace-nowrap`}
             >
               {label}

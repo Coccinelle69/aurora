@@ -28,6 +28,8 @@ public class Reservation {
     private Integer id;
     @Column(nullable = false, unique = true, updatable = false)
     private UUID publicToken;
+    @Column(name = "reservation_reference", nullable = false, unique = true, updatable = false)
+    private String reservationReference;
 
     @Column(name = "main_contact_first_name", nullable = false)
     private String mainContactFirstName;

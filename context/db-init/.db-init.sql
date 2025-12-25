@@ -1,6 +1,9 @@
-CREATE TABLE Reservation (
+CREATE TABLE reservation (
   id SERIAL PRIMARY KEY,
   public_token UUID NOT NULL UNIQUE,
+  admin_action_expires_at TIMESTAMPTZ NOT NULL,
+  admin_action_used BOOLEAN NOT NULL DEFAULT false,
+  reservation_reference VARCHAR(50) NOT NULL UNIQUE,
 
   main_contact_first_name VARCHAR(100) NOT NULL,
   main_contact_last_name VARCHAR(100) NOT NULL,
@@ -19,13 +22,19 @@ CREATE TABLE Reservation (
   arrival_date DATE NOT NULL,
   departure_date DATE NOT NULL,
 
-  status VARCHAR(20) DEFAULT 'PENDING',
+  status VARCHAR(20) NOT NULL DEFAULT 'PENDING',
   created_at  TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   message VARCHAR(2000)
 
 );
 
-CREATE TABLE Contact (
+CREATE TABLE reservation_sequence (
+  id SERIAL PRIMARY KEY,
+  year INT NOT NULL;
+  last_number INT NOT NULL;
+);
+
+CREATE TABLE contact (
   id SERIAL PRIMARY KEY,
 
   first_name VARCHAR(100) NOT NULL,

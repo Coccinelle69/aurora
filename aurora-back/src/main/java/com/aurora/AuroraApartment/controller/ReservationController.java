@@ -15,10 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.aurora.AuroraApartment.dto.ContactRequest;
 import com.aurora.AuroraApartment.dto.ReservationRequest;
 import com.aurora.AuroraApartment.model.Reservation;
-import com.aurora.AuroraApartment.service.EmailService;
 import com.aurora.AuroraApartment.service.ReservationService;
 
 import jakarta.validation.Valid;
@@ -50,6 +48,23 @@ public ResponseEntity<?> fetchReservations() {
     return ResponseEntity.ok(Map.of("reservations", reservations));
 }
 
+@GetMapping("/confirm/{token}")
+public ResponseEntity<Map<String, Object>> confirm(@PathVariable UUID token) {
+    reservationService.confirmReservation(token);
+
+    return ResponseEntity.ok(Map.of("success", true));
+
+}
+
+@GetMapping("/cancel/{token}")
+public ResponseEntity<Map<String, Object>> cancel(@PathVariable UUID token) {
+    reservationService.cancelReservation( token);
+
+    return ResponseEntity.ok(Map.of("success", true));
+
+}
+
+
 @PostMapping("/check")
     public ResponseEntity<?> verifyForm(@Valid @RequestBody ReservationRequest request) {
 
@@ -59,20 +74,6 @@ public ResponseEntity<?> fetchReservations() {
 @PostMapping("/checkout")
 public ResponseEntity<?> checkout(@Valid @RequestBody ReservationRequest request) {
     reservationService.createReservation(request);
-
-    return ResponseEntity.ok("{\"success\": true}");
-}
-
-@PostMapping("/confirm/{id}")
-public ResponseEntity<?> confirm(@Valid @RequestBody ReservationRequest request, @PathVariable UUID token) {
-    reservationService.confirmReservation(token);
-
-    return ResponseEntity.ok("{\"success\": true}");
-}
-
-@PostMapping("/cancel/{id}")
-public ResponseEntity<?> cancel(@Valid @RequestBody ReservationRequest request, @PathVariable UUID token) {
-    reservationService.cancelReservation( token);
 
     return ResponseEntity.ok("{\"success\": true}");
 }

@@ -1,12 +1,16 @@
 package com.aurora.AuroraApartment.service;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
+import com.aurora.AuroraApartment.dto.PriceResult;
 import com.aurora.AuroraApartment.dto.ReservationRequest;
 import com.aurora.AuroraApartment.dto.ReservationStatus;
 import com.aurora.AuroraApartment.model.Reservation;
@@ -17,16 +21,24 @@ import jakarta.transaction.Transactional;
 
 @Service
 public class ReservationService {
-    @Autowired
-    ReservationRepo reservationRepo;
+    
+    private final ReservationRepo reservationRepo;
     private final EmailService emailService;
+    private final ReservationReferenceService referenceService;
+    private final PriceCalculator priceCalculator;
+
 
     public ReservationService(
             ReservationRepo reservationRepo,
-            EmailService emailService
+            EmailService emailService,
+            ReservationReferenceService referenceService,
+            PriceCalculator priceCalculator
+
     ) {
         this.reservationRepo = reservationRepo;
         this.emailService = emailService;
+        this.referenceService = referenceService;
+        this.priceCalculator = priceCalculator;
     }
 
 
@@ -41,23 +53,40 @@ public List<Reservation> allReservations() {
     if(reservations.isEmpty()) return List.of();
     return reservations;
 }
+
+@Transactional
 public Reservation createReservation(ReservationRequest reservation) {
-    PriceCalculator priceCalculator = new PriceCalculator();
-    priceCalculator.priceList(reservation.getArrivalDate(), reservation.getDepartureDate());
+    PriceResult price = priceCalculator.calculate(reservation.getArrivalDate(), reservation.getDepartureDate());
+    
+     if (price.getTotalNights() <= 0) {
+        throw new ResponseStatusException(
+            HttpStatus.BAD_REQUEST,
+            "Selected dates are not available"
+        );
+    }
+    
+    String reference = referenceService.generateReference();
+    int adults = Optional.ofNullable(reservation.getAdults()).orElse(0);
+    int teens = Optional.ofNullable(reservation.getTeens()).orElse(0);
+    int children = Optional.ofNullable(reservation.getChildren()).orElse(0);
+    System.out.println(price.getTotal());
+    System.out.println(price.getTotalNights());
     Reservation newReservation = Reservation.builder()
         .mainContactFirstName(reservation.getFirstName())
         .mainContactLastName(reservation.getLastName())
         .email(reservation.getEmail())
         .phone(reservation.getPhone())
         .language(reservation.getLanguage())
+        .message(reservation.getMessage())
         .arrivalDate(reservation.getArrivalDate())
         .departureDate(reservation.getDepartureDate())
-        .totalNights(priceCalculator.getTotalNights())
-        .totalPrice(priceCalculator.getPrice())
-        .guests(reservation.getAdults() + reservation.getTeens() +reservation.getChildren())
+        .totalNights(price.getTotalNights())
+        .totalPrice(price.getTotal())
+        .guests(adults + teens + children)
         .adults(reservation.getAdults())
         .teens(reservation.getTeens())
         .children(reservation.getChildren())
+        .reservationReference(reference)
         .build();
     Reservation saved = reservationRepo.save(newReservation);
 
@@ -72,7 +101,13 @@ public Reservation createReservation(ReservationRequest reservation) {
 @Transactional
 public Reservation cancelReservation(UUID reservationToken) {
     Reservation reservation = reservationRepo.findByPublicToken(reservationToken).orElseThrow(() -> new RuntimeException("Not found"));
+     if (reservation.isAdminActionUsed())
+        throw new ResponseStatusException(HttpStatus.GONE, "Link already used");
+
+    if (Instant.now().isAfter(reservation.getAdminActionExpiresAt()))
+        throw new ResponseStatusException(HttpStatus.GONE, "Link expired");
     reservation.setStatus(ReservationStatus.CANCELLED);
+    reservation.setAdminActionUsed(true);
     return reservation;
 
 }
@@ -80,7 +115,17 @@ public Reservation cancelReservation(UUID reservationToken) {
 @Transactional
 public Reservation confirmReservation(UUID reservationToken) {
     Reservation reservation = reservationRepo.findByPublicToken(reservationToken).orElseThrow(() -> new RuntimeException("Not found"));
+
+    if (reservation.isAdminActionUsed())
+        throw new ResponseStatusException(HttpStatus.GONE, "Link already used");
+
+    if (Instant.now().isAfter(reservation.getAdminActionExpiresAt()))
+        throw new ResponseStatusException(HttpStatus.GONE, "Link expired");
+
     reservation.setStatus(ReservationStatus.CONFIRMED);
+    reservation.setAdminActionUsed(true);
+
+    emailService.sendPaymentInfoToUser(reservation);
     return reservation;
 
 }

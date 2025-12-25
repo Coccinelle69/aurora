@@ -6,38 +6,17 @@ import java.util.function.Function;
 
 import org.springframework.stereotype.Service;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
+import com.aurora.AuroraApartment.dto.PriceResult;
 @Service
 public class PriceCalculator {
-    private int totalNights;
-    private Integer price; 
-    private int total;
 
-    private Integer fromNights;
-    private Integer fromPrice;
-    private Integer fromTotalPrice;
-    private List<LocalDate> fromDates;
-
-    private Integer toNights;
-    private Integer toPrice;
-    private Integer toTotalPrice;
-    private List<LocalDate> toDates;
-
-    private String error;
-
-    public PriceCalculator priceList(LocalDate from, LocalDate to) {
+    public PriceResult calculate(LocalDate from, LocalDate to) {
     int year = from.getYear();
 
     // helper: convert "MM-dd" → LocalDate
     Function<String, LocalDate> d = mmdd -> LocalDate.parse(year + "-" + mmdd);
 
-    PriceCalculator result = new PriceCalculator();
+    PriceResult result = new PriceResult();
 
     // MAY (15–31)
     if (!from.isBefore(d.apply("05-15")) && !to.isAfter(d.apply("05-31"))) {

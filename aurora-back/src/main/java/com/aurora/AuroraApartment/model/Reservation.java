@@ -2,6 +2,7 @@ package com.aurora.AuroraApartment.model;
 
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.UUID;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -26,10 +27,19 @@ public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @Column(nullable = false, unique = true, updatable = false)
     private UUID publicToken;
+
+    @Column(name="admin_action_expires_at", nullable = false)
+    private Instant adminActionExpiresAt;
+
+    @Column(name="admin_action_used", nullable = false)
+    private boolean adminActionUsed;
+
     @Column(name = "reservation_reference", nullable = false, unique = true, updatable = false)
     private String reservationReference;
+
 
     @Column(name = "main_contact_first_name", nullable = false)
     private String mainContactFirstName;
@@ -43,22 +53,28 @@ public class Reservation {
     @Builder.Default
     private String language="en";
 
+    @Column(nullable = false)
     private Integer guests;
+    @Column(nullable = false)
     private Integer adults;
+    @Column(nullable = false)
     private Integer children;
+    @Column(nullable = false)
     private Integer teens;
-    @Column(name = "total_nights")
+
+    @Column(name = "total_nights", nullable = false)
     private Integer totalNights;
-    @Column(name = "total_price")
+    @Column(name = "total_price", nullable = false)
     private Integer totalPrice;
 
-    @Column(name = "arrival_date")
+    @Column(name = "arrival_date", nullable = false)
     private LocalDate arrivalDate; 
-    @Column(name = "departure_date")
+    @Column(name = "departure_date", nullable = false)
     private LocalDate departureDate; 
 
     @Enumerated(EnumType.STRING)
     @Builder.Default
+    @Column(nullable = false)
     private ReservationStatus status = ReservationStatus.PENDING;
 
     @CreationTimestamp
@@ -70,5 +86,18 @@ public class Reservation {
         if (publicToken == null) {
             publicToken = UUID.randomUUID();
         }
+
+
+        if (adminActionExpiresAt == null) {
+        adminActionExpiresAt = Instant.now().plus(120, ChronoUnit.HOURS);
     }
+
+     if (status == null) {
+        status = ReservationStatus.PENDING;
+    }
+
+        adminActionUsed = false;
+    }
+
+
 }

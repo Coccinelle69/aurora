@@ -3,6 +3,9 @@ package com.aurora.AuroraApartment.service;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -19,6 +22,7 @@ import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 
+import com.aurora.AuroraApartment.config.PaymentProperties;
 import com.aurora.AuroraApartment.model.Contact;
 import com.aurora.AuroraApartment.model.Reservation;
 import com.aurora.AuroraApartment.service.pricing.CheckoutCard;
@@ -30,6 +34,7 @@ public class EmailService {
 
     private final JavaMailSender mailSender;
     private final CheckoutService checkoutService;
+    private final PaymentProperties paymentProperties;
 
     @Value("${CONTACT_RECEIVER_EMAIL}")
     private String adminEmail;
@@ -171,7 +176,7 @@ private String apply(String template, Map<String, String> values) {
         vars.put("priceDetails", priceDetails);
         vars.put("totalNights", checkoutCard.getTotalNights().toString());
         vars.put("totalPrice", checkoutCard.getTotalPrice().toString());
-        vars.put("reservationId", reservation.getPublicToken().toString());
+        vars.put("reservationToken", reservation.getPublicToken().toString());
 
        
         String html = apply(template, vars);
@@ -296,7 +301,6 @@ private String apply(String template, Map<String, String> values) {
 
        Map<String, String> vars = new HashMap<>();
 
-        vars.put("bookingSubject", bookingSubject);
         vars.put("hello", hello);
         vars.put("thanksMessage", thanksMessage);
         vars.put("userMessage", userMessageBlock);
@@ -329,7 +333,73 @@ private String apply(String template, Map<String, String> values) {
 
     }
 
+    private EmailContent translatePaymentMessage(String language, Reservation reservation) {
+        Locale locale = Locale.forLanguageTag(language);
 
+        String paymentSubject = messageSource.getMessage("email.paymentSubject", null, locale);
+        String hello = messageSource.getMessage("email.hello", new Object[]{reservation.getMainContactFirstName()}, locale);
+        String paymentIntro = messageSource.getMessage("email.paymentIntro", null, locale);
+        String paymentSummary = messageSource.getMessage("email.paymentSummary", null, locale);
+        String stayDates = messageSource.getMessage("email.stayDates", null, locale);
+        String amountDue = messageSource.getMessage("email.amountDue", null, locale);
+        String paymentDeadline = messageSource.getMessage("email.paymentDeadline", null, locale);
+        String reference = messageSource.getMessage("email.reference", null, locale);
+        String paymentMethodsTitle = messageSource.getMessage("email.paymentMethodsTitle", null, locale);
+        String bankTransferTitle = messageSource.getMessage("email.bankTransferTitle", null, locale);
+        String accountHolder = messageSource.getMessage("email.accountHolder", null, locale);
+        String bankTransferNote = messageSource.getMessage("email.bankTransferNote", null, locale);
+        String onlinePaymentTitle = messageSource.getMessage("email.onlinePaymentTitle", null, locale);
+        String onlinePaymentText = messageSource.getMessage("email.onlinePaymentText", null, locale);
+        String payWithStripe = messageSource.getMessage("email.payWithStripe", null, locale);
+        String stripeFallback = messageSource.getMessage("email.stripeFallback", null, locale);
+        String paymentOutro = messageSource.getMessage("email.paymentOutro", null, locale);
+        String regards = messageSource.getMessage("email.regards", null, locale);
+        String signature = messageSource.getMessage("email.signature", null, locale);
+        
+        LocalDate deadlineDate = reservation.getArrivalDate().minusDays(30);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).withLocale(locale);
+
+        Map<String, String> vars = new HashMap<>();
+
+        vars.put("hello", hello);
+        vars.put("paymentSummary", paymentSummary);
+        vars.put("paymentIntro", paymentIntro);
+        vars.put("stayDates", stayDates);
+        vars.put("arrivalDate", reservation.getArrivalDate().format(formatter));
+        vars.put("departureDate", reservation.getDepartureDate().format(formatter));
+        vars.put("amountDue", amountDue);
+        vars.put("totalPrice", reservation.getTotalPrice().toString());
+        vars.put("paymentDeadline", paymentDeadline);
+        vars.put("deadlineDate", deadlineDate.format(formatter));
+        vars.put("reference", reference);
+        vars.put("reservationReference", reservation.getReservationReference());
+        vars.put("paymentMethodsTitle", paymentMethodsTitle);
+        vars.put("bankTransferTitle", bankTransferTitle);
+        vars.put("accountHolder", accountHolder);
+        vars.put("ibanHolder", paymentProperties.getAccountHolder());
+        vars.put("iban", paymentProperties.getIban());
+        vars.put("bic", paymentProperties.getBic());
+        vars.put("bankTransferNote", bankTransferNote);
+        vars.put("onlinePaymentTitle", onlinePaymentTitle);
+        vars.put("onlinePaymentText", onlinePaymentText);
+        vars.put("payWithStripe", payWithStripe);
+        vars.put("stripeFallback", stripeFallback);
+        vars.put("stripeLink", "https://stripe-link.com");
+        vars.put("paymentOutro", paymentOutro);
+        vars.put("regards", regards);
+        vars.put("signature", signature);
+    
+        String template = loadTemplate("payment-information");
+
+        String html = apply(template, vars);
+
+        return new EmailContent(paymentSubject, html);
+ 
+}
+       
+
+    
 public void sendConfirmationToUser(Contact contact) {
         EmailContent email = translateMessage(contact.getLanguage(), contact);
         sendHtmlEmail(
@@ -343,6 +413,16 @@ public void sendConfirmationToUser(Contact contact) {
 
 public void sendCheckoutRecapToUser(Reservation reservation) {
         EmailContent email = translateMessage(reservation.getLanguage(), reservation);
+        sendHtmlEmail(
+                reservation.getEmail(),
+                email.subject(),
+                email.html(),
+                reservation.getEmail()
+        );
+    }
+
+public void sendPaymentInfoToUser(Reservation reservation) {
+        EmailContent email = translatePaymentMessage(reservation.getLanguage(), reservation);
         sendHtmlEmail(
                 reservation.getEmail(),
                 email.subject(),

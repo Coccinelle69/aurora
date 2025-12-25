@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.aurora.AuroraApartment.dto.PriceResult;
+
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -13,7 +15,7 @@ public class CheckoutService {
     private final PriceCalculator priceCalculator;
 
     public CheckoutCard build(LocalDate arrival, LocalDate departure, int guests) {
-        PriceCalculator calc = priceCalculator.priceList(arrival, departure);
+        PriceResult calc = priceCalculator.calculate(arrival, departure);
 
         CheckoutCard card = new CheckoutCard();
 

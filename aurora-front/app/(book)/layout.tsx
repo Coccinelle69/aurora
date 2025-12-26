@@ -1,4 +1,3 @@
-"use client";
 import "@/app/globals.css";
 
 import { Roboto, Princess_Sofia, Quintessential } from "next/font/google";
@@ -6,6 +5,7 @@ import ClientProviders from "@/ClientProviders";
 import { BookHeader } from "@/components";
 import Script from "next/script";
 import ClientWrapper from "@/app/ClientWrapper";
+import { Metadata } from "next";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -24,6 +24,21 @@ const quintessential = Quintessential({
   weight: "400",
   variable: "--font-heading",
 });
+
+export const metadata: Metadata = {
+  title: "Aurora Apartment - 70m from the sea",
+  description:
+    "Aurora Apartment is a newly renovated 75m² seaside rental in Zukve, Vrsi near Zadar. Perfect for families • 3 min walk to the beach • Modern amenities • Free parking.",
+  keywords: [
+    "Aurora Apartment Vrsi",
+    "apartment Vrsi Zadar",
+    "Zukve rental",
+    "holiday apartment Croatia",
+    "seaside apartment Zadar",
+    "Zadar rental",
+    "Aurora",
+  ],
+};
 
 export default function BookLayout({
   children,

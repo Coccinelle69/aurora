@@ -1,11 +1,14 @@
 package com.aurora.AuroraApartment.controller;
 
+import java.net.URI;
+import org.springframework.http.HttpHeaders;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,18 +52,28 @@ public ResponseEntity<?> fetchReservations() {
 }
 
 @GetMapping("/confirm/{token}")
-public ResponseEntity<Map<String, Object>> confirm(@PathVariable UUID token) {
+public ResponseEntity<Void> confirm(@PathVariable UUID token) {
     reservationService.confirmReservation(token);
 
-    return ResponseEntity.ok(Map.of("success", true));
+    HttpHeaders headers = new HttpHeaders();
+    headers.setLocation(
+        URI.create("http://localhost:3000/admin/reservation/result?status=confirmed")
+    );
+
+    return new ResponseEntity<>(headers, HttpStatus.FOUND);
 
 }
 
 @GetMapping("/cancel/{token}")
 public ResponseEntity<Map<String, Object>> cancel(@PathVariable UUID token) {
-    reservationService.cancelReservation( token);
+    reservationService.cancelReservation(token);
 
-    return ResponseEntity.ok(Map.of("success", true));
+    HttpHeaders headers = new HttpHeaders();
+    headers.setLocation(
+        URI.create("http://localhost:3000/admin/reservation/result?status=cancelled")
+    );
+
+    return new ResponseEntity<>(headers, HttpStatus.FOUND);
 
 }
 

@@ -3,7 +3,7 @@ import Image from "next/image";
 import * as houseImages from "@/assets/carousel";
 
 const ThumbnailGallery = () => {
-  const [emblaRef, emblaApi] = useEmblaCarousel({
+  const [emblaRef] = useEmblaCarousel({
     axis: "y",
     slidesToScroll: "auto",
     align: "start",

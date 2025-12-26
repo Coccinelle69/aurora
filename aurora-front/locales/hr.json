@@ -274,5 +274,8 @@
       "Sigurno online plaćanje putem Stripea (putem poveznice za plaćanje)"
     ],
     "outro": "Podaci za plaćanje bit će dostavljeni nakon potvrde rezervacije."
-  }
+  },
+  "notFound": "Ups! Stranica nije pronađena.",
+  "back": "Povratak na sigurno.",
+  "shareText": "Pogledaj ovaj apartman u Hrvatskoj, u Zukvama"
 }

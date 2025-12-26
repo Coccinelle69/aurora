@@ -274,5 +274,8 @@
       "Varno spletno plačilo prek Stripea (prek plačilne povezave)"
     ],
     "outro": "Podrobnosti o plačilu bodo posredovane po potrditvi rezervacije."
-  }
+  },
+  "notFound": "Ups! Stran ni bila najdena.",
+  "back": "Nazaj na varno.",
+  "shareText": "Oglej si ta apartma na Hrvaškem, v Zukvah"
 }

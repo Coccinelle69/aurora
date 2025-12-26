@@ -1,9 +1,11 @@
+export { default as AnimCursor } from "./Base/AnimatedCursor";
+export { Icon } from "./Base/Icon";
+export { default as LogoAurora } from "./Base/Logo";
 export { default as BookButton } from "./Buttons/BookButton";
-export { default as LogoAurora } from "./Logo";
-export { default as AnimCursor } from "./AnimatedCursor";
-export { default as DirectionsButton } from "./Buttons/DirectionsBtn";
-export { default as LoadingSpinner } from "./Spinners/LoadingSpinner";
-export { default as Socials } from "./Socials/Socials";
-export { default as Phone } from "./Socials/Phone";
+export { default as DirectionsButton } from "./Buttons/DirectionsButton";
+export { default as ShareButton } from "./Buttons/ShareButton";
 export { default as Email } from "./Socials/Email";
+export { default as Phone } from "./Socials/Phone";
+export { default as Socials } from "./Socials/Socials";
+export { default as LoadingSpinner } from "./Spinners/LoadingSpinner";
 export { default as MagnifyingGlass } from "./Spinners/MagnifyingGlass";

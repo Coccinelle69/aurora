@@ -7,6 +7,7 @@ import {
   GalleryBackdrop,
   UniqueExperience,
   Amenities,
+  ShareButton,
 } from "@/components";
 
 import * as houseImages from "@/assets/carousel";
@@ -21,7 +22,7 @@ const ApartmentPage = () => {
   console.log("BACKDROP INDEX:", backdropIndex);
 
   return (
-    <div>
+    <main>
       <EmblaCarousel slides={slides} />
       <ApartmentFeatures />
       <Gallery images={apartment} openBackdrop={setBackdropIndex} />
@@ -35,7 +36,8 @@ const ApartmentPage = () => {
 
       <Amenities />
       <UniqueExperience />
-    </div>
+      <ShareButton />
+    </main>
   );
 };
 

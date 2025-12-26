@@ -275,5 +275,8 @@
       "Bezpieczna płatność online przez Stripe (link do płatności)"
     ],
     "outro": "Szczegóły płatności zostaną przekazane po potwierdzeniu rezerwacji."
-  }
+  },
+  "notFound": "Ups! Nie znaleziono strony.",
+  "back": "Powrót do bezpiecznego miejsca.",
+  "shareText": "Sprawdź ten apartament w Chorwacji, w Zukve"
 }

@@ -1,11 +1,11 @@
 export { default as CheckoutCard } from "./Checkout/CheckoutCard";
+export { default as CheckoutForm } from "./Checkout/CheckoutForm";
 export { default as Policy } from "./Checkout/Policy";
+export { default as PriceBreakdown } from "./Checkout/PriceBreakdown";
 export { default as Description } from "./Description/Description";
-export { default as DetailsGallery } from "./Gallery/DetailsGallery";
-export { default as ThumbnailGallery } from "./Gallery/ThumbnailGallery";
-export { default as DetailsFooter } from "./DetailsFooter";
+export { default as HouseRules } from "./Description/HouseRules";
 export { default as PropertyAmenities } from "./Description/PropertyAmenities";
 export { default as PropertyFeatures } from "./Description/PropertyFeatures";
-export { default as HouseRules } from "./Description/HouseRules";
-export { default as PriceBreakdown } from "./Checkout/PriceBreakdown";
-export { default as CheckoutForm } from "./Checkout/CheckoutForm";
+export { default as DetailsFooter } from "./DetailsFooter";
+export { default as DetailsGallery } from "./Gallery/DetailsGallery";
+export { default as ThumbnailGallery } from "./Gallery/ThumbnailGallery";

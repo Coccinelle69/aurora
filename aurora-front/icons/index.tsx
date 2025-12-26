@@ -1,4 +1,4 @@
-import { Icon } from "../components/UI/Icon";
+import { Icon } from "../components/UI/Base/Icon";
 
 export const MenuIcon = (props: { size?: number; color?: string }) => (
   <Icon src="/header/burger-bar.png" alt="Menu" {...props} />
@@ -167,3 +167,28 @@ export const EuroIcon = (props: { size?: number; color?: string }) => (
 export const CalendarIcon = (props: { size?: number; color?: string }) => (
   <Icon src="/header/calendar.png" alt="Calendar" {...props} />
 );
+export const ShareIcon = (props: {
+  size?: number;
+  color?: string;
+  className: string;
+}) => <Icon src="/share/share.png" alt="Share" {...props} />;
+export const WhatsappIcon = (props: {
+  size?: number;
+  color?: string;
+  className: string;
+}) => <Icon src="/share/whatsapp.png" alt="Whatsapp" {...props} />;
+export const MessengerIcon = (props: {
+  size?: number;
+  color?: string;
+  className: string;
+}) => <Icon src="/share/messenger.png" alt="Messenger" {...props} />;
+export const PaperclipIcon = (props: {
+  size?: number;
+  color?: string;
+  className: string;
+}) => <Icon src="/share/paperclip.png" alt="Paperclip" {...props} />;
+export const MailIcon = (props: {
+  size?: number;
+  color?: string;
+  className: string;
+}) => <Icon src="/share/mail.png" alt="Envelope" {...props} />;

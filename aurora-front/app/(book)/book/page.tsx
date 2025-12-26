@@ -8,7 +8,7 @@ const BookingPage = () => {
   const modalOpen = useAppSelector((state) => state.modal.value);
 
   return (
-    <div className="relative">
+    <main className="relative">
       <div className="fixed inset-0 -z-10">
         <Image
           src="/beach2.jpg"
@@ -24,7 +24,7 @@ const BookingPage = () => {
         <SearchBooking />
         {modalOpen && <PriceAvailability />}
       </div>
-    </div>
+    </main>
   );
 };
 

@@ -11,7 +11,7 @@ const DirectionsButton = () => {
     <div className="flex flex-col items-center justify-center lg:block">
       <p className="text-md font-semibold text-white">{t("googleMaps")}: </p>
 
-      <div className="my-2 px-2 flex items-center w-[12rem] hover:scale-110 transition-transform duration-300 ease-out  hover:border rounded-xl focus:border rounded-xl active:border rounded-xl">
+      <div className="my-2 px-2 flex items-center w-48 hover:scale-110 transition-transform duration-300 ease-out  hover:border rounded-xl focus:border rounded-xl active:border rounded-xl">
         <AddressIcon size={32} />
         <button
           onClick={getDirections}

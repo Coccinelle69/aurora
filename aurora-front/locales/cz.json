@@ -275,5 +275,8 @@
       "Bezpečná online platba prostřednictvím Stripe (platební odkaz)"
     ],
     "outro": "Platební údaje vám budou sděleny po potvrzení rezervace."
-  }
+  },
+  "notFound": "Ups! Stránka nenalezena.",
+  "back": "Zpět do bezpečí.",
+  "shareText": "Podívej se na tento apartmán v Chorvatsku, v Zukve"
 }

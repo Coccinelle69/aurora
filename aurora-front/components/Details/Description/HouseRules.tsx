@@ -1,7 +1,7 @@
 "use client";
 import * as houseRules from "@/assets/rules";
 import { memo } from "react";
-import { Icon } from "../../UI/Icon";
+import { Icon } from "@/components";
 import { useTranslation } from "react-i18next";
 import { colors } from "@/utils/ui/colors";
 const HouseRules = () => {

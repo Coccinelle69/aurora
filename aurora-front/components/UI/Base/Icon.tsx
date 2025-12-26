@@ -1,14 +1,20 @@
 import { IconProps } from "@/utils/interfaces";
 import Image from "next/image";
 
-export const Icon = ({ src, alt, size = 50, color = "white" }: IconProps) => (
+export const Icon = ({
+  src,
+  alt,
+  size = 50,
+  color = "white",
+  className,
+}: IconProps) => (
   <>
     <Image
       src={src}
       alt={alt}
       width={size}
       height={size}
-      className="hover:scale-125 transition-transform duration-300 ease-out"
+      className={`hover:scale-125 transition-transform duration-300 ease-out ${className}`}
       style={{
         filter:
           color === "#4a6ca3" ||

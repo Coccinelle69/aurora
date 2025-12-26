@@ -274,5 +274,8 @@
       "Pago online seguro a través de Stripe (enlace de pago)"
     ],
     "outro": "Los datos de pago se compartirán una vez confirmada la reserva."
-  }
+  },
+  "notFound": "¡Ups! Página no encontrada.",
+  "back": "Volver a un lugar seguro.",
+  "shareText": "Mira este apartamento en Croacia, en Zukve"
 }

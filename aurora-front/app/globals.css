@@ -93,4 +93,24 @@ body {
   .btn-carousel.right {
     @apply absolute right-4;
   }
+
+  .gooey-wrapper {
+    @apply fixed -right-7 bottom-4 w-[120px] h-[120px] z-50;
+    transform: rotate(-45deg);
+    filter: url(#gooey);
+  }
+
+  .gooey-button {
+    @apply absolute w-[60px] h-[60px] rounded-full bg-[#8abcc0] flex items-center justify-center text-white cursor-pointer;
+  }
+
+  .item {
+    @apply opacity-0 scale-50 transition-all duration-400 ease-in-out hover:bg-[#3fa3aa];
+    transform: translate(0, 0) scale(0.5);
+  }
+
+  .gooey-wrapper:hover .item {
+    @apply opacity-100 scale-100;
+    transform: translate(var(--x), var(--y)) scale(1);
+  }
 }

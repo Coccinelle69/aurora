@@ -1,6 +1,6 @@
 "use client";
 
-import { DistanceSection } from "@/components";
+import { DistanceSection, ShareButton } from "@/components";
 import dynamic from "next/dynamic";
 const MapWithMarker = dynamic(
   () => import("@/components").then((mod) => mod.MapWithMarker),
@@ -16,6 +16,7 @@ export default function LocationPage() {
         zoom={14}
       />
       <DistanceSection />
+      <ShareButton />
     </main>
   );
 }

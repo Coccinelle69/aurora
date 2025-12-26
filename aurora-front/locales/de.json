@@ -275,5 +275,8 @@
       "Sichere Online-Zahlung über Stripe (per Zahlungslink)"
     ],
     "outro": "Die Zahlungsdetails werden Ihnen nach Bestätigung Ihrer Reservierung mitgeteilt."
-  }
+  },
+  "notFound": "Ups! Seite nicht gefunden.",
+  "back": "Zurück in Sicherheit.",
+  "shareText": "Schau dir dieses Apartment in Kroatien, in Zukve, an"
 }

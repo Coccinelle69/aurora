@@ -275,5 +275,8 @@
       "Biztonságos online fizetés Stripe-on keresztül (fizetési linken)"
     ],
     "outro": "A fizetési adatok a foglalás visszaigazolása után kerülnek megosztásra."
-  }
+  },
+  "notFound": "Hoppá! Az oldal nem található.",
+  "back": "Vissza biztonságba.",
+  "shareText": "Nézd meg ezt az apartmant Horvátországban, Zukvében"
 }

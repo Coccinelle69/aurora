@@ -43,7 +43,7 @@ const DetailsPage = () => {
   if (!departure) return null;
 
   return (
-    <div>
+    <main>
       <div className="bg-[#dce4eb] w-[96%] mx-auto pb-3">
         <DetailsGallery slides={slides} />
         <div className="mt-0 sm:mt-6 mx-4 sm:mx-12  flex flex-col lg:flex-row gap-40 items-start">
@@ -74,7 +74,7 @@ const DetailsPage = () => {
       </div>
       <div className="bg-[#f1f1f1] h-0.5 w-[50%] mx-auto my-16"></div>
       <DetailsFooter />
-    </div>
+    </main>
   );
 };
 

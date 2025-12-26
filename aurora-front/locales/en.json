@@ -274,5 +274,8 @@
       "Secure online payment via Stripe (via payment link)"
     ],
     "outro": "Payment details will be shared once your reservation is confirmed."
-  }
+  },
+  "notFound": "Ooops! Page not found.",
+  "back": "Back to safety.",
+  "shareText": "Check out this apartment in Croatia, Zukve"
 }

@@ -1,7 +1,7 @@
 "use client";
 import * as houseAmenities from "@/assets/amenities";
 import { memo, useMemo, useRef, useState } from "react";
-import { Icon } from "../../UI/Icon";
+import { Icon } from "@/components";
 import { useTranslation } from "react-i18next";
 import { colors } from "@/utils/ui/colors";
 import { AnimatePresence, motion } from "framer-motion";

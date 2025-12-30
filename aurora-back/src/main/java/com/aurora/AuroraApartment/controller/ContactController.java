@@ -12,11 +12,8 @@ import com.aurora.AuroraApartment.service.ContactService;
 
 import jakarta.validation.Valid;
 
-
-
-
 @RestController
-@RequestMapping("/contact")
+@RequestMapping("/api/contact")
 public class ContactController {
 
 @Autowired

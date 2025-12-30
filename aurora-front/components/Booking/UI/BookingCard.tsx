@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { formatPriceUniversal } from "@/utils/format";
 import i18next from "i18next";
 
@@ -108,12 +107,14 @@ const BookingCard = ({ finalPrice }: BookingCardProps) => {
                 {t("additionalCharges")}
               </div>
             </div>
-
-            <Link href="/book/details">
-              <button className="bg-sky-500 text-white px-5 py-2 rounded-lg hover:bg-sky-600 transition">
-                {t("book")}
-              </button>
-            </Link>
+            <button
+              onClick={() =>
+                window.open("/book/details", "_blank", "noopener,noreferrer")
+              }
+              className="bg-sky-500 text-white px-5 py-2 rounded-lg hover:bg-sky-600 transition"
+            >
+              {t("book")}
+            </button>
           </div>
         </div>
       </div>

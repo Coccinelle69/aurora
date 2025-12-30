@@ -8,22 +8,6 @@ export default function Notification({ searchUI, setSearchUI }: searchUIProps) {
   const [show, setShow] = useState(searchUI.available);
   const { t } = useTranslation();
 
-  const getMessage = () => {
-    if (searchUI.stayDurationError) return t("minimumStay");
-
-    if (searchUI.available && !searchUI.stayDurationError && !searchUI.error)
-      return t("available");
-    if (
-      !searchUI.available &&
-      !searchUI.outOfSeason &&
-      !searchUI.stayDurationError
-    )
-      return t("notAvailable");
-    if (searchUI.error && !searchUI.stayDurationError)
-      return t("something-went-wrong");
-    if (searchUI.outOfSeason && !searchUI.available)
-      return t("outOfSeasonMessage");
-  };
   useEffect(() => {
     if (searchUI.searchDone) {
       Promise.resolve().then(() => setShow(true));

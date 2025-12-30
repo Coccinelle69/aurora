@@ -56,6 +56,12 @@ public List<Reservation> allReservations() {
 
 @Transactional
 public Reservation createReservation(ReservationRequest reservation) {
+    Reservation existingReservation = reservationRepo.findByArrivalDate(reservation.getArrivalDate()).orElseThrow(()-> new RuntimeException("Not found") );
+    
+    if(existingReservation !=null) {
+        return existingReservation;
+    }
+
     PriceResult price = priceCalculator.calculate(reservation.getArrivalDate(), reservation.getDepartureDate());
     
      if (price.getTotalNights() <= 0) {
@@ -69,8 +75,7 @@ public Reservation createReservation(ReservationRequest reservation) {
     int adults = Optional.ofNullable(reservation.getAdults()).orElse(0);
     int teens = Optional.ofNullable(reservation.getTeens()).orElse(0);
     int children = Optional.ofNullable(reservation.getChildren()).orElse(0);
-    System.out.println(price.getTotal());
-    System.out.println(price.getTotalNights());
+
     Reservation newReservation = Reservation.builder()
         .mainContactFirstName(reservation.getFirstName())
         .mainContactLastName(reservation.getLastName())

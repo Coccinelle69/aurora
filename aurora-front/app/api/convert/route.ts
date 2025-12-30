@@ -31,10 +31,7 @@ export async function GET(request: Request) {
       total: 0,
     };
 
-    console.log("IM HERE " + fromDate, toDate);
-
     amount = priceList(fromDate, toDate);
-    console.log(amount);
 
     const pricesEUR = {
       ...amount,

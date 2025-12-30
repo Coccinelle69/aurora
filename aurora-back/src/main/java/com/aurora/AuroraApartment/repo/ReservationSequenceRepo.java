@@ -6,6 +6,6 @@ import com.aurora.AuroraApartment.model.ReservationSequence;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
-public interface ReservationSequenceRepository extends JpaRepository <ReservationSequence, Long>  {
+public interface ReservationSequenceRepo extends JpaRepository <ReservationSequence, Long>  {
     Optional<ReservationSequence> findByYear(Integer year);
 }

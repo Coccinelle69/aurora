@@ -11,7 +11,7 @@
   "introduction-p-3": "Il nostro alloggio a conduzione familiare ti invita a rallentare e a sentirti come a casa. Che tu stia facendo colazione sulla terrazza, passeggiando fino ai caffè vicini o trascorrendo pomeriggi tranquilli in riva al mare, qui tutto trasmette calma e autenticità.",
   "explore-h2": "Esplora il nostro appartamento",
   "explore-p-1": "Calmo, pulito ed elegante, Aurora ti invita a prenderti del tempo per rilassarti e goderti le vacanze in un luogo meraviglioso, offrendo comfort e praticità di alto livello.",
-  "explore-p-2": "Appartamenti completamente attrezzati che soddisfano le tue esigenze personali, progettati con dettagli di alta qualità per rendere il tuo soggiorno un’esperienza indimenticabile.",
+  "explore-p-2": "Appartamento completamente attrezzato che soddisfa le tue esigenze personali, progettato con dettagli di alta qualità per rendere il tuo soggiorno un’esperienza indimenticabile.",
   "explore-btn": "ESPLORA",
   "facilities-h2": "Comfort che ti fanno sentire come a casa",
   "facilities-p": "Aurora Apartment a Zukve combina servizi moderni con una calda atmosfera familiare. Dispone di un balcone privato, un angolo cottura completamente attrezzato e un soggiorno confortevole. Aria condizionata, Wi-Fi gratuito, canali TV e arredi di qualità garantiscono un soggiorno piacevole e rilassante — a pochi passi dalla spiaggia.",
@@ -277,5 +277,15 @@
   },
   "notFound": "Ops! Pagina non trovata.",
   "back": "Torna al sicuro.",
-  "shareText": "Dai un’occhiata a questo appartamento in Croazia, a Zukve"
+  "shareText": "Dai un’occhiata a questo appartamento in Croazia, a Zukve",
+  "payment": {
+    "successTitle": "Pagamento riuscito",
+    "successMessage": "Grazie. Il pagamento è in fase di elaborazione. Riceverai a breve un’e-mail di conferma.",
+    "cancelledTitle": "Pagamento annullato",
+    "cancelledMessage": "Il pagamento è stato annullato. Nessun addebito è stato effettuato.",
+    "errorTitle": "Errore di pagamento",
+    "errorMessage": "Qualcosa è andato storto.",
+    "backHome": "Torna alla home"
+  },
+  "alreadyRequested": "Hai già richiesto una prenotazione per questo periodo."
 }

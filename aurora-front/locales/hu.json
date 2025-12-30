@@ -11,7 +11,7 @@
   "introduction-p-3": "Családias, meghitt szállásunk arra hív, hogy pihenjen, és érezze magát otthon. Akár a teraszon reggelizik, akár a közeli kávézókhoz sétál, akár a tengerparton tölti a délutánt – minden nyugodt és autentikus.",
   "explore-h2": "Fedezze fel apartmanjainkat",
   "explore-p-1": "Csendes, tiszta és elegáns – az Aurora tökéletes hely a kikapcsolódáshoz és egy kényelmes nyaraláshoz.",
-  "explore-p-2": "Teljesen felszerelt apartmanok, amelyek minden igényhez alkalmazkodnak, és a legmagasabb minőséget kínálják a felejthetetlen tartózkodásért.",
+  "explore-p-2": "Teljesen felszerelt apartman, az Ön igényeihez igazítva, hogy tartózkodása felejthetetlen legyen.",
   "explore-btn": "MEGTEKINTÉS",
   "facilities-h2": "Kényelem, mintha otthon lenne",
   "facilities-p": "A Zukve-i Aurora Apartman modern felszereltséget és meghitt, családias hangulatot kínál. Saját erkély, felszerelt konyhasarok és kényelmes nappali várja Önt. Légkondicionálás, ingyenes Wi-Fi, TV-csatornák és minőségi berendezések biztosítják a kellemes pihenést – mindezt néhány lépésre a strandtól.",
@@ -278,5 +278,15 @@
   },
   "notFound": "Hoppá! Az oldal nem található.",
   "back": "Vissza biztonságba.",
-  "shareText": "Nézd meg ezt az apartmant Horvátországban, Zukvében"
+  "shareText": "Nézd meg ezt az apartmant Horvátországban, Zukvében",
+  "payment": {
+    "successTitle": "Sikeres fizetés",
+    "successMessage": "Köszönjük. A fizetés feldolgozás alatt áll. Hamarosan visszaigazoló e-mailt kap.",
+    "cancelledTitle": "Fizetés megszakítva",
+    "cancelledMessage": "A fizetés megszakadt. Terhelés nem történt.",
+    "errorTitle": "Fizetési hiba",
+    "errorMessage": "Valami hiba történt.",
+    "backHome": "Vissza a főoldalra"
+  },
+  "alreadyRequested": "Erre az időszakra már küldtél foglalási kérelmet."
 }

@@ -11,7 +11,7 @@
   "introduction-p-3": "Naše rodinné a útulné ubytování vás zve k odpočinku a pocitu domova. Ať už snídáte na terase, procházíte se k blízkým kavárnám nebo trávíte odpoledne u vody – vše je zde klidné a autentické.",
   "explore-h2": "Objevte naše apartmány",
   "explore-p-1": "Klidné, čisté a elegantní – Aurora vás zve užít si dovolenou v pohodlí a relaxaci.",
-  "explore-p-2": "Plně vybavené apartmány přizpůsobené vašim potřebám a navržené tak, aby váš pobyt byl nezapomenutelný.",
+  "explore-p-2": "Plně vybavený apartmán přizpůsobený vašim potřebám a navržený tak, aby byl váš pobyt nezapomenutelný.",
   "explore-btn": "OBJEVIT",
   "facilities-h2": "Komfort jako doma",
   "facilities-p": "Apartmán Aurora v Zukve spojuje moderní vybavení s teplou rodinnou atmosférou. Nabízí soukromý balkon, plně vybavený kuchyňský kout a pohodlný obývací prostor. Klimatizace, Wi-Fi zdarma, TV programy a kvalitní nábytek zajistí příjemný a relaxační pobyt – jen pár kroků od pláže.",
@@ -278,5 +278,15 @@
   },
   "notFound": "Ups! Stránka nenalezena.",
   "back": "Zpět do bezpečí.",
-  "shareText": "Podívej se na tento apartmán v Chorvatsku, v Zukve"
+  "shareText": "Podívej se na tento apartmán v Chorvatsku, v Zukve",
+  "payment": {
+    "successTitle": "Platba úspěšná",
+    "successMessage": "Děkujeme. Vaše platba se zpracovává. Brzy obdržíte potvrzovací e-mail.",
+    "cancelledTitle": "Platba zrušena",
+    "cancelledMessage": "Vaše platba byla zrušena. Nebyla provedena žádná platba.",
+    "errorTitle": "Chyba platby",
+    "errorMessage": "Něco se pokazilo.",
+    "backHome": "Zpět na úvod"
+  },
+  "alreadyRequested": "Pro toto období jste již požádali o rezervaci."
 }

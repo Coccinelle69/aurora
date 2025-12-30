@@ -1,6 +1,5 @@
 package com.aurora.AuroraApartment.service;
 
-
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
@@ -362,6 +361,7 @@ private String apply(String template, Map<String, String> values) {
 
         Map<String, String> vars = new HashMap<>();
 
+
         vars.put("hello", hello);
         vars.put("paymentSummary", paymentSummary);
         vars.put("paymentIntro", paymentIntro);
@@ -385,7 +385,6 @@ private String apply(String template, Map<String, String> values) {
         vars.put("onlinePaymentText", onlinePaymentText);
         vars.put("payWithStripe", payWithStripe);
         vars.put("stripeFallback", stripeFallback);
-        vars.put("stripeLink", "https://stripe-link.com");
         vars.put("paymentOutro", paymentOutro);
         vars.put("regards", regards);
         vars.put("signature", signature);

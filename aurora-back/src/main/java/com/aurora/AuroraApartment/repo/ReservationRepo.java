@@ -29,6 +29,8 @@ public interface ReservationRepo extends JpaRepository<Reservation, Integer> {
     );
     
     Optional<Reservation> findByPublicToken(UUID publicToken);
+    Optional<Reservation> findByReservationReference(String reservationReference);
+    Optional<Reservation> findByArrivalDate(LocalDate arrivalDate);
 
     
 }

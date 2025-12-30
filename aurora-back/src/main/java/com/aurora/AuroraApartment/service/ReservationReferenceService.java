@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import org.springframework.stereotype.Service;
 
 import com.aurora.AuroraApartment.model.ReservationSequence;
-import com.aurora.AuroraApartment.repo.ReservationSequenceRepository;
+import com.aurora.AuroraApartment.repo.ReservationSequenceRepo;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ReservationReferenceService {
 
-    private final ReservationSequenceRepository sequenceRepo;
+    private final ReservationSequenceRepo sequenceRepo;
 
     @Transactional
     public String generateReference() {

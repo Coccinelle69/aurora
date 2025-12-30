@@ -11,7 +11,7 @@
   "introduction-p-3": "Nuestro alojamiento familiar y acogedor te invita a desacelerar y sentirte como en casa. Ya sea desayunando en la terraza, paseando hasta los cafés cercanos o disfrutando de tardes tranquilas junto al mar, todo aquí transmite calma y autenticidad.",
   "explore-h2": "Explora nuestro apartamento",
   "explore-p-1": "Tranquilo, limpio y elegante, Aurora te invita a relajarte y disfrutar de tus vacaciones en un lugar maravilloso que ofrece un confort y una comodidad excepcionales.",
-  "explore-p-2": "Apartamentos totalmente equipados que se adaptan a tus necesidades personales, diseñados con detalles de alta calidad para hacer que tu estancia sea una experiencia inolvidable.",
+  "explore-p-2": "Apartamento totalmente equipado que se adapta a tus necesidades personales, diseñado con detalles de alta calidad para hacer que tu estancia sea una experiencia inolvidable.",
   "explore-btn": "EXPLORAR",
   "facilities-h2": "Comodidades que te hacen sentir como en casa",
   "facilities-p": "Aurora Apartment en Zukve combina instalaciones modernas con un ambiente familiar y acogedor. Incluye un balcón privado, una cocina totalmente equipada y una cómoda sala de estar. El aire acondicionado, el Wi-Fi gratuito, los canales de televisión y el mobiliario de calidad garantizan una estancia agradable y relajante — a solo unos pasos de la playa.",
@@ -277,5 +277,24 @@
   },
   "notFound": "¡Ups! Página no encontrada.",
   "back": "Volver a un lugar seguro.",
-  "shareText": "Mira este apartamento en Croacia, en Zukve"
+  "shareText": "Mira este apartamento en Croacia, en Zukve",
+  "payment": {
+    "successTitle": "Pago realizado con éxito",
+    "successMessage": "Gracias. Su pago se está procesando. Recibirá un correo de confirmación en breve.",
+    "cancelledTitle": "Pago cancelado",
+    "cancelledMessage": "Su pago fue cancelado. No se realizó ningún cargo.",
+    "errorTitle": "Error de pago",
+    "errorMessage": "Algo salió mal.",
+    "backHome": "Volver al inicio",
+    "payment": {
+      "successTitle": "Pago realizado con éxito",
+      "successMessage": "Gracias. Su pago se está procesando. Recibirá un correo de confirmación en breve.",
+      "cancelledTitle": "Pago cancelado",
+      "cancelledMessage": "Su pago fue cancelado. No se realizó ningún cargo.",
+      "errorTitle": "Error de pago",
+      "errorMessage": "Algo salió mal.",
+      "backHome": "Volver al inicio"
+    }
+  },
+  "alreadyRequested": "Ya ha solicitado una reserva para este período."
 }

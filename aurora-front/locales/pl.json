@@ -11,7 +11,7 @@
   "introduction-p-3": "Nasze rodzinne, przytulne miejsce zaprasza do odpoczynku i poczucia się jak w domu. Śniadanie na tarasie, spacer do pobliskich kawiarni czy spokojne popołudnie nad wodą – wszystko tutaj jest autentyczne i kojące.",
   "explore-h2": "Odkryj nasze apartamenty",
   "explore-p-1": "Ciche, czyste i eleganckie – Aurora zaprasza do odpoczynku i cieszenia się wakacjami w komfortowych warunkach.",
-  "explore-p-2": "W pełni wyposażone apartamenty dostosowane do Twoich potrzeb, zaprojektowane z dbałością o najwyższą jakość.",
+  "explore-p-2": "W pełni wyposażony apartament, dostosowany do Twoich potrzeb i zaprojektowany tak, aby Twój pobyt był niezapomniany.",
   "explore-btn": "ODKRYJ",
   "facilities-h2": "Komfort, który sprawi, że poczujesz się jak w domu",
   "facilities-p": "Apartament Aurora w Zukve łączy nowoczesne udogodnienia z ciepłą, domową atmosferą. Posiada prywatny balkon, w pełni wyposażony aneks kuchenny oraz przytulny salon. Klimatyzacja, darmowe Wi-Fi, kanały TV i wysokiej jakości wyposażenie zapewnią przyjemny i relaksujący pobyt – zaledwie kilka kroków od plaży.",
@@ -278,5 +278,15 @@
   },
   "notFound": "Ups! Nie znaleziono strony.",
   "back": "Powrót do bezpiecznego miejsca.",
-  "shareText": "Sprawdź ten apartament w Chorwacji, w Zukve"
+  "shareText": "Sprawdź ten apartament w Chorwacji, w Zukve",
+  "payment": {
+    "successTitle": "Płatność zakończona sukcesem",
+    "successMessage": "Dziękujemy. Twoja płatność jest przetwarzana. Wkrótce otrzymasz e-mail z potwierdzeniem.",
+    "cancelledTitle": "Płatność anulowana",
+    "cancelledMessage": "Płatność została anulowana. Nie pobrano żadnych środków.",
+    "errorTitle": "Błąd płatności",
+    "errorMessage": "Coś poszło nie tak.",
+    "backHome": "Powrót do strony głównej"
+  },
+  "alreadyRequested": "Złożyłeś już prośbę o rezerwację na ten okres."
 }

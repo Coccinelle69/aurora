@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   try {
-    const serverUrl = `http://aurora-back:8080`;
+    const serverUrl = `http://aurora-back:8080/api`;
 
     const body = await request.text();
 

@@ -1,4 +1,6 @@
+import ClientWrapper from "@/app/ClientWrapper";
 import "@/app/globals.css";
+import ClientProviders from "@/ClientProviders";
 import { Metadata } from "next";
 import { Princess_Sofia, Quintessential, Roboto } from "next/font/google";
 
@@ -48,9 +50,13 @@ export default function RootLayout({
         suppressHydrationWarning
         className={`h-full bg-babyBlue ${sofia.variable} ${roboto.variable} ${quintessential.variable}`}
       >
-        <div className="min-h-full flex items-center justify-center px-6">
-          {children}
-        </div>
+        <ClientProviders>
+          <ClientWrapper>
+            <div className="min-h-full flex items-center justify-center px-6">
+              {children}
+            </div>
+          </ClientWrapper>
+        </ClientProviders>
       </body>
     </html>
   );

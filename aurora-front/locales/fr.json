@@ -11,7 +11,7 @@
   "introduction-p-3": "Notre hébergement familial et convivial vous invite à ralentir et à vous sentir comme chez vous. Que vous partagiez un petit-déjeuner sur la terrasse, flâniez dans les cafés voisins ou passiez des après-midi paisibles au bord de l’eau, tout ici respire le calme et l’authenticité.",
   "explore-h2": "Découvrez notre appartement",
   "explore-p-1": "Calme, propre et élégant, Aurora vous invite à prendre le temps de vous détendre et à profiter de vos vacances dans un lieu merveilleux, offrant un confort et une commodité haut de gamme.",
-  "explore-p-2": "Des appartements entièrement équipés qui répondent à vos besoins personnels, conçus avec des finitions haut de gamme pour rendre votre séjour inoubliable.",
+  "explore-p-2": "L'appartement entièrement équipé qui répond à vos besoins personnels, conçu avec des finitions haut de gamme pour rendre votre séjour inoubliable.",
   "explore-btn": "DÉCOUVRIR",
   "facilities-h2": "Des équipements qui vous font sentir comme chez vous",
   "facilities-p": "Aurora Apartment à Zukve combine des installations modernes avec une atmosphère familiale chaleureuse. Il comprend un balcon privé, une kitchenette entièrement équipée et un salon confortable. La climatisation, le Wi-Fi gratuit, les chaînes de télévision et le mobilier haut de gamme garantissent un séjour agréable et détendu — à seulement quelques pas de la plage.",
@@ -277,5 +277,15 @@
   },
   "notFound": "Oups ! Page introuvable.",
   "back": "Retour en lieu sûr.",
-  "shareText": "Découvrez cet appartement en Croatie, à Zukve"
+  "shareText": "Découvrez cet appartement en Croatie, à Zukve",
+  "payment": {
+    "successTitle": "Paiement réussi",
+    "successMessage": "Merci. Votre paiement est en cours de traitement. Vous recevrez un e-mail de confirmation sous peu.",
+    "cancelledTitle": "Paiement annulé",
+    "cancelledMessage": "Votre paiement a été annulé. Aucun débit n’a été effectué.",
+    "errorTitle": "Erreur de paiement",
+    "errorMessage": "Une erreur s’est produite.",
+    "backHome": "Retour à l’accueil"
+  },
+  "alreadyRequested": "Vous avez déjà demandé une réservation pour cette période."
 }

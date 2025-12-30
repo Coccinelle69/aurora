@@ -31,7 +31,7 @@ const CheckoutForm = ({ setCheckoutUI, checkoutUI }: CheckoutProps) => {
   const initialX = !sm ? 40 : !md ? 60 : !lg ? 80 : 40;
   const xOffset = !sm ? 0 : !md ? 0 : !lg ? 0 : -20;
 
-  const { success, done, errorMessage } = useResponse({
+  const { success, done, errorMessage, data } = useResponse({
     url: "/api/reservation/request",
     method: "POST",
     body,
@@ -180,8 +180,11 @@ const CheckoutForm = ({ setCheckoutUI, checkoutUI }: CheckoutProps) => {
                 } ${formStatus.fade ? "fade-slide-out" : ""}`}
               >
                 {success && t("success")}
-                {!success && errorMessage === "BLANK" && t("fieldsError")}{" "}
-                {!success &&
+                {errorMessage &&
+                  errorMessage === "BLANK" &&
+                  t("fieldsError")}{" "}
+                {data.existingReservation && t("alreadyRequested")}
+                {errorMessage &&
                   errorMessage !== "BLANK" &&
                   t("something-went-wrong")}{" "}
               </p>

@@ -11,6 +11,10 @@ import * as houseImages from "@/assets/carousel";
 
 export default function Home() {
   const slides = Object.values(houseImages);
+  console.log(
+    "Stripe PK loaded:",
+    !!process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+  );
 
   return (
     <main>

@@ -6,11 +6,21 @@ import {
   ShareIcon,
   WhatsappIcon,
 } from "@/icons";
+import { useMouse } from "@/utils/hooks";
 import { useTranslation } from "react-i18next";
 
 export default function ShareButton() {
   const { t } = useTranslation();
   const shareUrl = encodeURIComponent(window.location.href);
+  const isMouse = useMouse();
+
+  const handleMobileShare = async () => {
+    await navigator.share({
+      title: "Aurora Apartment – Zukve, Croatia",
+      text: t("shareText"),
+      url: window.location.href,
+    });
+  };
 
   const handleWhatsApp = () => {
     const text = encodeURIComponent(t("shareText"));
@@ -66,25 +76,29 @@ export default function ShareButton() {
 
   return (
     <div className="gooey-wrapper">
-      <button className="main gooey-button ">
+      <button
+        className="main gooey-button "
+        onClick={!isMouse ? handleMobileShare : undefined}
+      >
         <ShareIcon size={25} className="rotate-45" />
       </button>
 
-      {items.map((item, i) => (
-        <button
-          key={i}
-          onClick={item.action}
-          className="item gooey-button"
-          style={
-            {
-              "--x": `${item.x}px`,
-              "--y": `${item.y}px`,
-            } as React.CSSProperties
-          }
-        >
-          {item.label}
-        </button>
-      ))}
+      {isMouse &&
+        items.map((item, i) => (
+          <button
+            key={i}
+            onClick={item.action}
+            className="item gooey-button"
+            style={
+              {
+                "--x": `${item.x}px`,
+                "--y": `${item.y}px`,
+              } as React.CSSProperties
+            }
+          >
+            {item.label}
+          </button>
+        ))}
     </div>
   );
 }

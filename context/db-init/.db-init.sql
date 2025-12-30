@@ -34,6 +34,33 @@ CREATE TABLE reservation_sequence (
   last_number INT NOT NULL;
 );
 
+CREATE TABLE payment (
+  id SERIAL PRIMARY KEY,
+  reservation_id INT NOT NULL,
+  CONSTRAINT fk_payment_reservation
+    FOREIGN KEY (reservation_id)
+    REFERENCES reservation(id)
+    ON DELETE CASCADE,
+
+  payment_method VARCHAR(20) NOT NULL, 
+
+  stripe_payment_intent_id VARCHAR(100),
+  stripe_charge_id VARCHAR(100),
+
+  currency VARCHAR(3) NOT NULL DEFAULT 'EUR',
+
+  amount_expected INT NOT NULL,   
+  amount_paid INT NOT NULL DEFAULT 0,       
+  amount_refunded INT NOT NULL DEFAULT 0,  
+
+  discount_amount INT NOT NULL DEFAULT 0,   
+  discount_code VARCHAR(100), 
+
+  payment_status VARCHAR(20) NOT NULL DEFAULT 'PENDING',
+
+  created_at  TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
 CREATE TABLE contact (
   id SERIAL PRIMARY KEY,
 

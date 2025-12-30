@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   try {
-    const serverUrl = `http://aurora-back:8080`;
+    const serverUrl = `http://aurora-back:8080/api`;
 
     const body = await request.text();
 
@@ -40,13 +40,14 @@ export async function POST(request: Request) {
 
     const data = await upstream.json();
 
-    if (!data.success) {
+    if (data.existingReservation) {
       return NextResponse.json(
         {
           success: false,
-          message: "Something went wrong.",
+          message: "Existing reservation.",
+          existingReservation: true,
         },
-        { status: 400 }
+        { status: 200 }
       );
     }
 

@@ -26,7 +26,7 @@ import jakarta.validation.Valid;
 
 
 @RestController
-@RequestMapping("/reservation")
+@RequestMapping("/api/reservation")
 public class ReservationController {
 
     @Autowired
@@ -86,7 +86,11 @@ public ResponseEntity<Map<String, Object>> cancel(@PathVariable UUID token) {
 
 @PostMapping("/checkout")
 public ResponseEntity<?> checkout(@Valid @RequestBody ReservationRequest request) {
-    reservationService.createReservation(request);
+   Reservation existingReservation = reservationService.createReservation(request);
+
+   if(existingReservation !=null) {
+    return ResponseEntity.ok(Map.of("existingReservation", true));
+   }
 
     return ResponseEntity.ok("{\"success\": true}");
 }

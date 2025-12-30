@@ -3,6 +3,7 @@ package com.aurora.AuroraApartment.model;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 import java.util.UUID;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -76,6 +77,8 @@ public class Reservation {
     @Builder.Default
     @Column(nullable = false)
     private ReservationStatus status = ReservationStatus.PENDING;
+    @OneToMany(mappedBy = "reservation")
+    private List<Payment> payments;
 
     @CreationTimestamp
     @Column(name = "created_at",nullable = false, updatable = false)
@@ -99,5 +102,6 @@ public class Reservation {
         adminActionUsed = false;
     }
 
+   
 
 }

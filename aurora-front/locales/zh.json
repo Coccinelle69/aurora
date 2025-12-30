@@ -277,5 +277,15 @@
   },
   "notFound": "哎呀！页面未找到。",
   "back": "返回安全页面。",
-  "shareText": "看看这套位于克罗地亚祖克韦的公寓"
+  "shareText": "看看这套位于克罗地亚祖克韦的公寓",
+  "payment": {
+    "successTitle": "支付成功",
+    "successMessage": "感谢您。您的支付正在处理中，您将很快收到确认邮件。",
+    "cancelledTitle": "支付已取消",
+    "cancelledMessage": "您的支付已被取消，未产生任何扣款。",
+    "errorTitle": "支付错误",
+    "errorMessage": "发生了一些错误。",
+    "backHome": "返回首页"
+  },
+  "alreadyRequested": "您已经为该时间段提交过预订申请。"
 }

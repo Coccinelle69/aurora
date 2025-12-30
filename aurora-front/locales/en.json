@@ -10,8 +10,8 @@
   "introduction-p-2": "Our newly furnished appartment combines cozy Mediterranean style with every modern comfort. Enjoy air conditioning, TV channels, Wi-Fi, a fully equipped kitchen, and all the little details that make your stay easy and relaxing.",
   "introduction-p-3": "Our cozy, family-run accommodation invites you to slow down and feel at home. Whether you’re sharing breakfast on the terrace, strolling to the nearby cafés, or spending lazy afternoons by the water, everything here feels calm and genuine.",
   "explore-h2": "Explore our apartment",
-  "explore-p-1": "Calm, clean and elegant, Aurora entice you to take time to relax and enjoy your vacations in a wonderful place, providing premium comfort and convenience.",
-  "explore-p-2": "Fully equipped apartments that match your personal requirements, designed with high-end details to make your stay an unforgettable experience.",
+  "explore-p-1": "Calm, clean and elegant, Aurora entices you to take time to relax and enjoy your vacations in a wonderful place, providing premium comfort and convenience.",
+  "explore-p-2": "Fully equipped apartment that match your personal requirements, designed with high-end details to make your stay an unforgettable experience.",
   "explore-btn": "EXPLORE",
   "facilities-h2": "Comforts that make you feel at home",
   "facilities-p": "Aurora Apartment in Zukve combines modern amenities with a warm, family atmosphere. It includes a private balcony, a fully equipped kitchenette, and a comfortable living area. Air-conditioning, free Wi-Fi, TV channels, and premium furnishings ensure your stay is easy and relaxing — all just a short walk from the beach.",
@@ -277,5 +277,15 @@
   },
   "notFound": "Ooops! Page not found.",
   "back": "Back to safety.",
-  "shareText": "Check out this apartment in Croatia, Zukve"
+  "shareText": "Check out this apartment in Croatia, Zukve",
+  "payment": {
+    "successTitle": "Payment successful",
+    "successMessage": "Thank you. Your payment is being processed. You will receive a confirmation email shortly.",
+    "cancelledTitle": "Payment cancelled",
+    "cancelledMessage": "Your payment was cancelled. No charge was made.",
+    "errorTitle": "Payment error",
+    "errorMessage": "Something went wrong.",
+    "backHome": "Back to home"
+  },
+  "alreadyRequested": "You have already requested a reservation for this period."
 }

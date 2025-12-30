@@ -11,7 +11,7 @@
   "introduction-p-3": "Naša prijetna, družinsko vodena nastanitev vas vabi, da upočasnite tempo in se počutite kot doma. Naj bo to zajtrk na terasi, sprehod do bližnjih kavarn ali lenobno popoldne ob morju — tukaj vse deluje mirno in pristno.",
   "explore-h2": "Raziščite naš apartma",
   "explore-p-1": "Mirna, čista in elegantna, Aurora vas vabi, da se sprostite in uživate v počitnicah na čudovitem mestu, ki ponuja vrhunsko udobje in priročnost.",
-  "explore-p-2": "Popolnoma opremljeni apartmaji, zasnovani po vaših željah, z visokokakovostnimi podrobnostmi, da bo vaše bivanje nepozabno.",
+  "explore-p-2": "Popolnoma opremljeno stanovanje, prilagojeno vašim potrebam in zasnovano tako, da bo vaše bivanje nepozabno.",
   "explore-btn": "RAZIŠČI",
   "facilities-h2": "Udobje, zaradi katerega se počutite kot doma",
   "facilities-p": "Apartma Aurora v Zukvah združuje sodobne udobnosti s toplo, družinsko atmosfero. Vključuje zaseben balkon, popolnoma opremljeno kuhinjo in prijeten dnevni prostor. Klimatska naprava, brezplačen Wi-Fi, TV-programi in kakovostno pohištvo zagotavljajo prijetno in sproščeno bivanje — le kratek sprehod do plaže.",
@@ -277,5 +277,15 @@
   },
   "notFound": "Ups! Stran ni bila najdena.",
   "back": "Nazaj na varno.",
-  "shareText": "Oglej si ta apartma na Hrvaškem, v Zukvah"
+  "shareText": "Oglej si ta apartma na Hrvaškem, v Zukvah",
+  "payment": {
+    "successTitle": "Plačilo uspešno",
+    "successMessage": "Hvala. Vaše plačilo je v obdelavi. Kmalu boste prejeli potrditveno e-pošto.",
+    "cancelledTitle": "Plačilo preklicano",
+    "cancelledMessage": "Vaše plačilo je bilo preklicano. Znesek ni bil zaračunan.",
+    "errorTitle": "Napaka pri plačilu",
+    "errorMessage": "Prišlo je do napake.",
+    "backHome": "Nazaj na začetno stran"
+  },
+  "alreadyRequested": "Za to obdobje ste že oddali zahtevo za rezervacijo."
 }

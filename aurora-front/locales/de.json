@@ -11,7 +11,7 @@
   "introduction-p-3": "Unsere gemütliche, familiengeführte Unterkunft lädt Sie ein, zur Ruhe zu kommen und sich wie zu Hause zu fühlen. Ob beim Frühstück auf der Terrasse, beim Spaziergang zu den nahegelegenen Cafés oder bei einem entspannten Nachmittag am Wasser – hier fühlt sich alles ruhig und authentisch an.",
   "explore-h2": "Entdecken Sie unsere Apartments",
   "explore-p-1": "Ruhig, sauber und elegant – Aurora lädt Sie ein, sich Zeit zu nehmen, zu entspannen und Ihren Urlaub an einem wunderbaren Ort mit höchstem Komfort und Bequemlichkeit zu genießen.",
-  "explore-p-2": "Voll ausgestattete Apartments, die Ihren persönlichen Anforderungen entsprechen und mit hochwertigen Details gestaltet sind, um Ihren Aufenthalt unvergesslich zu machen.",
+  "explore-p-2": "Voll ausgestattet Apartment, der Ihren persönlichen Anforderungen entspricht und mit hochwertigen Details gestaltet ist, um Ihren Aufenthalt unvergesslich zu machen.",
   "explore-btn": "ENTDECKEN",
   "facilities-h2": "Komfort, der Sie wie zu Hause fühlen lässt",
   "facilities-p": "Das Aurora Apartment in Zukve verbindet moderne Annehmlichkeiten mit einer warmen, familiären Atmosphäre. Es verfügt über einen privaten Balkon, eine voll ausgestattete Küchenzeile und einen komfortablen Wohnbereich. Klimaanlage, kostenloses WLAN, TV-Kanäle und hochwertige Möbel sorgen dafür, dass Ihr Aufenthalt angenehm und entspannt ist – nur wenige Schritte vom Strand entfernt.",
@@ -278,5 +278,15 @@
   },
   "notFound": "Ups! Seite nicht gefunden.",
   "back": "Zurück in Sicherheit.",
-  "shareText": "Schau dir dieses Apartment in Kroatien, in Zukve, an"
+  "shareText": "Schau dir dieses Apartment in Kroatien, in Zukve, an",
+  "payment": {
+    "successTitle": "Zahlung erfolgreich",
+    "successMessage": "Vielen Dank. Ihre Zahlung wird verarbeitet. Sie erhalten in Kürze eine Bestätigungs-E-Mail.",
+    "cancelledTitle": "Zahlung abgebrochen",
+    "cancelledMessage": "Ihre Zahlung wurde abgebrochen. Es wurde nichts berechnet.",
+    "errorTitle": "Zahlungsfehler",
+    "errorMessage": "Etwas ist schiefgelaufen.",
+    "backHome": "Zur Startseite"
+  },
+  "alreadyRequested": "Sie haben für diesen Zeitraum bereits eine Reservierung angefragt."
 }

@@ -11,7 +11,7 @@
   "introduction-p-3": "Naš obiteljski vođen smještaj poziva vas da usporite i osjećate se kao kod kuće. Bilo da doručkujete na terasi, šetate do obližnjih kafića ili provodite mirna popodneva uz more, ovdje sve odiše smirenošću i iskrenošću.",
   "explore-h2": "Istražite naš apartman",
   "explore-p-1": "Mirna, čista i elegantna, Aurora vas poziva da se opustite i uživate u odmoru na prekrasnom mjestu koje pruža vrhunsku udobnost i praktičnost.",
-  "explore-p-2": "Potpuno opremljeni apartmani koji zadovoljavaju vaše osobne potrebe, dizajnirani s visokokvalitetnim detaljima kako bi vaš boravak bio nezaboravan.",
+  "explore-p-2": "Potpuno opremljen apartman koji zadovoljava vaše osobne potrebe, dizajniran s visokokvalitetnim detaljima kako bi vaš boravak bio nezaboravan.",
   "explore-btn": "ISTRAŽI",
   "facilities-h2": "Udobnosti koje vas čine kao kod kuće",
   "facilities-p": "Aurora Apartment u Zukvama spaja moderne sadržaje s toplom, obiteljskom atmosferom. Uključuje privatni balkon, potpuno opremljenu kuhinju i udoban dnevni boravak. Klimatizacija, besplatan Wi-Fi, TV kanali i kvalitetan namještaj osiguravaju ugodan i opuštajući boravak — samo nekoliko koraka od plaže.",
@@ -277,5 +277,15 @@
   },
   "notFound": "Ups! Stranica nije pronađena.",
   "back": "Povratak na sigurno.",
-  "shareText": "Pogledaj ovaj apartman u Hrvatskoj, u Zukvama"
+  "shareText": "Pogledaj ovaj apartman u Hrvatskoj, u Zukvama",
+  "payment": {
+    "successTitle": "Plaćanje uspješno",
+    "successMessage": "Hvala. Vaše plaćanje se obrađuje. Uskoro ćete primiti potvrdu e-poštom.",
+    "cancelledTitle": "Plaćanje otkazano",
+    "cancelledMessage": "Vaše plaćanje je otkazano. Naplata nije izvršena.",
+    "errorTitle": "Greška pri plaćanju",
+    "errorMessage": "Nešto je pošlo po zlu.",
+    "backHome": "Povratak na početnu"
+  },
+  "alreadyRequested": "Već ste zatražili rezervaciju za ovo razdoblje."
 }

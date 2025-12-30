@@ -15,7 +15,6 @@ export async function GET() {
       ""
     ).trim();
 
-    // Replace comma decimal separators, remove spaces
     const lat = Number(latStr.replace(",", "."));
     const lon = Number(lonStr.replace(",", "."));
 

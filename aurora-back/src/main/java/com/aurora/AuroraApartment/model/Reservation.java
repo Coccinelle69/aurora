@@ -1,5 +1,6 @@
 package com.aurora.AuroraApartment.model;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -66,7 +67,7 @@ public class Reservation {
     @Column(name = "total_nights", nullable = false)
     private Integer totalNights;
     @Column(name = "total_price", nullable = false)
-    private Integer totalPrice;
+    private BigDecimal totalPrice;
 
     @Column(name = "arrival_date", nullable = false)
     private LocalDate arrivalDate; 
@@ -84,6 +85,13 @@ public class Reservation {
     @Column(name = "created_at",nullable = false, updatable = false)
     private Instant createdAt;
 
+    
+    @Column(name="reminder_sent", nullable = false)
+    private boolean reminderSent;
+
+    @Column(name="balance_due_at")
+    private LocalDate balanceDueAt;
+
     @PrePersist
     private void prePersist() {
         if (publicToken == null) {
@@ -100,6 +108,7 @@ public class Reservation {
     }
 
         adminActionUsed = false;
+        reminderSent = false;
     }
 
    

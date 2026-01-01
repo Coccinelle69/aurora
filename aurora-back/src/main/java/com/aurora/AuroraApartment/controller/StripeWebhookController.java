@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.aurora.AuroraApartment.service.PaymentService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.stripe.exception.SignatureVerificationException;
+import com.stripe.exception.StripeException;
 import com.stripe.model.Event;
 import com.stripe.net.Webhook;
 
@@ -28,7 +30,7 @@ public class StripeWebhookController {
     public ResponseEntity<String> handle(
             @RequestBody String payload,
             @RequestHeader("Stripe-Signature") String sigHeader
-    ) {
+    ) throws StripeException, JsonProcessingException {
         try {
             Event event = Webhook.constructEvent(
                 payload, sigHeader, webhookSecret

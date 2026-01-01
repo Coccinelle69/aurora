@@ -17,15 +17,16 @@ CREATE TABLE reservation (
   teens INT NOT NULL,
 
   total_nights INT NOT NULL,
-  total_price INT NOT NULL,
+  total_price NUMERIC(12,2) NOT NULL,
 
   arrival_date DATE NOT NULL,
   departure_date DATE NOT NULL,
 
   status VARCHAR(20) NOT NULL DEFAULT 'PENDING',
   created_at  TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-  message VARCHAR(2000)
-
+  message VARCHAR(2000),
+  reminder_sent BOOLEAN NOT NULL DEFAULT false,
+  balance_due_at DATE
 );
 
 CREATE TABLE reservation_sequence (
@@ -42,18 +43,18 @@ CREATE TABLE payment (
     REFERENCES reservation(id)
     ON DELETE CASCADE,
 
-  payment_method VARCHAR(20) NOT NULL, 
+  payment_method VARCHAR(20) NOT NULL CHECK (payment_method IN ('STRIPE', 'IBAN', 'CASH')), 
 
   stripe_payment_intent_id VARCHAR(100),
   stripe_charge_id VARCHAR(100),
 
   currency VARCHAR(3) NOT NULL DEFAULT 'EUR',
 
-  amount_expected INT NOT NULL,   
-  amount_paid INT NOT NULL DEFAULT 0,       
-  amount_refunded INT NOT NULL DEFAULT 0,  
+  amount_expected NUMERIC(12, 2) NOT NULL,   
+  amount_paid NUMERIC(12, 2) NOT NULL DEFAULT 0,       
+  amount_refunded NUMERIC(12, 2) NOT NULL DEFAULT 0,  
 
-  discount_amount INT NOT NULL DEFAULT 0,   
+  discount_amount NUMERIC(12, 2) NOT NULL DEFAULT 0,   
   discount_code VARCHAR(100), 
 
   payment_status VARCHAR(20) NOT NULL DEFAULT 'PENDING',

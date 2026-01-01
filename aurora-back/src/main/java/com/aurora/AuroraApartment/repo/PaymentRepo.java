@@ -14,4 +14,5 @@ public interface PaymentRepo extends JpaRepository<Payment, Integer> {
     public Optional<Payment> findByStripePaymentIntentId(String stripePaymentIntentId);
     public Optional<Payment> findByReservation(Reservation reservation);
     public Optional<Payment> findByReservationAndPaymentStatus(Reservation reservation, PaymentStatus pending);
+    
 }

@@ -1,0 +1,89 @@
+[33m4a427cb[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m HEAD@{0}: rebase (finish): returning to refs/heads/main
+[33m4a427cb[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m HEAD@{1}: rebase: fast-forward
+[33me056256[m HEAD@{2}: rebase: fast-forward
+[33m6898205[m[33m ([m[1;31morigin/main[m[33m)[m HEAD@{3}: rebase: fast-forward
+[33m1d27b14[m HEAD@{4}: rebase: fast-forward
+[33m1251a43[m HEAD@{5}: rebase: fast-forward
+[33m376aae1[m HEAD@{6}: rebase: fast-forward
+[33m18c48ff[m HEAD@{7}: rebase: fast-forward
+[33mb041e98[m HEAD@{8}: rebase: fast-forward
+[33mc122802[m HEAD@{9}: rebase: fast-forward
+[33m36b5107[m HEAD@{10}: rebase: fast-forward
+[33m4a4e4ba[m HEAD@{11}: rebase: fast-forward
+[33m1b0a2ac[m HEAD@{12}: rebase: fast-forward
+[33m3afbf0d[m HEAD@{13}: rebase: fast-forward
+[33md435359[m HEAD@{14}: rebase: fast-forward
+[33mb3df167[m HEAD@{15}: rebase: fast-forward
+[33mf16289d[m HEAD@{16}: rebase: fast-forward
+[33m75a0c5b[m HEAD@{17}: rebase: fast-forward
+[33m4269120[m HEAD@{18}: rebase: fast-forward
+[33m8e533c7[m HEAD@{19}: rebase: fast-forward
+[33m5583543[m HEAD@{20}: rebase: fast-forward
+[33ma714c68[m HEAD@{21}: rebase: fast-forward
+[33m9bd5009[m HEAD@{22}: rebase: fast-forward
+[33m5620e2f[m HEAD@{23}: rebase: fast-forward
+[33m825ec1e[m HEAD@{24}: rebase: fast-forward
+[33me82c911[m HEAD@{25}: rebase: fast-forward
+[33mf27ebec[m HEAD@{26}: rebase: fast-forward
+[33md6b1fd7[m HEAD@{27}: rebase: fast-forward
+[33m1e61c99[m HEAD@{28}: rebase: fast-forward
+[33mf73763c[m HEAD@{29}: rebase: fast-forward
+[33m351bccf[m HEAD@{30}: rebase: fast-forward
+[33m7e9cb50[m HEAD@{31}: rebase: fast-forward
+[33m5793490[m HEAD@{32}: rebase: fast-forward
+[33me86bdee[m HEAD@{33}: rebase: fast-forward
+[33madb1972[m HEAD@{34}: rebase: fast-forward
+[33m5061109[m HEAD@{35}: rebase: fast-forward
+[33mf0852a8[m HEAD@{36}: rebase: fast-forward
+[33mfca88bd[m HEAD@{37}: rebase: fast-forward
+[33mf123f14[m HEAD@{38}: rebase: fast-forward
+[33m82cd557[m HEAD@{39}: rebase: fast-forward
+[33m9a17e0e[m HEAD@{40}: rebase: fast-forward
+[33mb6325d8[m HEAD@{41}: rebase: fast-forward
+[33m363efef[m HEAD@{42}: rebase (start): checkout 363efefbba05441eb29a0f2058b27c3c08b23c64
+[33m4a427cb[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m HEAD@{43}: rebase (finish): returning to refs/heads/main
+[33m4a427cb[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m HEAD@{44}: rebase (pick): Remove .env from repository
+[33me056256[m HEAD@{45}: rebase (start): checkout e056256eb2091bb51ce5f1658183ee75adcd7a68
+[33m7b2368a[m HEAD@{46}: commit: Remove .env from repository
+[33md704f8e[m HEAD@{47}: commit: started reminder for balance due, finishing the payment cycle
+[33me056256[m HEAD@{48}: commit: added Stripe payment, limited one Reservation per period, added share button for mobile
+[33m6898205[m[33m ([m[1;31morigin/main[m[33m)[m HEAD@{49}: commit: added 404 page for all routes, added share button, added admin templates for confirmed, cancelled, expired and used links
+[33m1d27b14[m HEAD@{50}: commit: implemented confirming reservation flow and sending payment instructions mail
+[33m1251a43[m HEAD@{51}: commit: added minor improvements
+[33m376aae1[m HEAD@{52}: commit: improved responsiveness, split useMobile into useDevice and useMouse hooks, fixed bugs on Gallery component, added ClientWrapper
+[33m18c48ff[m HEAD@{53}: commit: improving responsiveness and minor tweaks
+[33mb041e98[m HEAD@{54}: commit: adding minor corrections
+[33mc122802[m HEAD@{55}: commit: added flow request booking=>client receives recap mail=>admin receives recap mail=>booking persisted in db; contact persisted in db; added useIsMobile hook
+[33m36b5107[m HEAD@{56}: commit: refactored backend, added contact service, built checkout mails templates for client and admin
+[33m4a4e4ba[m HEAD@{57}: commit: added fetch all reservations routes and refactored email service
+[33m1b0a2ac[m HEAD@{58}: commit: refactored code and interfaces, fixed prices and out of season message, stopped manual checkout
+[33m3afbf0d[m HEAD@{59}: commit: animated checkout form and card
+[33md435359[m HEAD@{60}: commit: improved SEO, refactored folders, price list in different currencies, redirect
+[33mb3df167[m HEAD@{61}: commit: added price list and available dates modal
+[33mf16289d[m HEAD@{62}: commit: added view more btn for amenities and more detailed checkout card
+[33m75a0c5b[m HEAD@{63}: commit: added property features and amenities, house rules, cancellation policy, checkout card in diferent currencies
+[33m4269120[m HEAD@{64}: commit: added details description, checkout card and 7 days minimum limit on frontend
+[33m8e533c7[m HEAD@{65}: commit: added details page + details gallery
+[33m5583543[m HEAD@{66}: commit: implemented the search availability, calculating prices in differents currencies, finished searching for bookings
+[33ma714c68[m HEAD@{67}: commit: added useResponse hook, added check dates availablity backend, implemented search booking by date
+[33m9bd5009[m HEAD@{68}: commit: persisted contact and serach form, added db container, refactored imports, booking search bar
+[33m5620e2f[m HEAD@{69}: commit: implemented price list and added useCurrency hook
+[33m825ec1e[m HEAD@{70}: commit: added book page and currency dropdown
+[33me82c911[m HEAD@{71}: commit: added gallery and gallery backdrop components
+[33mf27ebec[m HEAD@{72}: commit: finished contact section, emails working
+[33md6b1fd7[m HEAD@{73}: commit: added contact backend
+[33m1e61c99[m HEAD@{74}: commit: refactored, finished contact, added czech, polish and hungarian,
+[33mf73763c[m HEAD@{75}: commit: finished footer section, added useDirections, useOpenMeteo, useTime hooks
+[33m351bccf[m HEAD@{76}: commit: added footer and copyrights
+[33m7e9cb50[m HEAD@{77}: commit: added contact page and form, refactored tailwind
+[33m5793490[m HEAD@{78}: commit: added location and distances
+[33me86bdee[m HEAD@{79}: commit: refactored code, added location and apartment page, persisting languages, animated cursor
+[33madb1972[m HEAD@{80}: commit: added languages
+[33m5061109[m HEAD@{81}: commit: added sections and locales
+[33mf0852a8[m HEAD@{82}: commit: header + carousel lg&sm
+[33mfca88bd[m HEAD@{83}: commit: added header and fullscreenmenu components
+[33mf123f14[m HEAD@{84}: commit: reload configuration
+[33m82cd557[m HEAD@{85}: commit: added docker compose updated dockerfile
+[33m9a17e0e[m HEAD@{86}: commit: Changing folder name
+[33mb6325d8[m HEAD@{87}: Branch: renamed refs/heads/master to refs/heads/main
+[33mb6325d8[m HEAD@{89}: commit (initial): Initial commit with Next.js + Docker setup

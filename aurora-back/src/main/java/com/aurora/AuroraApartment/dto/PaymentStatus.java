@@ -1,7 +1,7 @@
 package com.aurora.AuroraApartment.dto;
 
 public enum PaymentStatus {
-    PAID,
+    FULL,
     PENDING,
     FAILED,
     REFUNDED,

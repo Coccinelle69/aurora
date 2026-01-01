@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class PriceResult {
     private int totalNights;
     private Integer price; 
-    private int total;
+    private Integer total;
 
     private Integer fromNights;
     private Integer fromPrice;

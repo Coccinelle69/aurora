@@ -1,5 +1,6 @@
 package com.aurora.AuroraApartment.model;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -50,19 +51,19 @@ public class Payment {
     private String currency = "EUR";
 
     @Column(name = "amount_expected", nullable = false)
-    private int amountExpected;
+    private BigDecimal amountExpected;
 
     @Column(name = "amount_paid", nullable = false)
     @Builder.Default
-    private int amountPaid=0;
+    private BigDecimal amountPaid=BigDecimal.ZERO;
 
     @Column(name = "amount_refunded", nullable = false)
     @Builder.Default
-    private int amountRefunded=0;
+    private BigDecimal amountRefunded=BigDecimal.ZERO;
 
     @Column(name = "discount_amount", nullable = false)
     @Builder.Default
-    private int discountAmount=0;
+    private BigDecimal discountAmount=BigDecimal.ZERO;
 
     @Column(name = "discount_code")
     private String discountCode;
@@ -77,13 +78,15 @@ public class Payment {
 
     public static Payment createPending(
             Reservation reservation,
-            int amountExpected 
+            BigDecimal amountExpected,
+            BigDecimal amountPaid 
     ) {
         
         return Payment.builder()
                 .reservation(reservation)
                 .paymentMethod(PaymentMethod.STRIPE)
                 .amountExpected(amountExpected)
+                .amountPaid(amountPaid)
                 .build();
     }
 

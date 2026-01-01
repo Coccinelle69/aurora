@@ -1,4 +1,5 @@
 package com.aurora.AuroraApartment.service;
+import java.math.BigDecimal;
 import java.util.Map;
 import java.util.Optional;
 
@@ -6,6 +7,7 @@ import org.hibernate.boot.model.naming.IllegalIdentifierException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.aurora.AuroraApartment.dto.PaymentStatus;
 import com.aurora.AuroraApartment.dto.ReservationStatus;
@@ -14,11 +16,12 @@ import com.aurora.AuroraApartment.model.Reservation;
 import com.aurora.AuroraApartment.repo.PaymentRepo;
 import com.aurora.AuroraApartment.repo.ReservationRepo;
 import com.aurora.AuroraApartment.service.provider.StripePaymentProvider;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.stripe.exception.StripeException;
 import com.stripe.model.Event;
-import com.stripe.model.EventDataObjectDeserializer;
-import com.stripe.model.StripeObject;
+
 import com.stripe.model.checkout.Session;
 
 
@@ -34,24 +37,26 @@ public class PaymentService {
 
     @SuppressWarnings("null")
     @Transactional
-    public String startStripePayment(Reservation reservation) {
+    public String startStripePayment(Reservation reservation, PaymentStatus paymentStatus) {
 
     if (reservation.getStatus() == ReservationStatus.PAID) {
     throw new IllegalStateException("Reservation already paid");
 
 }
-     Payment payment = paymentRepo
+    Payment payment = null;
+    if(paymentStatus == PaymentStatus.FULL) {
+     payment = paymentRepo
     .findByReservationAndPaymentStatus(reservation, PaymentStatus.PENDING)
     .orElseGet(() ->
-        paymentRepo.save(
-            Payment.createPending(
-                reservation,
-                reservation.getTotalPrice()
-            )
-        )
-    );
+        paymentRepo.save(Payment.createPending(reservation, reservation.getTotalPrice(), reservation.getTotalPrice())));
+    } else {
+         payment = paymentRepo.findByReservationAndPaymentStatus(reservation, PaymentStatus.PENDING).orElseGet(() -> paymentRepo.save(
+            Payment.createPending(reservation, reservation.getTotalPrice(), reservation.getTotalPrice().multiply(BigDecimal.valueOf(0.3))
+        )));
+    }
+     
     
-    Session session = stripePaymentProvider.createCheckoutSession(reservation);
+    Session session = stripePaymentProvider.createCheckoutSession(reservation, paymentStatus);
 
     if (session.getPaymentIntent() != null) {
     payment.setStripePaymentIntentId(session.getPaymentIntent());
@@ -64,76 +69,51 @@ public class PaymentService {
 }
 
 @Transactional
-public void finishStripePayment(Event event, String payload) {
+public void finishStripePayment(Event event, String payload) throws JsonProcessingException, StripeException {
     ObjectMapper mapper = new ObjectMapper();
-    JsonNode root;
+    JsonNode root = mapper.readTree(payload);
     System.out.println(payload);
-
-    try {
-        root = mapper.readTree(payload);
-    } catch (Exception e) {
-        throw new RuntimeException("Invalid Stripe payload", e);
-    }
-
+    
     String sessionId = root
         .path("data")
         .path("object")
         .path("id")
         .asText(null);
 
-    if (sessionId == null) {
-        throw new IllegalStateException("No session id in webhook");
-    }
+    if (sessionId == null) throw new IllegalStateException("No session id in webhook");
+    
 
     Session session;
     try {
         session = Session.retrieve(sessionId);
-    } catch (Exception e) {
-        throw new RuntimeException("Failed to retrieve session", e);
+    } catch (StripeException e) {
+         throw new ResponseStatusException(HttpStatus.BAD_GATEWAY,"Failed to retrieve Stripe session");
     }
 
     Map<String, String> metadata = session.getMetadata();
-    if (metadata == null || !metadata.containsKey("reservationReference")) {
-        throw new IllegalStateException("Missing reservationReference");
-    }
+    if (metadata == null || !metadata.containsKey("reservationReference")) throw new IllegalStateException("Missing reservationReference");
+    
 
     String reference = metadata.get("reservationReference");
+    BigDecimal amountPaid = new BigDecimal(metadata.get("amountPaid"));
 
-    Reservation reservation = reservationRepo
-        .findByReservationReference(reference)
-        .orElseThrow();
+    Reservation reservation = reservationRepo.findByReservationReference(reference).orElseThrow(()-> new IllegalStateException(" No reservation under this reference"));
 
-    Payment payment = paymentRepo
-        .findByReservation(reservation)
-        .orElseGet(() ->
-            paymentRepo.save(
-                Payment.createPending(
-                    reservation,
-                    reservation.getTotalPrice()
-                )
-            )
-        );
+    Payment payment = paymentRepo.findByReservationAndPaymentStatus(reservation, PaymentStatus.PENDING).orElseThrow(() -> new IllegalStateException("No pending payment"));
 
-    if (payment.getPaymentStatus() == PaymentStatus.PAID) return;
-
-    payment.setPaymentStatus(PaymentStatus.PAID);
-    payment.setAmountPaid(reservation.getTotalPrice());
+    if(reservation.getTotalPrice().compareTo(amountPaid) == 0) {
+           payment.setPaymentStatus(PaymentStatus.FULL);
+           payment.setAmountPaid(reservation.getTotalPrice());
+           reservation.setStatus(ReservationStatus.PAID);
+        } else {
+            payment.setPaymentStatus(PaymentStatus.PARTIAL);
+            payment.setAmountPaid(amountPaid);
+            reservation.setStatus(ReservationStatus.PARTIALLY_PAID);
+            reservation.setBalanceDueAt(reservation.getArrivalDate().minusDays(37));
+        }
+        
     payment.setStripePaymentIntentId(session.getPaymentIntent());
-
     paymentRepo.saveAndFlush(payment);
-
-    reservation.setStatus(ReservationStatus.PAID);
     reservationRepo.saveAndFlush(reservation);
 }
-
-
-// public void markIbanPaid(Reservation reservation, int amount) {
-    //     Payment payment = Payment.createPaid(
-    //         reservation,
-    //         amount,
-    //         PaymentMethod.IBAN
-    //     );
-
-    //     paymentRepo.save(payment);
-    // }
 }

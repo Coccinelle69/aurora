@@ -4,6 +4,7 @@ package com.aurora.AuroraApartment.dto;
     PENDING,      
     CONFIRMED,     
     CANCELLED,     
-    PAID               
+    PAID,
+    PARTIALLY_PAID               
 }
 

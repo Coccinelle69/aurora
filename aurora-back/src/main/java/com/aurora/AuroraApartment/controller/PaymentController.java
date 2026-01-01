@@ -1,9 +1,11 @@
 package com.aurora.AuroraApartment.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.aurora.AuroraApartment.dto.PaymentStatus;
 import com.aurora.AuroraApartment.dto.ReservationStatus;
 import com.aurora.AuroraApartment.model.Reservation;
 import com.aurora.AuroraApartment.repo.ReservationRepo;
@@ -28,16 +30,17 @@ public class PaymentController {
     private final PaymentService paymentService;
 
     @GetMapping("/checkout/stripe/{reference}")
-    public ResponseEntity<Void> createStripeCheckout(@PathVariable String reference) {
+    public ResponseEntity<Void> createStripeCheckout(@PathVariable String reference, @RequestParam PaymentStatus paid) {
         Reservation reservation = reservationRepo.findByReservationReference(reference).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        
+        PaymentStatus paymentType = paid;
         if(reservation.getStatus() != ReservationStatus.CONFIRMED) {
              throw new ResponseStatusException(
         HttpStatus.BAD_REQUEST,
         "Reservation not confirmed"
       );
         }
-        String url = paymentService.startStripePayment(reservation);
+        String url = paymentService.startStripePayment(reservation, paymentType);
+        
         return ResponseEntity
         .status(HttpStatus.FOUND)   
         .header("Location", url)

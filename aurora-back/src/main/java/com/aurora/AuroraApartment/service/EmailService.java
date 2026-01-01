@@ -1,6 +1,7 @@
 package com.aurora.AuroraApartment.service;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -23,6 +24,7 @@ import lombok.RequiredArgsConstructor;
 
 import com.aurora.AuroraApartment.config.PaymentProperties;
 import com.aurora.AuroraApartment.model.Contact;
+import com.aurora.AuroraApartment.model.Payment;
 import com.aurora.AuroraApartment.model.Reservation;
 import com.aurora.AuroraApartment.service.pricing.CheckoutCard;
 import com.aurora.AuroraApartment.service.pricing.CheckoutService;
@@ -396,9 +398,96 @@ private String apply(String template, Map<String, String> values) {
         return new EmailContent(paymentSubject, html);
  
 }
+
+private EmailContent translateReminderMessage(String language, Reservation reservation, Payment payment) {
+        Locale locale = Locale.forLanguageTag(language);
+
+        String reminderSubject = messageSource.getMessage("email.reminderSubject", null, locale);
+        String hello = messageSource.getMessage("email.hello", new Object[]{reservation.getMainContactFirstName()}, locale);
+        String reminderIntro = messageSource.getMessage("email.reminderIntro", null, locale);
+        String recap = messageSource.getMessage("email.recap", null, locale);
+        String arrival = messageSource.getMessage("email.arrival",null, locale);
+        String departure = messageSource.getMessage("email.departure",null, locale);
+        String nights = messageSource.getMessage("email.nights",null, locale);
+        String guests = messageSource.getMessage("email.guests",null, locale);
+        String paymentSummary = messageSource.getMessage("email.paymentSummary", null, locale);
+        String payFullPrice = messageSource.getMessage("email.payFullPrice", null, locale);
+        String payDeposit = messageSource.getMessage("email.payDeposit", null, locale);
+        String amountDue = messageSource.getMessage("email.amountDue", null, locale);
+        String alreadyPaid = messageSource.getMessage("email.alreadyPaid", null, locale);
+        String paymentDeadline = messageSource.getMessage("email.paymentDeadline", null, locale);
+        String reference = messageSource.getMessage("email.reference", null, locale);
+        String paymentMethodsTitle = messageSource.getMessage("email.paymentMethodsTitle", null, locale);
+        String bankTransferTitle = messageSource.getMessage("email.bankTransferTitle", null, locale);
+        String accountHolder = messageSource.getMessage("email.accountHolder", null, locale);
+        String bankTransferNote = messageSource.getMessage("email.bankTransferNote", null, locale);
+        String onlinePaymentTitle = messageSource.getMessage("email.onlinePaymentTitle", null, locale);
+        String onlinePaymentText = messageSource.getMessage("email.onlinePaymentText", null, locale);
+        String stripeFallback = messageSource.getMessage("email.stripeFallback", null, locale);
+        String reminderOutro = messageSource.getMessage("email.reminderOutro", null, locale);
+        String questions = messageSource.getMessage("email.questions", null, locale);
+        String regards = messageSource.getMessage("email.regards", null, locale);
+        String signature = messageSource.getMessage("email.signature", null, locale);
+        
+        LocalDate deadlineDate = reservation.getArrivalDate().minusDays(30);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).withLocale(locale);
+
+        Map<String, String> vars = new HashMap<>();
+        BigDecimal amountPaid = payment.getAmountPaid();
+        BigDecimal total = reservation.getTotalPrice();
+        BigDecimal amountRemaining =  total.subtract(amountPaid);
+
+        vars.put("hello", hello);
+        vars.put("reminderIntro", reminderIntro);
+        vars.put("recap", recap);
+        vars.put("arrival", arrival);
+        vars.put("departure", departure);
+        vars.put("nights", nights);
+        vars.put("guests", guests);
+        vars.put("arrivalDate", reservation.getArrivalDate().format(formatter));
+        vars.put("departureDate", reservation.getDepartureDate().format(formatter));
+        vars.put("totalNights", String.valueOf(reservation.getTotalNights()));
+        vars.put("guestsNo", String.valueOf(reservation.getGuests()));
+        vars.put("alreadyPaid",alreadyPaid);
+        vars.put("paymentSummary",paymentSummary);
+        vars.put("payFullPrice",payFullPrice);
+        vars.put("payDeposit",payDeposit);
+        vars.put("amountDue", amountDue);
+        vars.put("amountPaid", amountPaid.toString());
+        vars.put("amountRemaining", amountRemaining.toString());
+        vars.put("totalPrice", total.toString());
+        vars.put("paymentDeadline", paymentDeadline);
+        vars.put("deadlineDate", deadlineDate.format(formatter));
+        vars.put("reference", reference);
+        vars.put("reservationReference", reservation.getReservationReference());
+        vars.put("paymentMethodsTitle", paymentMethodsTitle);
+        vars.put("bankTransferTitle", bankTransferTitle);
+        vars.put("accountHolder", accountHolder);
+        vars.put("ibanHolder", paymentProperties.getAccountHolder());
+        vars.put("iban", paymentProperties.getIban());
+        vars.put("bic", paymentProperties.getBic());
+        vars.put("bankTransferNote", bankTransferNote);
+        vars.put("onlinePaymentTitle", onlinePaymentTitle);
+        vars.put("onlinePaymentText", onlinePaymentText);
+        vars.put("stripeFallback", stripeFallback);
+        vars.put("reminderOutro", reminderOutro);
+        vars.put("questions", questions);
+        vars.put("regards", regards);
+        vars.put("signature", signature);
+    
+        String template = loadTemplate("payment-information");
+
+        String html = apply(template, vars);
+
+        return new EmailContent(reminderSubject, html);
+ 
+}
        
 
-    
+ 
+
+
 public void sendConfirmationToUser(Contact contact) {
         EmailContent email = translateMessage(contact.getLanguage(), contact);
         sendHtmlEmail(
@@ -429,6 +518,16 @@ public void sendPaymentInfoToUser(Reservation reservation) {
                 reservation.getEmail()
         );
     }
+
+public void sendBalanceReminder(Reservation reservation, Payment payment) {
+    EmailContent email = translateReminderMessage(reservation.getLanguage(), reservation, payment);
+        sendHtmlEmail(
+                reservation.getEmail(),
+                email.subject(),
+                email.html(),
+                reservation.getEmail()
+        );
+}
 
 }
 

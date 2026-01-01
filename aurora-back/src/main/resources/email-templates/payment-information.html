@@ -89,7 +89,7 @@
       <tr>
         <td align="center">
           <a
-            href="http://localhost:8080/payment/checkout/stripe/{{reservationReference}}"
+            href="http://localhost:8080/payment/checkout/stripe/{{reservationReference}}?paid=FULL"
             target="_blank"
             style="
               display: inline-block;
@@ -98,6 +98,25 @@
               color: #ffffff;
               text-decoration: none;
               border-radius: 8px;
+              font-size: 14px;
+              font-weight: bold;
+            "
+          >
+            {{payWithStripe}}
+          </a>
+        </td>
+        <td align="center">
+          <a
+            href="http://localhost:8080/payment/checkout/stripe/{{reservationReference}}?paid=PARTIAL"
+            target="_blank"
+            style="
+              display: inline-block;
+              padding: 12px 20px;
+              background: #ffffff;
+              color: #234361;
+              text-decoration: none;
+              border-radius: 8px;
+              border: #234361 2px solid;
               font-size: 14px;
               font-weight: bold;
             "
@@ -117,7 +136,9 @@
       "
     >
       {{stripeFallback}}<br />
-      http://localhost:8080/api/payment/checkout/stripe/{{reservationReference}}
+      http://localhost:8080/api/payment/checkout/stripe/{{reservationReference}}?paid=FULL
+      <br />
+      http://localhost:8080/api/payment/checkout/stripe/{{reservationReference}}?paid=PARTIAL
     </p>
   </div>
 

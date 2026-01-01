@@ -49,7 +49,7 @@ const FormInput = ({
   };
 
   const inputStyle = `
-    peer w-full ${
+    peer w-full  ${
       checkout
         ? "bg-white px-2 py-2 text-[0.8rem] sm:placeholder:text-[0.9rem]  "
         : "bg-transparent"

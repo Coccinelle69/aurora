@@ -1,5 +1,6 @@
 package com.aurora.AuroraApartment.service;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.List;
@@ -63,7 +64,7 @@ public Reservation createReservation(ReservationRequest reservation) {
     }
 
     PriceResult price = priceCalculator.calculate(reservation.getArrivalDate(), reservation.getDepartureDate());
-    
+    BigDecimal totalPrice = BigDecimal.valueOf(price.getTotal());
      if (price.getTotalNights() <= 0) {
         throw new ResponseStatusException(
             HttpStatus.BAD_REQUEST,
@@ -86,7 +87,7 @@ public Reservation createReservation(ReservationRequest reservation) {
         .arrivalDate(reservation.getArrivalDate())
         .departureDate(reservation.getDepartureDate())
         .totalNights(price.getTotalNights())
-        .totalPrice(price.getTotal())
+        .totalPrice(totalPrice)
         .guests(adults + teens + children)
         .adults(reservation.getAdults())
         .teens(reservation.getTeens())

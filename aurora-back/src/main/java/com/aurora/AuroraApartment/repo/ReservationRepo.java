@@ -18,15 +18,20 @@ public interface ReservationRepo extends JpaRepository<Reservation, Integer> {
 
 
     @Query("""
-        SELECT r FROM Reservation r
+        SELECT r FROM Reservation r 
         WHERE r.arrivalDate < :departure
         AND r.departureDate > :arrival
         AND r.status = 'CONFIRMED'
     """)
-    List<Reservation> findOverlappingReservations(
-        LocalDate arrival,
-        LocalDate departure
-    );
+    List<Reservation> findOverlappingReservations(LocalDate arrival, LocalDate departure);
+
+      @Query("""
+        SELECT r FROM Reservation r
+        WHERE r.BalanceDueAt < :today
+        AND r.reminderSent = false
+        AND r.status = 'PARTIALLY_PAID'
+    """)
+    List<Reservation> findAllBalanceDueToday(LocalDate today);
     
     Optional<Reservation> findByPublicToken(UUID publicToken);
     Optional<Reservation> findByReservationReference(String reservationReference);

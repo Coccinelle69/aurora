@@ -94,7 +94,7 @@ export default function FullScreenMenu({ open, onClose }: Props) {
             </button>
 
             {/* Layout (give left column a bit more room if you like) */}
-            <div className="mx-auto relative bottom-[15%] md:bottom-0 h-screen w-screen max-w-7xl px-[8%] py-10 grid grid-cols-1 lg:grid-cols-[1.25fr_1fr_1fr] sm:gap-5 md:gap-10">
+            <div className="mx-auto relative bottom-[15%] md:bottom-0  h-screen w-screen max-w-7xl px-[8%] py-10 grid grid-cols-1 lg:grid-cols-[1.25fr_1fr_1fr] sm:gap-5 md:gap-10">
               {/* Left: Logo / CTA / Contacts */}
               <div className="flex flex-col justify-between">
                 <div className="w-full h-full">
@@ -102,10 +102,12 @@ export default function FullScreenMenu({ open, onClose }: Props) {
                 </div>
 
                 <div className="pb-10 space-y-6 md:pb-0">
-                  <BookButton />
+                  <div className="flex  items-center justify-center lg:justify-start">
+                    <BookButton />
+                  </div>
 
                   <motion.div
-                    className="space-y-2 sm:space-y-0 text-gray-200"
+                    className="space-y-2 sm:space-y-0 text-gray-200 flex flex-col items-center lg:items-start"
                     variants={listParent}
                     initial="hidden"
                     animate="visible"
@@ -132,7 +134,6 @@ export default function FullScreenMenu({ open, onClose }: Props) {
                 </div>
               </div>
 
-              {/* Middle: Menu — numbers from LEFT with fixed underline, labels from RIGHT */}
               <motion.ul
                 className="relative flex flex-col justify-center  gap-8 md:right-5 lg:right-0 lg:-left-12"
                 variants={listParent}

@@ -57,6 +57,14 @@ public class Payment {
     @Builder.Default
     private BigDecimal amountPaid=BigDecimal.ZERO;
 
+    @Column(name = "amount_deposit", nullable = false)
+    @Builder.Default
+    private BigDecimal amountDeposit=BigDecimal.ZERO;
+
+    @Column(name = "amount_remaining", nullable = false)
+    @Builder.Default
+    private BigDecimal amountRemaining=BigDecimal.ZERO;
+
     @Column(name = "amount_refunded", nullable = false)
     @Builder.Default
     private BigDecimal amountRefunded=BigDecimal.ZERO;
@@ -79,7 +87,9 @@ public class Payment {
     public static Payment createPending(
             Reservation reservation,
             BigDecimal amountExpected,
-            BigDecimal amountPaid 
+            BigDecimal amountPaid,
+            BigDecimal amountRemaining,
+            BigDecimal amountDeposit
     ) {
         
         return Payment.builder()
@@ -87,6 +97,8 @@ public class Payment {
                 .paymentMethod(PaymentMethod.STRIPE)
                 .amountExpected(amountExpected)
                 .amountPaid(amountPaid)
+                .amountRemaining(amountRemaining)
+                .amountDeposit(amountDeposit)
                 .build();
     }
 

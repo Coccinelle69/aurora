@@ -8,6 +8,8 @@ export default function Notification({ searchUI, setSearchUI }: searchUIProps) {
   const [show, setShow] = useState(searchUI.available);
   const { t } = useTranslation();
 
+  console.log(searchUI);
+
   useEffect(() => {
     if (searchUI.searchDone) {
       Promise.resolve().then(() => setShow(true));
@@ -52,7 +54,6 @@ export default function Notification({ searchUI, setSearchUI }: searchUIProps) {
         animate={{ x: [0, -6, 6, -4, 4, 0] }}
         transition={{ duration: 0.45, ease: "easeInOut", delay: 2 }}
       >
-        {/* {getMessage()} */}
         {searchUI.stayDurationError &&
           !searchUI.outOfSeason &&
           t("minimumStay")}
@@ -61,13 +62,16 @@ export default function Notification({ searchUI, setSearchUI }: searchUIProps) {
           !searchUI.error &&
           !searchUI.outOfSeason &&
           t("available")}
+        {searchUI.error &&
+          !searchUI.stayDurationError &&
+          !searchUI.available &&
+          !searchUI.outOfSeason &&
+          t("something-went-wrong")}
         {!searchUI.available &&
           !searchUI.outOfSeason &&
           !searchUI.stayDurationError &&
+          !searchUI.error &&
           t("notAvailable")}
-        {searchUI.error &&
-          !searchUI.stayDurationError &&
-          t("something-went-wrong")}
         {searchUI.outOfSeason && t("outOfSeasonMessage")}
       </motion.div>
     </motion.div>

@@ -3,7 +3,9 @@ package com.aurora.AuroraApartment.service;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -45,7 +47,7 @@ public class ReservationService {
 
 public boolean isAvailable(LocalDate arrival, LocalDate departure) {
     List<Reservation> overlaps = reservationRepo
-            .findOverlappingReservations(arrival, departure);
+            .findOverlappingReservations(arrival, departure, List.of(ReservationStatus.CONFIRMED, ReservationStatus.PAID, ReservationStatus.PARTIALLY_PAID));
     return overlaps.isEmpty();
 }
    
@@ -56,11 +58,15 @@ public List<Reservation> allReservations() {
 }
 
 @Transactional
-public Reservation createReservation(ReservationRequest reservation) {
-    Reservation existingReservation = reservationRepo.findByArrivalDate(reservation.getArrivalDate()).orElseThrow(()-> new RuntimeException("Not found") );
+public Map<String,Object> createReservation(ReservationRequest reservation) {
+    Reservation existingReservation = reservationRepo.findByArrivalDate(reservation.getArrivalDate());
+     Map<String, Object> result = new HashMap<>();
+     
     
     if(existingReservation !=null) {
-        return existingReservation;
+        result.put("existingReservation", existingReservation);
+        result.put("newReservation", null);
+        return result;
     }
 
     PriceResult price = priceCalculator.calculate(reservation.getArrivalDate(), reservation.getDepartureDate());
@@ -100,7 +106,10 @@ public Reservation createReservation(ReservationRequest reservation) {
     emailService.sendCheckoutRecapToAdmin(saved);          
     emailService.sendCheckoutRecapToUser(saved); 
 
-    return saved;
+     result.put("existingReservation", null);
+     result.put("newReservation", saved);
+
+    return result;
 
 }
 

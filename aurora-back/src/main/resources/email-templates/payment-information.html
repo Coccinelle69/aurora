@@ -89,7 +89,7 @@
       <tr>
         <td align="center">
           <a
-            href="http://localhost:8080/payment/checkout/stripe/{{reservationReference}}?paid=FULL"
+            href="http://localhost:8080/payment/full/{{reservationReference}}"
             target="_blank"
             style="
               display: inline-block;
@@ -102,12 +102,12 @@
               font-weight: bold;
             "
           >
-            {{payWithStripe}}
+            {{payFullPrice}}
           </a>
         </td>
         <td align="center">
           <a
-            href="http://localhost:8080/payment/checkout/stripe/{{reservationReference}}?paid=PARTIAL"
+            href="http://localhost:8080/payment/deposit/{{reservationReference}}"
             target="_blank"
             style="
               display: inline-block;
@@ -121,7 +121,7 @@
               font-weight: bold;
             "
           >
-            {{payWithStripe}}
+            {{payDeposit}}
           </a>
         </td>
       </tr>
@@ -136,9 +136,9 @@
       "
     >
       {{stripeFallback}}<br />
-      http://localhost:8080/api/payment/checkout/stripe/{{reservationReference}}?paid=FULL
+      http://localhost:8080/payment/full/{{reservationReference}}
       <br />
-      http://localhost:8080/api/payment/checkout/stripe/{{reservationReference}}?paid=PARTIAL
+      http://localhost:8080/payment/deposit/{{reservationReference}}
     </p>
   </div>
 

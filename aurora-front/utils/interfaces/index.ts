@@ -58,3 +58,9 @@ export interface searchUIProps {
   setSearchUI: React.Dispatch<SetStateAction<searchUI>>;
   searchUI: searchUI;
 }
+
+declare global {
+  interface Window {
+    __gmapsReady?: boolean;
+  }
+}

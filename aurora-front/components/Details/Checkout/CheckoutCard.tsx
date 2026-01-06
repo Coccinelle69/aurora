@@ -115,15 +115,6 @@ const CheckoutCard = ({
           <Policy policy="cancellation" />
           <Policy policy="payment" />
 
-          {/* COUPON */}
-          <label className="flex items-center gap-2 text-sm text-gray-700 border-b pb-3 cursor-pointer">
-            <input
-              type="checkbox"
-              className="w-4 h-4 rounded border-gray-400"
-            />
-            {t("iHaveCoupon")}
-          </label>
-
           {/* BREAKDOWN */}
           <PriceBreakdown />
 

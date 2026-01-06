@@ -4,7 +4,8 @@
     <strong>{{hello}}</strong>
   </h2>
 
-  <p style="font-size: 16px; margin: 0 0 16px 0">{{partialPaymentIntro}}</p>
+  <p style="font-size: 16px; margin: 0 0 16px 0">{{reminderIntro}}</p>
+
   <!-- Recap container -->
   <div
     style="
@@ -168,8 +169,6 @@
     {{balanceDueText}} <strong>{{deadlineDate}}</strong>.
   </p>
 
-  <p style="font-size: 16px; margin: 16px 0 16px 0">{{completeReservation}}</p>
-
   <div style="margin-top: 20px">
     <p style="font-size: 16px; margin-bottom: 10px">
       <strong>{{paymentMethodsTitle}}</strong>
@@ -210,7 +209,7 @@
       <tr>
         <td align="center">
           <a
-            href="http://localhost:8080/payment/partial/{{reservationReference}}"
+            href="http://localhost:8080/payment/full/{{reservationReference}}"
             target="_blank"
             style="
               display: inline-block;
@@ -223,7 +222,26 @@
               font-weight: bold;
             "
           >
-            {{payRemainingAmount}}
+            {{payFullPrice}}
+          </a>
+        </td>
+        <td align="center">
+          <a
+            href="http://localhost:8080/payment/deposit/{{reservationReference}}"
+            target="_blank"
+            style="
+              display: inline-block;
+              padding: 12px 20px;
+              background: #ffffff;
+              color: #234361;
+              text-decoration: none;
+              border-radius: 8px;
+              border: #234361 2px solid;
+              font-size: 14px;
+              font-weight: bold;
+            "
+          >
+            {{payDeposit}}
           </a>
         </td>
       </tr>
@@ -238,12 +256,14 @@
       "
     >
       {{stripeFallback}}<br />
-      http://localhost:8080/payment/partial/{{reservationReference}}
+      http://localhost:8080/payment/full/{{reservationReference}}
+      <br />
+      http://localhost:8080/payment/deposit/{{reservationReference}}
     </p>
   </div>
 
   <p style="margin-top: 20px; font-size: 16px">{{cancellationWarning}}</p>
-
+  <p style="margin-top: 20px; font-size: 16px">{{reminderOutro}}</p>
   <p style="margin-top: 20px; font-size: 16px">{{questions}}</p>
 
   <p style="margin-top: 20px; font-size: 14px; color: #234361">

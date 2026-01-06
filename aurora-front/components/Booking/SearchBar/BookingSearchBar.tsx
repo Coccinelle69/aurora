@@ -88,12 +88,13 @@ export default function BookingSearchBar({
 
   useEffect(() => {
     if (!done) return;
-
+    console.log(errorMessage);
     const timer = setTimeout(() => {
       setSubmitting(false);
       setTrigger(false);
       updateSearchUI({ searchDone: true });
-      errorMessage && updateSearchUI({ error: true });
+      errorMessage === "INVALID RESPONSE" ||
+        (errorMessage === "NETWORK ERROR" && updateSearchUI({ error: true }));
       if (data.available && priceData!.error !== "hors-season")
         updateSearchUI({ available: true });
 
@@ -122,6 +123,7 @@ export default function BookingSearchBar({
       stayDurationError: false,
       searchDone: false,
       outOfSeason: false,
+      error: false,
     });
 
     setSubmitting(true);

@@ -18,7 +18,7 @@ import com.stripe.net.Webhook;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/stripe")
+@RequestMapping("/api/stripe")
 @RequiredArgsConstructor
 public class StripeWebhookController {
 

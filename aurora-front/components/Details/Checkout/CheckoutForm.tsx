@@ -183,10 +183,10 @@ const CheckoutForm = ({ setCheckoutUI, checkoutUI }: CheckoutProps) => {
                 {errorMessage &&
                   errorMessage === "BLANK" &&
                   t("fieldsError")}{" "}
-                {data.existingReservation && t("alreadyRequested")}
                 {errorMessage &&
                   errorMessage !== "BLANK" &&
                   t("something-went-wrong")}{" "}
+                {data.existingReservation && t("alreadyRequested")}
               </p>
             )}
           </form>

@@ -5,6 +5,7 @@ import { Roboto, Princess_Sofia, Quintessential } from "next/font/google";
 import ClientProviders from "@/ClientProviders";
 import { Footer, Header } from "@/components";
 import ClientWrapper from "@/app/ClientWrapper";
+import Script from "next/script";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -49,6 +50,13 @@ export default function BaseLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <Script
+          id="gmaps"
+          strategy="beforeInteractive"
+          src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GMAPS_KEY}&v=weekly&libraries=marker&loading=async`}
+        />
+      </head>
       <body
         suppressHydrationWarning
         className={`${roboto.variable} ${quintessential.variable} ${sofia.variable} antialiased`}
@@ -78,6 +86,7 @@ export default function BaseLayout({
         <ClientProviders>
           <ClientWrapper>
             <Header />
+
             {children}
             <Footer />
           </ClientWrapper>

@@ -155,7 +155,7 @@
                     text-align: right;
                   "
                 >
-                  {{paymentDeadline}} {{deadline}}
+                  {{paymentDeadline}} {{deadlineDate}}
                 </p>
               </td>
             </tr>
@@ -164,6 +164,10 @@
       </tr>
     </table>
   </div>
+
+  <p style="font-size: 16px; margin: 16px 0 16px 0">
+    {{balanceDueText}} <strong>{{deadlineDate}}</strong>.
+  </p>
 
   <div style="margin-top: 20px">
     <p style="font-size: 16px; margin-bottom: 10px">
@@ -205,25 +209,7 @@
       <tr>
         <td align="center">
           <a
-            href="http://localhost:8080/payment/checkout/stripe/{{reservationReference}}?paid=FULL"
-            target="_blank"
-            style="
-              display: inline-block;
-              padding: 12px 20px;
-              background: #234361;
-              color: #ffffff;
-              text-decoration: none;
-              border-radius: 8px;
-              font-size: 14px;
-              font-weight: bold;
-            "
-          >
-            {{payFullPrice}}
-          </a>
-        </td>
-        <td align="center">
-          <a
-            href="http://localhost:8080/payment/checkout/stripe/{{reservationReference}}?paid=PARTIAL"
+            href="http://localhost:8080/payment/partial/{{reservationReference}}"
             target="_blank"
             style="
               display: inline-block;
@@ -237,7 +223,7 @@
               font-weight: bold;
             "
           >
-            {{payDeposit}}
+            {{payRemainingAmount}}
           </a>
         </td>
       </tr>
@@ -252,14 +238,13 @@
       "
     >
       {{stripeFallback}}<br />
-      http://localhost:8080/api/payment/checkout/stripe/{{reservationReference}}?paid=FULL
       <br />
-      http://localhost:8080/api/payment/checkout/stripe/{{reservationReference}}?paid=PARTIAL
+      http://localhost:8080/payment/partial/{{reservationReference}}
     </p>
   </div>
 
-  <!-- Optional footer text -->
-  <p style="margin-top: 20px; font-size: 16px">{{paymentOutro}}</p>
+  <p style="margin-top: 20px; font-size: 16px">{{cancellationWarning}}</p>
+  <p style="margin-top: 20px; font-size: 16px">{{reminderOutro}}</p>
   <p style="margin-top: 20px; font-size: 16px">{{questions}}</p>
 
   <p style="margin-top: 20px; font-size: 14px; color: #234361">

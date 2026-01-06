@@ -19,20 +19,27 @@ CREATE TABLE reservation (
   total_nights INT NOT NULL,
   total_price NUMERIC(12,2) NOT NULL,
 
-  arrival_date DATE NOT NULL,
+  arrival_date DATE NOT NULL UNIQUE,
   departure_date DATE NOT NULL,
 
-  status VARCHAR(20) NOT NULL DEFAULT 'PENDING',
+  status VARCHAR(20) NOT NULL DEFAULT 'PENDING' CHECK (status IN (
+  'PENDING',
+  'PARTIALLY_PAID',
+  'PAID',
+  'CANCELLED'
+)),
   created_at  TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   message VARCHAR(2000),
   reminder_sent BOOLEAN NOT NULL DEFAULT false,
-  balance_due_at DATE
+  cancellation_email_sent BOOLEAN NOT NULL DEFAULT false,
+  balance_due_at DATE,
+  reminder_due_at DATE
 );
 
 CREATE TABLE reservation_sequence (
   id SERIAL PRIMARY KEY,
-  year INT NOT NULL;
-  last_number INT NOT NULL;
+  year INT NOT NULL,
+  last_number INT NOT NULL
 );
 
 CREATE TABLE payment (
@@ -51,13 +58,20 @@ CREATE TABLE payment (
   currency VARCHAR(3) NOT NULL DEFAULT 'EUR',
 
   amount_expected NUMERIC(12, 2) NOT NULL,   
-  amount_paid NUMERIC(12, 2) NOT NULL DEFAULT 0,       
+  amount_paid NUMERIC(12, 2) NOT NULL DEFAULT 0, 
+  amount_deposit NUMERIC(12, 2) NOT NULL DEFAULT 0,      
+  amount_remaining NUMERIC(12, 2) NOT NULL DEFAULT 0,      
   amount_refunded NUMERIC(12, 2) NOT NULL DEFAULT 0,  
 
   discount_amount NUMERIC(12, 2) NOT NULL DEFAULT 0,   
   discount_code VARCHAR(100), 
 
-  payment_status VARCHAR(20) NOT NULL DEFAULT 'PENDING',
+  payment_status VARCHAR(20) NOT NULL DEFAULT 'PENDING' CHECK (payment_status IN (
+  'PENDING',
+  'PARTIAL',
+  'FULL',
+  'REFUNDED'
+)),
 
   created_at  TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
@@ -72,5 +86,14 @@ CREATE TABLE contact (
   language VARCHAR(10) NOT NULL DEFAULT 'en',
   message VARCHAR(2000) NOT NULL,
   created_at  TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE INDEX idx_reservation_scheduler
+ON reservation (
+  reminder_due_at,
+  balance_due_at,
+  status,
+  reminder_sent,
+  cancellation_email_sent
 );
    

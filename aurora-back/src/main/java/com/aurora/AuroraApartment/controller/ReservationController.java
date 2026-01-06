@@ -86,13 +86,14 @@ public ResponseEntity<Map<String, Object>> cancel(@PathVariable UUID token) {
 
 @PostMapping("/checkout")
 public ResponseEntity<?> checkout(@Valid @RequestBody ReservationRequest request) {
-   Reservation existingReservation = reservationService.createReservation(request);
+   Map<String,Object> result = reservationService.createReservation(request);
+   System.out.println(result);
 
-   if(existingReservation !=null) {
+   if(result.get("existingReservation") !=null) {
     return ResponseEntity.ok(Map.of("existingReservation", true));
    }
 
-    return ResponseEntity.ok("{\"success\": true}");
+    return ResponseEntity.ok(Map.of("success", true));
 }
 
 }

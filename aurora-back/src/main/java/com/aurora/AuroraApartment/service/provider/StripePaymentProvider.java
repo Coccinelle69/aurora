@@ -35,10 +35,10 @@ public class StripePaymentProvider {
              Map<String,Object> priceData = new HashMap<>();
              priceData.put("currency", "eur");
              BigDecimal total = reservation.getTotalPrice();
-             BigDecimal amountPaid = paymentStatus == PaymentStatus.FULL ? total : total.multiply(BigDecimal.valueOf(0.3));
-             //  Long unitAmount = paymentStatus == PaymentStatus.FULL ? 
-             //  total.multiply(BigDecimal.valueOf(100)).longValueExact() : 
-             //  total.multiply(BigDecimal.valueOf(30)).longValueExact();
+             BigDecimal amountPaid = paymentStatus == PaymentStatus.FULL ? 
+             total : paymentStatus == PaymentStatus.DEPOSIT ? 
+             total.multiply(BigDecimal.valueOf(0.3)) : total.multiply(BigDecimal.valueOf(0.7));
+        
              Long unitAmount = amountPaid.multiply(BigDecimal.valueOf(100)).longValueExact();
              priceData.put("unit_amount", unitAmount);
              

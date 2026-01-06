@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.UUID;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import com.aurora.AuroraApartment.dto.ReservationStatus;
 
@@ -16,9 +18,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-
-
 @Entity
 @Data
 @Builder
@@ -31,13 +30,15 @@ public class Reservation {
     private Integer id;
 
     @Column(nullable = false, unique = true, updatable = false)
+    @JdbcTypeCode(SqlTypes.UUID)
     private UUID publicToken;
 
     @Column(name="admin_action_expires_at", nullable = false)
     private Instant adminActionExpiresAt;
 
+    @Builder.Default
     @Column(name="admin_action_used", nullable = false)
-    private boolean adminActionUsed;
+    private boolean adminActionUsed=false;
 
     @Column(name = "reservation_reference", nullable = false, unique = true, updatable = false)
     private String reservationReference;
@@ -66,7 +67,7 @@ public class Reservation {
 
     @Column(name = "total_nights", nullable = false)
     private Integer totalNights;
-    @Column(name = "total_price", nullable = false)
+    @Column(name = "total_price", nullable = false, precision = 12, scale = 2)
     private BigDecimal totalPrice;
 
     @Column(name = "arrival_date", nullable = false)
@@ -78,20 +79,34 @@ public class Reservation {
     @Builder.Default
     @Column(nullable = false)
     private ReservationStatus status = ReservationStatus.PENDING;
-    @OneToMany(mappedBy = "reservation")
+    @OneToMany(mappedBy = "reservation", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Payment> payments;
 
     @CreationTimestamp
     @Column(name = "created_at",nullable = false, updatable = false)
     private Instant createdAt;
 
-    
+    @Builder.Default
     @Column(name="reminder_sent", nullable = false)
-    private boolean reminderSent;
+    private boolean reminderSent=false;
+
+    @Builder.Default
+    @Column(name="cancellation_email_sent", nullable = false)
+    private boolean cancellationEmailSent=false;
+
+    @Column(name="reminder_due_at")
+    private LocalDate reminderDueAt;
 
     @Column(name="balance_due_at")
     private LocalDate balanceDueAt;
 
+   @PreUpdate
+    private void computeDueDates() {
+        if (arrivalDate != null) {
+        reminderDueAt = LocalDate.now().plusDays(5);
+        balanceDueAt = arrivalDate.minusDays(30);
+    }
+}
     @PrePersist
     private void prePersist() {
         if (publicToken == null) {
@@ -106,9 +121,7 @@ public class Reservation {
      if (status == null) {
         status = ReservationStatus.PENDING;
     }
-
-        adminActionUsed = false;
-        reminderSent = false;
+                 
     }
 
    

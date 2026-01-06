@@ -54,6 +54,11 @@ export default function BookLayout({
           href="/beach2.jpg"
           imageSrcSet="/beach2.jpg"
         />
+        <Script
+          id="gmaps"
+          strategy="beforeInteractive"
+          src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GMAPS_KEY}&v=weekly&libraries=marker&loading=async`}
+        />
       </head>
       <body
         suppressHydrationWarning
@@ -62,11 +67,7 @@ export default function BookLayout({
         <ClientProviders>
           <ClientWrapper>
             <BookHeader />
-            <Script
-              id="gmaps"
-              strategy="afterInteractive"
-              src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GMAPS_KEY}&v=weekly&libraries=marker&loading=async`}
-            />
+
             {children}
           </ClientWrapper>
         </ClientProviders>

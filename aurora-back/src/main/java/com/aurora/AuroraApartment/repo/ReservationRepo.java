@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import com.aurora.AuroraApartment.dto.ReservationStatus;
 import com.aurora.AuroraApartment.model.Reservation;
 
 
@@ -21,21 +22,30 @@ public interface ReservationRepo extends JpaRepository<Reservation, Integer> {
         SELECT r FROM Reservation r 
         WHERE r.arrivalDate < :departure
         AND r.departureDate > :arrival
-        AND r.status = 'CONFIRMED'
+        AND r.status IN :statuses
     """)
-    List<Reservation> findOverlappingReservations(LocalDate arrival, LocalDate departure);
+    List<Reservation> findOverlappingReservations(LocalDate arrival, LocalDate departure, List<ReservationStatus> statuses);
 
-      @Query("""
+    @Query("""
         SELECT r FROM Reservation r
-        WHERE r.BalanceDueAt < :today
+        WHERE r.reminderDueAt = :today
         AND r.reminderSent = false
-        AND r.status = 'PARTIALLY_PAID'
+        AND r.status = :status
     """)
-    List<Reservation> findAllBalanceDueToday(LocalDate today);
+    List<Reservation> findAllRemindersDueToday(LocalDate today, ReservationStatus status);
+
+    @Query("""
+        SELECT r FROM Reservation r
+        WHERE r.balanceDueAt = :today
+        AND r.reminderSent = true
+        AND r.cancellationEmailSent = false
+        AND r.status = :status
+    """)
+    List<Reservation> findAllBalancesDueToday(LocalDate today, ReservationStatus status);
     
     Optional<Reservation> findByPublicToken(UUID publicToken);
     Optional<Reservation> findByReservationReference(String reservationReference);
-    Optional<Reservation> findByArrivalDate(LocalDate arrivalDate);
+    Reservation findByArrivalDate(LocalDate arrivalDate);
 
     
 }

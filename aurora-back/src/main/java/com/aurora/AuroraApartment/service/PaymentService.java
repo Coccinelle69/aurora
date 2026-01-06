@@ -1,9 +1,7 @@
 package com.aurora.AuroraApartment.service;
 import java.math.BigDecimal;
 import java.util.Map;
-import java.util.Optional;
 
-import org.hibernate.boot.model.naming.IllegalIdentifierException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,6 +32,7 @@ public class PaymentService {
     private final PaymentRepo paymentRepo;
     private final ReservationRepo reservationRepo;
     private final StripePaymentProvider stripePaymentProvider;
+    private final EmailService emailService;
 
     @SuppressWarnings("null")
     @Transactional
@@ -44,15 +43,18 @@ public class PaymentService {
 
 }
     Payment payment = null;
+    BigDecimal deposit = reservation.getTotalPrice().multiply(BigDecimal.valueOf(0.3));
+    BigDecimal remaining = reservation.getTotalPrice().multiply(BigDecimal.valueOf(0.7));
     if(paymentStatus == PaymentStatus.FULL) {
      payment = paymentRepo
     .findByReservationAndPaymentStatus(reservation, PaymentStatus.PENDING)
     .orElseGet(() ->
-        paymentRepo.save(Payment.createPending(reservation, reservation.getTotalPrice(), reservation.getTotalPrice())));
-    } else {
+        paymentRepo.save(Payment.createPending(reservation, reservation.getTotalPrice(), reservation.getTotalPrice(), BigDecimal.ZERO, BigDecimal.ZERO)));
+    } else if(paymentStatus == PaymentStatus.DEPOSIT) {
          payment = paymentRepo.findByReservationAndPaymentStatus(reservation, PaymentStatus.PENDING).orElseGet(() -> paymentRepo.save(
-            Payment.createPending(reservation, reservation.getTotalPrice(), reservation.getTotalPrice().multiply(BigDecimal.valueOf(0.3))
-        )));
+            Payment.createPending(reservation, reservation.getTotalPrice(), deposit, remaining, deposit)));
+    } else if(paymentStatus == PaymentStatus.PARTIAL) {
+        payment = paymentRepo.save(Payment.createPending(reservation, reservation.getTotalPrice(), remaining, BigDecimal.ZERO, deposit));     
     }
      
     
@@ -96,20 +98,31 @@ public void finishStripePayment(Event event, String payload) throws JsonProcessi
 
     String reference = metadata.get("reservationReference");
     BigDecimal amountPaid = new BigDecimal(metadata.get("amountPaid"));
+    PaymentStatus paymentStatus = PaymentStatus.valueOf(metadata.get("paymentStatus"));
 
     Reservation reservation = reservationRepo.findByReservationReference(reference).orElseThrow(()-> new IllegalStateException(" No reservation under this reference"));
 
     Payment payment = paymentRepo.findByReservationAndPaymentStatus(reservation, PaymentStatus.PENDING).orElseThrow(() -> new IllegalStateException("No pending payment"));
 
-    if(reservation.getTotalPrice().compareTo(amountPaid) == 0) {
+    if(paymentStatus == PaymentStatus.FULL && reservation.getTotalPrice().compareTo(amountPaid) == 0) {
            payment.setPaymentStatus(PaymentStatus.FULL);
-           payment.setAmountPaid(reservation.getTotalPrice());
            reservation.setStatus(ReservationStatus.PAID);
-        } else {
-            payment.setPaymentStatus(PaymentStatus.PARTIAL);
-            payment.setAmountPaid(amountPaid);
+           emailService.sendFullPaymentConfirmation(reservation);
+
+        } else if(paymentStatus == PaymentStatus.DEPOSIT && amountPaid.compareTo(reservation.getTotalPrice().multiply(BigDecimal.valueOf(0.3))) ==0) {
+            payment.setPaymentStatus(PaymentStatus.DEPOSIT);
             reservation.setStatus(ReservationStatus.PARTIALLY_PAID);
             reservation.setBalanceDueAt(reservation.getArrivalDate().minusDays(37));
+            reservation.setReminderSent(false);
+            emailService.sendPartialPaymentConfirmation(reservation, payment);
+        }
+        else if(paymentStatus == PaymentStatus.PARTIAL && 
+            reservation.getTotalPrice().compareTo(amountPaid.add(payment.getAmountDeposit())) ==0) 
+            {
+            payment.setPaymentStatus(PaymentStatus.FULL);
+            payment.setAmountPaid(amountPaid);
+            reservation.setStatus(ReservationStatus.PAID);
+            emailService.sendFullPaymentConfirmation(reservation);
         }
         
     payment.setStripePaymentIntentId(session.getPaymentIntent());

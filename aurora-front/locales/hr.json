@@ -27,7 +27,7 @@
   "linens-p": "Svi apartmani opremljeni su čistom posteljinom i mekanim ručnicima za vašu udobnost.",
   "barbecue": "Vrt i roštilj",
   "barbecue-p": "Opustite se u našem privatnom vrtu okruženom zelenilom — savršeno mjesto za obiteljski roštilj i mirne večeri na otvorenom.",
-  "surface": "80 m²",
+  "surface": "75 m²",
   "guests": "5 gostiju",
   "beds": "Udobni kreveti",
   "terrace": "Terasa",
@@ -285,7 +285,9 @@
     "cancelledMessage": "Vaše plaćanje je otkazano. Naplata nije izvršena.",
     "errorTitle": "Greška pri plaćanju",
     "errorMessage": "Nešto je pošlo po zlu.",
-    "backHome": "Povratak na početnu"
+    "backHome": "Povratak na početnu",
+    "alreadyPaidTitle": "Plaćanje već izvršeno",
+    "alreadyPaidMessage": "Ova rezervacija je već plaćena. Nije potrebna dodatna naplata."
   },
   "alreadyRequested": "Već ste zatražili rezervaciju za ovo razdoblje."
 }

@@ -26,13 +26,12 @@ const LANGS: Lang[] = [
 type Props = { onChange?: (lang: Lang) => void; book?: boolean };
 
 export default function LanguageDropdown({ onChange, book }: Props) {
-  // ✅ initialize from localStorage during the initial render (no effect + setState)
   const dispatch = useDispatch();
 
-  const [selected, setSelected] = useState<Lang>(() => {
-    if (typeof window === "undefined") return LANGS[0]; // default EN during SSR
-    const code = localStorage.getItem("lang");
-    return LANGS.find((l) => l.code === code) ?? LANGS[0];
+  const [selected, setSelected] = useState<Lang>({
+    code: "en",
+    native: "English",
+    flag: "/languages/UK.png",
   });
 
   const [open, setOpen] = useState(false);
@@ -71,13 +70,17 @@ export default function LanguageDropdown({ onChange, book }: Props) {
         type="button"
         onClick={() => setOpen((v) => !v)}
         className={`flex items-center gap-2 rounded-md  bg-transparent px-1 py-2 text-sm text-white hover:bg-white/10 `}
+        aria-label={`Change language, current language ${selected.native}`}
         aria-haspopup="listbox"
         aria-expanded={open}
+        aria-controls="language-listbox"
       >
-        <img
+        <Image
           src={selected.flag}
           alt={selected.native}
-          className={`rounded-sm h-[14px] ${book ? "w-[30px]" : "w-[20px]"} `}
+          width={book ? 30 : 20}
+          height={10}
+          className={`rounded-sm h-3.5`}
         />
         <span className="hidden sm:inline text-[1rem]">{selected.native}</span>
       </button>
@@ -86,6 +89,8 @@ export default function LanguageDropdown({ onChange, book }: Props) {
         <ul
           className="absolute right-0 z-50 mt-2 w-52 rounded-md border border-slate-200 bg-white p-1 shadow-lg"
           role="listbox"
+          id="language-listbox"
+          aria-activedescendant={`lang-${selected.code}`}
         >
           {LANGS.map((lang) => (
             <li key={lang.code}>
@@ -94,11 +99,15 @@ export default function LanguageDropdown({ onChange, book }: Props) {
                 className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-left text-sm text-slate-700 hover:bg-slate-100"
                 role="option"
                 aria-selected={selected.code === lang.code}
+                id={`lang-${lang.code}`}
               >
-                <img
+                <Image
                   src={lang.flag}
-                  alt={lang.native}
-                  className="rounded-sm h-[14px] w-[20px]"
+                  alt=""
+                  height={15}
+                  width={20}
+                  className="rounded-sm"
+                  aria-hidden
                 />
                 <span className="truncate">{lang.native}</span>
               </button>

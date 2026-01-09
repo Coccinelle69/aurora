@@ -32,14 +32,10 @@ public class StripeWebhookController {
             @RequestHeader("Stripe-Signature") String sigHeader
     ) throws StripeException, JsonProcessingException {
         try {
-            Event event = Webhook.constructEvent(
-                payload, sigHeader, webhookSecret
-            );
+            Event event = Webhook.constructEvent(payload, sigHeader, webhookSecret);
 
-            if("checkout.session.completed".equals(event.getType())) paymentService.finishStripePayment(event, payload);
+            paymentService.finishStripePayment(event, payload);
             
-
-            System.out.println("WEBHOOK OK: " + event.getType());
             return ResponseEntity.ok("ok");
 
         } catch (SignatureVerificationException e) {

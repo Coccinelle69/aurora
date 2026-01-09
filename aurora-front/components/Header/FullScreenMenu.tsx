@@ -78,6 +78,8 @@ export default function FullScreenMenu({ open, onClose }: Props) {
           initial="hidden"
           animate="visible"
           exit="exit"
+          id="fullscreen-menu"
+          aria-label="Main menu"
         >
           {/* Backdrop */}
           <div className="absolute inset-0 bg-black/40 " />
@@ -89,6 +91,7 @@ export default function FullScreenMenu({ open, onClose }: Props) {
               onClick={onClose}
               className="z-10000 absolute right-6 top-6 md:top-12 p-2 hover:scale-110 transition-transform"
               aria-label="Close menu"
+              autoFocus
             >
               <CloseIcon size={32} color="white" />
             </button>

@@ -1,5 +1,5 @@
 "use client";
-import "@/app/globals.css";
+import "../../../globals.css";
 
 import ClientProviders from "@/ClientProviders";
 import { AnimCursor } from "@/components";

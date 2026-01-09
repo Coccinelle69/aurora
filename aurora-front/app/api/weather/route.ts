@@ -1,66 +1,60 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextResponse } from "next/server";
+import Redis from "ioredis";
 
 export const dynamic = "force-dynamic";
 
-export async function GET() {
+// 1. Optimized Redis Connection (Prevents local DNS hangs)
+const redis =
+  (global as any).redis ||
+  new Redis(process.env.REDIS_URL || "redis://127.0.0.1:6379", {
+    connectTimeout: 500,
+    maxRetriesPerRequest: 1,
+  });
+if (process.env.NODE_ENV !== "production") (global as any).redis = redis;
+
+// Helper to fetch and update cache
+async function refreshWeatherData(cacheKey: string) {
+  const lat = (process.env.LAT ?? "0").replace(",", ".");
+  const lon = (process.env.LNG ?? "0").replace(",", ".");
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`;
+
   try {
-    const latStr = (
-      process.env.LAT ??
-      process.env.NEXT_PUBLIC_LAT ??
-      ""
-    ).trim();
-    const lonStr = (
-      process.env.LNG ??
-      process.env.NEXT_PUBLIC_LNG ??
-      ""
-    ).trim();
-
-    const lat = Number(latStr.replace(",", "."));
-    const lon = Number(lonStr.replace(",", "."));
-
-    if (!latStr || !lonStr) {
-      return NextResponse.json(
-        { error: "Missing LAT/LON env vars", got: { latStr, lonStr } },
-        { status: 400 }
-      );
+    const res = await fetch(url, { cache: "no-store" });
+    const data = await res.json();
+    if (data?.current_weather) {
+      const payload = { ...data.current_weather, fetchedAt: Date.now() };
+      await redis.set(cacheKey, JSON.stringify(payload), "EX", 7200);
+      return payload;
     }
-    if (!Number.isFinite(lat) || !Number.isFinite(lon)) {
-      return NextResponse.json(
-        { error: "Invalid LAT/LON (NaN)", got: { latStr, lonStr, lat, lon } },
-        { status: 400 }
-      );
-    }
+  } catch (e) {
+    console.error("Background refresh failed", e);
+  }
+  return null;
+}
 
-    const url =
-      `https://api.open-meteo.com/v1/forecast` +
-      `?latitude=${lat}&longitude=${lon}&current_weather=true`;
+export async function GET() {
+  const cacheKey = "weather:v2";
 
-    const upstream = await fetch(url, { cache: "no-store" });
+  try {
+    // 2. IMMEDIATE CACHE CHECK
+    const cached = await redis.get(cacheKey);
 
-    if (!upstream.ok) {
-      const body = await upstream.text();
-      console.error("OpenMeteo ERROR:", upstream.status, await upstream.text());
-      return NextResponse.json(
-        { error: "Upstream error", status: upstream.status, body, url },
-        { status: 502 }
-      );
+    if (cached) {
+      // FIRE AND FORGET: Update cache in background, don't 'await' it
+      refreshWeatherData(cacheKey);
+
+      // RETURN INSTANTLY
+      return NextResponse.json({
+        ...JSON.parse(cached),
+        source: "cache",
+      });
     }
 
-    const json = await upstream.json();
-    if (!json?.current_weather) {
-      console.error("OpenMeteo ERROR:", json.status, await json.text());
-      return NextResponse.json(
-        { error: "No current_weather in response", raw: json, url },
-        { status: 500 }
-      );
-    }
-
-    return NextResponse.json(json.current_weather);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (e: any) {
-    return NextResponse.json(
-      { error: "Internal error", message: e?.message ?? String(e) },
-      { status: 500 }
-    );
+    // 3. FALLBACK: Only wait if cache is totally empty
+    const fresh = await refreshWeatherData(cacheKey);
+    return NextResponse.json(fresh || { error: "No data" });
+  } catch (err) {
+    return NextResponse.json({ error: "Server Error" }, { status: 500 });
   }
 }

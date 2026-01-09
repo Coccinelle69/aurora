@@ -1,6 +1,6 @@
-import "@/app/globals.css";
+import "../../../../globals.css";
 import { Metadata } from "next";
-import { Princess_Sofia, Quintessential, Roboto } from "next/font/google";
+import localFont from "next/font/local";
 
 export const metadata: Metadata = {
   title: "Aurora Apartment - 70m from the sea",
@@ -17,24 +17,25 @@ export const metadata: Metadata = {
   ],
 };
 
-const sofia = Princess_Sofia({
-  subsets: ["latin"],
-  weight: "400",
+const sofia = localFont({
+  src: "../../../../fonts/PrincessSofia-Regular.ttf",
   variable: "--font-logo",
   display: "swap",
 });
 
-const roboto = Roboto({
-  subsets: ["latin"],
-  weight: ["400", "500"],
+const roboto = localFont({
+  src: [
+    { path: "../../../../fonts/Roboto-Regular.ttf", weight: "400" },
+    { path: "../../../../fonts/Roboto-Medium.ttf", weight: "500" },
+  ],
   variable: "--font-body",
   display: "swap",
 });
 
-const quintessential = Quintessential({
-  subsets: ["latin"],
-  weight: "400",
+const quintessential = localFont({
+  src: "../../../../fonts/Quintessential-Regular.ttf",
   variable: "--font-heading",
+  display: "swap",
 });
 
 export default function RootLayout({

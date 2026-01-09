@@ -27,7 +27,7 @@
   "linens-p": "所有公寓均提供干净的床上用品和柔软的毛巾，确保您的舒适体验。",
   "barbecue": "花园与烧烤区",
   "barbecue-p": "在我们被绿意环绕的私人花园中放松——非常适合家庭烧烤和宁静的户外夜晚。",
-  "surface": "80平方米",
+  "surface": "75平方米",
   "guests": "5位客人",
   "beds": "舒适的床",
   "terrace": "露台",
@@ -285,7 +285,9 @@
     "cancelledMessage": "您的支付已被取消，未产生任何扣款。",
     "errorTitle": "支付错误",
     "errorMessage": "发生了一些错误。",
-    "backHome": "返回首页"
+    "backHome": "返回首页",
+    "alreadyPaidTitle": "付款已完成",
+    "alreadyPaidMessage": "该预订已完成付款，无需再次支付。"
   },
   "alreadyRequested": "您已经为该时间段提交过预订申请。"
 }

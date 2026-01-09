@@ -27,7 +27,7 @@
   "linens-p": "Alle Apartments sind mit sauberer Bettwäsche und weichen Handtüchern für Ihren Komfort ausgestattet.",
   "barbecue": "Garten & Grill",
   "barbecue-p": "Entspannen Sie sich in unserem privaten Garten, umgeben von viel Grün – perfekt für Familiengrillabende und ruhige Abende im Freien.",
-  "surface": "80 m²",
+  "surface": "75 m²",
   "guests": "5 Gäste",
   "beds": "Bequeme Betten",
   "terrace": "Terrasse",
@@ -286,7 +286,9 @@
     "cancelledMessage": "Ihre Zahlung wurde abgebrochen. Es wurde nichts berechnet.",
     "errorTitle": "Zahlungsfehler",
     "errorMessage": "Etwas ist schiefgelaufen.",
-    "backHome": "Zur Startseite"
+    "backHome": "Zur Startseite",
+    "alreadyPaidTitle": "Zahlung bereits erfolgt",
+    "alreadyPaidMessage": "Diese Reservierung wurde bereits bezahlt. Es ist keine weitere Zahlung erforderlich."
   },
   "alreadyRequested": "Sie haben für diesen Zeitraum bereits eine Reservierung angefragt."
 }

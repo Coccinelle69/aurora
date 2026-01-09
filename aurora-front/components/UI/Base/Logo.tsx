@@ -17,7 +17,7 @@ export default function LogoAurora({
     <>
       <div className="relative md:-top-6 sm:top-2 top-3 flex flex-col items-center justify-center ">
         <Image
-          src="/header/image.png"
+          src="/header/image.webp"
           alt="Aurora logo"
           width={size}
           height={size}
@@ -35,14 +35,13 @@ export default function LogoAurora({
           z-10 pointer-events-none transition-all duration-500 ease-out
           ${
             fullscreen
-              ? // ✅ Fullscreen — center it completely and enlarge it
-                "text-[3.5rem] left-1/2 -translate-x-1/2 bottom-40 lg:text-[7rem] top-1/2 translate-y-20"
-              : // ✅ Default — responsive per breakpoint
-                `text-[2rem] left-14 ${
+              ? "text-[3.5rem] left-1/2 -translate-x-1/2 bottom-40 lg:text-[7rem] top-1/2 translate-y-20"
+              : `text-[2rem] left-14 ${
                   book ? "top-30 sm:top-32" : "top-28"
                 }  lg:left-8 lg:top-31 lg:text-[3.25rem]`
           }
         `}
+          aria-hidden="true"
         >
           Aurora
         </p>

@@ -2,10 +2,13 @@ package com.aurora.AuroraApartment.service;
 import java.math.BigDecimal;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import com.aurora.AuroraApartment.dto.PaymentStatus;
 import com.aurora.AuroraApartment.dto.ReservationStatus;
@@ -33,28 +36,44 @@ public class PaymentService {
     private final ReservationRepo reservationRepo;
     private final StripePaymentProvider stripePaymentProvider;
     private final EmailService emailService;
+    @Value("${app.frontend.url}") 
+    private String frontendBaseUrl;
 
     @SuppressWarnings("null")
     @Transactional
-    public String startStripePayment(Reservation reservation, PaymentStatus paymentStatus) {
+    public String startStripePayment(String reference, PaymentStatus paymentStatus) {
 
-    if (reservation.getStatus() == ReservationStatus.PAID) {
-    throw new IllegalStateException("Reservation already paid");
+    Reservation reservation = reservationRepo.findByReservationReference(reference).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    String redirectUrl=null;
 
-}
+        if(reservation.getStatus() == ReservationStatus.PAID) {
+          redirectUrl = UriComponentsBuilder.fromUriString(frontendBaseUrl)
+                .path("/payment/result")
+                .queryParam("status", "paid")
+                .queryParam("ref", reservation.getReservationReference())
+                .toUriString();
+            return redirectUrl;
+        }
+
+        if(reservation.getStatus() != ReservationStatus.CONFIRMED && reservation.getStatus() != ReservationStatus.PARTIALLY_PAID) {
+             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Reservation not confirmed");
+        }
+
     Payment payment = null;
     BigDecimal deposit = reservation.getTotalPrice().multiply(BigDecimal.valueOf(0.3));
     BigDecimal remaining = reservation.getTotalPrice().multiply(BigDecimal.valueOf(0.7));
+    BigDecimal total = reservation.getTotalPrice();
     if(paymentStatus == PaymentStatus.FULL) {
      payment = paymentRepo
     .findByReservationAndPaymentStatus(reservation, PaymentStatus.PENDING)
     .orElseGet(() ->
-        paymentRepo.save(Payment.createPending(reservation, reservation.getTotalPrice(), reservation.getTotalPrice(), BigDecimal.ZERO, BigDecimal.ZERO)));
+        paymentRepo.save(Payment.createPending(reservation, total, total, BigDecimal.ZERO, BigDecimal.ZERO)));
     } else if(paymentStatus == PaymentStatus.DEPOSIT) {
          payment = paymentRepo.findByReservationAndPaymentStatus(reservation, PaymentStatus.PENDING).orElseGet(() -> paymentRepo.save(
-            Payment.createPending(reservation, reservation.getTotalPrice(), deposit, remaining, deposit)));
+            Payment.createPending(reservation, total, deposit, remaining, deposit)));
     } else if(paymentStatus == PaymentStatus.PARTIAL) {
-        payment = paymentRepo.save(Payment.createPending(reservation, reservation.getTotalPrice(), remaining, BigDecimal.ZERO, deposit));     
+        payment = paymentRepo.findByReservationAndPaymentStatus(reservation, PaymentStatus.PENDING)
+            .orElseGet(() -> paymentRepo.save(Payment.createPending(reservation, total, remaining, BigDecimal.ZERO, deposit)));     
     }
      
     
@@ -72,6 +91,9 @@ public class PaymentService {
 
 @Transactional
 public void finishStripePayment(Event event, String payload) throws JsonProcessingException, StripeException {
+    if(!"checkout.session.completed".equals(event.getType())) {
+        return;
+    }
     ObjectMapper mapper = new ObjectMapper();
     JsonNode root = mapper.readTree(payload);
     System.out.println(payload);

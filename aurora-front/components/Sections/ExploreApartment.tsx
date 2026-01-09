@@ -8,32 +8,27 @@ export default function ExploreApartment() {
   const { t } = useTranslation();
   return (
     <section className="relative w-full">
-      {/* full-bleed background image */}
       <div className="relative h-[70vh] min-h-[520px] w-full">
         <Image
-          src="/beach2.jpg" // <- replace with your full-width image
-          alt="Apartments background"
+          src="/beach2.webp"
+          alt=""
           fill
           priority
+          sizes="100vw"
           className="object-cover"
         />
-        {/* optional dark edge like your ref (right side) */}
         <div className="pointer-events-none absolute right-0 top-0 h-full w-1 bg-black/30" />
       </div>
 
-      {/* overlay card */}
       <div className="pointer-events-none absolute inset-0 w-full">
         <div className="pointer-events-auto mx-auto h-full max-w-7xl px-4 sm:px-6">
           <div className="relative flex h-full justify-start mt-5 sm:mt-24 w-full mx-auto">
-            {/* left-aligned panel */}
             <div className="absolute w-full  lg:max-w-xl 2xl:-left-30 lg:left-20">
-              {/* title bar */}
               <div className="bg-marineBlue p-6 sm:p-8 text-white shadow-md">
                 <h2 className={`font-heading text-3xl md:text-4xl`}>
                   {t("explore-h2")}
                 </h2>
               </div>
-              {/* body box */}
               <div className="bg-white/60 px-8 py-8 shadow-md backdrop-blur">
                 <p className="text-slate-700 leading-relaxed font-body text-[0.85rem] sm:text-[1rem]">
                   {t("explore-p-1")}

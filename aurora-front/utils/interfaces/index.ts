@@ -18,8 +18,6 @@ export interface CheckoutProps {
 }
 
 export interface MapProps {
-  lat: number;
-  lng: number;
   zoom?: number;
   title?: string;
   className?: string;

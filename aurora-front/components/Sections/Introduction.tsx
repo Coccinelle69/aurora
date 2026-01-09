@@ -1,4 +1,3 @@
-// app/components/ComfortSection.tsx
 "use client";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
@@ -6,22 +5,24 @@ import { useTranslation } from "react-i18next";
 export default function ComfortSection() {
   const { t } = useTranslation();
   return (
-    <section className="relative overflow-hidden bg-white py-24">
-      {/* FULL-BLEED RIGHT PANEL (goes to the screen edge, taller than the photo) */}
+    <section
+      className="relative overflow-hidden bg-white py-24"
+      aria-label="Apartment comfort and surroundings"
+    >
       <div className="absolute right-0 top-28 h-180 sm:h-[480px] lg:h-[550px] xl:h-[480px] w-[62vw] bg-[#D3DAE0]" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
-        {/* CONTENT LAYER (sits above the panel) */}
         <div className="relative z-10 flex items-center justify-between">
           <div className="hidden lg:block">
             <div className="h-[500px] w-[410px] lg:ml-15 overflow-hidden shadow-[0_35px_35px_rgba(0,0,0,0.20)]">
               <Image
-                src="/beach.jpg"
-                alt="Aurora Suites pool"
+                src="/beach.webp"
+                alt=""
+                aria-hidden
                 width={400}
-                height={750}
-                className="h-full  object-cover"
-                priority
+                height={500}
+                sizes="410px"
+                className="object-cover"
               />
             </div>
           </div>
@@ -48,10 +49,10 @@ export default function ComfortSection() {
         <div className="lg:hidden relative z-10 mt-6">
           <div className="h-64 overflow-hidden shadow">
             <Image
-              src="/beach.jpg"
-              alt="Aurora Suites pool"
-              width={1200}
-              height={800}
+              src="/beach.webp"
+              aria-hidden
+              alt=""
+              fill
               className="h-full w-full object-cover"
               priority
             />

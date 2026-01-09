@@ -26,7 +26,7 @@ export default function LazyImage({
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setVisible(true); // reveal ONLY when visible
+          setVisible(true);
           observer.disconnect();
         }
       },
@@ -58,13 +58,18 @@ export default function LazyImage({
           alt={alt}
           width={src.width}
           height={src.height}
-          className="w-full h-auto rounded-xl object-cover "
+          className="rounded-xl object-cover "
           loading="lazy"
         />
       )}
       <div
         onClick={() => openBackdrop(index)}
         className="absolute inset-0 rounded-xl bg-black opacity-0 hover:opacity-60 transition-opacity duration-300 cursor-pointer"
+        role="button"
+        aria-label={alt}
+        aria-pressed="false"
+        aria-haspopup="dialog"
+        tabIndex={0}
       />
     </div>
   );

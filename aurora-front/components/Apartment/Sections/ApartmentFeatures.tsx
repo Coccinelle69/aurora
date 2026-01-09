@@ -37,14 +37,18 @@ export default function ApartmentFeatures() {
     },
   ];
   return (
-    <section className="border-t border-gray-200 bg-white">
+    <section
+      className="border-t border-gray-200 bg-white"
+      aria-label={t("apartment-features")}
+    >
       <div
         className="
           mx-0 flex flex-wrap justify-center items-center
           px-6 py-8 
           lg:px-10
-          lg:divide-x-[2px] lg:divide-babyBlue
+          lg:divide-x-2 lg:divide-babyBlue
         "
+        role="list"
       >
         {features.map(({ icon, label }, i) => (
           <div
@@ -53,8 +57,9 @@ export default function ApartmentFeatures() {
               flex flex-col 2xl:flex-row items-center justify-center gap-3 text-center
               flex-1 min-w-40 py-4 mx-0
             "
+            role="listitem"
           >
-            {icon}
+            <span aria-hidden="true">{icon}</span>
             <span
               className={`${
                 !xl ? "text-base" : "text-lg"

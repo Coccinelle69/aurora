@@ -9,10 +9,15 @@ export default function UniqueExperience() {
   const images = Object.values(outdoorsImages);
   const { t } = useTranslation();
   return (
-    <section className="w-full flex flex-col lg:flex-row ">
-      {/* LEFT CONTENT */}
+    <section
+      className="w-full flex flex-col lg:flex-row"
+      aria-labelledby="unique-experience-title"
+    >
       <div className="relative bg-[#dce4eb] flex flex-col  justify-center px-10  lg:px-20 lg:w-1/2">
-        <h2 className=" font-heading text-default text-5xl mt-6 lg:mt-0 mb-8 text-center lg:text-left">
+        <h2
+          id="unique-experience-title"
+          className=" font-heading text-default text-5xl mt-6 lg:mt-0 mb-8 text-center lg:text-left"
+        >
           {t("uniqueExperience")}
         </h2>
 
@@ -24,7 +29,8 @@ export default function UniqueExperience() {
           {t("zukveDesc2")}
         </p>
 
-        <button
+        <Link
+          href="/location"
           className="
           bg-[#0e2e57] 
           text-white px-6 py-3 rounded 
@@ -34,12 +40,14 @@ export default function UniqueExperience() {
           mb-6 lg:mb-0
         "
         >
-          <Link href="/location"> {t("exploreLocation")}</Link>
-        </button>
+          {t("exploreLocation")}
+        </Link>
       </div>
 
-      {/* RIGHT IMAGE */}
-      <div className="relative bg-red lg:w-1/2 h-[400px] lg:h-auto">
+      <div
+        className="relative bg-red lg:w-1/2 h-[400px] lg:h-auto"
+        aria-labelledby="unique-experience-title"
+      >
         <SlidesGallery images={images} />
       </div>
     </section>

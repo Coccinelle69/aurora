@@ -30,10 +30,9 @@ export default function CurrencyDropdown({ onChange }: Props) {
 
   const dispatch = useDispatch();
 
-  const [selected, setSelected] = useState<Currency>(() => {
-    if (typeof window === "undefined") return CURRENCIES[0]; // default EN during SSR
-    const code = localStorage.getItem("lang");
-    return CURRENCIES.find((l) => l.code === code) ?? CURRENCIES[0];
+  const [selected, setSelected] = useState<Currency>({
+    code: "EUR",
+    sign: "€",
   });
 
   const [open, setOpen] = useState(false);

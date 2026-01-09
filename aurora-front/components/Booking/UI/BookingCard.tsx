@@ -54,9 +54,9 @@ const BookingCard = ({ finalPrice }: BookingCardProps) => {
         "
       >
         {/* IMAGE */}
-        <div className="w-full sm:w-56 h-56 relative flex-shrink-0">
+        <div className="w-full sm:w-56 h-56 relative shrink-0">
           <Image
-            src="/bookingcard.jpg"
+            src="/bookingcard.webp"
             alt="Apartment"
             fill
             className="object-cover rounded-xl"

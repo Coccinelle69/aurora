@@ -1,5 +1,4 @@
 "use client";
-import "@/globals.css";
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -14,7 +13,7 @@ export default function NotFoundPage() {
       <div className="absolute inset-0 -z-10">
         {" "}
         <Image
-          src="/404.png"
+          src="/404.webp"
           alt="Not Found"
           fill
           priority

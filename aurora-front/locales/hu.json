@@ -27,7 +27,7 @@
   "linens-p": "Minden apartman friss ágyneművel és puha törölközőkkel felszerelt az Ön kényelméért.",
   "barbecue": "Kert és grill",
   "barbecue-p": "Pihenjen privát kertünkben, ahol sok zöld veszi körül – ideális családi grillezéshez és kellemes estékhez.",
-  "surface": "80 m²",
+  "surface": "75 m²",
   "guests": "5 vendég",
   "beds": "Kényelmes ágyak",
   "terrace": "Terasz",
@@ -286,7 +286,9 @@
     "cancelledMessage": "A fizetés megszakadt. Terhelés nem történt.",
     "errorTitle": "Fizetési hiba",
     "errorMessage": "Valami hiba történt.",
-    "backHome": "Vissza a főoldalra"
+    "backHome": "Vissza a főoldalra",
+    "alreadyPaidTitle": "A fizetés már megtörtént",
+    "alreadyPaidMessage": "Ez a foglalás már ki lett fizetve. További fizetésre nincs szükség."
   },
   "alreadyRequested": "Erre az időszakra már küldtél foglalási kérelmet."
 }

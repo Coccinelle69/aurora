@@ -1,56 +1,31 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import { MapProps } from "@/utils/interfaces";
+import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
+import { CircleSpinner } from "../UI";
 
-export default function MapWithMarker({
-  lat,
-  lng,
-  zoom = 14,
-  title = "Location",
-  className,
-  detailsMap,
-}: MapProps) {
-  const elRef = useRef<HTMLDivElement | null>(null);
-  const inited = useRef(false);
+export default function Map({ zoom = 14, className, detailsMap }: MapProps) {
+  const lat = Number(process.env.NEXT_PUBLIC_LAT);
+  const lng = Number(process.env.NEXT_PUBLIC_LNG);
 
-  useEffect(() => {
-    if (inited.current) return;
-    if (!elRef.current) return;
-
-    const init = async () => {
-      const { Map } = (await google.maps.importLibrary(
-        "maps"
-      )) as google.maps.MapsLibrary;
-
-      const map = new Map(elRef.current!, {
-        center: { lat, lng },
-        zoom,
-        gestureHandling: "greedy",
-        mapId: process.env.NEXT_PUBLIC_GMAPS_MAP_ID,
-      });
-
-      const { AdvancedMarkerElement } = (await google.maps.importLibrary(
-        "marker"
-      )) as google.maps.MarkerLibrary;
-
-      new AdvancedMarkerElement({
-        map,
-        position: { lat, lng },
-        title,
-      });
-
-      inited.current = true;
-    };
-
-    init().catch(console.error);
-  }, [lat, lng, zoom, title]);
+  const { isLoaded } = useJsApiLoader({
+    id: "google-map-script",
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GMAPS_KEY!,
+  });
+  const height = detailsMap ? "450px" : "700px";
 
   return (
-    <div
-      ref={elRef}
-      className={className}
-      style={!detailsMap ? { width: "100%", height: 700 } : { height: 450 }}
-    />
+    <div style={{ width: "100%", height }}>
+      {isLoaded ? (
+        <GoogleMap
+          center={{ lat, lng }}
+          zoom={zoom}
+          mapContainerStyle={{ width: "100%", height: "100%" }}
+          mapContainerClassName={className}
+        />
+      ) : (
+        <CircleSpinner visible />
+      )}
+    </div>
   );
 }

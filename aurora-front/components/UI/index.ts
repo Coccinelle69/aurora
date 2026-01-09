@@ -1,4 +1,5 @@
 export { default as AnimCursor } from "./Base/AnimatedCursor";
+export { default as GooeyFilter } from "./Base/GooeyFilter";
 export { Icon } from "./Base/Icon";
 export { default as LogoAurora } from "./Base/Logo";
 export { default as BookButton } from "./Buttons/BookButton";
@@ -7,5 +8,6 @@ export { default as ShareButton } from "./Buttons/ShareButton";
 export { default as Email } from "./Socials/Email";
 export { default as Phone } from "./Socials/Phone";
 export { default as Socials } from "./Socials/Socials";
+export { default as CircleSpinner } from "./Spinners/CircleSpinner";
 export { default as LoadingSpinner } from "./Spinners/LoadingSpinner";
 export { default as MagnifyingGlass } from "./Spinners/MagnifyingGlass";

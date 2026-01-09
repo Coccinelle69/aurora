@@ -7,3 +7,4 @@ export * from "./Contact";
 export * from "./Booking";
 export * from "./Footer";
 export * from "./Details";
+export * from "./";

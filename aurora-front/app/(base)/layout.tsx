@@ -1,29 +1,28 @@
 import type { Metadata } from "next";
-import "@/globals.css";
+import "../globals.css";
 
-import { Roboto, Princess_Sofia, Quintessential } from "next/font/google";
 import ClientProviders from "@/ClientProviders";
-import { Footer, Header } from "@/components";
+import { Footer, GooeyFilter, Header } from "@/components";
 import ClientWrapper from "@/app/ClientWrapper";
-import Script from "next/script";
+import localFont from "next/font/local";
 
-const roboto = Roboto({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-body",
-  display: "swap",
-});
-
-const sofia = Princess_Sofia({
-  subsets: ["latin"],
-  weight: "400",
+const sofia = localFont({
+  src: "../fonts/PrincessSofia-Regular.ttf",
   variable: "--font-logo",
   display: "swap",
 });
 
-const quintessential = Quintessential({
-  subsets: ["latin"],
-  weight: "400",
+const roboto = localFont({
+  src: [
+    { path: "../fonts/Roboto-Regular.ttf", weight: "400" },
+    { path: "../fonts/Roboto-Medium.ttf", weight: "500" },
+  ],
+  variable: "--font-body",
+  display: "swap",
+});
+
+const quintessential = localFont({
+  src: "../fonts/Quintessential-Regular.ttf",
   variable: "--font-heading",
   display: "swap",
 });
@@ -50,39 +49,10 @@ export default function BaseLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <Script
-          id="gmaps"
-          strategy="beforeInteractive"
-          src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GMAPS_KEY}&v=weekly&libraries=marker&loading=async`}
-        />
-      </head>
       <body
         suppressHydrationWarning
         className={`${roboto.variable} ${quintessential.variable} ${sofia.variable} antialiased`}
       >
-        {" "}
-        <svg width="0" height="0" aria-hidden style={{ position: "absolute" }}>
-          <filter id="gooey" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur
-              in="SourceGraphic"
-              stdDeviation="10"
-              result="blur"
-            />
-            <feColorMatrix
-              in="blur"
-              mode="matrix"
-              values="
-                1 0 0 0 0
-                0 1 0 0 0
-                0 0 1 0 0
-                0 0 0 20 -10
-              "
-              result="goo"
-            />
-            <feComposite in="SourceGraphic" in2="goo" operator="atop" />
-          </filter>
-        </svg>
         <ClientProviders>
           <ClientWrapper>
             <Header />
@@ -91,6 +61,7 @@ export default function BaseLayout({
             <Footer />
           </ClientWrapper>
         </ClientProviders>
+        <GooeyFilter />
       </body>
     </html>
   );

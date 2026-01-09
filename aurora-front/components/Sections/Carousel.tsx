@@ -3,15 +3,12 @@
 import { useEffect } from "react";
 import Image, { StaticImageData } from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
-import type { EmblaOptionsType } from "embla-carousel";
+import * as houseImages from "@/assets/carousel";
 
 type Slide = string | StaticImageData;
-type Props = {
-  options?: EmblaOptionsType;
-  slides?: StaticImageData[]; // optional; if omitted we use defaults below
-};
+const slides = Object.values(houseImages);
 
-export default function EmblaCarousel({ slides }: Props) {
+const EmblaCarousel = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     dragFree: false,
@@ -32,9 +29,11 @@ export default function EmblaCarousel({ slides }: Props) {
   }, [emblaApi]);
 
   return (
-    <div className=" relative">
+    <div className=" relative" role="region" aria-label="Image carousel">
+      <p className="sr-only">This carousel auto-advances every 10 seconds.</p>
       <div className="absolute inset-0 top-60 z-10 flex items-center justify-center pointer-events-none lg:top-0 left-0">
         <p
+          aria-hidden
           className="font-logo
           text-white tracking-[0.25rem] text-[4rem] opacity-70 sm:text-[8rem]"
         >
@@ -47,6 +46,9 @@ export default function EmblaCarousel({ slides }: Props) {
             <div
               className="flex-[0_0_100%] relative h-[80%] lg:h-[600px]"
               key={typeof src === "string" ? src : src.src}
+              role="group"
+              aria-roledescription="slide"
+              aria-label={`Slide ${index + 1} of ${items.length}`}
             >
               <div className="transition-transform duration-300 ease-out will-change-transform">
                 <div className="relative h-[800px] w-full">
@@ -55,7 +57,10 @@ export default function EmblaCarousel({ slides }: Props) {
                     alt={`Slide ${index + 1}`}
                     fill
                     className="object-cover pointer-events-none select-none opacity-95 "
-                    priority
+                    priority={index === 0}
+                    loading={index === 0 ? "eager" : "lazy"}
+                    fetchPriority={index === 0 ? "high" : "low"}
+                    sizes="100vw"
                   />
                 </div>
               </div>
@@ -64,10 +69,10 @@ export default function EmblaCarousel({ slides }: Props) {
         </div>
       </div>
 
-      {/* simple prev/next (optional) */}
       <button
         onClick={() => emblaApi?.scrollPrev()}
         className="btn-carousel left"
+        aria-label="Previous slide"
       >
         ‹
       </button>
@@ -75,9 +80,12 @@ export default function EmblaCarousel({ slides }: Props) {
       <button
         onClick={() => emblaApi?.scrollNext()}
         className="btn-carousel right"
+        aria-label="Next slide"
       >
         ›
       </button>
     </div>
   );
-}
+};
+
+export default EmblaCarousel;

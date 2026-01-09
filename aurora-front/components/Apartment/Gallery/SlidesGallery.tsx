@@ -8,7 +8,7 @@ import type { EmblaOptionsType } from "embla-carousel";
 type Slide = string | StaticImageData;
 type Props = {
   options?: EmblaOptionsType;
-  images?: StaticImageData[]; // optional; if omitted we use defaults below
+  images?: StaticImageData[];
 };
 
 export default function GalleryBackdrop({ images }: Props) {
@@ -19,24 +19,27 @@ export default function GalleryBackdrop({ images }: Props) {
     inViewThreshold: 0.6,
   });
 
-  // ✅ use provided slides or fallback to your images
   const items: Slide[] = images!;
 
   useEffect(() => {
     if (!emblaApi) return;
 
-    // 🔁 Move to the next slide every 3 seconds
     const interval = setInterval(() => {
       emblaApi.scrollNext();
     }, 6000);
 
     return () => clearInterval(interval);
-  }, [emblaApi]); // 👈 use emblaApi, not emblaRef
+  }, [emblaApi]);
 
   return (
-    <div className=" relative">
+    <div
+      className=" relative"
+      role="region"
+      aria-roledescription="carousel"
+      aria-label="Image gallery"
+    >
       <div className="overflow-hidden" ref={emblaRef}>
-        <div className="flex">
+        <div className="flex" aria-live="polite">
           {items.map((src, index) => (
             <div
               className="flex-[0_0_100%] relative h-[400px] md:h-[450px] lg:h-[712px]
@@ -49,8 +52,10 @@ export default function GalleryBackdrop({ images }: Props) {
                     src={src}
                     alt={`Slide ${index + 1}`}
                     fill
+                    sizes="450px"
                     className="object-cover pointer-events-none select-none opacity-95 "
                     priority
+                    aria-hidden="true"
                   />
                 </div>
               </div>

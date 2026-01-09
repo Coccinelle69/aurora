@@ -27,7 +27,7 @@
   "linens-p": "Wszystkie apartamenty wyposażone są w czystą pościel i miękkie ręczniki dla Twojego komfortu.",
   "barbecue": "Ogród i grill",
   "barbecue-p": "Zrelaksuj się w naszym prywatnym ogrodzie pełnym zieleni – idealnym na rodzinne grillowanie i spokojne wieczory.",
-  "surface": "80 m²",
+  "surface": "75 m²",
   "guests": "5 gości",
   "beds": "Wygodne łóżka",
   "terrace": "Taras",
@@ -286,7 +286,9 @@
     "cancelledMessage": "Płatność została anulowana. Nie pobrano żadnych środków.",
     "errorTitle": "Błąd płatności",
     "errorMessage": "Coś poszło nie tak.",
-    "backHome": "Powrót do strony głównej"
+    "backHome": "Powrót do strony głównej",
+    "alreadyPaidTitle": "Płatność już zrealizowana",
+    "alreadyPaidMessage": "Ta rezerwacja została już opłacona. Nie jest wymagana żadna dodatkowa płatność."
   },
   "alreadyRequested": "Złożyłeś już prośbę o rezerwację na ten okres."
 }

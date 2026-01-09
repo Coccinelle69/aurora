@@ -6,3 +6,4 @@ export { default as Amenities } from "./Sections/Amenities";
 export { default as ApartmentFeatures } from "./Sections/ApartmentFeatures";
 export { default as SlidesGallery } from "./Gallery/SlidesGallery";
 export { default as UniqueExperience } from "./Sections/UniqueExperience";
+export { default as ApartmentWrapper } from "./ApartmentWrapper";

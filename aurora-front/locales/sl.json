@@ -27,7 +27,7 @@
   "linens-p": "Vsi apartmaji so opremljeni s čisto posteljnino in mehkimi brisačami za vaše udobje.",
   "barbecue": "Vrt in žar",
   "barbecue-p": "Sprostite se v našem zasebnem vrtu, obdanem z zelenjem — idealno za družinske piknike in mirne večere na prostem.",
-  "surface": "80 m²",
+  "surface": "75 m²",
   "guests": "5 Goste",
   "beds": "Udobne postelje",
   "terrace": "Terasa",
@@ -285,7 +285,9 @@
     "cancelledMessage": "Vaše plačilo je bilo preklicano. Znesek ni bil zaračunan.",
     "errorTitle": "Napaka pri plačilu",
     "errorMessage": "Prišlo je do napake.",
-    "backHome": "Nazaj na začetno stran"
+    "backHome": "Nazaj na začetno stran",
+    "alreadyPaidTitle": "Plačilo je že izvedeno",
+    "alreadyPaidMessage": "Ta rezervacija je že plačana. Dodatno plačilo ni potrebno."
   },
   "alreadyRequested": "Za to obdobje ste že oddali zahtevo za rezervacijo."
 }

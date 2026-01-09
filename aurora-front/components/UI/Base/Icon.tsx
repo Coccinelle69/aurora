@@ -3,7 +3,6 @@ import Image from "next/image";
 
 export const Icon = ({
   src,
-  alt,
   size = 50,
   color = "white",
   className,
@@ -11,9 +10,13 @@ export const Icon = ({
   <>
     <Image
       src={src}
-      alt={alt}
+      alt=""
       width={size}
       height={size}
+      aria-hidden="true"
+      loading={`${src === "/share/share.png" ? "eager" : "lazy"}`}
+      fetchPriority={`${src === "/share/share.png" ? "high" : "low"}`}
+      priority={src === "/share/share.png" ? true : false}
       className={`hover:scale-125 transition-transform duration-300 ease-out ${className}`}
       style={{
         filter:

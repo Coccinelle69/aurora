@@ -1,7 +1,8 @@
 "use client";
 import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
-export default function ReservationResultPage() {
+function ReservationResultContent() {
   const params = useSearchParams();
   const status = params.get("status");
 
@@ -36,17 +37,24 @@ export default function ReservationResultPage() {
   const current = content[status as keyof typeof content] ?? content.error;
 
   return (
-    <main className="text-center bg-marineBlue/55 p-20 rounded-4xl">
-      <h1
-        className="font-logo font-bold text-8xl mb-10 tracking-widest
-"
-      >
-        Aurora
-      </h1>
+    <>
       <h2 className={`text-4xl font-heading mb-4 ${current.color}`}>
         {current.title}
       </h2>
       <p className="text-white font-body">{current.text}</p>
+    </>
+  );
+}
+
+export default function ReservationResultPage() {
+  return (
+    <main className="text-center bg-marineBlue/55 p-20 rounded-4xl">
+      <h1 className="font-logo font-bold text-8xl mb-10 tracking-widest">
+        Aurora
+      </h1>
+      <Suspense fallback={<p className="text-white">Loading status...</p>}>
+        <ReservationResultContent />
+      </Suspense>
     </main>
   );
 }

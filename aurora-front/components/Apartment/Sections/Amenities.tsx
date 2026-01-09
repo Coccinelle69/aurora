@@ -56,8 +56,11 @@ const Amenities = () => {
     },
   ];
   return (
-    <section className="w-full py-20">
-      <h2 className="text-center text-6xl font-heading text-marineBlue mb-16">
+    <section className="w-full py-20" aria-labelledby="amenities-title">
+      <h2
+        className="text-center text-6xl font-heading text-marineBlue mb-16"
+        id="amenities-title"
+      >
         {t("amenities")}
       </h2>
 
@@ -73,13 +76,15 @@ const Amenities = () => {
           mx-auto 
           px-6
         "
+        role="list"
       >
         {features.map((feature, i) => (
           <div
             key={i}
             className="flex flex-col items-center text-center max-w-[350px] mx-auto mb-5 sm:mb-0"
+            role="listitem"
           >
-            {feature.icon}
+            <span aria-hidden="true">{feature.icon}</span>
 
             <h3 className="mt-2 sm:mt-6 text-2xl font-heading text-marineBlue">
               {feature.title}

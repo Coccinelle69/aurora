@@ -1,3 +1,4 @@
+export { default as HeroBookingSection } from "./HeroBookingSection";
 export { default as CurrencyDropdown } from "./Header/CurrencyDropdown";
 export { default as BookHeader } from "./Header/Header";
 export { default as AvailabilityCalendar } from "./PriceAvailablity/AvailabilityCalendar";

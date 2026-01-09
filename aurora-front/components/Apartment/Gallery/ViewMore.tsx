@@ -35,6 +35,7 @@ export default function ViewMore({
             window.open("/book", "_blank", "noopener,noreferrer");
           }}
           className={btnStyle}
+          aria-label={t("book")}
         >
           {t("book")}
         </button>
@@ -46,6 +47,8 @@ export default function ViewMore({
       <button
         onClick={() => setVisibleCount((prev) => prev + batchSize)}
         className={btnStyle}
+        aria-expanded={visibleCount < images.length}
+        aria-controls="gallery"
       >
         {t("view-more")}
       </button>

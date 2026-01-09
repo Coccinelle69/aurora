@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
     ],
-    sitemap: "https://aurora-apartment.com/sitemap.xml",
+    sitemap: "https://aurora-apartment.from.hr/sitemap.xml",
   };
 }

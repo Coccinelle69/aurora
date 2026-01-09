@@ -27,7 +27,7 @@
   "linens-p": "Všechny apartmány jsou vybaveny čistým povlečením a měkkými ručníky pro vaše pohodlí.",
   "barbecue": "Zahrada & gril",
   "barbecue-p": "Odpočiňte si na naší soukromé zahradě obklopené zelení – ideální pro rodinné grilování nebo večerní relax.",
-  "surface": "80 m²",
+  "surface": "75 m²",
   "guests": "5 hostů",
   "beds": "Pohodlné postele",
   "terrace": "Terasa",
@@ -286,7 +286,9 @@
     "cancelledMessage": "Vaše platba byla zrušena. Nebyla provedena žádná platba.",
     "errorTitle": "Chyba platby",
     "errorMessage": "Něco se pokazilo.",
-    "backHome": "Zpět na úvod"
+    "backHome": "Zpět na úvod",
+    "alreadyPaidTitle": "Platba již proběhla",
+    "alreadyPaidMessage": "Tato rezervace již byla zaplacena. Není nutná žádná další platba."
   },
   "alreadyRequested": "Pro toto období jste již požádali o rezervaci."
 }

@@ -11,6 +11,7 @@ export default function PaymentResultPage() {
 
   const isSuccess = status === "success";
   const isCancelled = status === "cancelled";
+  const isPaid = status === "paid";
 
   return (
     <main className=" bg-marineBlue/55 flex flex-col items-center justify-center text-center p-6 sm:p-20 rounded-4xl">
@@ -41,7 +42,18 @@ export default function PaymentResultPage() {
           </>
         )}
 
-        {!isSuccess && !isCancelled && (
+        {isPaid && (
+          <>
+            <h2 className="text-3xl font-bold text-orange-600 mb-4">
+              {t("payment.alreadyPaidTitle")}
+            </h2>
+            <p className="text-slate-600 mb-6">
+              {t("payment.alreadyPaidMessage")}
+            </p>
+          </>
+        )}
+
+        {!isSuccess && !isCancelled && !isPaid && (
           <>
             <h2 className="text-3xl font-bold text-red-600 mb-4">
               {t("payment.errorTitle")}

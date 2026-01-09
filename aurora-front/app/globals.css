@@ -105,6 +105,7 @@ body {
   }
 
   .item {
+    will-change: tranform, opacity;
     @apply opacity-0 scale-50 transition-all duration-400 ease-in-out hover:bg-[#3fa3aa];
     transform: translate(0, 0) scale(0.5);
   }

@@ -7,8 +7,14 @@ const Phone = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="flex flex-col items-center justify-center lg:block">
-      <p className="text-white footer-title">{t("phone")}:</p>
+    <div
+      className="flex flex-col items-center justify-center lg:block"
+      role="group"
+      aria-labelledby="phone-label"
+    >
+      <p id="phone-label" className="text-white footer-title">
+        {t("phone")}:
+      </p>
       <Link
         href="tel:+385921385595"
         className="mt-1 inline-flex items-center text-center gap-2 hover:underline"

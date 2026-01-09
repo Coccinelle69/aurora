@@ -29,15 +29,29 @@ const Header = () => {
         }
      `}
       >
-        <nav className={`${!scrolled && "lg:h-[100px]"}`}>
+        <nav
+          className={`${!scrolled && "lg:h-[100px]"}`}
+          aria-label="Main navigation"
+        >
           <ul className="h-full flex flex-row px-[8%] justify-between">
             <li className="hidden lg:flex flex-row items-center">
               <div className="hidden lg:flex flex-row items-center gap-3 ">
                 <div className="flex flex-row items-center gap-5 border-r border-white p-4">
-                  <FacebookIcon size={24} />
-                  <InstagramIcon size={24} />
+                  <a href="https://facebook.com" aria-label="Facebook">
+                    <FacebookIcon size={24} aria-hidden />
+                  </a>
+                  <a href="https://instagram.com" aria-label="Instagram">
+                    <InstagramIcon size={24} aria-hidden />
+                  </a>
                 </div>
-                <p className="font-bold text-white">+385 92138 5595</p>
+                <p className="font-bold text-white">
+                  <a
+                    href="tel:+385921385595"
+                    aria-label="Call us at +385 92 138 5595"
+                  >
+                    +385 92138 5595
+                  </a>
+                </p>
               </div>
             </li>
             <li className="block lg:hidden">
@@ -52,10 +66,13 @@ const Header = () => {
 
             <li className="flex flex-row items-center justify-center ">
               <button
+                aria-label={fullScreenMenuOpen ? "Close menu" : "Open menu"}
+                aria-expanded={fullScreenMenuOpen}
+                aria-controls="fullscreen-menu"
                 className="-translate-y-2.5 sm:px-[25px]"
                 onClick={() => {
                   setMenuBtnClosed((prev) => !prev);
-                  setFullScreenMenuOpen(true);
+                  setFullScreenMenuOpen((prev) => !prev);
                 }}
               >
                 {menuBtnClosed || !fullScreenMenuOpen ? (

@@ -5,8 +5,8 @@ import useEmblaCarousel from "embla-carousel-react";
 import type { EmblaOptionsType } from "embla-carousel";
 import { createPortal } from "react-dom";
 import { useEffect } from "react";
+import * as apartmentImages from "@/assets/aurora";
 
-type Slide = string | StaticImageData;
 type Props = {
   options?: EmblaOptionsType;
   images?: StaticImageData[];
@@ -14,17 +14,14 @@ type Props = {
   startIndex: number;
 };
 
-export default function GalleryBackdrop({
-  images,
-  startIndex,
-  openBackdrop,
-}: Props) {
+export default function GalleryBackdrop({ startIndex, openBackdrop }: Props) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
-    dragFree: false, // snapping feels smoother than free drag
+    dragFree: false,
     skipSnaps: false,
     inViewThreshold: 0.6,
   });
+  const apartment = Object.values(apartmentImages);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -45,21 +42,28 @@ export default function GalleryBackdrop({
     emblaApi.scrollTo(startIndex, true);
   }, [emblaApi, startIndex]);
 
-  // ✅ use provided slides or fallback to your images
-  const items: Slide[] = images!;
-
   return createPortal(
     <div
-      className="fixed inset-0 w-screen h-screen bg-black/80 z-[9999]"
+      className="fixed inset-0 w-screen h-screen bg-black/80 z-9999"
       onClick={() => openBackdrop(null)}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Image viewer"
     >
-      <div className="embla relative ">
+      <div
+        className="embla relative"
+        role="region"
+        aria-roledescription="carousel"
+      >
         <div className="embla__viewport overflow-hidden" ref={emblaRef}>
           <div className="embla__container flex">
-            {items.map((src, index) => (
+            {apartment.map((src, index) => (
               <div
                 key={typeof src === "string" ? src : src.src}
                 className="embla__slide flex-[0_0_100%] w-full h-screen flex items-center justify-center"
+                role="group"
+                aria-roledescription="slide"
+                aria-label={`${index + 1} of ${apartment.length}`}
               >
                 <Image
                   src={src}
@@ -79,6 +83,7 @@ export default function GalleryBackdrop({
             emblaApi?.scrollPrev();
           }}
           className="btn-gallery left"
+          aria-label="Previous slide"
         >
           ‹
         </button>
@@ -88,6 +93,7 @@ export default function GalleryBackdrop({
             emblaApi?.scrollNext();
           }}
           className="btn-gallery right"
+          aria-label="Next slide"
         >
           ›
         </button>

@@ -27,7 +27,7 @@
   "linens-p": "Todos los apartamentos están equipados con ropa de cama limpia y toallas suaves para tu comodidad.",
   "barbecue": "Jardín y barbacoa",
   "barbecue-p": "Relájate en nuestro jardín privado rodeado de vegetación — perfecto para barbacoas familiares y tranquilas noches al aire libre.",
-  "surface": "80 m²",
+  "surface": "75 m²",
   "guests": "5 Huéspedes",
   "beds": "Camas cómodas",
   "terrace": "Terraza",
@@ -293,7 +293,9 @@
       "cancelledMessage": "Su pago fue cancelado. No se realizó ningún cargo.",
       "errorTitle": "Error de pago",
       "errorMessage": "Algo salió mal.",
-      "backHome": "Volver al inicio"
+      "backHome": "Volver al inicio",
+      "alreadyPaidTitle": "Pago ya realizado",
+      "alreadyPaidMessage": "Esta reserva ya ha sido pagada. No se requiere ningún pago adicional."
     }
   },
   "alreadyRequested": "Ya ha solicitado una reserva para este período."

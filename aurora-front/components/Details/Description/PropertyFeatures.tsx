@@ -21,7 +21,7 @@ const PropertyFeatures = () => {
 
   return (
     <div className="border-top">
-      <p className="details-title pt-[1rem]">{t("propertyFeatures")}</p>
+      <p className="details-title pt-4">{t("propertyFeatures")}</p>
       <div className="pt-3">
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-5 text-center">
           {features.map((feature, i) => {

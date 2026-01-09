@@ -27,7 +27,7 @@
   "linens-p": "All apartments are supplied with clean bed linens and soft towels for your comfort.",
   "barbecue": "Garden & Barbecue",
   "barbecue-p": "Relax in our private garden surrounded by greenery — perfect for family barbecues and peaceful evenings outdoors.",
-  "surface": "80 m²",
+  "surface": "75 m²",
   "guests": "5 Guests",
   "beds": "Comfy Beds",
   "terrace": "Terrace",
@@ -285,7 +285,9 @@
     "cancelledMessage": "Your payment was cancelled. No charge was made.",
     "errorTitle": "Payment error",
     "errorMessage": "Something went wrong.",
-    "backHome": "Back to home"
+    "backHome": "Back to home",
+    "alreadyPaidTitle": "Payment already completed",
+    "alreadyPaidMessage": "This reservation has already been paid. No further payment is required."
   },
   "alreadyRequested": "You have already requested a reservation for this period."
 }

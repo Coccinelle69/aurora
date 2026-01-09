@@ -7,12 +7,17 @@ interface MagnifyingGlassProps {
 
 const MagnifyingGlass = ({ visible }: MagnifyingGlassProps) => {
   return (
-    <div className="flex justify-center mt-4">
+    <div
+      className="flex justify-center mt-4"
+      role="status"
+      aria-live="polite"
+      aria-hidden={!visible}
+    >
       <SearchSpinner
         visible={visible}
         height="80"
         width="80"
-        ariaLabel="magnifying-glass-loading"
+        ariaLabel="Loading"
         wrapperStyle={{}}
         wrapperClass="magnifying-glass-wrapper"
         glassColor="#cee0ecff"

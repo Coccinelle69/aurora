@@ -7,8 +7,14 @@ const Email = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="flex flex-col items-center justify-center lg:block">
-      <p className="footer-title text-white">{t("email")}:</p>
+    <div
+      className="flex flex-col items-center justify-center lg:block"
+      role="group"
+      aria-labelledby="email-label"
+    >
+      <p id="email-label" className="footer-title text-white">
+        {t("email")}:
+      </p>
       <Link
         href="mailto:dorotea0105@gmail.com"
         className="mt-1 inline-flex items-center gap-2 hover:underline"

@@ -7,5 +7,6 @@ export { default as HouseRules } from "./Description/HouseRules";
 export { default as PropertyAmenities } from "./Description/PropertyAmenities";
 export { default as PropertyFeatures } from "./Description/PropertyFeatures";
 export { default as DetailsFooter } from "./DetailsFooter";
+export { default as DetailsWrapper } from "./DetailsWrapper";
 export { default as DetailsGallery } from "./Gallery/DetailsGallery";
 export { default as ThumbnailGallery } from "./Gallery/ThumbnailGallery";

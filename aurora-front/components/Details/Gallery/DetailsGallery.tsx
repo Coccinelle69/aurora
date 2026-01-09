@@ -1,18 +1,18 @@
 "use client";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
 import { EmblaOptionsType } from "embla-carousel";
 import { useEffect, useState, useCallback, memo } from "react";
 import { ThumbnailGallery } from "@/components";
-
-type Slide = StaticImageData | string;
+import * as houseImages from "@/assets/carousel";
 
 interface PropType {
-  slides: Slide[];
   options?: EmblaOptionsType;
 }
 
-function DetailsGallery({ slides, options }: PropType) {
+function DetailsGallery({ options }: PropType) {
+  const slides = Object.values(houseImages);
+
   const [emblaRef, emblaApi] = useEmblaCarousel({
     ...options,
     loop: true,
@@ -48,9 +48,7 @@ function DetailsGallery({ slides, options }: PropType) {
 
   return (
     <div className="flex flex-col md:flex-row w-full sm:w-[90%]  gap-10 mx-auto mt-20 py-28  sm:py-8 overflow-hidden ">
-      {/* MAIN GALLERY */}
       <div className="relative flex-4 overflow-hidden sm:rounded-3xl lg:rounded-tr-none lg:rounded-br-none">
-        {/* Embla viewport */}
         <div className="overflow-hidden" ref={emblaRef}>
           <div className="flex">
             {slides.map((src, i) => (
@@ -61,13 +59,16 @@ function DetailsGallery({ slides, options }: PropType) {
                 <Image
                   src={src}
                   alt={`Slide ${i + 1}`}
-                  fill // ensures image fills height/width
+                  fill
+                  sizes="(max-width: 768px) 100vw, 80vw"
                   className={`object-cover transition-all duration-700 ease-in-out ${
                     i === selectedIndex
                       ? "opacity-100 scale-100"
                       : "opacity-0 scale-105"
                   }`}
+                  fetchPriority={i === 0 ? "high" : "low"}
                   priority={i === 0}
+                  loading={i === 0 ? "eager" : "lazy"}
                 />
               </div>
             ))}

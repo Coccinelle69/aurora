@@ -7,7 +7,12 @@ interface LoadingSpinnerProps {
 
 const LoadingSpinner = ({ visible }: LoadingSpinnerProps) => {
   return (
-    <div className="flex justify-center mt-4">
+    <div
+      className="flex justify-center mt-4"
+      role="status"
+      aria-live="polite"
+      aria-hidden={!visible}
+    >
       <RotatingLines
         visible={visible}
         height="32"
@@ -15,7 +20,7 @@ const LoadingSpinner = ({ visible }: LoadingSpinnerProps) => {
         strokeColor="grey"
         strokeWidth="5"
         animationDuration="0.75"
-        ariaLabel="rotating-lines-loading"
+        ariaLabel="Loading"
       />
     </div>
   );

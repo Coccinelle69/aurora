@@ -1,0 +1,64 @@
+import ClientWrapper from "@/app/ClientWrapper";
+import "../globals.css";
+import ClientProviders from "@/ClientProviders";
+import { Metadata } from "next";
+import localFont from "next/font/local";
+
+export const metadata: Metadata = {
+  title: "Aurora Apartment - 70m from the sea",
+  description:
+    "Aurora Apartment is a newly renovated 75m² seaside rental in Zukve, Vrsi near Zadar. Perfect for families • 3 min walk to the beach • Modern amenities • Free parking.",
+  keywords: [
+    "Aurora Apartment Vrsi",
+    "apartment Vrsi Zadar",
+    "Zukve rental",
+    "holiday apartment Croatia",
+    "seaside apartment Zadar",
+    "Zadar rental",
+    "Aurora",
+  ],
+};
+
+const sofia = localFont({
+  src: "../fonts/PrincessSofia-Regular.ttf",
+  variable: "--font-logo",
+  display: "swap",
+});
+
+const roboto = localFont({
+  src: [
+    { path: "../fonts/Roboto-Regular.ttf", weight: "400" },
+    { path: "../fonts/Roboto-Medium.ttf", weight: "500" },
+  ],
+  variable: "--font-body",
+  display: "swap",
+});
+
+const quintessential = localFont({
+  src: "../fonts/Quintessential-Regular.ttf",
+  variable: "--font-heading",
+  display: "swap",
+});
+
+export default function PaymentLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en" className="h-full">
+      <body
+        suppressHydrationWarning
+        className={`h-full bg-babyBlue ${sofia.variable} ${roboto.variable} ${quintessential.variable}`}
+      >
+        <ClientProviders>
+          <ClientWrapper>
+            <div className="min-h-full flex items-center justify-center px-6">
+              {children}
+            </div>
+          </ClientWrapper>
+        </ClientProviders>
+      </body>
+    </html>
+  );
+}

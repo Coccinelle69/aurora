@@ -27,7 +27,7 @@
   "linens-p": "Tous les appartements sont fournis avec du linge de lit propre et des serviettes douces pour votre confort.",
   "barbecue": "Jardin et barbecue",
   "barbecue-p": "Détendez-vous dans notre jardin privé entouré de verdure — idéal pour des barbecues en famille et des soirées paisibles en plein air.",
-  "surface": "80 m²",
+  "surface": "75 m²",
   "guests": "5 Invités",
   "beds": "Lits confortables",
   "terrace": "Terrasse",
@@ -285,7 +285,9 @@
     "cancelledMessage": "Votre paiement a été annulé. Aucun débit n’a été effectué.",
     "errorTitle": "Erreur de paiement",
     "errorMessage": "Une erreur s’est produite.",
-    "backHome": "Retour à l’accueil"
+    "backHome": "Retour à l’accueil",
+    "alreadyPaidTitle": "Paiement déjà effectué",
+    "alreadyPaidMessage": "Cette réservation a déjà été payée. Aucun paiement supplémentaire n’est requis."
   },
   "alreadyRequested": "Vous avez déjà demandé une réservation pour cette période."
 }

@@ -27,6 +27,9 @@ const ThumbnailGallery = () => {
             fill
             alt={`Thumbnail ${i + 1}`}
             className="object-cover"
+            priority={i === 0}
+            loading={i === 0 ? "eager" : "lazy"}
+            fetchPriority={i === 0 ? "high" : "low"}
           />
         </button>
       ))}

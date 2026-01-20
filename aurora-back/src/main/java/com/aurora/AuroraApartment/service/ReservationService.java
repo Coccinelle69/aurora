@@ -16,7 +16,9 @@ import org.springframework.web.server.ResponseStatusException;
 import com.aurora.AuroraApartment.dto.PriceResult;
 import com.aurora.AuroraApartment.dto.ReservationRequest;
 import com.aurora.AuroraApartment.dto.ReservationStatus;
+import com.aurora.AuroraApartment.model.Customer;
 import com.aurora.AuroraApartment.model.Reservation;
+import com.aurora.AuroraApartment.repo.CustomerRepo;
 import com.aurora.AuroraApartment.repo.ReservationRepo;
 import com.aurora.AuroraApartment.service.pricing.PriceCalculator;
 
@@ -26,6 +28,7 @@ import jakarta.transaction.Transactional;
 public class ReservationService {
     
     private final ReservationRepo reservationRepo;
+    private final CustomerRepo customerRepo;
     private final EmailService emailService;
     private final ReservationReferenceService referenceService;
     private final PriceCalculator priceCalculator;
@@ -33,12 +36,14 @@ public class ReservationService {
 
     public ReservationService(
             ReservationRepo reservationRepo,
+            CustomerRepo customerRepo,
             EmailService emailService,
             ReservationReferenceService referenceService,
             PriceCalculator priceCalculator
 
     ) {
         this.reservationRepo = reservationRepo;
+        this.customerRepo = customerRepo;
         this.emailService = emailService;
         this.referenceService = referenceService;
         this.priceCalculator = priceCalculator;
@@ -83,12 +88,24 @@ public Map<String,Object> createReservation(ReservationRequest reservation) {
     int teens = Optional.ofNullable(reservation.getTeens()).orElse(0);
     int children = Optional.ofNullable(reservation.getChildren()).orElse(0);
 
-    Reservation newReservation = Reservation.builder()
-        .mainContactFirstName(reservation.getFirstName())
-        .mainContactLastName(reservation.getLastName())
+    
+    Customer customer = customerRepo.findByEmail(reservation.getEmail());
+
+    if(customer==null) {
+         customer = Customer.builder()
+        .firstName(reservation.getFirstName())
+        .lastName(reservation.getLastName())
         .email(reservation.getEmail())
         .phone(reservation.getPhone())
         .language(reservation.getLanguage())
+        .city(reservation.getCity())
+        .country(reservation.getCountry())
+        .build();
+         customer = customerRepo.save(customer);
+    }
+
+    Reservation newReservation = Reservation.builder()
+        .customer(customer)
         .message(reservation.getMessage())
         .arrivalDate(reservation.getArrivalDate())
         .departureDate(reservation.getDepartureDate())
@@ -101,7 +118,6 @@ public Map<String,Object> createReservation(ReservationRequest reservation) {
         .reservationReference(reference)
         .build();
     Reservation saved = reservationRepo.save(newReservation);
-
     
     emailService.sendCheckoutRecapToAdmin(saved);          
     emailService.sendCheckoutRecapToUser(saved); 

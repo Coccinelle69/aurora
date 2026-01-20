@@ -1,15 +1,14 @@
 CREATE TABLE reservation (
   id SERIAL PRIMARY KEY,
+  customer_id INT NOT NULL,
+  CONSTRAINT fk_reservation_customer
+  FOREIGN KEY (customer_id)
+  REFERENCES customer(id)
+  ON DELETE CASCADE 
   public_token UUID NOT NULL UNIQUE,
   admin_action_expires_at TIMESTAMPTZ NOT NULL,
   admin_action_used BOOLEAN NOT NULL DEFAULT false,
   reservation_reference VARCHAR(50) NOT NULL UNIQUE,
-
-  main_contact_first_name VARCHAR(100) NOT NULL,
-  main_contact_last_name VARCHAR(100) NOT NULL,
-  main_contact_email VARCHAR(100) NOT NULL,
-  main_contact_phone VARCHAR(100) NOT NULL,
-  language VARCHAR(10)  NOT NULL DEFAULT 'en',
 
   guests INT NOT NULL,
   adults INT NOT NULL,
@@ -28,18 +27,32 @@ CREATE TABLE reservation (
   'PAID',
   'CANCELLED'
 )),
-  created_at  TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   message VARCHAR(2000),
   reminder_sent BOOLEAN NOT NULL DEFAULT false,
   cancellation_email_sent BOOLEAN NOT NULL DEFAULT false,
   balance_due_at DATE,
-  reminder_due_at DATE
+  reminder_due_at DATE,
+  created_at  TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
 CREATE TABLE reservation_sequence (
   id SERIAL PRIMARY KEY,
   year INT NOT NULL,
   last_number INT NOT NULL
+);
+
+CREATE TABLE customer (
+  id SERIAL PRIMARY KEY,
+
+  first_name VARCHAR(100) NOT NULL,
+  last_name VARCHAR(100) NOT NULL,
+  email VARCHAR(100) NOT NULL UNIQUE,
+  phone VARCHAR(100) NOT NULL,
+  language VARCHAR(10)  NOT NULL DEFAULT 'en',
+  country VARCHAR(100) NOT NULL,
+  city VARCHAR(100) NOT NULL,
+
+  created_at  TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
 CREATE TABLE payment (
@@ -97,3 +110,19 @@ ON reservation (
   cancellation_email_sent
 );
    
+CREATE TABLE internal_users (
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    full_name VARCHAR(255),
+    role VARCHAR(50) DEFAULT 'ROLE_ADMIN', 
+    is_technical_contact BOOLEAN DEFAULT FALSE
+);
+
+
+INSERT INTO internal_users (email, role, is_technical_contact) 
+VALUES ('mmskrbin@gmail.com', 'ROLE_ADMIN', TRUE);
+
+
+INSERT INTO internal_users (email, role) VALUES ('2804.mail@gmail.com', 'ROLE_ADMIN');
+INSERT INTO internal_users (email, role) VALUES ('dorotea0105@gmail.com', 'ROLE_ADMIN');
+

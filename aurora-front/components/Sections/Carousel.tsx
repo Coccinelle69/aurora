@@ -44,7 +44,7 @@ const EmblaCarousel = () => {
         <div className="flex">
           {items.map((src, index) => (
             <div
-              className="flex-[0_0_100%] relative h-[80%] lg:h-[600px]"
+              className="flex-[0_0_100%] relative h-[550px] lg:h-[600px]"
               key={typeof src === "string" ? src : src.src}
               role="group"
               aria-roledescription="slide"
@@ -54,13 +54,14 @@ const EmblaCarousel = () => {
                 <div className="relative h-[800px] w-full">
                   <Image
                     src={src}
-                    alt={`Slide ${index + 1}`}
+                    alt={`Aurora Apartment view ${index + 1}`}
                     fill
                     className="object-cover pointer-events-none select-none opacity-95 "
                     priority={index === 0}
                     loading={index === 0 ? "eager" : "lazy"}
                     fetchPriority={index === 0 ? "high" : "low"}
                     sizes="100vw"
+                    quality={80}
                   />
                 </div>
               </div>

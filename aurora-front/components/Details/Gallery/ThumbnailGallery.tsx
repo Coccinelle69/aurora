@@ -1,6 +1,7 @@
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import * as houseImages from "@/assets/carousel";
+import { memo } from "react";
 
 const ThumbnailGallery = () => {
   const [emblaRef] = useEmblaCarousel({
@@ -26,6 +27,8 @@ const ThumbnailGallery = () => {
             src={src}
             fill
             alt={`Thumbnail ${i + 1}`}
+            sizes="200px"
+            quality={60}
             className="object-cover"
             priority={i === 0}
             loading={i === 0 ? "eager" : "lazy"}
@@ -37,4 +40,4 @@ const ThumbnailGallery = () => {
   );
 };
 
-export default ThumbnailGallery;
+export default memo(ThumbnailGallery);

@@ -4,7 +4,6 @@ import Redis from "ioredis";
 
 export const dynamic = "force-dynamic";
 
-// 1. Optimized Redis Connection (Prevents local DNS hangs)
 const redis =
   (global as any).redis ||
   new Redis(process.env.REDIS_URL || "redis://127.0.0.1:6379", {
@@ -13,7 +12,6 @@ const redis =
   });
 if (process.env.NODE_ENV !== "production") (global as any).redis = redis;
 
-// Helper to fetch and update cache
 async function refreshWeatherData(cacheKey: string) {
   const lat = (process.env.LAT ?? "0").replace(",", ".");
   const lon = (process.env.LNG ?? "0").replace(",", ".");
@@ -37,14 +35,11 @@ export async function GET() {
   const cacheKey = "weather:v2";
 
   try {
-    // 2. IMMEDIATE CACHE CHECK
     const cached = await redis.get(cacheKey);
 
     if (cached) {
-      // FIRE AND FORGET: Update cache in background, don't 'await' it
       refreshWeatherData(cacheKey);
 
-      // RETURN INSTANTLY
       return NextResponse.json({
         ...JSON.parse(cached),
         source: "cache",

@@ -1,4 +1,4 @@
-import { Icon } from "../components/UI/Base/Icon";
+import { Icon } from "@/components";
 
 export const MenuIcon = (props: { size?: number; color?: string }) => (
   <Icon src="/header/burger-bar.png" alt="Menu" {...props} />

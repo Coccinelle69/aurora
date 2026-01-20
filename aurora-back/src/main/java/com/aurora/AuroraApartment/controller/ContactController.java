@@ -1,6 +1,5 @@
 package com.aurora.AuroraApartment.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,13 +10,14 @@ import com.aurora.AuroraApartment.dto.ContactRequest;
 import com.aurora.AuroraApartment.service.ContactService;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/contact")
+@RequiredArgsConstructor
 public class ContactController {
 
-@Autowired
-ContactService contactService;
+private final ContactService contactService;
     
 @PostMapping
 public ResponseEntity<?> handleContact(@Valid @RequestBody ContactRequest request) {

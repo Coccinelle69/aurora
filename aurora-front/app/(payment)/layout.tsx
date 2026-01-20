@@ -20,22 +20,22 @@ export const metadata: Metadata = {
 };
 
 const sofia = localFont({
-  src: "../fonts/PrincessSofia-Regular.ttf",
+  src: "../fonts/PrincessSofia-Regular.woff2",
   variable: "--font-logo",
   display: "swap",
 });
 
 const roboto = localFont({
   src: [
-    { path: "../fonts/Roboto-Regular.ttf", weight: "400" },
-    { path: "../fonts/Roboto-Medium.ttf", weight: "500" },
+    { path: "../fonts/Roboto-Regular.woff2", weight: "400" },
+    { path: "../fonts/Roboto-Medium.woff2", weight: "500" },
   ],
   variable: "--font-body",
   display: "swap",
 });
 
 const quintessential = localFont({
-  src: "../fonts/Quintessential-Regular.ttf",
+  src: "../fonts/Quintessential-Regular.woff2",
   variable: "--font-heading",
   display: "swap",
 });

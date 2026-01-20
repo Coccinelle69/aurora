@@ -39,6 +39,16 @@ public class ReservationRequest {
     @Pattern(regexp = "^[0-9+()\\-\\s]{6,20}$", message = "Invalid phone number")
     private String phone;
 
+    @NotBlank
+    @Email
+    @Size(max = 200)
+    private String country;
+
+        @NotBlank
+    @Email
+    @Size(max = 200)
+    private String city;
+
     @NotNull
     @Min(1)
     private Integer adults;

@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,14 +22,15 @@ import com.aurora.AuroraApartment.model.Reservation;
 import com.aurora.AuroraApartment.service.ReservationService;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 
 @RestController
 @RequestMapping("/api/reservation")
+@RequiredArgsConstructor
 public class ReservationController {
 
-    @Autowired
-    ReservationService reservationService;
+    private final ReservationService reservationService;
 
 @GetMapping("/availability")
 public ResponseEntity<?> checkAvailability(

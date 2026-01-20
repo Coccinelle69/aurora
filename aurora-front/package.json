@@ -37,7 +37,8 @@
     "react-loader-spinner": "^8.0.0",
     "react-redux": "^9.2.0",
     "react-spinners": "^0.17.0",
-    "redux-persist": "^6.0.0"
+    "redux-persist": "^6.0.0",
+    "sharp": "^0.34.5"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -45,15 +46,10 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "baseline-browser-mapping": "^2.9.13",
+    "baseline-browser-mapping": "^2.9.14",
     "eslint": "^9",
     "eslint-config-next": "16.0.1",
     "tailwindcss": "^4",
     "typescript": "^5"
-  },
-  "browserslist": [
-    "last 2 versions",
-    "not dead",
-    "not ie 11"
-  ]
+  }
 }

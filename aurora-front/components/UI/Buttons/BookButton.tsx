@@ -9,7 +9,7 @@ const BookButton = () => {
   return (
     <Link
       href="/book"
-      className="flex border border-white text-white py-2 px-4 mb-3 uppercase text-sm font-bold hover:scale-110 cursor-pointer transition-transform duration-300 ease-out"
+      className="hidden sm:flex border border-white text-white py-2 px-1 text-center sm:py-2 sm:px-4 mb-3 ml-2 sm:ml-0 uppercase text-[11px] sm:text-sm font-bold hover:scale-110 cursor-pointer transition-transform duration-300 ease-out"
     >
       {t("book")}
     </Link>

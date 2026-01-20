@@ -1,22 +1,24 @@
 services:
-  # aurora-admin:
-  #   build:
-  #     context: ../aurora-admin
-  #     dockerfile: Dockerfile.admin
-  #   working_dir: /app
-  #   ports:
-  #     - "3001:3000"
-  #   env_file:
-  #     - ../aurora-admin/.env.local
-  #   volumes:
-  #     - ../aurora-admin:/app
-  #   environment:
-  #     - NODE_ENV=development
-  #     - CHOKIDAR_USEPOLLING=true
-  #     - WATCHPACK_POLLING=true
-  #     - WATCHPACK_POLLING_INTERVAL=500
-  #     - NEXT_DISABLE_TURBOPACK=1
-  #   command: sh -c "npm run dev --webpack"
+  aurora-admin:
+    build:
+      context: ../aurora-admin
+      dockerfile: Dockerfile.admin
+    working_dir: /app
+    ports:
+      - "3002:3000"
+    env_file:
+      - ../aurora-admin/.env.local
+    volumes:
+      - ../aurora-admin:/app
+      - /app/node_modules
+      - /app/.next
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
+      - WATCHPACK_POLLING_INTERVAL=500
+      - NEXT_DISABLE_TURBOPACK=1
+    command: sh -c "npm run dev --webpack"
   aurora-redis:
     image: redis:alpine
     container_name: redis
@@ -59,7 +61,7 @@ services:
       context: ../aurora-front
       dockerfile: Dockerfile.prod
     ports:
-      - "3001:3001"
+      - "3001:3000"
     env_file:
       - ../aurora-front/.env.local
     environment:

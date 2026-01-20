@@ -107,7 +107,6 @@ export default function ShareButton() {
         aria-haspopup="menu"
         aria-expanded={isOpen}
         aria-controls="share-menu"
-        role="menuitem"
       >
         <ShareIcon size={25} className="rotate-45" aria-hidden="true" />
       </button>

@@ -43,18 +43,10 @@ public class Reservation {
     @Column(name = "reservation_reference", nullable = false, unique = true, updatable = false)
     private String reservationReference;
 
-
-    @Column(name = "main_contact_first_name", nullable = false)
-    private String mainContactFirstName;
-    @Column(name = "main_contact_last_name", nullable = false)
-    private String mainContactLastName;
-    @Column(name = "main_contact_email", nullable = false)
-    private String email;
-    @Column(name = "main_contact_phone", nullable = false)
-    private String phone;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "customer_id", nullable = false)
+    private Customer customer;
     private String message;
-    @Builder.Default
-    private String language="en";
 
     @Column(nullable = false)
     private Integer guests;
@@ -124,6 +116,24 @@ public class Reservation {
                  
     }
 
-   
+     public String getLanguage() {
+        return this.customer != null ? this.customer.getLanguage() : null;
+    }
+
+    public String getEmail() {
+        return this.customer != null ? this.customer.getEmail() : null;
+    }
+
+    public String getMainContactFirstName() {
+        return this.customer != null ? this.customer.getFirstName() : null;
+    }
+
+    public String getPhone() {
+        return this.customer != null ? this.customer.getPhone() : null;
+    }
+
+    public String getMainContactLastName() {
+        return this.customer != null ? this.customer.getLastName() : null;
+    }
 
 }

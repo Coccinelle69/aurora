@@ -2,9 +2,13 @@ import { ContactWrapper } from "@/components";
 
 const ContactPage = () => {
   return (
-    <main>
-      <ContactWrapper />
-    </main>
+    <>
+      {/* <link rel="preconnect" href="https://maps.googleapis.com" />
+      <link rel="preconnect" href="https://maps.gstatic.com" crossOrigin="" /> */}
+      <main>
+        <ContactWrapper />
+      </main>
+    </>
   );
 };
 

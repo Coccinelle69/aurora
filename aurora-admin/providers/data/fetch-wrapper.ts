@@ -8,22 +8,27 @@ const customFetch = async (input: RequestInfo | URL, options: RequestInit) => {
     typeof input === "string"
       ? input
       : input instanceof URL
-      ? input.toString()
-      : input.url;
+        ? input.toString()
+        : input.url;
+
+  console.log("🟡 FETCH URL:", url);
+  console.log("🟡 FETCH OPTIONS:", options);
+  console.log("🟡 FETCH BODY:", options.body);
 
   return await fetch(url, {
     ...options,
+    method: "POST",
     credentials: "include",
     headers: {
-      ...options?.headers,
       "Content-Type": "application/json",
+      ...options?.headers,
       "Apollo-Require-Preflight": "true",
     },
   });
 };
 
 const getGraphQLErrors = (
-  body: Record<"errors", GraphQLFormattedError[] | undefined>
+  body: Record<"errors", GraphQLFormattedError[] | undefined>,
 ): Error | null => {
   if (!body) {
     return {

@@ -1,4 +1,4 @@
-package com.aurora.AuroraApartment.controller;
+package com.aurora.AuroraApartment.controller.front;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;

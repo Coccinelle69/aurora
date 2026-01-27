@@ -1,9 +1,11 @@
 export * from "./Header";
 export * from "./Calendar";
+export * from "./Dashboard";
 export * from "./UI";
 // export * from "./Messages";
 // export * from "./Payments";
 // export * from "./Bookings";
 // export * from "./Customers";
-// export * from "./Settings";
+export * from "./Settings";
+export * from "./Skeleton";
 export * from "./Tasks";

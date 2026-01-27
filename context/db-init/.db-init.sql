@@ -110,19 +110,23 @@ ON reservation (
   cancellation_email_sent
 );
    
-CREATE TABLE internal_users (
+CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     email VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255),
     full_name VARCHAR(255),
-    role VARCHAR(50) DEFAULT 'ROLE_ADMIN', 
-    is_technical_contact BOOLEAN DEFAULT FALSE
+    role VARCHAR(50) DEFAULT 'ROLE_ADMIN' NOT NULL, 
+    is_technical_contact BOOLEAN DEFAULT FALSE NOT NULL
 );
 
-
-INSERT INTO internal_users (email, role, is_technical_contact) 
-VALUES ('mmskrbin@gmail.com', 'ROLE_ADMIN', TRUE);
-
-
-INSERT INTO internal_users (email, role) VALUES ('2804.mail@gmail.com', 'ROLE_ADMIN');
-INSERT INTO internal_users (email, role) VALUES ('dorotea0105@gmail.com', 'ROLE_ADMIN');
+CREATE TABLE password_reset_token (
+    id SERIAL PRIMARY KEY,
+    token VARCHAR(255) UNIQUE NOT NULL,
+    user_id INT NOT NULL,
+    CONSTRAINT fk_password_reset_token_user
+    FOREIGN KEY (user_id)
+    REFERENCES users(id)
+    ON DELETE CASCADE,
+    local_date_time TIMESTAMP NOT NULL
+);
 

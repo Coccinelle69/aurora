@@ -49,15 +49,6 @@ export default function BookLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://maps.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://maps.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link rel="dns-prefetch" href="https://maps.googleapis.com" />
-      </head>
       <body
         suppressHydrationWarning
         className={`${roboto.variable} ${quintessential.variable} ${sofia.variable} antialiased`}

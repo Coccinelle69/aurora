@@ -31,6 +31,9 @@ export const TasksIcon = (props: { size?: number; color?: string }) => (
 export const SettingsIcon = (props: { size?: number; color?: string }) => (
   <Icon src="/admin/menu/settings.png" alt="Settings" {...props} size={36} />
 );
+export const LogoutIcon = (props: { size?: number; color?: string }) => (
+  <Icon src="/admin/menu/logout.png" alt="Logout" {...props} size={36} />
+);
 
 export const GoogleIcon = (props: { size?: number; color?: string }) => (
   <Icon src="/admin/auth/google.png" alt="Google" {...props} size={20} />

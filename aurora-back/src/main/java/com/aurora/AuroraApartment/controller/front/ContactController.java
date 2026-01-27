@@ -1,4 +1,4 @@
-package com.aurora.AuroraApartment.controller;
+package com.aurora.AuroraApartment.controller.front;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

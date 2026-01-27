@@ -1,7 +1,7 @@
 {
   "java.configuration.updateBuildConfiguration": "interactive",
   "[java]": {
-    "editor.defaultFormatter": "google.google-java-format",
+    "editor.defaultFormatter": "lcjuves.vscode-gjf",
     "editor.formatOnSave": true
   }
 }

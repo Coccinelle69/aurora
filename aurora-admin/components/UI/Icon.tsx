@@ -6,6 +6,7 @@ export const Icon = ({
   size = 50,
   color = "white",
   className,
+  hover = false,
 }: IconProps) => (
   <>
     <Image
@@ -15,7 +16,7 @@ export const Icon = ({
       height={size}
       unoptimized
       aria-hidden="true"
-      className={`hover:scale-125 transition-transform duration-300 ease-out ${className}`}
+      className={`${hover && "hover:scale-125 transition-transform duration-300 ease-out"} ${className}`}
       style={{
         filter:
           color === "#4a6ca3" ||

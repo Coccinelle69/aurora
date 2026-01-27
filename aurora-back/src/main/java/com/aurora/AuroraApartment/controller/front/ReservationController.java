@@ -1,4 +1,4 @@
-package com.aurora.AuroraApartment.controller;
+package com.aurora.AuroraApartment.controller.front;
 
 import java.net.URI;
 import org.springframework.http.HttpHeaders;

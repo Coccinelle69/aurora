@@ -4,16 +4,7 @@ import { Refine } from "@refinedev/core";
 import { dataProvider, liveProvider } from "./data";
 import { authProvider } from "./auth";
 import routerProvider from "@refinedev/nextjs-router";
-import {
-  BookingsIcon,
-  CalendarIcon,
-  CustomersIcon,
-  DashboardIcon,
-  MessagesIcon,
-  PaymentsIcon,
-  SettingsIcon,
-  TasksIcon,
-} from "@/icons";
+import { resources } from "@/config/resources";
 
 const RefineContext = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -27,66 +18,7 @@ const RefineContext = ({ children }: { children: React.ReactNode }) => {
         warnWhenUnsavedChanges: true,
         liveMode: "auto",
       }}
-      resources={[
-        {
-          name: "dashboard",
-          list: "/dashboard",
-          meta: {
-            icon: <DashboardIcon />,
-            label: "Dashboard",
-          },
-        },
-        {
-          name: "bookings",
-          list: "/bookings",
-          meta: {
-            icon: <BookingsIcon />,
-          },
-        },
-        {
-          name: "payments",
-          list: "/payments",
-          meta: {
-            icon: <PaymentsIcon />,
-          },
-        },
-        {
-          name: "customers",
-          list: "/customers",
-          meta: {
-            icon: <CustomersIcon />,
-          },
-        },
-        {
-          name: "calendar",
-          list: "/calendar",
-          meta: {
-            icon: <CalendarIcon />,
-            label: "Calendar",
-          },
-        },
-        {
-          name: "tasks",
-          list: "/tasks",
-          meta: {
-            icon: <TasksIcon />,
-          },
-        },
-        {
-          name: "messages",
-          list: "/messages",
-          meta: {
-            icon: <MessagesIcon />,
-          },
-        },
-        {
-          name: "settings",
-          list: "/settings",
-          meta: {
-            icon: <SettingsIcon />,
-          },
-        },
-      ]}
+      resources={resources}
     >
       {children}
     </Refine>

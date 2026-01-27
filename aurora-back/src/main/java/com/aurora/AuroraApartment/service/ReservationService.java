@@ -80,8 +80,8 @@ public Map<String,Object> createReservation(ReservationRequest reservation) {
         throw new ResponseStatusException(
             HttpStatus.BAD_REQUEST,
             "Selected dates are not available"
-        );
-    }
+        ); 
+    } 
     
     String reference = referenceService.generateReference();
     int adults = Optional.ofNullable(reservation.getAdults()).orElse(0);

@@ -1,20 +1,26 @@
 import { fetchWrapper } from "./fetch-wrapper";
-import { createClient, fetchExchange } from "urql";
+import { cacheExchange, createClient, fetchExchange } from "urql";
 import graphqlDataProvider, { createLiveProvider } from "@refinedev/graphql";
 import { createClient as createWSClient } from "graphql-ws";
 
-export const API_URL_BASE = "https://api.crm.refine.dev";
+export const API_URL_BASE = "http://localhost:8080";
 export const API_URL = `${API_URL_BASE}/graphql`;
-export const WS_URL = "wss://api.crm.refine.dev/graphql";
+export const WS_URL = "ws://localhost:8080/graphql";
 
 export const client = createClient({
   url: API_URL,
-  exchanges: [fetchExchange],
-  fetchOptions: {
+
+  exchanges: [fetchExchange, cacheExchange],
+  preferGetMethod: false,
+  fetchOptions: () => ({
     credentials: "include",
-  },
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }),
   fetch: (input, options) =>
     fetchWrapper(input as string, options as RequestInit),
+  requestPolicy: "network-only",
 });
 
 export const wsClient =

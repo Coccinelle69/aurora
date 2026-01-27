@@ -1,0 +1,58 @@
+type Query {
+  me: User
+  validateResetToken(token: String!): Boolean!
+}
+
+type Mutation {
+  login(loginInput: LoginInput!): AuthPayload
+  forgotPassword(email: String!): ForgotPasswordResponse!
+  updatePassword(token: String!, newPassword: String!): UpdatePasswordResponse!
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+type AuthPayload {
+  user: User
+}
+
+type User {
+  id: ID
+  name: String
+  email: String
+  phone: String
+  jobTitle: String
+  timezone: String
+  avatarUrl: String
+}
+
+type ForgotPasswordResponse {
+  success: Boolean!
+  message: String!
+}
+
+type UpdatePasswordResponse {
+  success: Boolean!
+  message: String!
+}
+
+type CalendarEvent {
+  id: ID!
+  title: String!
+  location: String
+  description: String
+  startTime: String!
+  endTime: String!
+  isAllDay: Boolean
+}
+
+input CreateCalendarEventInput {
+  title: String!
+  location: String
+  description: String
+  startTime: String!
+  endTime: String!
+  isAllDay: Boolean
+}

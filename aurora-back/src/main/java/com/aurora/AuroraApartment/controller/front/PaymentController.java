@@ -1,4 +1,4 @@
-package com.aurora.AuroraApartment.controller;
+package com.aurora.AuroraApartment.controller.front;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

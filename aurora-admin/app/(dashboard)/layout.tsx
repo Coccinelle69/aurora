@@ -1,12 +1,13 @@
 "use client";
 import { NavigateToResource } from "@refinedev/nextjs-router";
 import { Authenticated, useIsAuthenticated, useMenu } from "@refinedev/core";
-import { Header } from "@/components";
+import { Header, LogoutButton } from "@/components";
 import { Layout, Menu } from "antd";
 import Sider from "antd/es/layout/Sider";
 import { Content } from "antd/es/layout/layout";
 import Link from "next/link";
 import { redirect, usePathname } from "next/navigation";
+import { useEffect } from "react";
 
 export default function DashboardLayout({
   children,
@@ -14,12 +15,14 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   const { data: auth } = useIsAuthenticated();
-
-  if (auth && !auth.authenticated) {
-    redirect("/login");
-  }
   const { menuItems } = useMenu();
   const pathname = usePathname();
+
+  useEffect(() => {
+    if (auth && !auth.authenticated) {
+      redirect("/login");
+    }
+  }, [auth]);
   const items = menuItems.map((item) => ({
     key: item.route || item.key,
     icon: item.icon,
@@ -52,6 +55,7 @@ export default function DashboardLayout({
             items={items}
             style={{ fontSize: "16px" }}
           />
+          <LogoutButton />
         </Sider>
         <Layout>
           <Header />

@@ -5,7 +5,7 @@ import { Avatar } from "antd";
 const CustomAvatar = ({ name, style, ...rest }: CustomAvatarProps) => {
   return (
     <Avatar
-      alt={"Marcela-Maria Skrbin"}
+      alt={name}
       size="small"
       className="flex items-center border-none bg-[#87d068]"
       style={{ ...style }}

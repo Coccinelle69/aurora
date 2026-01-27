@@ -50,7 +50,7 @@ services:
         condition: service_started
     environment:
       - NODE_ENV=development
-      - CHOKIDAR_USEPOLLING=true # required for Windows FS
+      - CHOKIDAR_USEPOLLING=true
       - WATCHPACK_POLLING=true
       - WATCHPACK_POLLING_INTERVAL=500
       - NEXT_DISABLE_TURBOPACK=1
@@ -80,6 +80,11 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://aurora-db:5432/${POSTGRES_DB}
       SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
       SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+      ADMIN_PASS_1: ${ADMIN_PASS_1}
+      ADMIN_PASS_2: ${ADMIN_PASS_2}
+      ADMIN_PASS_3: ${ADMIN_PASS_3}
+      OAUTH2_GOOGLE_CLIENT_ID: ${OAUTH2_GOOGLE_CLIENT_ID}
+      OAUTH2_GOOGLE_CLIENT_SECRET: ${OAUTH2_GOOGLE_CLIENT_SECRET}
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
     working_dir: /app
     ports:
@@ -89,7 +94,6 @@ services:
     volumes:
       - ../aurora-back/src:/app/src
       - ../aurora-back/secrets.properties:/app/secrets.properties
-      - /app/node_modules
     command: ./mvnw spring-boot:run
   aurora-db:
     image: postgres:15
@@ -101,7 +105,7 @@ services:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
-      - ./db-init:/docker-entrypoint-initdb.d # optional init scripts
+      - ./db-init:/docker-entrypoint-initdb.d
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER}"]
       interval: 5s

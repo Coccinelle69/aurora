@@ -59,7 +59,7 @@ const sizes = {
   },
 };
 
-export const Text = ({ size = "sm", children, ...rest }: TextProps) => {
+const Text = ({ size = "sm", children, ...rest }: TextProps) => {
   return (
     <ConfigProvider
       theme={{
@@ -72,3 +72,5 @@ export const Text = ({ size = "sm", children, ...rest }: TextProps) => {
     </ConfigProvider>
   );
 };
+
+export default Text;

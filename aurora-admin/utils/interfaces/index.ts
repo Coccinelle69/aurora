@@ -7,6 +7,7 @@ export interface IconProps {
   color?: string;
   className?: string;
   alt?: string;
+  hover?: boolean;
 }
 
 export interface KanbanItemProps {
@@ -15,5 +16,11 @@ export interface KanbanItemProps {
 }
 
 export interface CustomAvatarProps extends AvatarProps {
-  name: string;
+  name?: string;
+}
+
+export interface AccountSettingsProps {
+  open: boolean;
+  setOpen: (opened: boolean) => void;
+  userId: string;
 }

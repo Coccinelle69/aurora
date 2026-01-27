@@ -1,7 +1,5 @@
 package com.aurora.AuroraApartment.config;
 
-import java.util.List;
-
 import org.springframework.stereotype.Component;
 
 import com.aurora.AuroraApartment.dto.PaymentStatus;
